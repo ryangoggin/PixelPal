@@ -36,6 +36,22 @@ class Server(db.Model):
     members = db.relationship('User', secondary='server_members', backref='servers')
     server_picture = db.Column(db.String(120))
 
+class FriendList(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    friend_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    user = db.relationship('User', foreign_keys=[user_id], backref=db.backref('friends', lazy=True))
+    friend = db.relationship('User', foreign_keys=[friend_id])
+
+    __table_args__ = (
+        db.UniqueConstraint('user_id', 'friend_id', name='unique_friend'),
+    )
+
+
+
+
+
 
 server_members = db.Table('server_members',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
