@@ -3,11 +3,13 @@ from flask_migrate import Migrate
 from app.config import Configuration
 from app.models import db
 from .socket import socketio
+from app.routes.users import users_bp
 
 
 
 # create the Flask application
 app = Flask(__name__)
+app.register_blueprint(users_bp, url_prefix='/users')
 app.config.from_object(Configuration)
 
 # initialize the database
