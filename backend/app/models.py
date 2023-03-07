@@ -11,6 +11,7 @@ class User(db.Model):
     profile_pic = db.Column(db.String(120))
     channels = db.relationship('Channel', backref='user', lazy=True)
     servers = db.relationship('Server', secondary='server_members', backref='members')
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
 
 class Channel(db.Model):
