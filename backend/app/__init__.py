@@ -3,7 +3,7 @@ from flask_migrate import Migrate
 from app.config import Configuration
 from app.models import db
 from .socket import socketio
-from app.routes.users import users_bp
+from app.routes import users_bp
 
 
 

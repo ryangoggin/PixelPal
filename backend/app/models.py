@@ -3,6 +3,9 @@ from datetime import datetime
 
 db = SQLAlchemy()
 
+
+
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
@@ -11,7 +14,6 @@ class User(db.Model):
     profile_pic = db.Column(db.String(120))
     servers = db.relationship('Server', secondary='server_members', backref='members')
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-
 
 class Channel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -26,6 +28,13 @@ class Message(db.Model):
     timestamp = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     channel_id = db.Column(db.Integer, db.ForeignKey('channel.id'), nullable=False)
+    emojis = db.relationship('Emoji', backref='message', lazy=True)
+
+class Emoji(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64), nullable=False)
+    url = db.Column(db.String(255), nullable=False)
+    message_id = db.Column(db.Integer, db.ForeignKey('message.id'), nullable=False)
 
 class Server(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -47,10 +56,6 @@ class FriendList(db.Model):
     __table_args__ = (
         db.UniqueConstraint('user_id', 'friend_id', name='unique_friend'),
     )
-
-
-
-
 
 
 server_members = db.Table('server_members',
