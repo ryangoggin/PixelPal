@@ -1,3 +1,4 @@
+# socket.py
 from flask_socketio import SocketIO, emit
 import os
 
@@ -14,6 +15,14 @@ else:
 # initialize your socket instance
 socketio = SocketIO(cors_allowed_origins=origins)
 
+@socketio.on('connect')
+def handle_connect():
+    print('Client connected')
+
+
+@socketio.on('disconnect')
+def handle_disconnect():
+    print('Client disconnected')
 
 # handle chat messages
 @socketio.on("chat")

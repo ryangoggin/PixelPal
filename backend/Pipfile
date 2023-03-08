@@ -18,6 +18,8 @@ python-dotenv = "*"
 sqlalchemy = "*"
 wtforms = "*"
 flask-wtf = "*"
+websocket-client = "*"
+socketio-client = {extras = ["client"], version = "*"}
 
 [dev-packages]
 

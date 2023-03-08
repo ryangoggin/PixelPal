@@ -1,15 +1,78 @@
 from flask import Blueprint, request, jsonify
+from app.models import User, db
+
 
 users_bp = Blueprint('users', __name__)
 
+# define a route for getting all users
+# GET /users - get all users
+@users_bp.route('/', methods=['GET'])
+def get_all_users():
+    # query the database for all users
+    users = User.query.all()
+    # return a JSON response containing all users as dictionaries
+    return jsonify([user.to_dict() for user in users])
 
 
-@users_bp.route('/register', methods=['POST'])
-def register():
-    username = request.json.get('username')
-    email = request.json.get('email')
-    password = request.json.get('password')
+# define a route for creating a new user
+# POST /users - create a new user
+@users_bp.route('/', methods=['POST'])
+def create_user():
+    # get the JSON data from the request body
+    data = request.get_json()
+    # create a new User object based on the JSON data
+    user = User(username=data['username'], email=data['email'], password=data['password'])
+    # add the new user to the database session
+    db.session.add(user)
+    # commit the changes to the database
+    db.session.commit()
+    # return a JSON response containing the created user as a dictionary
+    return jsonify(user.to_dict())
 
-    # TODO: validate inputs and create new user in database
+# define a route for getting a specific user by ID
+# GET /users/:id - get a specific user by ID
+@users_bp.route('/<int:user_id>', methods=['GET'])
+def get_user(user_id):
+    # query the database for a user with the specified ID
+    user = User.query.get(user_id)
+    # if the user is not found, return a 404 error response
+    if user is None:
+        return jsonify({'error': 'User not found'}), 404
+    # otherwise, return a JSON response containing the user as a dictionary
+    return jsonify(user.to_dict())
 
-    return jsonify({'message': 'User created successfully'})
+# define a route for updating a specific user by ID
+# PUT /users/:id - update a specific user by ID
+@users_bp.route('/<int:user_id>', methods=['PUT'])
+def update_user(user_id):
+    # get the JSON data from the request body
+    data = request.get_json()
+    # query the database for a user with the specified ID
+    user = User.query.get(user_id)
+    # if the user is not found, return a 404 error response
+    if user is None:
+        return jsonify({'error': 'User not found'}), 404
+    # update the user object with the new data
+    user.username = data.get('username', user.username)
+    user.email = data.get('email', user.email)
+    user.password = data.get('password', user.password)
+    # commit the changes to the database
+    db.session.commit()
+    # return a JSON response containing the updated user as a dictionary
+    return jsonify(user.to_dict())
+
+# define a route for deleting a specific user by ID
+# DELETE /users/:id - delete a specific user by ID
+@users_bp.route('/<int:user_id>', methods=['DELETE'])
+def delete_user(user_id):
+    # query the database for a user with the specified ID
+    user = User.query.get(user_id)
+    # if the user is not found, return a 404 error response
+    if user is None:
+        return jsonify({'error': 'User not found'}), 404
+    # delete the user from the database session
+    db.session.delete(user)
+    # commit the changes to the database
+    db.session.commit()
+    # return a 200 success status response
+    return '', 200

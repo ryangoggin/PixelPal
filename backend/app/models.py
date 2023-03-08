@@ -28,9 +28,9 @@ class Message(db.Model):
     timestamp = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     channel_id = db.Column(db.Integer, db.ForeignKey('channel.id'), nullable=False)
-    emojis = db.relationship('Emoji', backref='message', lazy=True)
+    emojis = db.relationship('EmojiReaction', backref='message', lazy=True)
 
-class Emoji(db.Model):
+class EmojiReaction(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), nullable=False)
     url = db.Column(db.String(255), nullable=False)
@@ -49,6 +49,7 @@ class FriendList(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     friend_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    mutual = db.Column(db.Boolean, default=False, nullable=False)
 
     user = db.relationship('User', foreign_keys=[user_id], backref=db.backref('friends', lazy=True))
     friend = db.relationship('User', foreign_keys=[friend_id])
@@ -56,7 +57,6 @@ class FriendList(db.Model):
     __table_args__ = (
         db.UniqueConstraint('user_id', 'friend_id', name='unique_friend'),
     )
-
 
 server_members = db.Table('server_members',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
