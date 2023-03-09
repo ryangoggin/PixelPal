@@ -1,4 +1,4 @@
-# Discord Clone Backend README
+# PixelPal Backend README
 
 ## Overview
 
