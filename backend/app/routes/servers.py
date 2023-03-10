@@ -33,6 +33,23 @@ def create_server():
     # return the new server as JSON
     return jsonify(server.to_dict()), 201
 
+# route to get all channels for a specific server
+# GET /servers/:id/channels - get all channels for a specific server
+@servers_bp.route('/<int:id>/channels', methods=['GET'])
+def get_all_channels_for_server(id):
+    # get the server from the database by ID
+    server = Server.query.get(id)
+    # if the server doesn't exist, return an error message
+    if server is None:
+        return jsonify({'error': 'Server not found'}), 404
+
+    # get all channels for the server
+    channels = server.channels
+
+    # convert each channel to a dictionary and return as JSON
+    return jsonify([channel.to_dict() for channel in channels]), 200
+
+
 # route to get a specific server by ID
 # GET /servers/:id - get a specific server by ID
 @servers_bp.route('/<int:id>', methods=['GET'])
