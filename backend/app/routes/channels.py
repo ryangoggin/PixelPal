@@ -32,6 +32,23 @@ def create_channel():
     # return the new channel as JSON
     return jsonify(channel.to_dict()), 201
 
+# route to get a channel's messages
+# GET /channels/:channelId/messages
+@channels_bp.route('/<int:id>/messages', methods=['GET'])
+def get_channel_messages(id):
+    # get the channel from the database by ID
+    channel = Channel.query.get(id)
+    # if the channel doesn't exist, return an error message
+    if channel is None:
+        return jsonify({'error': 'Channel not found'}), 404
+
+    # get all messages for the channel
+    messages = channel.messages
+
+    # return the messages as JSON
+    return jsonify([message.to_dict() for message in messages]), 200
+
+
 # route to get a specific channel by ID
 # GET /channels/:id - get a specific channel by ID
 @channels_bp.route('/<int:id>', methods=['GET'])
