@@ -7,11 +7,11 @@ from flask_login import LoginManager
 from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
-from .api.server_routes import server_routes
-from .api.channel_routes import channel_routes
-from .api.friend_routes import friend_routes
-from .api.message_routes import message_routes
-from .api.emoji_routes import emoji_routes
+# from .api.server_routes import server_routes
+# from .api.channel_routes import channel_routes
+# from .api.friend_routes import friend_routes
+# from .api.message_routes import message_routes
+# from .api.emoji_routes import emoji_routes
 
 from .seeds import seed_commands
 from .config import Config
@@ -29,16 +29,16 @@ def load_user(id):
 
 # Tell flask about our seed commands
 app.cli.add_command(seed_commands)
+app.config.from_object(Config)
 
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
-app.register_blueprint(friend_routes, url_prefix='/api/friends')
-app.register_blueprint(server_routes, url_prefix='/api/servers')
-app.register_blueprint(channel_routes, url_prefix='/api/channels')
-app.register_blueprint(message_routes, url_prefix='/api/messages')
-app.register_blueprint(emoji_routes, url_prefix='/api/emojis')
+# app.register_blueprint(friend_routes, url_prefix='/api/friends')
+# app.register_blueprint(server_routes, url_prefix='/api/servers')
+# app.register_blueprint(channel_routes, url_prefix='/api/channels')
+# app.register_blueprint(message_routes, url_prefix='/api/messages')
+# app.register_blueprint(emoji_routes, url_prefix='/api/emojis')
 
-app.config.from_object(Config)
 db.init_app(app)
 Migrate(app, db)
 
