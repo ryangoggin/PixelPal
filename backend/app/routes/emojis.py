@@ -1,5 +1,5 @@
 from flask import jsonify, request, Blueprint
-from app.models import db, EmojiReaction
+from app.models.models import db, EmojiReaction
 
 # create a blueprint for emoji reactions routes
 emojis_bp = Blueprint('emojis', __name__)

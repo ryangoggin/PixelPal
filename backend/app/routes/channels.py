@@ -1,5 +1,5 @@
 from flask import jsonify, request, Blueprint
-from app.models import db, Channel
+from app.models.models import db, Channel
 
 # create a blueprint for channels routes
 channels_bp = Blueprint('channels', __name__)

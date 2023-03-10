@@ -1,5 +1,5 @@
 from flask import jsonify, request, Blueprint
-from app.models import db, FriendList
+from app.models.models import db, FriendList
 
 # create a blueprint for friend list routes
 friendlists_bp = Blueprint('friendlists', __name__)

@@ -1,5 +1,5 @@
 from flask import jsonify, request, Blueprint
-from app.models import db, Message
+from app.models.models import db, Message
 
 # create a blueprint for messages routes
 messages_bp = Blueprint('messages', __name__)
