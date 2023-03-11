@@ -9,7 +9,7 @@ channel_routes = Blueprint('channels', __name__)
 
 # route to get all channels
 # GET /channels - get all channels
-@channels_routes.route('/', methods=['GET'])
+@channel_routes.route('/', methods=['GET'])
 def get_all_channels():
     # get all channels from the database
     channels = Channel.query.all()
@@ -18,7 +18,7 @@ def get_all_channels():
 
 # route to create a new channel
 # POST /channels - create a new channel
-@channels_routes.route('/', methods=['POST'])
+@channel_routes.route('/', methods=['POST'])
 def create_channel():
     # create a ChannelForm instance and validate the data
     form = ChannelForm(request.form)
@@ -39,7 +39,7 @@ def create_channel():
 
 # route to get a channel's messages
 # GET /channels/:channelId/messages
-@channels_routes.route('/<int:id>/messages', methods=['GET'])
+@channel_routes.route('/<int:id>/messages', methods=['GET'])
 def get_channel_messages(id):
     # get the channel from the database by ID
     channel = Channel.query.get(id)
@@ -56,7 +56,7 @@ def get_channel_messages(id):
 
 # route to get a specific channel by ID
 # GET /channels/:id - get a specific channel by ID
-@channels_routes.route('/<int:id>', methods=['GET'])
+@channel_routes.route('/<int:id>', methods=['GET'])
 def get_channel(id):
     # get the channel from the database by ID
     channel = Channel.query.get(id)
@@ -69,7 +69,7 @@ def get_channel(id):
 
 # route to update a specific channel by ID
 # PUT /channels/:id - update a specific channel by ID
-@channels_routes.route('/<int:id>', methods=['PUT'])
+@channel_routes.route('/<int:id>', methods=['PUT'])
 def update_channel(id):
     # get the channel from the database by ID
     channel = Channel.query.get(id)
@@ -99,7 +99,7 @@ def update_channel(id):
 
 # route to delete a specific channel by ID
 # DELETE /channels/:id - delete a specific channel by ID
-@channels_routes.route('/<int:id>', methods=['DELETE'])
+@channel_routes.route('/<int:id>', methods=['DELETE'])
 def delete_channel(id):
     # get the channel from the database by ID
     channel = Channel.query.get(id)
