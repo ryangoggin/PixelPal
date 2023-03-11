@@ -37,11 +37,7 @@ def create_message():
     # !!!!!!!!!! for testing lower content length to 20, return to 2000 before deploying
     # COMMENT CHANNEL ID BACK IN ONCE CHANNEL MODEL IS MADE
     if len(res["content"]) > 2000:
-            print(f"if this printes then it should return a 400 error.....")
-            print(f"AAAAAAAAAAAAAAAAAAAAA errors: {errors}")
             errors["content"] = "Messages must be less than 2000 characters"
-            print(f"if this printes then it should return a 400 error.....")
-            print(f"AAAAAAAAAAAAAAAAAAAAA errors: {errors}")
             return jsonify({"errors": errors}), 400
 
     if form.validate_on_submit():
@@ -64,7 +60,18 @@ def update_message(id):
     message = Message.query.get(id)
     res = request.get_json()
 
-    if message:
+    form = MessageForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    errors = {}
+
+    # !!!!!!!!!! for testing lower content length to 20, return to 2000 before deploying
+    # COMMENT CHANNEL ID BACK IN ONCE CHANNEL MODEL IS MADE
+    if len(res["content"]) > 2000:
+            errors["content"] = "Messages must be less than 2000 characters"
+            return jsonify({"errors": errors}), 400
+
+    if message and form.validate_on_submit():
         message.content = res["content"] or message.content
         message.timestamp = datetime.utcnow()
 
