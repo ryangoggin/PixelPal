@@ -11,7 +11,7 @@ class Channel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
     description = db.Column(db.String(120))
-    messages = db.relationship('Message', backref='channel', lazy=True)
+    messages = db.relationship('Message', backref='channel', lazy=True, cascade='all, delete')
     # server_id = db.Column(db.Integer, db.ForeignKey('server.id'), nullable=False)
 
     def to_dict(self):

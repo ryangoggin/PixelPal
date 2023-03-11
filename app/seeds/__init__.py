@@ -21,8 +21,8 @@ def seed():
         undo_messages()
         undo_users()
     seed_users()
-    seed_messages()
     seed_channels()
+    seed_messages()
     # Add other seed functions here
 
 
@@ -30,6 +30,6 @@ def seed():
 @seed_commands.command('undo')
 def undo():
     undo_messages()
-    undo_users()
     undo_channels()
+    undo_users()
     # Add other undo functions here
