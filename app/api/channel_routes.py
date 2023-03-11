@@ -22,6 +22,8 @@ def get_all_channels():
 def create_channel():
     # create a ChannelForm instance and validate the data
     form = ChannelForm(request.form)
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
     if form.validate_on_submit():
         # create a new channel object
         channel = Channel(name=form.name.data, description=form.description.data, server_id=form.server_id.data)
