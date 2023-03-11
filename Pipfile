@@ -25,6 +25,7 @@ python-dateutil = "==2.8.2"
 python-editor = "==1.0.4"
 greenlet = "==2.0.1"
 Mako = "==1.2.4"
+emoji = "*"
 
 [dev-packages]
 
