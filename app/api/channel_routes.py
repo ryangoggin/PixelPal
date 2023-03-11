@@ -9,7 +9,7 @@ channel_routes = Blueprint('channels', __name__)
 
 # route to get all channels
 # GET /channels - get all channels
-@channel_routes.route('/', methods=['GET'])
+@channel_routes.route('', methods=['GET'])
 def get_all_channels():
     # get all channels from the database
     channels = Channel.query.all()
@@ -18,15 +18,19 @@ def get_all_channels():
 
 # route to create a new channel
 # POST /channels - create a new channel
-@channel_routes.route('/', methods=['POST'])
+@channel_routes.route('', methods=['POST'])
 def create_channel():
     # create a ChannelForm instance and validate the data
-    form = ChannelForm(request.form)
+    form = ChannelForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
+
+    data = request.get_json()
 
     if form.validate_on_submit():
         # create a new channel object
-        channel = Channel(name=form.name.data, description=form.description.data, server_id=form.server_id.data)
+        channel = Channel(name=data["name"], description=data["description"])
+        # COMMENT SERVER_ID BACK IN WHEN SERVER IS CREATED
+        # , server_id=data["server_id"]
         # add the channel to the database
         db.session.add(channel)
         db.session.commit()
@@ -78,14 +82,17 @@ def update_channel(id):
         return jsonify({'error': 'Channel not found'}), 404
 
     # create a channel form and populate it with the request data
-    form = ChannelForm(request.form)
+    form = ChannelForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    data = request.get_json()
 
     # validate the form
     if form.validate():
         # update the channel object with the new data
-        channel.name = form.name.data or channel.name
-        channel.description = form.description.data or channel.description
-        channel.server_id = form.server_id.data or channel.server_id
+        channel.name = data["name"] or channel.name
+        channel.description = data["description"] or channel.description
+        # channel.server_id = data["server_id"] or channel.server_id
 
         # save the changes to the database
         db.session.commit()
