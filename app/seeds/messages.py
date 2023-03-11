@@ -7,11 +7,11 @@ from sqlalchemy.sql import text
 def seed_messages():
     # ADD CHANNEL_ID BACK IN ONCE CHANNEL MODEL MADE
     message1 = Message(
-        content='Hey what\'s up?', user_id=1) #, channel_id=1
+        content='Hey what\'s up?', user_id=1, channel_id=1)
     message2 = Message(
-        content='Nothing much, wbu?', user_id=2) #, channel_id=1
+        content='Nothing much, wbu?', user_id=2, channel_id=1)
     message3 = Message(
-        content='Oh wow a new channel, nice', user_id=1) #, channel_id=2
+        content='Oh wow a new channel, nice', user_id=1, channel_id=2)
 
     db.session.add_all([message1, message2, message3])
     db.session.commit()

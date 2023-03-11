@@ -27,7 +27,6 @@ def get_message_id(id):
 @message_routes.route("", methods=["POST"])
 def create_message():
     res = request.get_json()
-    print(f"AAAAAAAAAAAAAAAAAAAAAAAAAAAA res: {res}")
 
     form = MessageForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
@@ -35,7 +34,6 @@ def create_message():
     errors = {}
 
     # !!!!!!!!!! for testing lower content length to 20, return to 2000 before deploying
-    # COMMENT CHANNEL ID BACK IN ONCE CHANNEL MODEL IS MADE
     if len(res["content"]) > 2000:
             errors["content"] = "Messages must be less than 2000 characters"
             return jsonify({"errors": errors}), 400
@@ -44,7 +42,7 @@ def create_message():
         new_message = Message(
             content=res["content"],
             user_id=res["userId"],
-            # channel_id=["channelId"],
+            channel_id=["channelId"],
             timestamp = datetime.utcnow()
         )
 
@@ -66,7 +64,6 @@ def update_message(id):
     errors = {}
 
     # !!!!!!!!!! for testing lower content length to 20, return to 2000 before deploying
-    # COMMENT CHANNEL ID BACK IN ONCE CHANNEL MODEL IS MADE
     if len(res["content"]) > 2000:
             errors["content"] = "Messages must be less than 2000 characters"
             return jsonify({"errors": errors}), 400
