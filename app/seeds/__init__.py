@@ -1,6 +1,7 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .messages import seed_messages, undo_messages
+from .channels import seed_channels, undo_channels
 
 from app.models.db import db, environment, SCHEMA
 
@@ -21,6 +22,7 @@ def seed():
         undo_users()
     seed_users()
     seed_messages()
+    seed_channels()
     # Add other seed functions here
 
 
@@ -29,4 +31,5 @@ def seed():
 def undo():
     undo_messages()
     undo_users()
+    undo_channels()
     # Add other undo functions here
