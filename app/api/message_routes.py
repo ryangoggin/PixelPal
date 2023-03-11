@@ -28,16 +28,21 @@ def get_message_id(id):
 @message_routes.route("", methods=["POST"])
 def create_message():
     res = request.get_json()
+    print(f"AAAAAAAAAAAAAAAAAAAAAAAAAAAA res: {res}")
 
     form = MessageForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
 
     errors = {}
 
-    # !!!!!!!!!! for testing, it's been lowered to 5, return to 5 before deploying
+    # !!!!!!!!!! for testing lower content length to 20, return to 2000 before deploying
     # COMMENT CHANNEL ID BACK IN ONCE CHANNEL MODEL IS MADE
-    if len(res["content"]) > 5:
-            errors.content = "Messages must be less than 2000 characters"
+    if len(res["content"]) > 2000:
+            print(f"if this printes then it should return a 400 error.....")
+            print(f"AAAAAAAAAAAAAAAAAAAAA errors: {errors}")
+            errors["content"] = "Messages must be less than 2000 characters"
+            print(f"if this printes then it should return a 400 error.....")
+            print(f"AAAAAAAAAAAAAAAAAAAAA errors: {errors}")
             return jsonify({"errors": errors}), 400
 
     if form.validate_on_submit():
@@ -45,7 +50,7 @@ def create_message():
             content=res["content"],
             user_id=res["userId"],
             # channel_id=["channelId"],
-            timestamp =["timestamp"]
+            timestamp = datetime.utcnow()
         )
 
         db.session.add(new_message)
@@ -62,7 +67,7 @@ def update_message(id):
 
     if message:
         message.content = res["content"] or message.content
-        message.timestamp = datetime.utcnow
+        message.timestamp = datetime.utcnow()
 
         db.session.commit()
         return message.to_dict()
