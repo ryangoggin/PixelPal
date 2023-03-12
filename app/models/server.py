@@ -1,9 +1,6 @@
-from flask_sqlalchemy import SQLAlchemy
+from .db import db, environment, SCHEMA
 from datetime import datetime
-
-# from .users import User
-
-db = SQLAlchemy()
+from .user import User
 
 server_members = db.Table('server_members',
     db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
@@ -27,7 +24,7 @@ class Server(db.Model):
             "name": self.name,
             "description": self.description,
             "ownerId": self.owner_id,
-            "channels": [channel.to_dict() for channel in self.channels],
+            # "channels": [channel.to_dict() for channel in self.channels],
             "members": [member.to_dict() for member in self.members],
             "serverPicture": self.server_picture
         }
