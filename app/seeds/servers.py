@@ -5,13 +5,13 @@ from sqlalchemy.sql import text
 # Adds a demo server, you can add other servers here if you want
 def seed_servers():
     AppAcademy = Server(
-        owner_id = 1
-        name = "App Academy"
-        description = "Server for App Academy students to connect and help one another"
-        # channels = db.relationship('Channel', backref='server', lazy=True)
+        owner_id = 1,
+        name = "App Academy",
+        description = "Server for App Academy students to connect and help one another",
+        # channels = db.relationship('Channel', backref='server', lazy=True),
         members = [
-            {'id': '1', 'username': 'Demo', 'email':'demo@aa.io'}
-        ]
+            {'id':'1', 'username':'Demo', 'email':'demo@aa.io'}
+        ],
         server_picture = 'image.url')
 
     db.session.add(AppAcademy)

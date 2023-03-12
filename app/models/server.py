@@ -18,7 +18,7 @@ class Server(db.Model):
     name = db.Column(db.String(80), nullable=False)
     description = db.Column(db.String(120))
     # channels = db.relationship('Channel', backref='server', lazy=True)
-    # members = db.relationship('User', secondary='server_members', backref='servers')
+    members = db.relationship('User', secondary='server_members', backref='servers')
     server_picture = db.Column(db.String(120))
 
     def to_dict(self):

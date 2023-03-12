@@ -1,6 +1,8 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
-from models.server import db, Server
+# from models.server import db, Server
+# breakpoint()
+from app.models.server import db, Server
 
 server_routes = Blueprint('servers', __name__)
 
@@ -35,7 +37,7 @@ def create_server():
 
 # route to get a specific server by ID
 # GET /servers/:id - get a specific server by ID
-@servers_bp.route('/<int:id>', methods=['GET'])
+@server_routes.route('/<int:id>', methods=['GET'])
 def get_server(id):
     # get the server from the database by ID
     server = Server.query.get(id)
