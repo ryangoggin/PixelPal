@@ -5,8 +5,8 @@ import os
 # configure cors_allowed_origins
 if os.environ.get('FLASK_ENV') == 'production':
     origins = [
-        'http://actual-app-url.herokuapp.com',
-        'https://actual-app-url.herokuapp.com'
+        'http://pixelpal.onrender.com',
+        'https://pixelpal.onrender.com/'
     ]
 else:
     origins = "*"
