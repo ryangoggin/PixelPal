@@ -27,6 +27,7 @@ greenlet = "==2.0.1"
 Mako = "==1.2.4"
 
 [dev-packages]
+pylint = "*"
 
 [requires]
 python_version = "3.9"
