@@ -46,6 +46,6 @@ def undo_servers():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.server RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute(text("DELETE FROM server"))
+        db.session.execute(text("DELETE FROM server")) #please note that server was put as singular in our model
 
     db.session.commit()

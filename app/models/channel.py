@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
 
 
@@ -12,7 +12,7 @@ class Channel(db.Model):
     name = db.Column(db.String(80), nullable=False)
     description = db.Column(db.String(120))
     messages = db.relationship('Message', backref='channel', lazy=True, cascade='all, delete')
-    server_id = db.Column(db.Integer, db.ForeignKey('server.id'), nullable=False)
+    server_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('server.id')), nullable=False)
 
     def to_dict(self):
         return {
