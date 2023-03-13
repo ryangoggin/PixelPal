@@ -2,6 +2,8 @@
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
 
+
+// Action Creators
 const setUser = (user) => ({
 	type: SET_USER,
 	payload: user,
@@ -10,6 +12,13 @@ const setUser = (user) => ({
 const removeUser = () => ({
 	type: REMOVE_USER,
 });
+
+
+// Selectors
+
+
+
+// Thunks
 
 const initialState = { user: null };
 
@@ -94,7 +103,10 @@ export const signUp = (username, email, password) => async (dispatch) => {
 	}
 };
 
-export default function reducer(state = initialState, action) {
+
+// Reducer
+
+export default function sessionReducer(state = initialState, action) {
 	switch (action.type) {
 		case SET_USER:
 			return { user: action.payload };
