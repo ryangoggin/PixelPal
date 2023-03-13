@@ -16,7 +16,7 @@ class Reaction(db.Model):
     emojis = db.relationship('Emoji', backref='reactions', lazy=True)
     messages = db.relationship('Message', backref='message', lazy=True)
 
-    #just need to do foreign key? need to research the relationships
+    # when querying do we want to see the actual emoji?
 
     def to_dict(self):
         return {

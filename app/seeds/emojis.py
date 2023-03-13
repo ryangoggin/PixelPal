@@ -1,27 +1,33 @@
-from app.models import db, Emoji, environment, SCHEMA
+from app.models import db, environment, SCHEMA
 from sqlalchemy.sql import text
-import emoji
+from app.models.emoji import Emoji
 
 def seed_emojis():
-    smile = Emoji(name='smile', url="\U0001F642") #
-    grinning = Emoji(name='grinning', url='\U0001F604')
-    joy = Emoji(name='joy', url='\U0001F602')
-    melting_face = Emoji(name='melting_face', url='\U0001FAE0')
-    affection = Emoji(name='affection', url='\U0001F970')
-    heart_eyes = Emoji(name='heart_eyes', url='\U0001F60D')
-    innocent = Emoji(name='melting_face', url='\U0001F607')
-    sad = Emoji(name='sad', url='testingurl')
-    tears = Emoji(name='tears', url='testingurl')
-    crying = Emoji(name='crying', url='testingurl')
-    angry = Emoji(name='angry', url='testingurl')
-    furious = Emoji(name='furious', url='testingurl')
-    surprised = Emoji(name='surprised', url='testingurl')
-    shocked = Emoji(name='surprised', url='testingurl')
-    # do more research ... how should i incorporate these emojis?
+    smile = Emoji(name='smile', url="0x1F642")
+    grinning = Emoji(name='grinning', url='0x1F604')
+    joy = Emoji(name='joy', url='0x1F602')
+    melting_face = Emoji(name='melting_face', url='0x1FAE0')
+    affection = Emoji(name='affection', url='0x1F970')
+    heart_eyes = Emoji(name='heart_eyes', url='0x1F60D')
+    innocent = Emoji(name='melting_face', url='0x1F607')
+    sad = Emoji(name='sad', url='0x2639')
+    tears = Emoji(name='tears', url='0x1F622')
+
+    crying = Emoji(name='crying', url='0x1F62D')
+    angry = Emoji(name='angry', url='0x1F621')
+    furious = Emoji(name='furious', url='0x1F92C')
+    surprised = Emoji(name='surprised', url='0x1F631')
+    shocked = Emoji(name='surprised', url='0x1F626')
+    clown = Emoji(name='clown', url='0x1F921')
+    heart_arrow = Emoji(name='heart_arrow', url='0x1F498')
+    one_hundred = Emoji(name='one_hundred', url='0x1F4AF')
+    wave = Emoji(name='wave', url='0x1F44B')
+
 
     seed_emojis = [smile, grinning, joy, melting_face, affection, heart_eyes,
                    innocent, sad, tears, crying,
-                   angry, furious, surprised, shocked]
+                   angry, furious, surprised, shocked,
+                   clown, heart_arrow, one_hundred, wave]
 
     for emoji in seed_emojis:
         db.session.add(emoji)
