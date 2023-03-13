@@ -73,7 +73,7 @@ def upgrade():
     )
 
     if environment == "production":
-    op.execute(f"ALTER TABLE server_members SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE server_members SET SCHEMA {SCHEMA};")
 
     op.create_table('channels',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -128,7 +128,7 @@ def upgrade():
     )
 
     if environment == "production":
-            op.execute(f"ALTER TABLE reactions SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE reactions SET SCHEMA {SCHEMA};")
 
     # ### end Alembic commands ###
 
