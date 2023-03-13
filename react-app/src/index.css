@@ -1,1 +1,11 @@
 /* TODO Add site wide styles */
+
+.homepage {
+    background-image: url("../src/static/pixelpal-wallpaper.png");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

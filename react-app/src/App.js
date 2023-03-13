@@ -14,19 +14,47 @@ function App() {
   }, [dispatch]);
 
   return (
-    <>
+    <div className="homepage">
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
-        <Switch>
-          <Route path="/login" >
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-        </Switch>
+        <div className="login-page">
+          <div className="login-box">
+            <h1 className="login-title">Welcome back!</h1>
+            <h3 className="login-subtitle">We're so excited to see you again!</h3>
+            <form className="login-form">
+              <div className="form-group">
+                <label className="form-label" htmlFor="emailOrPhone">
+                  Email or Phone Number:
+                </label>
+                <input
+                  className="form-input"
+                  type="text"
+                  id="emailOrPhone"
+                  name="emailOrPhone"
+                />
+              </div>
+              <div className="form-group">
+                <label className="form-label" htmlFor="password">
+                  Password:
+                </label>
+                <input
+                  className="form-input"
+                  type="password"
+                  id="password"
+                  name="password"
+                />
+              </div>
+              <div className="form-group">
+                <p className="form-text">
+                  Need an account? <a className="form-link" href="/signup">Register</a>
+                </p>
+              </div>
+              <button className="form-button" type="submit">Log In</button>
+            </form>
+          </div>
+        </div>
       )}
-    </>
+    </div>
   );
 }
 
