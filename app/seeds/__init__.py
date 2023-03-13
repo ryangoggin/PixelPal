@@ -3,6 +3,8 @@ from .users import seed_users, undo_users
 from .messages import seed_messages, undo_messages
 from .channels import seed_channels, undo_channels
 from .servers import seed_servers, undo_servers
+from .emojis import seed_emojis, undo_emojis
+from .reactions import seed_reactions, undo_reactions
 from app.models.db import db, environment, SCHEMA
 
 # Creates a seed group to hold our commands
@@ -22,7 +24,8 @@ def seed():
         seed_servers()
         seed_channels()
         seed_messages()
-
+        seed_emojis()
+        seed_reactions()
 
 
 
@@ -30,6 +33,8 @@ def seed():
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
+    undo_reactions()
+    undo_emojis()
     undo_messages()
     undo_channels()
     undo_servers()
