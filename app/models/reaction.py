@@ -7,16 +7,12 @@ class Reaction(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    userId = db.Column(db.Integer, db.ForeignKey('users.id'))
-    emojiId = db.Column(db.Integer, db.ForeignKey('emojis.id'))
-    messageId = db.Column(db.Integer, db.ForeignKey('messages.id'))
+    userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    emojiId = db.Column(db.Integer, db.ForeignKey('emojis.id'), nullable=False)
+    messageId = db.Column(db.Integer, db.ForeignKey('messages.id'), nullable=False)
 
     #Relationship Attributes
-    user = db.relationship('User', backref='user', lazy=False)
-    emojis = db.relationship('Emoji', backref='reactions', lazy=True)
-    messages = db.relationship('Message', backref='message', lazy=True)
-
-    # when querying do we want to see the actual emoji?
+    emoji_reactions = db.relationship('Emoji', backref='emojis', lazy=True)
 
     def to_dict(self):
         return {

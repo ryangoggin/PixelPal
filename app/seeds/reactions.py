@@ -13,7 +13,7 @@ def seed_reactions():
 
 
 
-def undo_emojis():
+def undo_reactions():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
     else:
