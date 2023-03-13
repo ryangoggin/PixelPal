@@ -4,22 +4,25 @@ from sqlalchemy.sql import text
 
 # Adds a demo server, you can add other servers here if you want
 def seed_servers():
-    AppAcademy = Server(
-        owner_id = 1,
-        name = "App Academy",
-        description = "Server for App Academy students to connect and help one another",
-        server_picture = 'image.url')
-    
-    PixelPalsRock = Server(
-        owner_id = 2,
-        name = "Pixel Pals Rock",
-        description = "Server for the cool cats that call themselves Pixel Pals",
-        server_picture = 'image.url')
+    servers = [
+        Server(
+            owner_id=1,
+            name="App Academy",
+            description="Server for App Academy students to connect and help one another",
+            server_picture='image.url'
+        ),
+        Server(
+            owner_id=2,
+            name="Pixel Pals Rock",
+            description="Server for the cool cats that call themselves Pixel Pals",
+            server_picture='image.url'
+        )
+    ]
 
-    db.session.add(AppAcademy)
-    db.session.add(PixelPalsRock)
+    db.session.add_all(servers)
     db.session.commit()
-    return [AppAcademy, PixelPalsRock]
+
+
 
 
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't
@@ -33,5 +36,5 @@ def undo_servers():
         db.session.execute(f"TRUNCATE table {SCHEMA}.server RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM server"))
-        
+
     db.session.commit()
