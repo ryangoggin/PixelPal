@@ -3,9 +3,11 @@ from datetime import datetime
 # from .user import User
 
 
-
 class Server(db.Model):
     __tablename__ = 'server'
+
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
@@ -31,3 +33,5 @@ server_members = db.Table('server_members',
     db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
     db.Column('server_id', db.Integer, db.ForeignKey('server.id'), primary_key=True)
 )
+if environment == "production":
+    server_members.schema = SCHEMA
