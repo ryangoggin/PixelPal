@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request, session
 from flask_login import login_required
 # from models.server import db, Server
 # breakpoint()
-from app.models.server import db, Server
+from app.models import db, Server, User
 
 server_routes = Blueprint('servers', __name__)
 
@@ -34,6 +34,35 @@ def create_server():
 
     # return the new server as JSON
     return jsonify(server.to_dict()), 201
+
+# route to add a user to a server
+# POST /servers/:id/members - add a user to a server
+@server_routes.route('/<int:id>/members', methods=['POST'])
+def add_member_to_server(id):
+    # get the server from the database by ID
+    server = Server.query.get(id)
+    # if the server doesn't exist, return an error message
+    if server is None:
+        return jsonify({'error': 'Server not found'}), 404
+
+    # get the username from the request body
+    data = request.get_json()
+    username = data.get('username')
+    if username is None:
+        return jsonify({'error': 'User ID not provided'}), 400
+
+    # get the user from the database by username
+    user = User.query.filter_by(username=username).first()
+    if user is None:
+        return jsonify({'error': 'User not found'}), 404
+
+    # add the user to the server members list
+    server.members.append(user)
+    db.session.commit()
+
+    # return the server with the updated members list as JSON
+    return jsonify(server.to_dict()), 200
+
 
 # route to get a specific server by ID
 # GET /servers/:id - get a specific server by ID
