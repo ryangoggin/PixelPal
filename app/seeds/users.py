@@ -4,31 +4,21 @@ from sqlalchemy.sql import text
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
-    demo = User(
-        username='Demo', email='demo@aa.io', password='password')
-    marnie = User(
-        username='marnie', email='marnie@aa.io', password='password')
-    bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
-    aileen = User(
-        username='akim', email='aileenkim@gmail.com', password='password1')
-    zaineb = User(
-        username='zmarediya', email='zainebmarediya@gmail.com', password='password2')
-    ryan = User(
-        username='rgoggin', email='ryangoggin@gmail.com', password='password3')
-    kenny = User(
-        username='kleong', email='kenleong@gmail.com', password='password4')
 
 
+    users = [
+    User(username='Demo', email='demo@aa.io', password='password'),
+    User(username='marnie', email='marnie@aa.io', password='password'),
+    User(username='bobbie', email='bobbie@aa.io', password='password'),
+    User(username='akim', email='aileenkim@gmail.com', password='password1'),
+    User(username='zmarediya', email='zainebmarediya@gmail.com', password='password2'),
+    User(username='rgoggin', email='ryangoggin@gmail.com', password='password3'),
+    User(username='kleong', email='kenleong@gmail.com', password='password4')
+    ]
 
-    db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
-    db.session.add(aileen)
-    db.session.add(zaineb)
-    db.session.add(ryan)
-    db.session.add(kenny)
+    db.session.add_all(users)
     db.session.commit()
+    return users
 
 
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't

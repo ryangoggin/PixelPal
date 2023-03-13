@@ -28,6 +28,7 @@ Mako = "==1.2.4"
 emoji = "*"
 
 [dev-packages]
+pylint = "*"
 
 [requires]
 python_version = "3.9"
