@@ -5,7 +5,6 @@ from sqlalchemy.sql import text
 
 # Adds a demo user, you can add other users here if you want
 def seed_messages():
-    # ADD CHANNEL_ID BACK IN ONCE CHANNEL MODEL MADE
     message1 = Message(
         content='Hey what\'s up?', user_id=1, channel_id=1)
     message2 = Message(
