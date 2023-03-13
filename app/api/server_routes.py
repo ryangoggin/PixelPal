@@ -9,6 +9,7 @@ server_routes = Blueprint('servers', __name__)
 # route to get all servers
 # GET /servers - get all servers
 @server_routes.route('', methods=["GET"])
+# @login_required
 def get_all_servers():
     # get all servers from the database
     servers = Server.query.all()
@@ -18,6 +19,7 @@ def get_all_servers():
 # route to create a new server
 # POST /servers - create a new server
 @server_routes.route('', methods=["POST"])
+# @login_required
 def create_server():
      # get the data from the request body
     data = request.get_json()
@@ -38,6 +40,7 @@ def create_server():
 # route to add a user to a server
 # POST /servers/:id/members - add a user to a server
 @server_routes.route('/<int:id>/members', methods=['POST'])
+# @login_required
 def add_member_to_server(id):
     # get the server from the database by ID
     server = Server.query.get(id)
@@ -67,6 +70,7 @@ def add_member_to_server(id):
 # route to get a specific server by ID
 # GET /servers/:id - get a specific server by ID
 @server_routes.route('/<int:id>', methods=['GET'])
+# @login_required
 def get_server(id):
     # get the server from the database by ID
     server = Server.query.get(id)
@@ -80,6 +84,7 @@ def get_server(id):
 # route to update a specific server by ID
 # PUT /servers/:id - update a specific server by ID
 @server_routes.route('/<int:id>', methods=["PUT"])
+# @login_required
 def update_server(id):
     # get the server from the database by ID
     server = Server.query.get(id)
@@ -109,6 +114,7 @@ def update_server(id):
 # route to delete a specific server by ID
 # DELETE /servers/:id - delete a specific server by ID
 @server_routes.route('<int:id>', methods=["DELETE"])
+# @login_required
 def delete_server(id):
     # get the server from the database by ID
     server = Server.query.get(id)
@@ -128,6 +134,7 @@ def delete_server(id):
 # route to get all channels for a specific server
 # GET /servers/:id/channels - get all channels for a specific server
 @server_routes.route('/<int:id>/channels', methods=['GET'])
+# @login_required
 def get_all_channels_for_server(id):
     # get the server from the database by ID
     server = Server.query.get(id)

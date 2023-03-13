@@ -1,4 +1,5 @@
 from flask import Blueprint, request, jsonify
+from flask_login import login_required
 from app.models import db, Message
 from app.forms import MessageForm
 from datetime import datetime
@@ -9,6 +10,7 @@ message_routes = Blueprint('messages', __name__)
 
 # GET /messages --> get all messages
 @message_routes.route("")
+# @login_required
 def get_messages():
     all_messages = Message.query.all()
     return [message.to_dict() for message in all_messages]
@@ -16,6 +18,7 @@ def get_messages():
 
 # GET /messages/:id --> get message by id
 @message_routes.route("/<int:id>")
+# @login_required
 def get_message_id(id):
     message = Message.query.get(id)
     if message:
@@ -25,6 +28,7 @@ def get_message_id(id):
 
 # POST /messages --> create a message
 @message_routes.route("", methods=["POST"])
+# @login_required
 def create_message():
     res = request.get_json()
 
@@ -54,6 +58,7 @@ def create_message():
 
 # PUT /messages/:id --> update a message by id
 @message_routes.route("/<int:id>", methods=["PUT"])
+# @login_required
 def update_message(id):
     message = Message.query.get(id)
     res = request.get_json()
