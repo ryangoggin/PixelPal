@@ -7,13 +7,13 @@ def seed_users():
 
 
     users = [
-    User(username='Demo', email='demo@aa.io', password='password'),
-    User(username='marnie', email='marnie@aa.io', password='password'),
-    User(username='bobbie', email='bobbie@aa.io', password='password'),
-    User(username='akim', email='aileenkim@gmail.com', password='password1'),
-    User(username='zmarediya', email='zainebmarediya@gmail.com', password='password2'),
-    User(username='rgoggin', email='ryangoggin@gmail.com', password='password3'),
-    User(username='kleong', email='kenleong@gmail.com', password='password4')
+    User(username='Demo#1234', email='demo@aa.io', password='password'),
+    User(username='marnie#2345', email='marnie@aa.io', password='password'),
+    User(username='bobbie#2121', email='bobbie@aa.io', password='password'),
+    User(username='akim#7070', email='aileenkim@gmail.com', password='password1'),
+    User(username='zmarediya#0206', email='zainebmarediya@gmail.com', password='password2'),
+    User(username='rgoggin#0001', email='ryangoggin@gmail.com', password='password3'),
+    User(username='kleong#0666', email='kenleong@gmail.com', password='password4')
     ]
 
     db.session.add_all(users)
