@@ -8,16 +8,18 @@ def seed_servers():
         owner_id = 1,
         name = "App Academy",
         description = "Server for App Academy students to connect and help one another",
-        # channels = db.relationship('Channel', backref='server', lazy=True),
-        # members = [
-        #     User(username='Demo', email='demo@aa.io', password='password'),
-        #     User(username='marnie', email='marnie@aa.io', password='password'),
-        #     User(username='bobbie', email='bobbie@aa.io', password='password')
-        # ]
+        server_picture = 'image.url')
+    
+    PixelPalsRock = Server(
+        owner_id = 2,
+        name = "Pixel Pals Rock",
+        description = "Server for the cool cats that call themselves Pixel Pals",
         server_picture = 'image.url')
 
     db.session.add(AppAcademy)
+    db.session.add(PixelPalsRock)
     db.session.commit()
+    return [AppAcademy, PixelPalsRock]
 
 
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't

@@ -18,9 +18,12 @@ def seed():
         # Make sure to add all your other model's undo functions below
         undo_servers()
         undo_users()
-    seed_users()
+    demo, marnie, bobbie = seed_users()
     # Add other seed functions here
-    seed_servers()
+    app_academy_server, pixel_pack_server = seed_servers()
+    app_academy_server.members.append(demo)
+    pixel_pack_server.members.extend([marnie, bobbie])
+    db.session.commit()
 
 
 # Creates the `flask seed undo` command
