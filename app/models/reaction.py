@@ -11,10 +11,6 @@ class Reaction(db.Model):
     emojiId = db.Column(db.Integer, db.ForeignKey('emojis.id'), nullable=False)
     messageId = db.Column(db.Integer, db.ForeignKey('messages.id'), nullable=False)
 
-    #Relationship Attributes
-    # emojis = db.relationship('Emoji', backref='reactions', lazy=True)
-    # message = db.relationship('Message', backref='reactions', lazy=True)
-    # users = db.relationship("User", backref='reactions', lazy=True)
 
     def to_dict(self):
         return {
