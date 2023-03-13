@@ -12,7 +12,7 @@ class Channel(db.Model):
     name = db.Column(db.String(80), nullable=False)
     description = db.Column(db.String(120))
     messages = db.relationship('Message', backref='channel', lazy=True, cascade='all, delete')
-    # server_id = db.Column(db.Integer, db.ForeignKey('server.id'), nullable=False)
+    server_id = db.Column(db.Integer, db.ForeignKey('server.id'), nullable=False)
 
     def to_dict(self):
         return {
@@ -20,5 +20,5 @@ class Channel(db.Model):
             "name": self.name,
             "description": self.description,
             "messages": [message.to_dict() for message in self.messages],
-            # "serverId": self.serverId
+            "serverId": self.serverId
         }

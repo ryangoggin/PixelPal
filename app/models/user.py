@@ -14,13 +14,10 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-<<<<<<< HEAD
 
     reactions = db.relationship("Reaction", backref='users', lazy=True)
-
-=======
     servers = db.relationship("Server", secondary="server_members", back_populates="members")
->>>>>>> servers
+
     @property
     def password(self):
         return self.hashed_password
@@ -36,6 +33,5 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email, 
-            # 'servers': [server.to_dict() for server in self.servers]
+            'email': self.email
         }

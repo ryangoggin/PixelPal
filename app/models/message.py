@@ -15,7 +15,7 @@ class Message(db.Model):
     channel_id = db.Column(db.Integer, db.ForeignKey('channels.id'), nullable=False)
 
     # # relationship attributes
-    # reactions = db.relationship('Reaction', backref='message', lazy=True, cascade="all, delete")
+    reactions = db.relationship('Reaction', backref='message', lazy=True, cascade="all, delete")
 
     def to_dict(self):
         return {
@@ -24,5 +24,5 @@ class Message(db.Model):
             "timestamp": self.timestamp,
             "userId": self.user_id,
             "channelId": self.channel_id,
-            # "reactions": [reaction.to_dict() for reaction in self.reactions]
+            "reactions": [reaction.to_dict() for reaction in self.reactions]
         }
