@@ -1,5 +1,6 @@
 from app.models import db, User, Server, environment, SCHEMA
 from sqlalchemy.sql import text
+from app.models import User
 
 
 # Adds a demo server, you can add other servers here if you want
@@ -18,6 +19,16 @@ def seed_servers():
             server_picture='image.url'
         )
     ]
+
+    users = User.query.all()
+
+    first_group = list(users[0:3])
+    second_group = list(users[3:])
+
+
+    servers[0].members.extend(first_group)
+    servers[1].members.extend(second_group)
+
 
     db.session.add_all(servers)
     db.session.commit()
