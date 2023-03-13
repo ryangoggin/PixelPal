@@ -6,17 +6,20 @@ from sqlalchemy.sql import text
 def seed_channels():
     channel1 = Channel(
         name='general',
-        description='General discussion'
+        description='General discussion',
+        server_id=2
     )
 
     channel2 = Channel(
         name='announcements',
-        description='Important announcements'
+        description='Important announcements',
+        server_id=1
     )
 
     channel3 = Channel(
         name='random',
-        description='Random discussions'
+        description='Random discussions',
+        server_id=1
     )
 
     db.session.add_all([channel1, channel2, channel3])
