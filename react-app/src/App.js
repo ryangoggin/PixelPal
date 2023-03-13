@@ -15,17 +15,19 @@ function App() {
 
   return (
     <div className="homepage">
-      <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <div className="login-page">
           <div className="login-box">
-            <h1 className="login-title">Welcome back!</h1>
-            <h3 className="login-subtitle">We're so excited to see you again!</h3>
+            <div className="login-headings">
+              <span className="login-title">Welcome back!</span>
+              <span className="login-subtitle">We're so excited to see you again!</span>
+            </div>
             <form className="login-form">
               <div className="form-group">
                 <label className="form-label" htmlFor="emailOrPhone">
-                  Email or Phone Number:
+                  EMAIL OR PHONE NUMBER
                 </label>
+                <br></br>
                 <input
                   className="form-input"
                   type="text"
@@ -35,8 +37,9 @@ function App() {
               </div>
               <div className="form-group">
                 <label className="form-label" htmlFor="password">
-                  Password:
+                  PASSWORD
                 </label>
+                <br></br>
                 <input
                   className="form-input"
                   type="password"
@@ -44,12 +47,11 @@ function App() {
                   name="password"
                 />
               </div>
-              <div className="form-group">
-                <p className="form-text">
-                  Need an account? <a className="form-link" href="/signup">Register</a>
-                </p>
+              <button className="login-button" type="submit">Log In</button>
+              <div className="register-group">
+                <span className="label-register">Need an account?</span>
+                <span className="register">Register</span>
               </div>
-              <button className="form-button" type="submit">Log In</button>
             </form>
           </div>
         </div>
