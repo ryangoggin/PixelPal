@@ -59,6 +59,7 @@ def create_user():
 # define a route for getting a specific user by ID
 # GET /users/:id - get a specific user by ID
 @user_routes.route('/<int:user_id>', methods=['GET'])
+# @login_required
 def get_user(user_id):
     # query the database for a user with the specified ID
     user = User.query.get(user_id)
@@ -71,6 +72,7 @@ def get_user(user_id):
 # define a route for updating a specific user by ID
 # PUT /users/:id - update a specific user by ID
 @user_routes.route('/<int:user_id>', methods=['PUT'])
+# @login_required
 def update_user(user_id):
     # get the JSON data from the request body
     data = request.get_json()
@@ -91,6 +93,7 @@ def update_user(user_id):
 # define a route for deleting a specific user by ID
 # DELETE /users/:id - delete a specific user by ID
 @user_routes.route('/<int:user_id>', methods=['DELETE'])
+# @login_required
 def delete_user(user_id):
     # query the database for a user with the specified ID
     user = User.query.get(user_id)
