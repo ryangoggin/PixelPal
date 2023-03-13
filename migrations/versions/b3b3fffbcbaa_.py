@@ -30,7 +30,7 @@ def upgrade():
     sa.UniqueConstraint('url')
     )
 
-     if environment == "production":
+    if environment == "production":
         op.execute(f"ALTER TABLE emojis SET SCHEMA {SCHEMA};")
 
     op.create_table('users',
@@ -43,7 +43,7 @@ def upgrade():
     sa.UniqueConstraint('username')
     )
 
-     if environment == "production":
+    if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
 
     op.create_table('friends',
@@ -55,7 +55,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
 
-     if environment == "production":
+    if environment == "production":
         op.execute(f"ALTER TABLE friends SET SCHEMA {SCHEMA};")
 
     op.create_table('server',
@@ -68,7 +68,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
 
-     if environment == "production":
+    if environment == "production":
         op.execute(f"ALTER TABLE server SET SCHEMA {SCHEMA};")
 
     op.create_table('channels',
@@ -80,7 +80,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
 
-     if environment == "production":
+    if environment == "production":
         op.execute(f"ALTER TABLE channels SET SCHEMA {SCHEMA};")
 
     op.create_table('server_members',
@@ -91,7 +91,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('user_id', 'server_id')
     )
 
-     if environment == "production":
+    if environment == "production":
         op.execute(f"ALTER TABLE server_members SET SCHEMA {SCHEMA};")
 
     op.create_table('messages',
@@ -105,7 +105,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
 
-     if environment == "production":
+    if environment == "production":
         op.execute(f"ALTER TABLE messages SET SCHEMA {SCHEMA};")
 
     op.create_table('reactions',
@@ -119,7 +119,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
-     if environment == "production":
+    if environment == "production":
         op.execute(f"ALTER TABLE reactions SET SCHEMA {SCHEMA};")
 
 
