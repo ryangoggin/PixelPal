@@ -20,5 +20,5 @@ class Channel(db.Model):
             "name": self.name,
             "description": self.description,
             "messages": [message.to_dict() for message in self.messages],
-            "serverId": self.serverId
+            "serverId": self.server_id
         }

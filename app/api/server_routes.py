@@ -8,8 +8,8 @@ server_routes = Blueprint('servers', __name__)
 
 # route to get all servers
 # GET /servers - get all servers
-@server_routes.route('/', methods=["GET"])
-def get_all_servers(): 
+@server_routes.route('', methods=["GET"])
+def get_all_servers():
     # get all servers from the database
     servers = Server.query.all()
      # convert each server to a dictionary and return as JSON
@@ -17,8 +17,8 @@ def get_all_servers():
 
 # route to create a new server
 # POST /servers - create a new server
-@server_routes.route('/', methods=["POST"])
-def create_server(): 
+@server_routes.route('', methods=["POST"])
+def create_server():
      # get the data from the request body
     data = request.get_json()
     name = data.get('name')
@@ -111,4 +111,3 @@ def get_all_channels_for_server(id):
 
     # convert each channel to a dictionary and return as JSON
     return jsonify([channel.to_dict() for channel in channels]), 200
-
