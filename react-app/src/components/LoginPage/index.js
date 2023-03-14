@@ -55,4 +55,4 @@ function LoginPage({ isLoaded }){
 	);
 }
 
-export default Navigation;
+export default LoginPage;
