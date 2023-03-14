@@ -5,11 +5,15 @@ import SignupFormPage from "./components/SignupFormPage";
 import { authenticate } from "./store/session";
 import LoginPage from "./components/LoginPage";
 import ServersSidebar from "./components/Servers/ServersSidebar";
-import TestChannels from "./components/Servers/TestChannels";
+// import TestChannels from "./components/Servers/TestChannels";
+import Home from "./components/Home/"
+import FriendsList from './components/FriendsList'
+
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
@@ -18,6 +22,7 @@ function App() {
     <>
       <LoginPage />
       <Switch>
+        <Route path="/" component={Home} />
         <Route path="/login" component={LoginPage} />
         <Route path='/register' component={SignupFormPage} />
       </Switch>
@@ -25,7 +30,9 @@ function App() {
         <>
           <ServersSidebar />
           <Switch>
-
+            <Route path='/channels/@me'>
+              <FriendsList />
+              </Route>
             {/* <Route path="/channels/:serverId/:channelId">
               <TestChannels />
             </Route> */}
