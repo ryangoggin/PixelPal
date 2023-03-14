@@ -112,6 +112,7 @@ body {
     margin-bottom: 10px;
     color: whitesmoke;
     font-weight: bolder;
+    cursor: pointer;
 }
 
 .register-group {
@@ -127,4 +128,5 @@ body {
 
 .register {
     color: rgb(0, 170, 255);
+    cursor: pointer;
 }
