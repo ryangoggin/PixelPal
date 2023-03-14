@@ -5,6 +5,7 @@ import "./GetAllEmojis.css"
 
 function GetAllEmojis() {
   const dispatch = useDispatch()
+
   return (
     <h1> hello !</h1>
   )
