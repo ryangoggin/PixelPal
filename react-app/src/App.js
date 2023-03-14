@@ -5,6 +5,8 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import ServersSidebar from "./components/Servers/ServersSidebar";
+import TestChannels from "./components/Servers/TestChannels";
 
 function App() {
   const dispatch = useDispatch();
@@ -16,6 +18,7 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
+      <ServersSidebar />
       {isLoaded && (
         <Switch>
           <Route path="/login" >
@@ -24,6 +27,9 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          {/* <Route path="/channels/:serverId/:channelId">
+            <TestChannels />
+          </Route> */}
         </Switch>
       )}
     </>
