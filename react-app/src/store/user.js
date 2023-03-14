@@ -23,8 +23,15 @@ export const getUserThunk = () => async dispatch => {
 
   if (response.ok) {
     const user = await response.json();
-    dispatch(getUser(user));
-    return user;
+    const friendsList = await fetch("/api/friends", user.id)
+    if (friendsList.ok) {
+      for (friend in friendsList) {
+        user.allFriends[friend.id] = friend
+      }
+      // DO WE NEED TO DO THIS? i think we do since our users are not created
+      dispatch(getUser(user));
+      return user;
+    }
   }
 }
 
@@ -50,8 +57,8 @@ export const createUserThunk = (userData) => async dispatch => {
 let initialState = {
   currentServer: {},
   session: {},
-  user: {},
-  emojis: {},
+  currentUser: {},
+  emojis: {}, // to be updated later to reflect real store shape
   errors: {}
 }
 
@@ -59,8 +66,8 @@ export default function userReducer( state = initialState, action) {
   let newState = {}
   switch(action.type) {
     case GET_USER:
-      newState = {...state, currentServer: {...state.currentServer}, user: {}, emojis: {...state.emojis} }
-      newState.user = action.user
+      newState = {...state, currentServer: {...state.currentServer}, currentUser: {}, emojis: {...state.emojis} }
+      newState.currentUser = action.user
       return newState
     case CREATE_USER:
       newState = {...state, currentServer: {...state.currentServer}, user: {}, emojis: {...state.emojis} }
