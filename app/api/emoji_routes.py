@@ -6,6 +6,7 @@ from app.models.reaction import Reaction
 
 emoji_routes = Blueprint('emojis', __name__)
 
+#GET All Emojis /emojis
 @emoji_routes.route("", methods=["GET"])
 @login_required
 def get_all_emojis():
@@ -16,10 +17,10 @@ def get_all_emojis():
     return jsonify({'emojis': [emoji.to_dict() for emoji in emojis]}), 200
 
 
+#POST reaction to a message /emojis
 @emoji_routes.route("", methods=["POST"])
 @login_required
 def create_reaction():
-
     ''' create new reaction to a message'''
     data = request.get_json()
 
@@ -31,6 +32,7 @@ def create_reaction():
     return jsonify(new_reaction.to_dict()), 201
 
 
+#GET emoji by ID /emojis/:id
 @emoji_routes.route("/<int:id>", methods=["GET"])
 @login_required
 def get_emoji(id):
@@ -38,8 +40,7 @@ def get_emoji(id):
     emoji = Emoji.query.get(int(id))
     return jsonify(emoji.to_dict()), 200
 
-
-
+#DELETE reaction
 @emoji_routes.route("/<int:id>", methods=["DELETE"])
 @login_required
 def delete_reaction(id):
@@ -49,6 +50,22 @@ def delete_reaction(id):
     db.session.delete(reaction)
     db.session.commit()
     return jsonify("Reaction succcessfully deleted"), 200
+
+
+#POST emoji
+@emoji_routes.route("", methods=["POST"])
+@login_required
+def create_emoji():
+
+    data = request.get_json()
+
+    new_emoji = Emoji(name=data['name'], url=data['url'])
+
+    db.session.add(new_emoji)
+    db.session.commit()
+
+    return jsonify(new_emoji.to_dict()), 201
+
 
 
 # @emoji_routes.route("/reactions/<int:id>", methods=["GET"])

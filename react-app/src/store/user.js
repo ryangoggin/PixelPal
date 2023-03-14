@@ -1,5 +1,5 @@
 // Constants
-const GET_USER = 'user/GET_USER'
+const GET_CURRENT_USER = 'user/GET_CURRENT_USER'
 const CREATE_USER = 'user/CREATE_USER'
 
 
@@ -14,11 +14,13 @@ const createUser = (user) => ({
   user
 })
 
+
+
 // Selectors
 
 
 // Thunks
-export const getUserThunk = () => async dispatch => {
+export const getCurrentUserThunk = () => async dispatch => {
   const response = await fetch("/api/users")
 
   if (response.ok) {
@@ -53,20 +55,20 @@ export const createUserThunk = (userData) => async dispatch => {
 
 // reducer
 
-
 let initialState = {
-  currentServer: {},
-  session: {},
-  currentUser: {},
-  emojis: {}, // to be updated later to reflect real store shape
-  errors: {}
+  users: {},
+  servers: {},
+  channels: {},
+  messages: {},
+  emojis: {},
+  session: {}
 }
 
 export default function userReducer( state = initialState, action) {
   let newState = {}
   switch(action.type) {
-    case GET_USER:
-      newState = {...state, currentServer: {...state.currentServer}, currentUser: {}, emojis: {...state.emojis} }
+    case GET_CURRENT_USER:
+      newState = {...state, currentUser: {...state.currentUser}, allUsers: {...state.users.allUsers}}
       newState.currentUser = action.user
       return newState
     case CREATE_USER:
@@ -78,3 +80,42 @@ export default function userReducer( state = initialState, action) {
       return state;
   }
 }
+
+
+
+// servers: {
+//   currentServer: {
+//     id: 1,
+//     ownerId: 1,
+//     name: "Server",
+//     description: "This is a server",
+//     serverPic: "<picture URL>",
+//     channels: {
+//       [channelId]: {
+//         id: 1,
+//         name: "Channel",
+//         description: "This is a channel",
+//         messages: {
+//           [messageId]: {
+//             id: 1,
+//             content: "This is a message",
+//             timestamp: 2023-03-12 12:00:00.000000,
+//             reactions: [
+//               [reactionId]: {
+//                 id: 1,
+//                 userId: 1,
+//                 emoji: <unicode for emoji>
+//               }
+//             ]
+//           }
+//         }
+//       }
+//     },
+//     members: {
+//       [memberId]: memberData
+//     }
+//   },
+//   allUserServers: {
+//     [serverId]: serverData
+//   }
+// },

@@ -52,21 +52,20 @@ export const createReactionThunk = (reactionData) => async dispatch => {
 // reducer
 
 let initialState = {
-  currentServer: {},
-  user: {},
-  session: {},
+  users: {},
+  servers: {},
+  channels: {},
+  messages: {},
   emojis: {},
-  errors: {}
+  session: {}
 }
 
 export default function emojisReducer( state = initialState, action) {
   let newState = {}
   switch(action.type) {
     case LOAD_EMOJIS:
-      newState = {...state, currentServer: {...state.currentServer}, user: {...state.user}, emojis: {...state.emojis} }
-      action.emojis.emojis.forEach(emoji => {
-        newState.emoji[emoji.id] = emoji;
-      })
+      newState = {...state, users: {...state.users}, servers: {...state.servers}, channels: {...state.channels}, messages: {...state.messages}, emojis: {}, session: {...state.session}}
+      action.emojis.forEach(emoji => newState.emojis[emoji.id] = emoji)
       return newState
     default:
       return state;
