@@ -19,9 +19,13 @@ const ServersSidebar = () => {
   servers = Object.values(servers);
 
   return (
-    <div className="server-sidebar">
+    <>
       {user !== null ? (
+<<<<<<< HEAD
         <>
+=======
+        <div className="server-sidebar">
+>>>>>>> dev
           <ul style={{ marginLeft: '12px', paddingLeft: '0' }} >
             {
               servers.map(server => (
@@ -30,14 +34,22 @@ const ServersSidebar = () => {
                 </NavLink>
               ))
             }
+<<<<<<< HEAD
             <li>
               <button> Add Server</button>
             </li>
           </ul>
         </>
+=======
+
+          </ul>
+        </div >
+>>>>>>> dev
       ) : ''
       }
-    </div >
+    </>
+
+
 
     // return a ul of mapping each server to a sidebar item 
 
