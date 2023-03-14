@@ -10,7 +10,7 @@ message_routes = Blueprint('messages', __name__)
 
 # GET /messages --> get all messages
 @message_routes.route("")
-# @login_required
+@login_required
 def get_messages():
     ''' query for all messages and return them in a list of dictionaries'''
     all_messages = Message.query.all()
@@ -19,7 +19,7 @@ def get_messages():
 
 # GET /messages/:id --> get message by id
 @message_routes.route("/<int:id>")
-# @login_required
+@login_required
 def get_message_id(id):
     ''' query for a message by id and return it as a dictionary if that message exists'''
     message = Message.query.get(id)
@@ -30,7 +30,7 @@ def get_message_id(id):
 
 # POST /messages --> create a message
 @message_routes.route("", methods=["POST"])
-# @login_required
+@login_required
 def create_message():
     ''' create a new message and return it as a dictionary if successful'''
     res = request.get_json()
@@ -61,7 +61,7 @@ def create_message():
 
 # PUT /messages/:id --> update a message by id
 @message_routes.route("/<int:id>", methods=["PUT"])
-# @login_required
+@login_required
 def update_message(id):
     ''' update a message by id and return it as a dictionary if that message exists'''
     message = Message.query.get(id)

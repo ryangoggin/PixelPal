@@ -9,8 +9,9 @@ server_routes = Blueprint('servers', __name__)
 # route to get all servers
 # GET /servers - get all servers
 @server_routes.route('', methods=["GET"])
-# @login_required
+@login_required
 def get_all_servers():
+    ''' query for all servers and return them in a list of dictionaries'''
     # get all servers from the database
     servers = Server.query.all()
      # convert each server to a dictionary and return as JSON
@@ -19,8 +20,9 @@ def get_all_servers():
 # route to create a new server
 # POST /servers - create a new server
 @server_routes.route('', methods=["POST"])
-# @login_required
+@login_required
 def create_server():
+    ''' create a new server and return it as a dictionary if successful'''
      # get the data from the request body
     data = request.get_json()
     name = data.get('name')
@@ -40,8 +42,9 @@ def create_server():
 # route to add a user to a server
 # POST /servers/:id/members - add a user to a server
 @server_routes.route('/<int:id>/members', methods=['POST'])
-# @login_required
+@login_required
 def add_member_to_server(id):
+    ''' add a user to the members of a channel and return the server as a dictionary if successful'''
     # get the server from the database by ID
     server = Server.query.get(id)
     # if the server doesn't exist, return an error message
@@ -70,8 +73,9 @@ def add_member_to_server(id):
 # route to get a specific server by ID
 # GET /servers/:id - get a specific server by ID
 @server_routes.route('/<int:id>', methods=['GET'])
-# @login_required
+@login_required
 def get_server(id):
+    ''' query for a server by id and return it as a dictionary if it exists'''
     # get the server from the database by ID
     server = Server.query.get(id)
     # if the server doesn't exist, return an error message
@@ -84,8 +88,9 @@ def get_server(id):
 # route to update a specific server by ID
 # PUT /servers/:id - update a specific server by ID
 @server_routes.route('/<int:id>', methods=["PUT"])
-# @login_required
+@login_required
 def update_server(id):
+    ''' update a server by id and return it as a dictionary if that server exists'''
     # get the server from the database by ID
     server = Server.query.get(id)
     # if the server doesn't exist, return an error message
@@ -114,8 +119,9 @@ def update_server(id):
 # route to delete a specific server by ID
 # DELETE /servers/:id - delete a specific server by ID
 @server_routes.route('<int:id>', methods=["DELETE"])
-# @login_required
+@login_required
 def delete_server(id):
+    ''' delete a server by id and return a message upon successful deletion'''
     # get the server from the database by ID
     server = Server.query.get(id)
     # if the server doesn't exist, return an error message
@@ -134,8 +140,9 @@ def delete_server(id):
 # route to get all channels for a specific server
 # GET /servers/:id/channels - get all channels for a specific server
 @server_routes.route('/<int:id>/channels', methods=['GET'])
-# @login_required
+@login_required
 def get_all_channels_for_server(id):
+    ''' query for channels by the id of its associated server and return them in a list of dictionaries if they exist'''
     # get the server from the database by ID
     server = Server.query.get(id)
     # if the server doesn't exist, return an error message

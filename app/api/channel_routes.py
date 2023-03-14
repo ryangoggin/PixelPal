@@ -11,6 +11,7 @@ channel_routes = Blueprint('channels', __name__)
 # route to get all channels
 # GET /channels - get all channels
 @channel_routes.route('', methods=['GET'])
+@login_required
 def get_all_channels():
     ''' query for all channels and return them in a list of dictionaries'''
     # get all channels from the database
@@ -21,6 +22,7 @@ def get_all_channels():
 # route to create a new channel
 # POST /channels - create a new channel
 @channel_routes.route('', methods=['POST'])
+@login_required
 def create_channel():
     ''' create a new channel and return it as a dictionary if successful'''
     # create a ChannelForm instance and validate the data
@@ -47,6 +49,7 @@ def create_channel():
 # route to get a channel's messages
 # GET /channels/:channelId/messages
 @channel_routes.route('/<int:id>/messages', methods=['GET'])
+@login_required
 def get_channel_messages(id):
     ''' query for messages by the id of its associated channel and return them in a list of dictionaries if they exist'''
     # get the channel from the database by ID
@@ -65,6 +68,7 @@ def get_channel_messages(id):
 # route to get a specific channel by ID
 # GET /channels/:id - get a specific channel by ID
 @channel_routes.route('/<int:id>', methods=['GET'])
+@login_required
 def get_channel(id):
     ''' query for a channel by id and return it as a dictionary if it exists'''
     # get the channel from the database by ID
@@ -79,6 +83,7 @@ def get_channel(id):
 # route to update a specific channel by ID
 # PUT /channels/:id - update a specific channel by ID
 @channel_routes.route('/<int:id>', methods=['PUT'])
+@login_required
 def update_channel(id):
     ''' update a channel by id and return it as a dictionary if that channel exists'''
     # get the channel from the database by ID
@@ -113,6 +118,7 @@ def update_channel(id):
 # route to delete a specific channel by ID
 # DELETE /channels/:id - delete a specific channel by ID
 @channel_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
 def delete_channel(id):
     ''' delete a channel by id and return a message upon successful deletion'''
     # get the channel from the database by ID
