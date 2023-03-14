@@ -37,8 +37,8 @@ const deleteUser = (user) => ({
 
 
 // Selectors
-export const current_user = state => state.user.currentUser
-export const all_users = state => state.user.allUsers
+export const currentUser = state => state.user.currentUser
+export const allUsers = state => state.user.allUsers
 
 
 // Thunks
@@ -47,7 +47,7 @@ export const getAllUsersThunk = () => async dispatch => {
   const response = await fetch("api/users")
 
   if (response.ok) {
-    users = await response.json();
+    let users = await response.json();
     dispatch(getAllUsers(users));
     return users
   }
@@ -60,7 +60,7 @@ export const getCurrentUserThunk = (id) => async dispatch => {
     const user = await response.json();
     const friendsList = await fetch("/api/friends", user.id)
     if (friendsList.ok) {
-      for (friend in friendsList) {
+      for (let friend in friendsList) {
         user.allFriends[friend.id] = friend
       }
       dispatch(getCurrentUser(user));
@@ -107,7 +107,7 @@ export const deleteUserThunk = (userId) => async dispatch => {
 
   if (response.ok) {
     const success = await response.json();
-    dispatch(deleteUser(spotId))
+    dispatch(deleteUser(userId))
     return success
   }
 
