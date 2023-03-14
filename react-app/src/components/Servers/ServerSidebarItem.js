@@ -17,7 +17,7 @@ const ServersSidebarItem = ({ server }) => {
             </div>
 
             <div className="popover__content">
-                <p className="popover__message">test pop up</p>
+                <p className="popover__message">{server.name}</p>
             </div>
 
         </div >
