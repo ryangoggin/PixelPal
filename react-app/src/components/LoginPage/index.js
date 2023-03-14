@@ -8,7 +8,7 @@ import { login } from '../../store/session';
 
 
 
-function LoginPage() { 				// { isLoaded }
+function LoginPage() { 				// removed because removed in app { isLoaded }
 
 	const sessionUser = useSelector(state => state.session.user);
 	const [errors, setErrors] = useState([]);
