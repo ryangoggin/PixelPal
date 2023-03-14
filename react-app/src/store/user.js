@@ -1,11 +1,20 @@
 // Constants
+const GET_ALL_USERS = 'user/GET_ALL_USERS'
 const GET_CURRENT_USER = 'user/GET_CURRENT_USER'
 const CREATE_USER = 'user/CREATE_USER'
-
+const UPDATE_USER = 'user/UPDATE_USER'
+const DELETE_USER = 'user/DELETE_USER'
 
 // Action Creators
-const getUser = (user) => ({
-  type: GET_USER,
+
+const getAllUsers = (users) => ({
+  type: GET_ALL_USERS,
+  users
+})
+
+
+const getCurrentUser = (user) => ({
+  type: GET_CURRENT_USER,
   user
 })
 
@@ -14,14 +23,38 @@ const createUser = (user) => ({
   user
 })
 
+const updateUser = (user) => ({
+  type: UPDATE_USER,
+  user
+
+})
+
+const deleteUser = (user) => ({
+  type: DELETE_USER,
+  user
+})
+
 
 
 // Selectors
+export const current_user = state => state.user.currentUser
+export const all_users = state => state.user.allUsers
 
 
 // Thunks
-export const getCurrentUserThunk = () => async dispatch => {
-  const response = await fetch("/api/users")
+
+export const getAllUsersThunk = () => async dispatch => {
+  const response = await fetch("api/users")
+
+  if (response.ok) {
+    users = await response.json();
+    dispatch(getAllUsers(users));
+    return users
+  }
+}
+
+export const getCurrentUserThunk = (id) => async dispatch => {
+  const response = await fetch(`/api/users/${id}`)
 
   if (response.ok) {
     const user = await response.json();
@@ -30,8 +63,7 @@ export const getCurrentUserThunk = () => async dispatch => {
       for (friend in friendsList) {
         user.allFriends[friend.id] = friend
       }
-      // DO WE NEED TO DO THIS? i think we do since our users are not created
-      dispatch(getUser(user));
+      dispatch(getCurrentUser(user));
       return user;
     }
   }
@@ -48,74 +80,69 @@ export const createUserThunk = (userData) => async dispatch => {
     const newUser = await response.json();
     dispatch(createUser(newUser))
     return newUser
-
   }
 }
 
+export const updateUserThunk = (userData) => async dispatch => {
+  const response = await fetch(`/api/users/${+userData.id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(userData)
+  })
+
+  if (response.ok) {
+    const updatedUser = await response.json()
+    dispatch(updateUser(updatedUser))
+    return updatedUser
+  }
+
+}
+
+
+
+export const deleteUserThunk = (userId) => async dispatch => {
+  const response = await fetch(`/api/users/${userId}`, {
+    method: "DELETE"
+  });
+
+  if (response.ok) {
+    const success = await response.json();
+    dispatch(deleteUser(spotId))
+    return success
+  }
+
+}
 
 // reducer
 
 let initialState = {
   users: {},
-  servers: {},
-  channels: {},
-  messages: {},
-  emojis: {},
-  session: {}
 }
 
 export default function userReducer( state = initialState, action) {
   let newState = {}
   switch(action.type) {
+    case GET_ALL_USERS:
+      newState = {...state, currentUser: {...state.currentUser}, allUsers: {}}
+      action.users.forEach(user => newState.allUsers[user.id] = user)
+      return newState
     case GET_CURRENT_USER:
-      newState = {...state, currentUser: {...state.currentUser}, allUsers: {...state.users.allUsers}}
+      newState = {...state, currentUser: {}, allUsers: {...state.allUsers}}
       newState.currentUser = action.user
       return newState
     case CREATE_USER:
-      newState = {...state, currentServer: {...state.currentServer}, user: {}, emojis: {...state.emojis} }
-      newState.user = action.user
+      newState = {...state, currentUser: {}, allUsers: {...state.allUsers}}
+      newState.currentUser = action.user
       return newState
-
+    case UPDATE_USER:
+      newState = {...state, currentUser: {}, allUsers: {...state.allUsers}}
+      newState.currentUser = action.user
+      return newState
+    case DELETE_USER:
+      newState = {...state, currentUser: {...state.currentUser}, allUsers: {...state.allUsers}}
+      delete newState.allUsers[action.userId]
+      return newState
     default:
       return state;
   }
 }
-
-
-
-// servers: {
-//   currentServer: {
-//     id: 1,
-//     ownerId: 1,
-//     name: "Server",
-//     description: "This is a server",
-//     serverPic: "<picture URL>",
-//     channels: {
-//       [channelId]: {
-//         id: 1,
-//         name: "Channel",
-//         description: "This is a channel",
-//         messages: {
-//           [messageId]: {
-//             id: 1,
-//             content: "This is a message",
-//             timestamp: 2023-03-12 12:00:00.000000,
-//             reactions: [
-//               [reactionId]: {
-//                 id: 1,
-//                 userId: 1,
-//                 emoji: <unicode for emoji>
-//               }
-//             ]
-//           }
-//         }
-//       }
-//     },
-//     members: {
-//       [memberId]: memberData
-//     }
-//   },
-//   allUserServers: {
-//     [serverId]: serverData
-//   }
-// },

@@ -3,7 +3,7 @@ const LOAD_EMOJIS = 'emojis/LOAD_EMOJIS'
 const CREATE_REACTION = 'emojis/CREATE_REACTIONS'
 
 // Action Creators
-const loadEmojis = (emojis) = ({
+const loadEmojis = (emojis) => ({
   type: LOAD_EMOJIS,
   emojis
 })
@@ -29,6 +29,7 @@ export const getAllEmojisThunk = () => async dispatch => {
   }
 }
 
+    // to add to messages later
 export const createReactionThunk = (reactionData) => async dispatch => {
   const response = await fetch("/api/emojis", {
     method: "POST",
@@ -52,20 +53,15 @@ export const createReactionThunk = (reactionData) => async dispatch => {
 // reducer
 
 let initialState = {
-  users: {},
-  servers: {},
-  channels: {},
-  messages: {},
-  emojis: {},
-  session: {}
+  emojis: {}
 }
 
 export default function emojisReducer( state = initialState, action) {
   let newState = {}
   switch(action.type) {
     case LOAD_EMOJIS:
-      newState = {...state, users: {...state.users}, servers: {...state.servers}, channels: {...state.channels}, messages: {...state.messages}, emojis: {}, session: {...state.session}}
-      action.emojis.forEach(emoji => newState.emojis[emoji.id] = emoji)
+      newState = {...state}
+      action.emojis.forEach(emoji => newState[emoji.id] = emoji)
       return newState
     default:
       return state;
