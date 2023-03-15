@@ -73,6 +73,7 @@ function LoginPage() {
 							type="text"
 							id="emailOrPhone"
 							name="emailOrPhone"
+							required
 							onChange={(e) => setEmail(e.target.value)}
 							/>
 						</div>
@@ -86,6 +87,7 @@ function LoginPage() {
 							type="password"
 							id="password"
 							name="password"
+							required
 							onChange={(e) => setPassword(e.target.value)}
 							/>
 						</div>

@@ -22,6 +22,7 @@ function SignupPage() {
 
     // custom frontend validations
 
+    const data = await dispatch(signUp(username, email, password))
 
   };
 
@@ -46,6 +47,7 @@ function SignupPage() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className="signup-input signup-email"
+          required
         />
         <label htmlFor="username" id='username-label' className="signup-input-label">USERNAME</label>
         <input
@@ -54,6 +56,7 @@ function SignupPage() {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           className="signup-input signup-username"
+          required
         />
         <label htmlFor="password" id='password-label' className="signup-input-label">PASSWORD</label>
         <input
@@ -62,18 +65,19 @@ function SignupPage() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className="signup-input signup-password"
+          required
         />
         <div className="signup-dob-label">DATE OF BIRTH</div>
         <div className="signup-dob">
-          <select id="month" value={month} onChange={(e) => setMonth(e.target.value)} className="signup-dob-select">
+          <select id="month" value={month} onChange={(e) => setMonth(e.target.value)} className="signup-dob-select" required>
             <option value="">Month</option>
             {generateOptions(1, 12)}
           </select>
-          <select id="day" value={day} onChange={(e) => setDay(e.target.value)} className="signup-dob-select">
+          <select id="day" value={day} onChange={(e) => setDay(e.target.value)} className="signup-dob-select" required>
             <option value="">Day</option>
             {generateOptions(1, 31)}
           </select>
-          <select id="year" value={year} onChange={(e) => setYear(e.target.value)} className="signup-dob-select">
+          <select id="year" value={year} onChange={(e) => setYear(e.target.value)} className="signup-dob-select" required>
             <option value="">Year</option>
             {generateOptions(1940, new Date().getFullYear())}
           </select>
