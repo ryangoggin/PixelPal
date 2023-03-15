@@ -127,3 +127,7 @@ body {
   cursor: pointer;
   text-decoration: none;
 }
+
+.register:hover {
+  text-decoration: underline;
+}
