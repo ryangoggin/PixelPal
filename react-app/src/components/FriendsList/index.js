@@ -1,37 +1,27 @@
 import { useHistory } from "react-router-dom"
-import { useState } from "react";
+import { useState,  } from "react";
 import OpenModalMenuItem from '../EmojisModal/OpenModalMenuItem';
 import GetAllEmojis from "../EmojisModal";
+import { useDispatch } from "react-redux";
+import { logout } from "../../store/session";
 import '../EmojisModal/GetAllEmojis.css'
 
 export default function FriendsList() {
   const history = useHistory();
+  const dispatch = useDispatch()
 
-  const redirect = async (e) => {
+
+  const handleLogout = async (e) => {
     e.preventDefault()
-    history.push('/emojis/test')
-  }
-const [showMenu, setShowMenu] = useState(false);
-  const closeMenu = () => setShowMenu(false);
 
-  {/* <OpenModalMenuItem
-                itemText="Sign Up"
-                onItemClick={closeMenu}
-                className="signUpText"
-                modalComponent={<GetAllEmojis />}
-              /> */}
+    dispatch(logout())
+    .then(history.push("/login"))
+}
 
   return (
     <div>
       <h1> HELLO ! </h1>
-      <div className='emojis-modal-openmodalmenuitem'>
-      <OpenModalMenuItem
-                itemText="Reactions"
-                onItemClick={closeMenu}
-                className="emojis-modal-button"
-                modalComponent={<GetAllEmojis />}
-              />
-      </div>
+      <button onClick={handleLogout}> Logout </button>
     </div>
   )
 }
