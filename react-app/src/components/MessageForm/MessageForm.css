@@ -78,6 +78,10 @@ font-style: normal;
     background-color: #383a4094;
 }
 
+.message-form-disabled:hover {
+    cursor: not-allowed;
+}
+
 .message-hidden {
     visibility: hidden;
     height: 0px;

@@ -76,7 +76,7 @@ function MessageForm() {
                 />
                 <div className="message-form-right-side">
                     <div className={content.length >= 1800 ? (content.length > 2000 ? "character-count-error" : "character-count-warning") : "message-hidden"}>{2000 - content.length}</div>
-                    <button className="message-form-button message-form-text" type="submit" disabled={content.length > 2000}>Send</button>
+                    <button className={content.length > 2000 ? "message-form-button message-form-text message-form-disabled" : "message-form-button message-form-text"} type="submit" disabled={content.length > 2000}>Send</button>
                 </div>
                 </form>
             </div>
