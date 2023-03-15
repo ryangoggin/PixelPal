@@ -17,7 +17,9 @@ function OpenModalMenuItem({
   };
 
   return (
-      <li className='emojismodalitem' onClick={onClick}>{itemText}</li>
+      <div className='emojis-list-item-container'>
+        <li className='emojismodalitem' onClick={onClick}>{itemText}</li>
+      </div>
   );
 }
 

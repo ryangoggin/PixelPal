@@ -24,9 +24,9 @@ const [showMenu, setShowMenu] = useState(false);
   return (
     <div>
       <h1> HELLO ! </h1>
-      <div className='emojis-modal-container'>
+      <div className='emojis-modal-openmodalmenuitem'>
       <OpenModalMenuItem
-                itemText="Emojis"
+                itemText="Reactions"
                 onItemClick={closeMenu}
                 className="emojis-modal-button"
                 modalComponent={<GetAllEmojis />}
