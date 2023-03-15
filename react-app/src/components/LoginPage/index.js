@@ -25,32 +25,20 @@ function LoginPage() {
 					console.log(errData)
 				}
 			)
-
 	};
 
+	const handleDemoLogin = async (e) => {
+		e.preventDefault();
+		const data = await dispatch(login('demo@aa.io', 'password'))
+		  .catch(
+			async (res) => {
+			  const errData = await res.json();
+			  console.log(errData)
+			}
+		  )
+	  };
+
 	if (sessionUser) return <Redirect to="/channels/@me" />;
-
-	// DEMO USER copied from airbnb
-  // const demoUser = (e) => {
-  //   e.preventDefault();
-  //   return dispatch(sessionActions.login({'credential': 'Demo-lition', 'password': 'password'}))
-  //     .then(closeModal)
-  //     .catch(
-  //       async (res) => {
-  //         const data = await res.json();
-  //         if (data && data.errors) setErrors(data.errors);
-  //       }
-  //     )
-  // }
-
-
-	// error handling provided by starter code, put this in wherever
-			{/* <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul> */}
-
 
 
 
@@ -73,6 +61,7 @@ function LoginPage() {
 							type="text"
 							id="emailOrPhone"
 							name="emailOrPhone"
+							required
 							onChange={(e) => setEmail(e.target.value)}
 							/>
 						</div>
@@ -86,10 +75,12 @@ function LoginPage() {
 							type="password"
 							id="password"
 							name="password"
+							required
 							onChange={(e) => setPassword(e.target.value)}
 							/>
 						</div>
 						<button className="login-button" type="submit">Log In</button>
+						<button className="demo-button" onClick={handleDemoLogin}>Demo User</button>
 						<div className="register-group">
 							<span className="label-register">Need an account?</span>
 							<Link to='/register' className="register">Register</Link>
