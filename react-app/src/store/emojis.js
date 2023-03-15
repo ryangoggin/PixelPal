@@ -30,7 +30,7 @@ const createReaction = (reaction) => ({
 // Thunks
 export const getAllEmojisThunk = () => async dispatch => {
   const response = await csrfFetch('/api/emojis');
-  console.log("get all emojis thunk running ")
+  // console.log("get all emojis thunk running ")
 
   if (response.ok) {
     let emojis = await response.json();

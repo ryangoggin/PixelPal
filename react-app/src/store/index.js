@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import sessionReducer from './session'
 import serverReducer from './server';
 import userReducer from './user'
+import emojisReducer from './emojis';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   server: serverReducer,
-  user: userReducer
+  user: userReducer,
+  emoji: emojisReducer
 });
 
 let enhancer;
