@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { io } from 'socket.io-client';
+import ChannelMessages from "../ChannelMessages";
+import { createMessage } from "../../store/message";
 import "./MessageForm.css";
 
 let socket;
 
 function MessageForm() {
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const [content, setContent] = useState("");
     const [messages, setMessages] = useState([]); // default messages should be channelMessages
     const user = useSelector(state => state.session.user)
@@ -39,29 +41,31 @@ function MessageForm() {
         })
     }, [])
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // add .to('channelName') before .emit when adding room functionality?
-        socket.emit("chat", { user: user.username, msg: content });
+        let message = { senderId: user.id, content: content, timestamp: Date.now(), reactions: {} };
 
-        // await dispatch("insert create message thunk here")
-        //   .catch(
-        //     async (res) => {
-        //       const data = await res.json();
-        //       if (data && data.errors) setErrors(data.errors);
-        //     }
-        //   );
+        // emit message so users can see it in real time
+        // add .to('channelName') before .emit when adding room functionality?
+        socket.emit("chat", message);
+
+        // add message to DB
+        await dispatch(createMessage(message))
+          .catch(
+            async (res) => {
+              const data = await res.json();
+              if (data && data.errors) console.log(data.errors);
+            }
+          );
         setContent("");
         return "thunk in progress..." // will be deleted once thunk is created
     };
 
     return (
         <>
-            <div>
-                    {messages.map((message, ind) => (
-                        <div key={ind}>{`${message.user.slice(0, -5)} ${message.msg}`}</div>
-                    ))}
+            <div className="channel-messages-container">
+                <ChannelMessages formMessages={messages}/>
             </div>
             <div className='message-form-container'>
                 <form className="message-form" onSubmit={handleSubmit}>

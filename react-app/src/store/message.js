@@ -1,5 +1,3 @@
-import { csrfFetch } from "./csrf";
-
 //types
 const LOAD_MESSAGES = 'messages/LOAD_MESSAGES';
 const ADD_MESSAGE = 'messages/ADD_MESSAGE';
@@ -23,18 +21,18 @@ const addMessage = message => ({
 
 // thunk action creators:
 export const getChannelMessages = (channelId) => async dispatch => {
-    const resMessages = await csrfFetch(`/api/channels/${channelId}/messages`);
+    const resMessages = await fetch(`/api/channels/${channelId}/messages`);
 
     // might need to query emojis based on url, only have ids on resMessages
 
     if (resMessages.ok) {
-      const channelMessages = await response.json();
+      const channelMessages = await resMessages.json();
       dispatch(loadMessages(channelMessages));
     }
 };
 
 export const createMessage = (message) => async dispatch => {
-    const resMessage = await csrfFetch(`/api/messages`, {
+    const resMessage = await fetch(`/api/messages`, {
         method: "POST",
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(message)
