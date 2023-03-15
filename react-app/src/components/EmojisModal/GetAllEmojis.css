@@ -1,0 +1,90 @@
+@font-face {
+  font-family: 'PixelPal';
+  src: url('../../static/ggsans-Normal.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Discord Thin';
+  src: url('../../static/Uni\ Sans\ Thin.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Discord Bold';
+  src: url('../../static/Uni\ Sans\ Heavy.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+#modal-content > .emoji-modal-container{
+  width: 150px;
+  height: auto;
+  background-color:rgb(43,45,49); /* change to discord gray */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-radius: 9px; /* why is the rounded corners white? */
+}
+
+/* Need to figure out how to get this to none without messing original formatting */
+/* #modal-background {
+  background-color:none
+} */
+
+.emoji-modal-emoji {
+  height: 26px;
+  width: 26px;
+  margin: auto;
+  text-align: center;
+  cursor: pointer;
+  /* font-family: 'Discord Bold' */
+
+}
+
+.emoji-modal-emoji:hover {
+  background-color: rgb(65,67,74)
+}
+
+
+
+.emojismodalitem {
+  list-style: none;
+  color: rgb(219,222,225);
+  width: 50px;
+
+  /* to change into the icon later and remove reaction text*/
+  font-family: 'PixelPal';
+  cursor: pointer;
+  background-color:rgb(47,49,54)
+}
+
+.emojismodalitem:hover {
+  background-color: rgb(66,68,74);
+}
+
+.tooltip-wrap {
+  position: relative;
+
+}
+.tooltip-wrap .tooltip-content {
+  display: none;
+  position: absolute;
+  width: 20px;
+  height: auto;
+  bottom: 20px;
+  left: 5%;
+  right: 5%;
+  background-color: rgb(17,18,20);
+  padding: .5em;
+  min-width: 10rem;
+}
+.tooltip-wrap:hover .tooltip-content {
+  display: block;
+  color: rgb(219,222,225);
+  width: 50px;
+  font-family: 'PixelPal'
+
+}
