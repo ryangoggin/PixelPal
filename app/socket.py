@@ -1,4 +1,4 @@
-from flask_socketio import SocketIO, emit
+from flask_socketio import SocketIO, emit, join_room, leave_room
 import os
 
 
@@ -22,6 +22,20 @@ def handle_connect():
 @socketio.on('disconnect')
 def handle_disconnect():
     print('Client disconnected')
+
+
+# join a room (channel)
+@socketio.on('join')
+def on_join(data):
+    room = data['room']
+    join_room(room)
+
+
+# leave a room (channel)
+@socketio.on('leave')
+def on_leave(data):
+    room = data['room']
+    leave_room(room)
 
 # handle chat messages
 @socketio.on("chat")

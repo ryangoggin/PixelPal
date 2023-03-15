@@ -1,20 +1,33 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { io } from 'socket.io-client';
-let socket;
 import "./MessageForm.css";
+
+let socket;
 
 function MessageForm() {
     // const dispatch = useDispatch();
     const [content, setContent] = useState("");
-    const [messages, setMessages] = useState([]);
+    const [messages, setMessages] = useState([]); // default messages should be channelMessages
     const user = useSelector(state => state.session.user)
+    // const channel = useSelector(state => state.channels.currentChannel)
 
-    // will need room functionality? broadcast to just users in the room (channel), not all users?
+    // will need room functionality tp broadcast to just users in the room (channel), not all users --> add channel to dependency array?
     useEffect(() => {
         // open socket connection
         // create websocket
         socket = io();
+
+        // socket.on('subscribe', function(channel) {
+        //     try{
+        //       console.log('[socket]','join channel :', channel)
+        //       socket.join(channel);
+        //       socket.to(channel).emit('user joined', socket.id);
+        //     }catch(e){
+        //       console.log('[error]','join channel :',e);
+        //       socket.emit('error','couldnt perform requested action');
+        //     }
+        // })
 
         socket.on("chat", (chat) => {
             setMessages(messages => [...messages, chat])
@@ -27,10 +40,9 @@ function MessageForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setErrors([]);
 
-        socket.emit("chat", { user: user.username, msg: chatInput });
-        setChatInput("")
+        // add .to('channelName') before .emit when adding room functionality?
+        socket.emit("chat", { user: user.username, msg: content });
 
         // await dispatch("insert create message thunk here")
         //   .catch(
@@ -52,12 +64,7 @@ function MessageForm() {
             </div>
             <div className='message-form-container'>
                 <form className="message-form" onSubmit={handleSubmit}>
-                {/* need to look into what frontend validation is done when sending a message over 2000 characters */}
-                {/* <ul>
-                {errors.map((error, idx) => (
-                    <li key={idx} className="errors">{error}</li>
-                    ))}
-                </ul> */}
+                {/* at 1800 characters start a counter for characters allowed left (starts at 200), disable the send button above 2000  */}
                 {/* need to figure out dynamic sizing with css? */}
                 <textarea
                 type="text"
