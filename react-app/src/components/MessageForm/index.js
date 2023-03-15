@@ -11,6 +11,7 @@ function MessageForm() {
     const [messages, setMessages] = useState([]); // default messages should be channelMessages
     const user = useSelector(state => state.session.user)
     // const channel = useSelector(state => state.channels.currentChannel)
+    let channel = "#sample-channel"
 
     // will need room functionality tp broadcast to just users in the room (channel), not all users --> add channel to dependency array?
     useEffect(() => {
@@ -59,7 +60,7 @@ function MessageForm() {
         <>
             <div>
                     {messages.map((message, ind) => (
-                        <div key={ind}>{`${message.user}: ${message.msg}`}</div>
+                        <div key={ind}>{`${message.user.slice(0, -5)} ${message.msg}`}</div>
                     ))}
             </div>
             <div className='message-form-container'>
@@ -70,9 +71,13 @@ function MessageForm() {
                 type="text"
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
+                placeholder={`Message ${channel}`}
                 required
                 />
-                <button className="message-form-button message-form-text" type="submit" disabled={content.length > 2000}>Send</button>
+                <div className="message-form-right-side">
+                    <div className={content.length >= 1800 ? (content.length > 2000 ? "character-count-error" : "character-count-warning") : "message-hidden"}>{2000 - content.length}</div>
+                    <button className="message-form-button message-form-text" type="submit" disabled={content.length > 2000}>Send</button>
+                </div>
                 </form>
             </div>
         </>
