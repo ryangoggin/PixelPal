@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { signUp } from "../../store/session";
 import './SignupForm.css';
 
@@ -80,7 +80,7 @@ function SignupPage() {
         </div>
         <button type="submit" className="signup-submit-btn">Continue</button>
       </form>
-      <span className="signup-already-account">Already have an account?</span>
+      <Link to='/login' className="signup-already-account">Already have an account?</Link>
       <span className="signup-tos">By registering, you agree to PixelPal's Terms of Service and Privacy Policy.</span>
     </div>
   );

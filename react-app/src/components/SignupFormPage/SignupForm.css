@@ -118,6 +118,7 @@
     font-weight: bolder;
     font-size: 15px;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .signup-already-account {
@@ -125,6 +126,7 @@
     font-family: 'PixelPal';
     font-size: 15px;
     margin-bottom: 20px;
+    text-decoration: none;
 }
 
 .signup-tos {
