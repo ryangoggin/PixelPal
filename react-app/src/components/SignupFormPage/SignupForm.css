@@ -127,6 +127,11 @@
     font-size: 15px;
     margin-bottom: 20px;
     text-decoration: none;
+    width: fit-content;
+}
+
+.signup-already-account:hover {
+    text-decoration: underline;
 }
 
 .signup-tos {
