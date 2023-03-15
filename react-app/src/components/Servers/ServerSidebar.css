@@ -1,9 +1,30 @@
+@font-face {
+    font-family: 'PixelPal';
+    src: url('../../static/ggsans-Normal.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Discord Thin';
+    src: url('../../static/Uni\ Sans\ Thin.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Discord Bold';
+    src: url('../../static/Uni\ Sans\ Heavy.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .server-sidebar {
     position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
-    width: 60px;
+    max-width: 64px;
     /* adjust as needed */
     display: flex;
     background-color: #23272A;
@@ -12,18 +33,21 @@
     /* make sure the sidebar is on top of other content */
 }
 
+.server-sidebar-ul {
+    /* display: flex;
+    align-items: center; */
+    margin-left: 8px;
+    padding-left: 0px;
+    margin-right: 8px;
+}
+
 .server-sidebar-icon {
-    width: 36px;
-    height: 36px;
-    margin-right: 10px;
-    margin-bottom: 10px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     overflow: hidden;
-
-    /* test my css for popover */
-    position: relative;
-    margin-top: 1.5rem;
-    display: inline-block;
+    margin-bottom: 1em;
+    cursor: pointer;
 }
 
 .server-sidebar-icon img {
@@ -32,35 +56,26 @@
     object-fit: cover;
 }
 
-.popover__content {
-    opacity: 0;
-    visibility: hidden;
-    position: absolute;
-    left: -150px;
-    transform: translate(0, 10px);
-    background-color: #bfbfbf;
-    padding: 1.5rem;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-    width: auto;
+.server-sidebar-add-server-btn>button {
+    background-color: #2C2F33;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 1em;
+    font-size: 30px;
+    color: green;
+    font-family: 'PixelPal';
+    border: 0px;
+    cursor: pointer;
 }
 
-.popover__content:before {
-    position: absolute;
-    z-index: -1;
-    content: "";
-    right: calc(50% - 10px);
-    top: -8px;
-    border-style: solid;
-    border-width: 0 10px 10px 10px;
-    border-color: transparent transparent #bfbfbf transparent;
-    transition-duration: 0.3s;
-    transition-property: transform;
-}
 
-.server-sidebar:hover .popover__content {
-    z-index: 10;
-    opacity: 1;
-    visibility: visible;
-    transform: translate(0, -20px);
-    transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
-}
+
+/* transition: color .15s ease-out,background-color .15s ease-out;
+  transition-property: color, background-color;
+  transition-duration: 0.15s, 0.15s;
+  transition-timing-function: ease-out, ease-out;
+  transition-delay: 0s, 0s;
+color: var(--green-360);
+background-color: var(--background-primary); */
