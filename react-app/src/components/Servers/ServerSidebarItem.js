@@ -1,5 +1,4 @@
-import { React, useRef, useEffect } from "react";
-import { Redirect } from "react-router-dom";
+import { React, useEffect } from "react";
 import './ServerSidebar.css'
 
 const ServersSidebarItem = ({ mainRef, server }) => {
@@ -34,15 +33,11 @@ const ServersSidebarItem = ({ mainRef, server }) => {
         if (e.type === 'contextmenu') {
             e.preventDefault();
             const { clientX: mouseX, clientY: mouseY } = e;
-            console.log(mouseX, mouseY);
 
             mainRef.current.style.top = `${mouseY}px`;
             mainRef.current.style.left = `${mouseX}px`;
 
-            console.log(mainRef.current.style.left);
-
             mainRef.current.classList.add("visible");
-            console.log(mainRef);
         }
     }
 

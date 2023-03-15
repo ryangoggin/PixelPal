@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom"
 import { useModal } from "../../context/Modal";
 import { addServer } from "../../store/server";
 import "./CreateServer.css";
 
 function CreateServerModal() {
 	const dispatch = useDispatch();
+	const history = useHistory();
 	const [name, setName] = useState("");
 	const [description, setDescription] = useState("");
 	const [server_picture, setServerPicture] = useState("");
@@ -16,7 +18,6 @@ function CreateServerModal() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		// window.alert('hi')
 
 		let newServer = {
 			"name": name,
@@ -28,6 +29,7 @@ function CreateServerModal() {
 		try {
 			let createdServer = await dispatch(addServer(newServer));
 			if (createdServer) {
+				history.push(`/channels/${createdServer.id}/${createdServer.channels[0].id}`)
 				closeModal();
 			}
 		}

@@ -90,10 +90,12 @@ export default function serverReducer(state = initialState, action) {
       action.list.forEach(server => {
         allUserServers[server.id] = server
       })
+      const orderedList = Object.values(allUserServers);
 
       return {
         ...state,
-        allUserServers
+        allUserServers,
+        orderedList
       }
     }
 
@@ -104,9 +106,12 @@ export default function serverReducer(state = initialState, action) {
     }
 
     case ADD_SERVER: {
-      const newState = { ...state }
-      newState.allUserServers[action.server.id] = action.server;
-      return newState;
+      const newState = { ...state };
+      const allUserServers = { ...state.allUserServers };
+      const orderedList = [...state.orderedList];
+      allUserServers[action.server.id] = action.server;
+      orderedList.unshift(action.server);
+      return { ...newState, allUserServers, orderedList };
     }
 
     default:
