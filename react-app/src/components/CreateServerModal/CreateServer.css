@@ -70,7 +70,6 @@
     font-family: 'Discord Bold';
     font-size: 14px;
     color: #313338;
-    /* color: blue */
 }
 
 .create-server-form-button {
@@ -98,5 +97,4 @@
     height: 30px;
     width: 100%;
     margin-top: 5px;
-    /* padding-right: 125px */
 }
