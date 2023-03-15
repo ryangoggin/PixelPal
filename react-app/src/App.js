@@ -43,9 +43,6 @@ function App() {
             {/* <Route path="/channels/:serverId/:channelId">
               <TestChannels />
             </Route> */}
-            <Route path="/emojis/test">
-              <GetAllEmojis />
-            </Route>
           </Switch>
         </>
       )}
