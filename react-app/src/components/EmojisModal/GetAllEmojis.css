@@ -1,10 +1,25 @@
-.emojis-modal-button {
-  color: red;
-  border-color: red
+#modal-content > .emoji-modal-container{
+  width: 150px;
+  height: 150px;
+  background-color:darkgray; /* change to discord gray */
+  display: flex;
+  flex-wrap: wrap;
 }
 
 
-emoji-modal-container {
-  width: 300px;
-  height: 200px;
+
+/* Need to figure out how to get this to none without messing original formatting */
+/* #modal-background {
+  background-color:none
+} */
+
+.emoji-modal-emoji {
+  height: 26px;
+  width: 26px;
+}
+
+
+/* Get the emojis spaced out evenly in the div and pointer*/
+#modal-content > div > .emoji-modal-emoji {
+  cursor: pointer
 }
