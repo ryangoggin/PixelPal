@@ -1,21 +1,22 @@
-import React from 'react';
-import { Redirect } from 'react-router-dom';
+import React, {useEffect} from 'react';
+import { useHistory } from 'react-router-dom';
+
 import { useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 
 // Create logic for if user
 
 export default function Home() {
 
-  const user = useSelector(state => state.session.user);
+  const history = useHistory();
 
-  // (user === null ? history.push(`/channels/@me`) : history.push("/login"))
+  const user = state => state.session.user
 
   if (user) {
     return (<Redirect to="/channels/@me" />)
   } else {
     return (<Redirect to="/" />)
   }
-
 
 }
