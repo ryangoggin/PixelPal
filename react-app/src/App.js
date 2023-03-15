@@ -8,6 +8,7 @@ import ServersSidebar from "./components/Servers/ServersSidebar";
 // import TestChannels from "./components/Servers/TestChannels";
 import Home from "./components/Home/"
 import FriendsList from './components/FriendsList'
+import GetAllEmojis from "./components/EmojisModal";
 
 
 function App() {
@@ -36,6 +37,9 @@ function App() {
             {/* <Route path="/channels/:serverId/:channelId">
               <TestChannels />
             </Route> */}
+            <Route path='/emojis/test'>
+              <GetAllEmojis />
+              </Route>
           </Switch>
         </>
       )}
