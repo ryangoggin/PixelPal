@@ -1,3 +1,5 @@
+import { csrfFetch } from "./csrf";
+
 // Constants
 const LOAD_EMOJIS = 'emojis/LOAD_EMOJIS'
 const LOAD_ONE_EMOJI = 'emojis/LOAD_ONE_EMOJI'
@@ -23,15 +25,16 @@ const createReaction = (reaction) => ({
 
 
 // Selectors
-export const allEmojis = state => state.emojis.emojis
-
+// export const allEmojis = state => state.emojis.allEmojis
 
 // Thunks
 export const getAllEmojisThunk = () => async dispatch => {
   const response = await fetch('/api/emojis');
+  console.log("get all emojis thunk running ")
 
   if (response.ok) {
     let emojis = await response.json();
+    // console.log('emojis json from fetch', emojis)
     dispatch(loadEmojis(emojis))
     return emojis
   }
@@ -49,7 +52,7 @@ export const loadOneEmojiThunk = (id) => async dispatch => {
 
 
 
-    // to add to messages later
+// to add to messages later
 export const createReactionThunk = (reactionData) => async dispatch => {
   const response = await fetch("/api/emojis", {
     method: "POST",
@@ -73,18 +76,20 @@ export const createReactionThunk = (reactionData) => async dispatch => {
 // reducer
 
 let initialState = {
-  emojis: {}
+  allEmojis: {},
+  emoji: {}
 }
 
 export default function emojisReducer( state = initialState, action) {
   let newState = {}
   switch(action.type) {
     case LOAD_EMOJIS:
-      newState = {...state}
-      action.emojis.forEach(emoji => newState[emoji.id] = emoji)
+      newState = {...state, allEmojis: { }, emoji: { ...state.emoji }};
+      action.emojis.emojis.forEach(emoji => newState.allEmojis[emoji.id] = emoji)
       return newState
     case LOAD_ONE_EMOJI:
-      newState = {...state}
+      newState = {...state, allEmojis: { ...state.allEmojis }, emoji: {}};
+      newState.emoji = action.emoji
       return newState
     default:
       return state;

@@ -8,6 +8,7 @@ import ServersSidebar from "./components/Servers/ServersSidebar";
 // import TestChannels from "./components/Servers/TestChannels";
 import Home from "./components/Home/"
 import FriendsList from './components/FriendsList'
+import GetAllEmojis from "./components/EmojisModal"
 
 
 function App() {
@@ -22,15 +23,15 @@ function App() {
     <>
       <LoginPage />
       <Switch>
-        <Route path="/" component={Home} />
-        <Route path="/login" component={LoginPage} />
-        <Route path='/register' component={SignupFormPage} />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/login" component={LoginPage} />
+        <Route exact path='/register' component={SignupFormPage} />
       </Switch>
       {isLoaded && (
         <>
           <ServersSidebar />
           <Switch>
-            <Route path='/channels/@me'>
+            <Route exact path='/channels/@me'>
               <FriendsList />
               </Route>
             {/* <Route path="/channels/:serverId/:channelId">

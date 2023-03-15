@@ -18,9 +18,16 @@ export default function FriendsList() {
     .then(history.push("/login"))
   }
 
+  const redirect = async (e) => {
+    e.preventDefault()
+    history.push('/emojis/test')
+
+  }
+
   return (
     <div>
       <h1> HELLO ! </h1>
+      {/* <button type='button' onClick={redirect}> Emojis </button> */}
       <button type='submit' onClick={handleLogout}> Logout </button>
     </div>
   )
