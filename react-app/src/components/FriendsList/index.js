@@ -1,14 +1,13 @@
 import { useHistory } from "react-router-dom"
-import { useState,  } from "react";
-import OpenModalMenuItem from '../EmojisModal/OpenModalMenuItem';
-import GetAllEmojis from "../EmojisModal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/session";
-import '../EmojisModal/GetAllEmojis.css'
+import './FriendsList.css'
 
 export default function FriendsList() {
   const history = useHistory();
   const dispatch = useDispatch()
+
+  const allFriends = useSelector(state => state.friends)
 
 
   const handleLogout = async (e) => {

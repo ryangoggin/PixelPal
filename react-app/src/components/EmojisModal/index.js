@@ -6,23 +6,10 @@ import { getAllEmojisThunk, createReactionThunk, loadOneEmojiThunk, allEmojis } 
 
 import "./GetAllEmojis.css"
 
-// to be put into message component
-// const [showMenu, setShowMenu] = useState(false);
-// const closeMenu = () => setShowMenu(false);
-
-{/* <OpenModalMenuItem
-                itemText="Sign Up"
-                onItemClick={closeMenu}
-                className="signUpText"
-                modalComponent={<GetAllEmojis />}
-              /> */}
-
-
 export default function GetAllEmojis() {
 
   const dispatch = useDispatch()
   const {closeModal} = useModal()
-
 
   useEffect(() => {
     dispatch(getAllEmojisThunk())

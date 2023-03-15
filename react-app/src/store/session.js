@@ -1,6 +1,7 @@
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
+const UPDATE_USER = "session/UPDATE_USER"
 
 
 // Action Creators
@@ -12,6 +13,11 @@ const setUser = (user) => ({
 const removeUser = () => ({
 	type: REMOVE_USER,
 });
+
+const updateUser = (user) => ({
+	type: UPDATE_USER,
+	user
+})
 
 
 // Selectors
@@ -103,6 +109,21 @@ export const signUp = (username, email, password) => async (dispatch) => {
 	}
 };
 
+export const updateUserThunk = (userData) => async dispatch => {
+  const response = await fetch(`/api/users/${+userData.id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(userData)
+  })
+
+  if (response.ok) {
+    const updatedUser = await response.json()
+    dispatch(updateUser(updatedUser))
+    return updatedUser
+  }
+
+}
+
 
 // Reducer
 
@@ -112,6 +133,8 @@ export default function sessionReducer(state = initialState, action) {
 			return { user: action.payload };
 		case REMOVE_USER:
 			return { user: null };
+		case UPDATE_USER:
+			return { user: action.user}
 		default:
 			return state;
 	}
