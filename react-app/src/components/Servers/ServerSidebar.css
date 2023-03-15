@@ -109,3 +109,29 @@
     background-color: #2CA45C;
     border-radius: 40%;
 }
+
+#context-menu {
+    position: fixed;
+    z-index: 1000;
+    width: 150px;
+    background: #111214;
+    border-radius: 5px;
+    display: none;
+}
+
+.item {
+    font-family: 'PixelPal';
+    padding: 8px 10px;
+    font-size: 15px;
+    color: #B0b5bc;
+    cursor: pointer;
+    border-radius: inherit;
+}
+
+#context-menu.visible {
+    display: block;
+}
+
+#context-menu .item:hover {
+    background: #5865F2
+}
