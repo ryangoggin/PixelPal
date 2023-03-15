@@ -24,6 +24,7 @@ function SignupPage() {
 
     const data = await dispatch(signUp(username, email, password))
 
+
   };
 
   const generateOptions = (start, end) => {
