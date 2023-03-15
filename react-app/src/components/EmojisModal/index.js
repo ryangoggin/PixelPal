@@ -31,22 +31,22 @@ export default function GetAllEmojis() {
   const emojis = useSelector(state => state.emoji.allEmojis)
   const emojisArr = Object.values(emojis)
 
-  console.log('emojis arr', emojisArr)
+  // console.log('emojis arr', emojisArr)
 
   const userId = useSelector(state => state.session.user?.id)
 
-  const handleClick = (e, emojiId, messageId) => {
-    // get create a reaction from the click
-    // need to input messageId from message component
-    let new_reaction = dispatch(createReactionThunk(emojiId, messageId, userId))
+  // const handleClick = (e, emojiId, messageId) => {
+  //   // get create a reaction from the click
+  //   // need to input messageId from message component
+  //   let new_reaction = dispatch(createReactionThunk(emojiId, messageId, userId))
 
-    // query for the emoji if the reaction successfully worked
-    if (new_reaction) {
-      let emoji = dispatch(loadOneEmojiThunk(new_reaction['emojiId']))
-      new_reaction[emoji.id] = emoji.url // replacing emoji Id with emojiURL?
-      .then(closeModal)
-    }
-  }
+  //   // query for the emoji if the reaction successfully worked
+  //   if (new_reaction) {
+  //     let emoji = dispatch(loadOneEmojiThunk(new_reaction['emojiId']))
+  //     new_reaction[emoji.id] = emoji.url // replacing emoji Id with emojiURL?
+  //     .then(closeModal)
+  //   }
+  // }
 
 
   return (
@@ -54,7 +54,8 @@ export default function GetAllEmojis() {
       <p>{String.fromCodePoint(0x1F354)}</p>
       {emojisArr.map(emoji => {
         return (<p className='emoji-modal-emoji'
-        value={emoji.id} onClick={handleClick}
+        value={emoji.id}
+        // onClick={handleClick}
         >
           {String.fromCodePoint(emoji.url)}
           </p>)
