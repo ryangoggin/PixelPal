@@ -29,13 +29,15 @@ const ServersSidebar = () => {
             <NavLink key='Direct Messages' to={'/channels/@me'}>
               <img className='server-sidebar-icon' src='https://i.redd.it/6jupfeilyhx71.jpg' alt='preview'></img>
             </NavLink>
+
             {
               servers.map(server => (
-                <NavLink key={server.id} to={`/channels/${server.id}/${server.channels[0].id}`}>
+                <NavLink style={{ textDecoration: 'none' }} key={server.id} to={`/channels/${server.id}/${server.channels[0].id}`}>
                   <ServersSidebarItem server={server} />
                 </NavLink>
               ))
             }
+
             <li className='server-sidebar-add-server-btn'>
               <OpenModalButton
                 buttonText='+'

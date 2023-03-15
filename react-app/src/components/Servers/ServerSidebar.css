@@ -27,7 +27,7 @@
     max-width: 64px;
     /* adjust as needed */
     display: flex;
-    background-color: #23272A;
+    background-color: #1e1f22;
     overflow-y: auto;
     z-index: 1;
     /* make sure the sidebar is on top of other content */
@@ -48,6 +48,15 @@
     overflow: hidden;
     margin-bottom: 1em;
     cursor: pointer;
+    transition: color .15s ease-out, background-color .15s ease-out, border-radius .15s ease-out;
+    transition-property: color, background-color, border-radius;
+    transition-duration: 0.15s, 0.15s, 0.15s;
+    transition-timing-function: ease-out, ease-out, ease-out;
+    transition-delay: 0s, 0s, 0s;
+}
+
+.server-sidebar-icon:hover {
+    border-radius: 40%;
 }
 
 .server-sidebar-icon img {
@@ -56,19 +65,53 @@
     object-fit: cover;
 }
 
-.server-sidebar-add-server-btn>button {
-    background-color: #2C2F33;
+.server-sidebar-no-img-icon {
+    background-color: #313338;
     width: 48px;
     height: 48px;
     border-radius: 50%;
     overflow: hidden;
     margin-bottom: 1em;
-    font-size: 30px;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    font-family: "PixelPal";
+    text-decoration: none;
+    cursor: pointer;
+    transition: color .15s ease-out, background-color .15s ease-out, border-radius .15s ease-out;
+    transition-property: color, background-color, border-radius;
+    transition-duration: 0.15s, 0.15s, 0.15s;
+    transition-timing-function: ease-out, ease-out, ease-out;
+    transition-delay: 0s, 0s, 0s;
+}
+
+.server-sidebar-no-img-icon:hover {
+    color: white;
+    background-color: #5865F2;
+    border-radius: 40%;
+}
+
+.server-sidebar-add-server-btn>button {
+    background-color: #313338;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 1em;
+    font-size: 35px;
     color: green;
     font-family: 'PixelPal';
     border: 0px;
     cursor: pointer;
 }
+
+.server-sidebar-add-server-btn>button:hover {
+    color: white;
+    background-color: #2CA45C;
+    border-radius: 40%;
+}
+
 
 
 
