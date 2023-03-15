@@ -17,9 +17,15 @@ function OpenModalMenuItem({
   };
 
   return (
+    <div class="tooltip-wrap">
       <div className='emojis-list-item-container'>
         <li className='emojismodalitem' onClick={onClick}>{itemText}</li>
       </div>
+      <div class="tooltip-content">
+          Add Reaction
+      </div>
+    </div>
+
   );
 }
 

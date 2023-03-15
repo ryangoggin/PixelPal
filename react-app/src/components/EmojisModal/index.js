@@ -36,25 +36,24 @@ export default function GetAllEmojis() {
 
   const userId = useSelector(state => state.session.user?.id)
 
-  // const handleClick = (e, emojiId, messageId) => {
-  //   // get create a reaction from the click
-  //   // need to input messageId from message component
-  //   let new_reaction = dispatch(createReactionThunk(emojiId, messageId, userId))
+  const handleClick = (e, emojiId, messageId) => {
+    // get create a reaction from the click
+    // need to input messageId from message component
+    let new_reaction = dispatch(createReactionThunk(emojiId, messageId, userId))
 
-  //   // query for the emoji if the reaction successfully worked
-  //   if (new_reaction) {
-  //     let emoji = dispatch(loadOneEmojiThunk(new_reaction['emojiId']))
-  //     new_reaction[emoji.id] = emoji.url // replacing emoji Id with emojiURL?
-  //     .then(closeModal)
-  //   }
-  // }
+    return new_reaction
+    .then(closeModal)
+    }
+
 
 
   return (
     <div className='emoji-modal-container'>
       {emojisArr.map(emoji => {
         return (<div className='emoji-modal-emoji'
-                value={emoji.id}>
+                value={emoji.id}
+                onClick = {handleClick(emoji.id, 2 )}
+                >
                 {String.fromCodePoint(emoji.url)}
                 </div>)
       })}
