@@ -76,6 +76,16 @@ body {
 
 .form-input {
   margin-bottom: 15px;
+  padding-left: 10px;
+  background-color:#171819;
+  border: none;
+  border-radius: 3px;
+  font-size: 18px;
+  color: rgba(245, 245, 245, 0.886);
+}
+
+.form-input:focus {
+  outline: none;
 }
 
 .form-label {
@@ -85,13 +95,13 @@ body {
 }
 
 #emailOrPhone {
-  height: 30px;
+  height: 40px;
   margin-top: 5px;
   padding-right: 200px;
 }
 
 #password {
-  height: 30px;
+  height: 40px;
   margin-top: 5px;
   padding-right: 200px;
   margin-bottom: 20px;
