@@ -1,9 +1,5 @@
-import React, { useState } from "react";
-import { useDispatch } from 'react-redux'
-import { useModal } from "../../context/Modal";
+import React from "react";
 import './ServerSidebar.css'
-import OpenModalButton from "../OpenModalButton";
-import CreateServerModal from "../CreateServerModal";
 
 const ServersSidebarItem = ({ server }) => {
 

@@ -34,8 +34,6 @@
 }
 
 .server-sidebar-ul {
-    /* display: flex;
-    align-items: center; */
     margin-left: 8px;
     padding-left: 0px;
     margin-right: 8px;
@@ -111,14 +109,3 @@
     background-color: #2CA45C;
     border-radius: 40%;
 }
-
-
-
-
-/* transition: color .15s ease-out,background-color .15s ease-out;
-  transition-property: color, background-color;
-  transition-duration: 0.15s, 0.15s;
-  transition-timing-function: ease-out, ease-out;
-  transition-delay: 0s, 0s;
-color: var(--green-360);
-background-color: var(--background-primary); */

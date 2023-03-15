@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getServers } from "../../store/server";
 import { NavLink } from 'react-router-dom';
 import ServersSidebarItem from "./ServerSidebarItem";
-import TestChannels from "./TestChannels";
 import './ServerSidebar.css'
 import OpenModalButton from "../OpenModalButton";
 import CreateServerModal from "../CreateServerModal";
