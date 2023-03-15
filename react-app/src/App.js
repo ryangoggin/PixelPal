@@ -18,13 +18,19 @@ function App() {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
+  // setIsLoaded(false);
   return (
     <>
-      <LoginPage />
       <Switch>
-        <Route path="/" component={Home} />
-        <Route path="/login" component={LoginPage} />
-        <Route path='/register' component={SignupFormPage} />
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route exact path="/login">
+          <LoginPage />
+        </Route>
+        <Route exact path='/register'>
+          <SignupFormPage />
+        </Route>
       </Switch>
       {isLoaded && (
         <>
