@@ -25,21 +25,19 @@ function LoginPage() { 				// removed because removed in app { isLoaded }
     }
   };
 
+
+  const demoUser = (e) => {
+		e.preventDefault();
+    dispatch(login({'credential': 'Demo-lition', 'password': 'password'}))
+		.catch(
+			async (res) => {
+				const data = await res.json();
+				if (data && data.errors) setErrors(data.errors);
+			}
+      )
+		}
+
 	if (sessionUser) return <Redirect to="/channels/@me" />;
-
-	// DEMO USER copied from airbnb
-  // const demoUser = (e) => {
-  //   e.preventDefault();
-  //   return dispatch(sessionActions.login({'credential': 'Demo-lition', 'password': 'password'}))
-  //     .then(closeModal)
-  //     .catch(
-  //       async (res) => {
-  //         const data = await res.json();
-  //         if (data && data.errors) setErrors(data.errors);
-  //       }
-  //     )
-  // }
-
 
 	// error handling provided by starter code, put this in wherever
 			{/* <ul>
@@ -87,6 +85,7 @@ function LoginPage() { 				// removed because removed in app { isLoaded }
 							/>
 						</div>
 						<button className="login-button" type="submit">Log In</button>
+						{/* <button className="login-button" type="submit" onClick={demoUser}>Demo User</button> */}
 						<div className="register-group">
 							<span className="label-register">Need an account?</span>
 							<Link to='/register' className="register">Register</Link>
