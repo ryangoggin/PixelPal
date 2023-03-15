@@ -28,8 +28,6 @@ body {
   justify-content: center;
 }
 
-
-
 .login-page {
   display: flex;
   justify-content: center;
@@ -127,4 +125,5 @@ body {
 .register {
   color: rgb(0, 170, 255);
   cursor: pointer;
+  text-decoration: none;
 }

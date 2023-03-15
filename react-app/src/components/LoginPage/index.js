@@ -1,29 +1,29 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import './Navigation.css';
-import { useHistory } from 'react-router-dom';
+import './LoginPage.css';
 import SignupFormPage from '../SignupFormPage';
 import { login } from '../../store/session';
 
 
 
-function LoginPage() { 				// removed because removed in app { isLoaded }
+function LoginPage() {
 
 	const sessionUser = useSelector(state => state.session.user);
 	const [errors, setErrors] = useState([]);
 	const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  	const [password, setPassword] = useState('');
 
-	const dispatch = useDispatch()
+	const dispatch = useDispatch();
 
-  const handleSubmit = async (e) => {
+  	const handleSubmit = async (e) => {
 		e.preventDefault();
-    const data = await dispatch(login(email, password));
-    if (data) {
+		const data = await dispatch(login(email, password));
+		if (data) {
 			setErrors(data);
-    }
-  };
+		}
+
+	};
 
 
   const demoUser = (e) => {

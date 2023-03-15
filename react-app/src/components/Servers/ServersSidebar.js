@@ -19,21 +19,25 @@ const ServersSidebar = () => {
   servers = Object.values(servers);
 
   return (
-    <div className="server-sidebar">
+    <>
       {user !== null ? (
-        <ul style={{ marginLeft: '12px', paddingLeft: '0' }} >
-          {
-            servers.map(server => (
-              <NavLink key={server.id} to={`/channels/${server.id}/${server.channels[0].id}`}>
-                <ServersSidebarItem server={server} />
-              </NavLink>
-            ))
-          }
+        <div className="server-sidebar">
+          <ul style={{ marginLeft: '12px', paddingLeft: '0' }} >
+            {
+              servers.map(server => (
+                <NavLink key={server.id} to={`/channels/${server.id}/${server.channels[0].id}`}>
+                  <ServersSidebarItem server={server} />
+                </NavLink>
+              ))
+            }
 
-        </ul>
+          </ul>
+        </div >
       ) : ''
       }
-    </div >
+    </>
+
+
 
     // return a ul of mapping each server to a sidebar item 
 
