@@ -84,7 +84,7 @@ function CreateServerModal() {
 						</div>
 
 						<div>
-							<button className='create-server-form-button' type="submit">Sign Up</button>
+							<button className='create-server-form-button' type="submit">Create Server</button>
 						</div>
 
 					</form>
