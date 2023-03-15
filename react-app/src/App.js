@@ -23,15 +23,15 @@ function App() {
     <>
       <LoginPage />
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/login" component={LoginPage} />
-        <Route exact path='/register' component={SignupFormPage} />
+        <Route path="/" component={Home} />
+        <Route path="/login" component={LoginPage} />
+        <Route path='/register' component={SignupFormPage} />
       </Switch>
       {isLoaded && (
         <>
           <ServersSidebar />
           <Switch>
-            <Route exact path='/channels/@me'>
+            <Route path='/channels/@me'>
               <FriendsList />
               </Route>
             {/* <Route path="/channels/:serverId/:channelId">
