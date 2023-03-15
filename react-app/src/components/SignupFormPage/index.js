@@ -80,6 +80,7 @@ function SignupPage() {
         <button type="submit" className="signup-submit-btn">Continue</button>
       </form>
       <span className="signup-already-account">Already have an account?</span>
+      <span className="signup-tos">By registering, you agree to PixelPal's Terms of Service and Privacy Policy.</span>
     </div>
   );
 }
