@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './LoginPage.css';
@@ -16,16 +16,20 @@ function LoginPage() {
 
 	const dispatch = useDispatch();
 
-  	const handleSubmit = async (e) => {
+	useEffect(() => {
+		console.log(errors);
+	  }, [errors]);
+
+
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const data = await dispatch(login(email, password))
-			.catch(
-				async (res) => {
-					const errData = await res.json();
-					console.log(errData)
-				}
-			)
-	};
+		try {
+		  await dispatch(login(email, password));
+		} catch (err) {
+		  setErrors([err.message]);
+		}
+	  };
+
 
 	const handleDemoLogin = async (e) => {
 		e.preventDefault();
@@ -49,6 +53,9 @@ function LoginPage() {
 					<div className="login-headings">
 						<span className="login-title">Welcome back!</span>
 						<span className="login-subtitle">We're so excited to see you again!</span>
+						{errors.length > 0 && (
+							<span className='error-msgs'>{`${errors}. Please try again.`}</span>
+						)}
 					</div>
 					<form className="login-form" onSubmit={handleSubmit}>
 						<div className="form-group">
