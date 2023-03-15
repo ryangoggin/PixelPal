@@ -9,6 +9,7 @@ import ServersSidebar from "./components/Servers/ServersSidebar";
 import Home from "./components/Home/"
 import FriendsList from './components/FriendsList'
 import MessageForm from "./components/MessageForm";
+import GetAllEmojis from "./components/EmojisModal";
 
 
 function App() {

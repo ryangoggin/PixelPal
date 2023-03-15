@@ -68,6 +68,11 @@ body {
   margin-bottom: 15px;
 }
 
+.error-msgs {
+  color: rgba(44, 125, 192, 0.837);
+  font-family: 'PixelPal';
+}
+
 .login-form {
   display: flex;
   align-items: flex-start;

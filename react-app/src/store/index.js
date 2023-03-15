@@ -4,12 +4,16 @@ import sessionReducer from './session';
 import serverReducer from './server';
 import userReducer from './user';
 import messageReducer from './message';
+import emojisReducer from './emojis';
+import friendsReducer from './friends';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   server: serverReducer,
   user: userReducer,
-  messages: messageReducer
+  messages: messageReducer,
+  emoji: emojisReducer,
+  friends: friendsReducer
 });
 
 let enhancer;
