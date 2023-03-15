@@ -23,14 +23,20 @@ export default function GetAllEmojis() {
 
   const userId = useSelector(state => state.session.user?.id)
 
-  // const handleClick = (e, emojiId, messageId) => {
+  // const createReaction = (e, emojiId, messageId) => {
   //   // get create a reaction from the click
   //   // need to input messageId from message component
-  //   let new_reaction = dispatch(createReactionThunk(emojiId, messageId, userId))
+  //   let new_reaction = await dispatch(createReactionThunk(emojiId, messageId, userId))
 
   //   return new_reaction
   //   .then(closeModal)
   //   }
+
+  // to handle clicking on an existing reaction to delete it
+  // const deleteReaction = (reactionId) => {
+    // let deleted_reaction = await dispatch(deleteReactionThunk(reactionId))
+
+  // }
 
 
 
@@ -39,7 +45,7 @@ export default function GetAllEmojis() {
       {emojisArr.map(emoji => {
         return (<div className='emoji-modal-emoji'
                 value={emoji.id}
-                // onClick = {handleClick}
+                // onClick = {createReaction}
                 >
                 {String.fromCodePoint(emoji.url)}
                 </div>)

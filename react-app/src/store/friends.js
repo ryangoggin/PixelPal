@@ -22,7 +22,7 @@ const deleteFriend = () => ({
 // Thunks
 
 export const getAllFriendsThunk = (userId) => async dispatch => {
-  const response = await fetch("api/friends", userId)
+  const response = await fetch("api/friends")
 
   if (response.ok) {
     let friends = await response.json();

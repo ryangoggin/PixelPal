@@ -1,7 +1,8 @@
 // Constants
 const LOAD_EMOJIS = 'emojis/LOAD_EMOJIS'
 const LOAD_ONE_EMOJI = 'emojis/LOAD_ONE_EMOJI'
-const CREATE_REACTION = 'emojis/CREATE_REACTIONS'
+const CREATE_REACTION = 'emojis/CREATE_REACTION'
+const DELETE_REACTION = 'emojis/DELETE_REACTION'
 
 // Action Creators
 const loadEmojis = (emojis) => ({
@@ -19,6 +20,11 @@ const createReaction = (reaction) => ({
   type: CREATE_REACTION,
   reaction
 })
+
+const deleteReaction = () => ({
+  type: DELETE_REACTION
+})
+
 
 
 
@@ -50,6 +56,7 @@ export const loadOneEmojiThunk = (id) => async dispatch => {
 
 
 
+
 // to add to messages later
 export const createReactionThunk = (reactionData) => async dispatch => {
   const response = await fetch("/api/emojis", {
@@ -68,6 +75,17 @@ export const createReactionThunk = (reactionData) => async dispatch => {
     return newReaction // will return the emoji once we get there
   }
 
+}
+
+
+export const deleteReactionThunk = (reactionId) => async dispatch => {
+  const response = await fetch(`/api/emojis/${reactionId}`)
+
+  if (response.ok) {
+    // let del_reaction = await response.json()
+    dispatch(deleteReaction())
+    return ('successfully deleted!')
+  }
 }
 
 
