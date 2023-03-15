@@ -17,4 +17,5 @@ export default function Home() {
     (user === null ? history.push("/login") : history.push(`/channels/@me`))
   }, [])
 
+  return (null)
 }
