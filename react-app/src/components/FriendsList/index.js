@@ -1,4 +1,8 @@
 import { useHistory } from "react-router-dom"
+import { useState } from "react";
+import OpenModalMenuItem from '../EmojisModal/OpenModalMenuItem';
+import GetAllEmojis from "../EmojisModal";
+import '../EmojisModal/GetAllEmojis.css'
 
 export default function FriendsList() {
   const history = useHistory();
@@ -7,11 +11,25 @@ export default function FriendsList() {
     e.preventDefault()
     history.push('/emojis/test')
   }
+const [showMenu, setShowMenu] = useState(false);
+  const closeMenu = () => setShowMenu(false);
+
+  {/* <OpenModalMenuItem
+                itemText="Sign Up"
+                onItemClick={closeMenu}
+                className="signUpText"
+                modalComponent={<GetAllEmojis />}
+              /> */}
 
   return (
     <div>
       <h1> HELLO ! </h1>
-      <button onClick={redirect}> Emojis</button>
+      <OpenModalMenuItem
+                itemText="Emojis"
+                onItemClick={closeMenu}
+                className="emojis-modal-button"
+                modalComponent={<GetAllEmojis />}
+              />
     </div>
   )
 }

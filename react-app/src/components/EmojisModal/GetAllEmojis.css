@@ -1,0 +1,10 @@
+.emojis-modal-button {
+  color: red;
+  border-color: red
+}
+
+
+emoji-modal-container {
+  width: 300px;
+  height: 200px;
+}

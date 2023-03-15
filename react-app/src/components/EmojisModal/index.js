@@ -31,6 +31,7 @@ export default function GetAllEmojis() {
   const emojis = useSelector(state => state.emoji.allEmojis)
   const emojisArr = Object.values(emojis)
 
+
   // console.log('emojis arr', emojisArr)
 
   const userId = useSelector(state => state.session.user?.id)
