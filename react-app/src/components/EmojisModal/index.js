@@ -6,6 +6,7 @@ import { getAllEmojisThunk, createReactionThunk, loadOneEmojiThunk, allEmojis } 
 
 import "./GetAllEmojis.css"
 
+// to be put into message component
 // const [showMenu, setShowMenu] = useState(false);
 // const closeMenu = () => setShowMenu(false);
 
@@ -13,7 +14,7 @@ import "./GetAllEmojis.css"
                 itemText="Sign Up"
                 onItemClick={closeMenu}
                 className="signUpText"
-                modalComponent={<SignupFormModal />}
+                modalComponent={<GetAllEmojis />}
               /> */}
 
 
@@ -30,35 +31,33 @@ export default function GetAllEmojis() {
   const emojis = useSelector(state => state.emoji.allEmojis)
   const emojisArr = Object.values(emojis)
 
-  // change to html unicode
-  // for (let i = 0 ; i < emojisArr.length ; i++) {
-  //   let emoji = emojisArr[i];
-  //   emoji.url = emoji.url.slice(1,)
-  // }
   console.log('emojis arr', emojisArr)
 
   const userId = useSelector(state => state.session.user?.id)
-  // console.log('user id from useSelector', userId)
 
-  // const handleClick = (e, emojiId) => {
-  //   // get create a reaction from the click
+  const handleClick = (e, emojiId, messageId) => {
+    // get create a reaction from the click
+    // need to input messageId from message component
+    let new_reaction = dispatch(createReactionThunk(emojiId, messageId, userId))
 
-  //   let new_reaction = dispatch(createReactionThunk(emojiId, messageId, userId))
-
-  //   // query for the emoji if the reaction successfully worked
-  //   if (new_reaction) {
-  //     let emoji = dispatch(loadOneEmojiThunk(new_reaction['emojiId']))
-  //     new_reaction[emoji.id] = emoji.url // replacing emoji Id with emojiURL?
-  //     .then(closeModal)
-  //   }
-  // }
+    // query for the emoji if the reaction successfully worked
+    if (new_reaction) {
+      let emoji = dispatch(loadOneEmojiThunk(new_reaction['emojiId']))
+      new_reaction[emoji.id] = emoji.url // replacing emoji Id with emojiURL?
+      .then(closeModal)
+    }
+  }
 
 
   return (
     <div className='emoji-modal-container'>
       <p>{String.fromCodePoint(0x1F354)}</p>
       {emojisArr.map(emoji => {
-        return (<p className='emoji-modal-emoji'>{String.fromCodePoint(emoji.url)}</p>)
+        return (<p className='emoji-modal-emoji'
+        value={emoji.id} onClick={handleClick}
+        >
+          {String.fromCodePoint(emoji.url)}
+          </p>)
       })}
     </div>
   )
