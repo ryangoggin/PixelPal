@@ -6,7 +6,7 @@ import { getAllEmojisThunk, createReactionThunk, loadOneEmojiThunk, allEmojis } 
 
 import "./GetAllEmojis.css"
 
-export default function GetAllEmojis() {
+export default function GetAllEmojis({messageId}) {
 
   const dispatch = useDispatch()
   const {closeModal} = useModal()
@@ -23,18 +23,18 @@ export default function GetAllEmojis() {
 
   const userId = useSelector(state => state.session.user?.id)
 
-  // const createReaction = (e, emojiId, messageId) => {
-  //   // get create a reaction from the click
-  //   // need to input messageId from message component
+  // const createReaction = (emojiId, messageId, userId) => {
+  // get create a reaction from the click
   //   let new_reaction = await dispatch(createReactionThunk(emojiId, messageId, userId))
 
   //   return new_reaction
   //   .then(closeModal)
   //   }
 
-  // to handle clicking on an existing reaction to delete it
+  // to handle clicking on an existing reaction to delete it with value of reactionid
   // const deleteReaction = (reactionId) => {
     // let deleted_reaction = await dispatch(deleteReactionThunk(reactionId))
+
 
   // }
 
@@ -45,7 +45,7 @@ export default function GetAllEmojis() {
       {emojisArr.map(emoji => {
         return (<div className='emoji-modal-emoji'
                 value={emoji.id}
-                // onClick = {createReaction}
+                // onClick = {createReaction(emojiId=emoji.id, messageId, userId)}
                 >
                 {String.fromCodePoint(emoji.url)}
                 </div>)

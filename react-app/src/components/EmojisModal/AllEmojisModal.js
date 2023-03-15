@@ -8,7 +8,7 @@ import '../EmojisModal/GetAllEmojis.css'
 
 
 
-export default function EmojisModal() {
+export default function EmojisModal({messageId}) {
   const [showMenu, setShowMenu] = useState(false);
   const closeMenu = () => setShowMenu(false);
 
@@ -18,7 +18,7 @@ export default function EmojisModal() {
                 itemText="Reactions"
                 onItemClick={closeMenu}
                 className="emojis-modal-button"
-                modalComponent={<GetAllEmojis />}
+                modalComponent={<GetAllEmojis messageId />}
               />
       </div>
 
