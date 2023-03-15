@@ -27,7 +27,7 @@ export default function FriendsList() {
   return (
     <div>
       <h1> HELLO ! </h1>
-      {/* <button type='button' onClick={redirect}> Emojis </button> */}
+      <button type='button' onClick={redirect}> Emojis </button>
       <button type='submit' onClick={handleLogout}> Logout </button>
     </div>
   )
