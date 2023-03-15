@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
@@ -18,9 +18,8 @@ export default function Home() {
     (user === null ? history.push("/login") : history.push(`/channels/@me`))
   }, [])
 
-  console.log(user)
 
   return (
-    <div> test </div>
-    )
+    null
+  )
 }
