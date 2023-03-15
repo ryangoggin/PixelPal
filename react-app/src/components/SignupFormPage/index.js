@@ -35,9 +35,11 @@ function SignupPage() {
 
   return (
     <div className="signup-container">
-      <h1 className="signup-header">Create an account</h1>
+      <div className="signup-heading">
+        <span className="signup-header">Create an account</span>
+      </div>
       <form className="signup-form" onSubmit={handleSubmit}>
-        <label htmlFor="email" className="signup-input-label">EMAIL</label>
+        <label htmlFor="email" id='email-label' className="signup-input-label">EMAIL</label>
         <input
           type="email"
           id="signup-email"
@@ -45,16 +47,18 @@ function SignupPage() {
           onChange={(e) => setEmail(e.target.value)}
           className="signup-input signup-email"
         />
-        <label htmlFor="username" className="signup-input-label">USERNAME</label>
+        <label htmlFor="username" id='username-label' className="signup-input-label">USERNAME</label>
         <input
           type="text"
+          id="signup-username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           className="signup-input signup-username"
         />
-        <label htmlFor="password" className="signup-input-label">PASSWORD</label>
+        <label htmlFor="password" id='password-label' className="signup-input-label">PASSWORD</label>
         <input
           type="password"
+          id="signup-password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className="signup-input signup-password"

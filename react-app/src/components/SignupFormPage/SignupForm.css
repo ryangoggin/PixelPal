@@ -1,10 +1,83 @@
+@font-face {
+    font-family: 'PixelPal';
+    src: url('../../static/ggsans-Normal.ttf');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Discord Thin';
+    src: url('../../static/Uni\ Sans\ Thin.otf');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Discord Bold';
+    src: url('../../static/Uni\ Sans\ Heavy.otf');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+
+
 .signup-container {
     display: flex;
     flex-direction: column;
-    border: 4px green solid;
+    background-color: #2C2F33;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 35px;
+    height: 500px;
+    border-radius: 5px;
+    width: 400px;
 }
 
 .signup-form {
     display: flex;
     flex-direction: column;
+}
+
+
+.signup-heading {
+    display: flex;
+    justify-content: center;
+    font-family: 'PixelPal';
+    margin-bottom: 20px;
+}
+
+.signup-header {
+    font-size: 25px;
+    font-weight: bolder;
+    color: whitesmoke;
+    margin-bottom: 8px;
+}
+
+.signup-input-label {
+    color: rgb(180, 180, 180);
+    font-family: 'Discord Bold';
+}
+
+.signup-input {
+    font-size: 18px;
+    color: rgba(245, 245, 245, 0.886);
+    padding-left: 10px;
+}
+
+.signup-input:focus {
+    outline: none;
+}
+
+
+#email-label, #username-label, #password-label {
+    font-size: 12px;
+}
+
+#signup-email, #signup-username, #signup-password {
+    background-color:#171819;
+    border: none;
+    border-radius: 3px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    height: 40px;
 }
