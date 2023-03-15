@@ -13,10 +13,8 @@ export default function Home() {
 
   const user = state => state.session.user
 
-  if (user) {
-    return (<Redirect to="/channels/@me" />)
-  } else {
-    return (<Redirect to="/" />)
-  }
+  useEffect(() => {
+    (user === null ? history.push("/login") : history.push(`/channels/@me`))
+  }, [])
 
 }
