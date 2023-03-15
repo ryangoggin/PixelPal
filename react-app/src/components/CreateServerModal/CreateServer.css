@@ -1,0 +1,102 @@
+@font-face {
+    font-family: 'PixelPal';
+    src: url('../../static/ggsans-Normal.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Discord Thin';
+    src: url('../../static/Uni\ Sans\ Thin.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Discord Bold';
+    src: url('../../static/Uni\ Sans\ Heavy.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.create-server-page {
+    max-width: 300px;
+    max-height: 500px;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 40px;
+    padding-bottom: 90px;
+    height: 300px;
+    border-radius: 5px;
+}
+
+.create-server-modal {
+    display: flex;
+    flex-direction: column;
+}
+
+.create-server-header {
+    font-family: 'PixelPal';
+    font-size: 20px;
+    font-weight: 900;
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.create-server-para {
+    font-family: 'PixelPal';
+    font-size: 15px;
+    color: gray;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.create-server-form-group {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.create-server-form-input {
+    margin-bottom: 15px;
+    border-radius: 5px;
+    padding-top: 0;
+    padding-left: 0;
+    border: 1px solid lightgray;
+}
+
+.create-server-form-label {
+    font-family: 'Discord Bold';
+    font-size: 14px;
+    color: #313338;
+    /* color: blue */
+}
+
+.create-server-form-button {
+    height: 45px;
+    width: 100%;
+    background-color: #5865F2;
+    border: none;
+    border-radius: 3px;
+    font-family: 'PixelPal';
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: whitesmoke;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+#name,
+#server_picture {
+    height: 20px;
+    width: 100%;
+    margin-top: 5px;
+}
+
+#description {
+    height: 30px;
+    width: 100%;
+    margin-top: 5px;
+    /* padding-right: 125px */
+}
