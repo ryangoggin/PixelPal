@@ -10,23 +10,23 @@ export default function FriendsList() {
   const dispatch = useDispatch()
 
   // const allFriends = useSelector(state => state.friends)
-  const currentUserId = useSelector(state => state.session.user.id)
+  // const currentUserId = useSelector(state => state.session.user.id)
 
-  useEffect(() => {
-    dispatch(getAllFriendsThunk(currentUserId))
-  })
+  // useEffect(() => {
+  //   dispatch(getAllFriendsThunk(currentUserId))
+  // })
 
-  const handleLogout = async (e) => {
-    e.preventDefault()
+//   const handleLogout = async (e) => {
+//     e.preventDefault()
 
-    dispatch(logout())
-    .then(history.push("/login"))
-}
+//     dispatch(logout())
+//     .then(history.push("/login"))
+// }
 
   return (
     <div>
       <h1> HELLO ! </h1>
-      <button onClick={handleLogout}> Logout </button>
+      {/* <button onClick={handleLogout}> Logout </button> */}
     </div>
   )
 }
