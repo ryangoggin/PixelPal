@@ -3,6 +3,9 @@ import { useHistory, Link, Redirect, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getServerChannels, getChannelDetails } from '../../store/channels';
 import { getServer } from '../../store/server';
+import ServerEditModal from "../ServerEditModal"
+import ServerDeleteModal from "../ServerDeleteModal"
+import OpenModalButton from "../OpenModalButton"
 import './channels.css';
 
 
@@ -46,6 +49,11 @@ function Channels() {
           <span className='server-name-text'>{currServer.name}</span>
         </div>
       )}
+      <div>
+        {console.log(currServer)}
+        <OpenModalButton buttonText='Edit Server' modalComponent={<ServerEditModal server={currServer} />} />
+        <OpenModalButton buttonText='Delete Server' modalComponent={<ServerDeleteModal server={currServer} />} />
+      </div>
       <div className='text-channels-container'>
         <span className='text-channels'>TEXT CHANNELS</span>
       </div>
