@@ -39,7 +39,6 @@ function Channels() {
   if (!currChannel) currChannel = {};
   else currChannel = currChannel;
 
-  console.log(currServer)
 
   return (
     <div className='channel-sidebar'>

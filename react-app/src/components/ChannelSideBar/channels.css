@@ -50,8 +50,19 @@
     display: flex;
     align-items: center;
     margin-top: 20px;
-    align-items: center;
-    border: 2px green solid;
+    justify-content: space-between;
+}
+
+.plus-symbol {
+    margin-right: 15px;
+    color: #949BA4;
+    font-size: 25px;
+    padding-bottom: 6px;
+    cursor: pointer;
+}
+
+.plus-symbol:hover {
+    color: whitesmoke;
 }
 
 .text-channels {
@@ -59,6 +70,11 @@
     font-family: 'Discord Bold';
     font-size: 13px;
     margin-left: 15px;
+}
+
+.text-channels:hover {
+    color: whitesmoke;
+    cursor: pointer;
 }
 
 .channel-divs {
