@@ -22,10 +22,20 @@ const deleteFriend = () => ({
 // Thunks
 
 export const getAllFriendsThunk = (userId) => async dispatch => {
-  const response = await fetch("api/friends")
+  const response = await fetch(`/api/friends/${userId}`)
 
   if (response.ok) {
     let friends = await response.json();
+    for (let i = 0; i < friends.friends.length; i++) {
+      let friend = friends.friends[i]
+      const friendInfo = await fetch(`/api/users/${friend.friendId}`)
+
+      if (friendInfo.ok) {
+        const friendInfoJSON = await friendInfo.json()
+        friends.friends[i] = friendInfoJSON
+      }
+    }
+
     dispatch(getAllFriends(friends));
     return friends
   }
@@ -59,7 +69,7 @@ export default function friendsReducer( state = initialState, action) {
   let newState = {}
   switch(action.type) {
     case GET_ALL_FRIENDS:
-      action.friends.forEach(friend => newState[friend.id] = friend)
+      action.friends.friends.forEach(friend => newState[friend.id] = friend)
       return newState
     default:
       return state;

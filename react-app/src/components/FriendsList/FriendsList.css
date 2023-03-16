@@ -1,0 +1,24 @@
+.friendslist-header-friends {
+  font-size: 30px;
+}
+
+.friendslist-container {
+  display: flex;
+  flex-direction: column;
+  border: red 2px solid;
+  height: 800px;
+  margin-top: auto;
+  margin-bottom:auto;
+}
+
+.friendslist-user-container {
+  border: red 2px solid;
+  align-content: center;
+  flex-direction:row;
+  width: 1300px;
+  height: 40px;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
