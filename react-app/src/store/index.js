@@ -2,7 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import sessionReducer from './session';
 import serverReducer from './server';
-import userReducer from './user';
+// import userReducer from './user';
 import messageReducer from './message';
 import emojisReducer from './emojis';
 import friendsReducer from './friends';
@@ -10,7 +10,7 @@ import friendsReducer from './friends';
 const rootReducer = combineReducers({
   session: sessionReducer,
   server: serverReducer,
-  user: userReducer,
+  // user: userReducer,
   messages: messageReducer,
   emoji: emojisReducer,
   friends: friendsReducer
