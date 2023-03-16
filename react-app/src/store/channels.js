@@ -37,6 +37,7 @@ export const getServerChannels = (id) => async dispatch => {
 
     if (res.ok) {
         const serverChannels = await res.json();
+        console.log(serverChannels)
         dispatch(loadServerChannels(serverChannels));
     }
 }
@@ -140,7 +141,7 @@ const channelReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'LOAD_CHANNELS':
             const serverChannels = {};
-            const channelsArr = Object.values(action.channels)[0];
+            const channelsArr = action.channels;
             channelsArr.forEach(channel => {
                 serverChannels[channel.id] = channel;
             });
