@@ -16,6 +16,6 @@ class Reaction(db.Model):
         return {
             'id': self.id,
             'userId': self.userId,
-            'emojiId': self.emojiId,
-            'messageId': self.messageId
+            'messageId': self.messageId,
+            'emojiId': self.emojiId
         }

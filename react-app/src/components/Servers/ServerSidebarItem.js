@@ -42,7 +42,7 @@ const ServersSidebarItem = ({ mainRef, server }) => {
     }
 
     return (
-        // each item will redirect to channel component 
+        // each item will redirect to channel component
         <>
             <div className={className} onClick={handleClick} onContextMenu={handleClick}>
                 {hasImage ?

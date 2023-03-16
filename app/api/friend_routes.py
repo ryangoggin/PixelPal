@@ -6,10 +6,10 @@ from app.models.friend import Friend
 
 friend_routes = Blueprint('friends', __name__)
 
-@friend_routes.route("", methods=['GET'])
+@friend_routes.route("/<int:id>", methods=['GET'])
 @login_required
-def get_all_friends(userId):
-    friends = Friend.query.filter(userId == userId).all()
+def get_all_friends(id):
+    friends = Friend.query.filter(Friend.userId == id).all()
 
     return jsonify({'friends': [friend.to_dict() for friend in friends]})
 

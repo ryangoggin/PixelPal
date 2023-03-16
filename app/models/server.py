@@ -11,23 +11,21 @@ class Server(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
-    description = db.Column(db.String(120))
-    server_picture = db.Column(db.String(120))
+    server_picture = db.Column(db.String(500))
     owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
 
     #Relationship Attributes
-    channels = db.relationship('Channel', backref='server', lazy=True, cascade='all, delete')
+    channels = db.relationship('Channel', backref='server', lazy=True, cascade='all, delete-orphan')
     members = db.relationship('User', secondary='server_members', back_populates='servers', cascade='all, delete')
 
     def to_dict(self):
         return {
             "id": self.id,
             "name": self.name,
-            "description": self.description,
             "owner_id": self.owner_id,
+            "server_picture": self.server_picture,
             "channels": [channel.to_dict() for channel in self.channels],
             "members": [member.to_dict() for member in self.members],
-            "server_picture": self.server_picture
         }
 
 
