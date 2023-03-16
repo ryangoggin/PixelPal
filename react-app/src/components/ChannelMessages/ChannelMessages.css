@@ -31,14 +31,17 @@ font-style: normal;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 53px;
-    width: 50px;
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    margin-top: 15px;
     background-color: #41434a;
 }
 
 .channel-icon {
     font-family: 'PixelPal';
     font-size: 48px;
+    font-style: italic;
     color: white;
     margin: 0;
 }
@@ -60,8 +63,15 @@ font-style: normal;
     background-color: #313338;
     padding: 15px;
     height: 65vw;
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
 }
 
-.message-item {
-    display: flex;
+.channel-messages-container::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+}
+
+.message-item-container {
+    padding-bottom: 15px;
 }

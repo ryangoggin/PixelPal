@@ -19,15 +19,30 @@ font-weight: normal;
 font-style: normal;
 }
 
+.message-item {
+    display: flex;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.message-item:hover {
+    background-color: #5e6066;
+}
+
 .message-sender {
     display: flex;
     font-family: 'PixelPal';
-    font-size: 18px;
+    font-size: 16px;
     color: white
 }
 
-.message-sender p {
-    margin: 0
+.message-username {
+    margin: 0px 10px 0px 0px;
+    font-weight: bold;
+}
+
+.message-timestamp {
+    margin: 0px 0px 0px 0px;
 }
 
 .message-content {
@@ -37,5 +52,5 @@ font-style: normal;
 }
 
 .message-content p {
-    margin: 0px 0px 10px
+    margin: 0
 }

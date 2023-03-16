@@ -26,7 +26,7 @@ function MessageItem({ message }) {
     let messageTimestamp = `${messageTimestampDate} ${messageTimestampTime}`;
 
     return (
-    <>
+    <div className='message-item'>
         <div className='message-left-side'>
             <img className='message-profile-pic' src={`${user.profilePic}`} alt={`${user.username.slice(0, -5)} Profile Pic`} />
         </div>
@@ -41,7 +41,7 @@ function MessageItem({ message }) {
                 <p>{message.content}</p>
             </div>
         </div>
-    </>
+    </div>
     );
 };
 

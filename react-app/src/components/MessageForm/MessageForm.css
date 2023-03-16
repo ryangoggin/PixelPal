@@ -19,6 +19,11 @@ font-weight: normal;
 font-style: normal;
 }
 
+.message-form-background {
+    background-color: #313338;
+    padding: 0px 20px 20px;
+}
+
 .message-form-container {
     background-color: #383a40;
     width: 80vw;
