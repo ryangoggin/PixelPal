@@ -67,7 +67,7 @@ const messageReducer = (state = initialState, action) => {
             };
         case ADD_MESSAGE:
             messages = {...state};
-            messages[action.message.id] = action.message;
+            messages.messages[action.message.id] = action.message;
             return {
                 messages: messages
             };

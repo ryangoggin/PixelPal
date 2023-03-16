@@ -49,7 +49,7 @@ def create_message():
         new_message = Message(
             content=res["content"],
             user_id=res["userId"],
-            channel_id=["channelId"],
+            channel_id=res["channelId"],
             timestamp = datetime.utcnow()
         )
 

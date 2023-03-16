@@ -13,7 +13,9 @@ function MessageForm() {
     const [messages, setMessages] = useState([]); // default messages should be channelMessages
     const user = useSelector(state => state.session.user)
     // const channel = useSelector(state => state.channels.currentChannel)
-    let channel = "#sample-channel"
+    let channel = {};
+    channel.name = "#sample-channel";
+    channel.id = 1; //delete once currentChannel slice of state is made
 
     // will need room functionality tp broadcast to just users in the room (channel), not all users --> add channel to dependency array?
     useEffect(() => {
@@ -44,7 +46,7 @@ function MessageForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        let message = { senderId: user.id, content: content, timestamp: Date.now(), reactions: {} };
+        let message = { userId: user.id, channelId: channel.id, content: content, timestamp: new Date(), reactions: {} };
 
         // emit message so users can see it in real time
         // add .to('channelName') before .emit when adding room functionality?
@@ -52,14 +54,14 @@ function MessageForm() {
 
         // add message to DB
         await dispatch(createMessage(message))
-          .catch(
-            async (res) => {
-              const data = await res.json();
-              if (data && data.errors) console.log(data.errors);
-            }
-          );
+        //   .catch(
+        //     async (res) => {
+        //       const data = await res.json();
+        //       if (data && data.errors) console.log(data.errors);
+        //     }
+        //   );
         setContent("");
-        return "thunk in progress..." // will be deleted once thunk is created
+        // return "thunk in progress..." // will be deleted once thunk is created
     };
 
     return (
@@ -75,7 +77,7 @@ function MessageForm() {
                 type="text"
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
-                placeholder={`Message ${channel}`}
+                placeholder={`Message ${channel.name}`}
                 required
                 />
                 <div className="message-form-right-side">
