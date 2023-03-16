@@ -22,6 +22,7 @@
 .emoji-modal-container{
   width: 150px;
   height: auto;
+  padding: 10px;
   background-color:rgb(43,45,49); /* change to discord gray */
   display: flex;
   flex-wrap: wrap;
@@ -29,32 +30,24 @@
   border-radius: 9px; /* why is the rounded corners white? */
 }
 
-/* Need to figure out how to get this to none without messing original formatting */
-/* #modal-background {
-  background-color:none
-} */
-
 .emoji-modal-emoji {
+  padding: 2px;
   height: 26px;
   width: 26px;
   margin: auto;
   text-align: center;
   cursor: pointer;
   /* font-family: 'Discord Bold' */
-
 }
 
 .emoji-modal-emoji:hover {
   background-color: rgb(65,67,74)
 }
 
-
-
 .emojismodalitem {
   list-style: none;
   color: rgb(219,222,225);
   width: 50px;
-
   /* to change into the icon later and remove reaction text*/
   font-family: 'PixelPal';
   cursor: pointer;
@@ -65,31 +58,33 @@
   background-color: rgb(66,68,74);
 }
 
-.tooltip-wrap {
-  position: relative;
-
-}
 .tooltip-wrap .tooltip-content {
   display: none;
   position: relative;
   height: auto;
-  bottom: 20px;
-  left: 5%;
-  right: 5%;
+  bottom: 60px;
+  right: 38px;
   background-color: rgb(17,18,20);
-  padding: .5em;
-  min-width: auto;
+  width: 100px;
 }
 
 .tooltip-wrap:hover .tooltip-content {
   display: block;
   color: rgb(219,222,225);
   width: 100px;
-
-
-  /* font-family: 'PixelPal' */
+  height: 25px;
+  border-radius: 8px;
+  font-family: 'PixelPal';
+  font-size: 13px;
+  padding-top: 6px;
+  text-align: center
 }
+
 
 .hidden {
   display: none
+}
+
+.emojismodal-menu-allemojis {
+  display: absolute;
 }

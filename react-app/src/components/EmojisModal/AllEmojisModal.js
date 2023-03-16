@@ -45,14 +45,14 @@ export default function EmojisModal({messageId}) {
     <div className='emojis-modal-openmodalmenuitem'>
       <div className='tooltip-wrap'>
       <button onClick={openMenu} className='open-emojis-modal-button'>
-        <i className="fas fa-use  r-circle" />
+        Reactions
       </button>
       <div className='tooltip-content'>
         Add Reaction
       </div>
       </div>
       <ul className={ulClassName} ref={ulRef}>
-          <div>
+          <div className='emojismodal-menu-allemojis'>
             <GetAllEmojis />
           </div>
       </ul>
