@@ -76,7 +76,7 @@
 }
 
 .channel-text-name {
-    font-size: 18px;
+    font-size: 16px;
     color: #949BA4;
 }
 
@@ -85,9 +85,4 @@
     color: #fff;
     width: 200px;
     border-radius: 3px;
-}
-
-
-.channel-text-name.selected {
-    padding-right: 40px;
 }
