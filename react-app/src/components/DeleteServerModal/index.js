@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom"
 import { useModal } from "../../context/Modal";
 import { addServer } from "../../store/server";
-import "./EditServer.css";
+import "./DeleteServer.css";
 
-function EditServerModal({ server }) {
+function DeleteServerModal({ server }) {
 
 	console.log(server);
 
@@ -108,4 +108,4 @@ function EditServerModal({ server }) {
 	);
 }
 
-export default EditServerModal;
+export default DeleteServerModal;

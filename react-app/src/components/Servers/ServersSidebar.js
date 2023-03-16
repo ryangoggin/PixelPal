@@ -7,12 +7,14 @@ import './ServerSidebar.css'
 import OpenModalButton from "../OpenModalButton";
 import CreateServerModal from "../CreateServerModal";
 import EditServerModal from "../EditServerModal";
+import ContextMenu from "../ContextMenu";
+
 
 
 const ServersSidebar = () => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.session.user);
-  const mainRef = useRef();
+  let mainRef = useRef();
   let test;
 
   useEffect(() => {
@@ -40,31 +42,9 @@ const ServersSidebar = () => {
                   servers.map(server => (
                     <>
                       <NavLink style={{ textDecoration: 'none' }} key={server.id} to={`/channels/${server.id}/${server.channels[0].id}`}>
-                        <ServersSidebarItem test={test} mainRef={mainRef} server={server} />
+                        <ServersSidebarItem server={server} />
                       </NavLink>
-
-                      <div ref={mainRef} id='server-sidebar-context-menu' style={{ listStyle: 'none' }}>
-                        <div className='server-sidebar-context-menu-item'>
-                          <li>Invite people
-                          </li>
-                        </div>
-                        <div className='server-sidebar-context-menu-item'>
-                          <OpenModalButton
-                            buttonText="Edit Server"
-                            modalComponent={<EditServerModal server={server} />}
-                          />
-                        </div>
-                        <div className='server-sidebar-context-menu-item'>
-                          <OpenModalButton
-                            buttonText="Delete Server"
-                            modalComponent={<EditServerModal />}
-                          />
-                        </div>
-                      </div>
                     </>
-
-
-
                   ))
                 }
               </div>
@@ -77,7 +57,6 @@ const ServersSidebar = () => {
               </li>
             </ul>
           </div >
-
         </>
       ) : ''
       }

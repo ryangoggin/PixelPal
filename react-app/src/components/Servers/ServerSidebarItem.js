@@ -1,5 +1,6 @@
-import { React, useEffect } from "react";
+import { React, useEffect, useRef, useState } from "react";
 import './ServerSidebar.css'
+import ContextMenu from "../ContextMenu";
 
 const ServersSidebarItem = ({ test, mainRef, server }) => {
     let names = (server.name).split(' ');
@@ -11,17 +12,32 @@ const ServersSidebarItem = ({ test, mainRef, server }) => {
     let className = '';
     let hasImage = false;
 
-    const closeMenu = (e) => {
-        if (test || !mainRef.current.contains(e.target)) {
-            mainRef.current.classList.remove('visible')
-        }
-    };
+    // const closeMenu = (e) => {
+    //     if (mainRef === null || !mainRef.current.contains(e.target)) {
+    //         mainRef.current.classList.remove('visible')
+    //     }
+    // };
+
+    // useEffect(() => {
+    //     document.body.addEventListener('click', closeMenu);
+
+    //     return () => document.removeEventListener("click", closeMenu);
+    // });
+
+
+    const [clicked, setClicked] = useState(false);
+    const [points, setPoints] = useState({
+        x: 0,
+        y: 0,
+    });
 
     useEffect(() => {
-        document.body.addEventListener('click', closeMenu);
-
-        return () => document.removeEventListener("click", closeMenu);
-    });
+        const handleClick = () => setClicked(false);
+        window.addEventListener("click", handleClick);
+        return () => {
+            window.removeEventListener("click", handleClick);
+        };
+    }, []);
 
     if (server.server_picture === 'image.url' || server.server_picture === '') {
         // server.server_picture = 'https://i.redd.it/6jupfeilyhx71.jpg'
@@ -31,29 +47,39 @@ const ServersSidebarItem = ({ test, mainRef, server }) => {
         hasImage = true;
     }
 
-    const handleClick = (e) => {
-        if (e.type === 'contextmenu') {
-            e.preventDefault();
-            const { clientX: mouseX, clientY: mouseY } = e;
+    // const handleClick = (e) => {
+    //     if (e.type === 'contextmenu') {
+    //         e.preventDefault();
+    //         const { clientX: mouseX, clientY: mouseY } = e;
 
-            mainRef.current.style.top = `${mouseY}px`;
-            mainRef.current.style.left = `${mouseX}px`;
+    //         mainRef.current.style.top = `${mouseY}px`;
+    //         mainRef.current.style.left = `${mouseX}px`;
 
-            mainRef.current.classList.add("visible");
-
-            console.log(mainRef)
-        }
-    }
+    //         mainRef.current.classList.add("visible");
+    //         console.log('right click')
+    //         console.log(mainRef)
+    //     }
+    // }
 
     return (
         // each item will redirect to channel component 
         <>
-            <div className={className} onClick={handleClick} onContextMenu={handleClick}>
+            <div className={className} onContextMenu={(e) => {
+                e.preventDefault();
+                setClicked(true);
+                setPoints({
+                    x: e.pageX,
+                    y: e.pageY,
+                });
+                console.log("Right Click", e.pageX, e.pageY);
+            }}
+            >
                 {hasImage ?
                     <img src={server.server_picture} alt='preview'></img> :
                     <p>{serverName}</p>
                 }
             </div>
+            <ContextMenu server={server} top={points.y} left={points.x} />
         </>
     )
 }
