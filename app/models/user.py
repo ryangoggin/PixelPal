@@ -13,10 +13,12 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
+    prof_pic = db.Column(db.String(500), nullable=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
-    reactions = db.relationship("Reaction", backref='users', lazy=True)
-    servers = db.relationship("Server", secondary="server_members", back_populates="members")
+    # Relationship Attributes
+    servers = db.relationship("Server", secondary="server_members", back_populates="members", cascade="all, delete")
+
 
     @property
     def password(self):
@@ -32,6 +34,8 @@ class User(db.Model, UserMixin):
     def to_dict(self):
         return {
             'id': self.id,
+            'prof_pic': self.prof_pic,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            # 'servers': [server.to_dict() for server in self.servers]
         }

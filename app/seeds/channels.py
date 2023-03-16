@@ -4,25 +4,16 @@ from sqlalchemy.sql import text
 
 
 def seed_channels():
-    channel1 = Channel(
-        name='general',
-        description='General discussion',
-        server_id=2
-    )
+    channels = [
+    Channel(name='General Discussion', server_id=1),
+    Channel(name='Random',server_id=1),
+    Channel(name='Announcements', server_id=1 ),
+    Channel(name='General',server_id=2),
+    Channel(name='Help Channel',server_id=2),
+    Channel(name='Movie Discussions',server_id=2),
+    ]
 
-    channel2 = Channel(
-        name='announcements',
-        description='Important announcements',
-        server_id=1
-    )
-
-    channel3 = Channel(
-        name='random',
-        description='Random discussions',
-        server_id=1
-    )
-
-    db.session.add_all([channel1, channel2, channel3])
+    db.session.add_all(channels)
     db.session.commit()
 
 

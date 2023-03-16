@@ -6,4 +6,5 @@ from .server import Server
 from .emoji import Emoji
 from .reaction import Reaction
 from .friend import Friend
+# from .privateMessage import PrivateMessage
 from .db import environment, SCHEMA
