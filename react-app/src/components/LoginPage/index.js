@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './LoginPage.css';
-// import SignupFormPage from '../SignupFormPage';
 import { login } from '../../store/session';
 
 
