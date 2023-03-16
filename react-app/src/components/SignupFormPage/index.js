@@ -13,7 +13,7 @@ function SignupPage() {
   const [month, setMonth] = useState("");
   const [day, setDay] = useState("");
   const [year, setYear] = useState("");
-  const [errors, setErrors] = useState([]);
+  // const [errors, setErrors] = useState([]);
 
   if (sessionUser) return <Redirect to="/channels/@me" />;
 
@@ -22,7 +22,7 @@ function SignupPage() {
 
     // custom frontend validations
 
-    const data = await dispatch(signUp(username, email, password))
+    await dispatch(signUp(username, email, password))
 
 
   };

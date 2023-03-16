@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './LoginPage.css';
-// import SignupFormPage from '../SignupFormPage';
 import { login } from '../../store/session';
 
 
@@ -17,7 +16,6 @@ function LoginPage() {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		console.log(errors);
 	  }, [errors]);
 
 
@@ -33,7 +31,7 @@ function LoginPage() {
 
 	const handleDemoLogin = async (e) => {
 		e.preventDefault();
-		const data = await dispatch(login('demo@aa.io', 'password'))
+		await dispatch(login('demo@aa.io', 'password'))
 		  .catch(
 			async (res) => {
 			  const errData = await res.json();
