@@ -31,7 +31,7 @@ function LoginPage() {
 
 	const handleDemoLogin = async (e) => {
 		e.preventDefault();
-		const data = await dispatch(login('demo@aa.io', 'password'))
+		await dispatch(login('demo@aa.io', 'password'))
 		  .catch(
 			async (res) => {
 			  const errData = await res.json();
