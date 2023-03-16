@@ -10,9 +10,6 @@ class Friend(db.Model):
     friendId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
 
-    #Relationship Attribute
-    # user = db.relationship("User", backref='friends', lazy=True, cascade="all, delete-orphan")
-
     def to_dict(self):
         return {
             'id': self.id,

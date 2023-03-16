@@ -52,19 +52,19 @@ def delete_reaction(id):
     return jsonify("Reaction succcessfully deleted"), 200
 
 
-#POST emoji
-@emoji_routes.route("", methods=["POST"])
-@login_required
-def create_emoji():
+#POST reaction
+# @emoji_routes.route("", methods=["POST"])
+# @login_required
+# def create_emoji():
 
-    data = request.get_json()
+#     data = request.get_json()
 
-    new_emoji = Emoji(name=data['name'], url=data['url'])
+#     new_emoji = Emoji(name=data['name'], url=data['url'])
 
-    db.session.add(new_emoji)
-    db.session.commit()
+#     db.session.add(new_emoji)
+#     db.session.commit()
 
-    return jsonify(new_emoji.to_dict()), 201
+#     return jsonify(new_emoji.to_dict()), 201
 
 
 

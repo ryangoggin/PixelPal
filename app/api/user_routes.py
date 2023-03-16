@@ -52,7 +52,7 @@ def create_user():
 
 #PUT /users/:id - update user by userID
 @user_routes.route('/<int:user_id>', methods=['PUT'])
-# @login_required
+@login_required
 def update_user(user_id):
     ''' Update a user's info if found in the database '''
     data = request.get_json()
@@ -71,7 +71,7 @@ def update_user(user_id):
 
 # DELETE /users/:id - delete a specific user by ID
 @user_routes.route('/<int:user_id>', methods=['DELETE'])
-# @login_required
+@login_required
 def delete_user(user_id):
     ''' Delete a user if found in the database'''
     user = User.query.get(user_id)

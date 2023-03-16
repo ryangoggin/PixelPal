@@ -17,8 +17,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     # Relationship Attributes
-    # reactions = db.relationship("Reaction", backref='users', lazy=True, cascade="all, delete-orphan")
-    servers = db.relationship("Server", secondary="server_members", back_populates="members", cascade="all, delete-orphan")
+    servers = db.relationship("Server", secondary="server_members", back_populates="members", cascade="all, delete")
 
 
     @property
@@ -38,5 +37,5 @@ class User(db.Model, UserMixin):
             'prof_pic': self.prof_pic,
             'username': self.username,
             'email': self.email,
-            'servers': [server.to_dict() for server in self.servers]
+            # 'servers': [server.to_dict() for server in self.servers]
         }

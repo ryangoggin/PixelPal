@@ -29,7 +29,7 @@ def seed_emojis():
         Emoji(name='yawning', url='0x1F971'),
         Emoji(name='clown', url='0x1F921'),
         Emoji(name='heart_arrow', url='0x1F498'),
-        Emoji(name='kiss', url='0x1F4A9'),
+        Emoji(name='kiss', url='0x1F48B'),
         Emoji(name='one_hundred', url='0x1F4AF'),
 
         #21-25

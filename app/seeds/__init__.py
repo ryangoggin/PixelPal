@@ -48,7 +48,7 @@ def undo():
     undo_reactions()
     undo_emojis()
     undo_messages()
-    undo_private_messages()
+    # undo_private_messages()
     undo_channels()
     undo_servers()
     undo_friends()
