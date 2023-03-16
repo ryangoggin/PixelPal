@@ -8,8 +8,6 @@ import './channels.css';
 
 
 
-// Create logic for if user
-
 function Channels() {
 
   const history = useHistory();
@@ -17,7 +15,7 @@ function Channels() {
   const { serverId, channelId } = useParams();
 
   let allChannels = useSelector(state => state.channels.currServerChannels);
-  let oneChannel = useSelector(state => state.channels.oneChannel)
+  let currChannel = useSelector(state => state.channels.oneChannel)
   let currServer = useSelector(state => state.server.currentServer)
 
   useEffect(() => {
@@ -36,7 +34,8 @@ function Channels() {
   if (!currServer) currServer = {};
   else currServer = currServer[1];
 
-  console.log(oneChannel)
+  if (!currChannel) currChannel = {};
+  else currChannel = currChannel;
 
 
 
@@ -51,9 +50,12 @@ function Channels() {
         <span className='text-channels'>TEXT CHANNELS</span>
       </div>
       {allChannels.map(channel => (
-        <div key={channel.id} className='channel-divs'>
-          <span className='hashtag'>#</span>
-          <span className='channel-text-name'>{channel.name}</span>
+        <div
+          key={channel.id}
+          className={`channel-divs${channel.id === currChannel?.id ? ' selected' : ''}`}
+        >
+          <span className={`hashtag${channel.id === currChannel?.id ? ' selected' : ''}`}>#</span>
+          <span className={`channel-text-name${channel.id === currChannel?.id ? ' selected' : ''}`}>{channel.name}</span>
         </div>
       ))}
     </div>

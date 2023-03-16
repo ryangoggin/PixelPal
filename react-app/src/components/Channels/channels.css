@@ -60,7 +60,7 @@
 }
 
 .channel-divs {
-    margin-left: 10px;
+    margin-left: 15px;
     margin-top: 5px;
     font-family: 'PixelPal';
     display: flex;
@@ -71,9 +71,22 @@
     color: #60636B;
     font-size: 25px;
     margin-right: 10px;
+    padding-left: 10px;
 }
 
 .channel-text-name {
     font-size: 18px;
     color: #949BA4;
+}
+
+.channel-divs.selected {
+    background-color: #404249;
+    color: #fff;
+    width: fit-content;
+    border-radius: 3px;
+}
+
+
+.channel-text-name.selected {
+    padding-right: 40px;
 }
