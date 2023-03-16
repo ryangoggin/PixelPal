@@ -1,0 +1,33 @@
+@font-face {
+    font-family: 'PixelPal';
+    src: url('../../static/ggsans-Normal.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+font-family: 'Discord Thin';
+src: url('../../static/Uni\ Sans\ Thin.otf');
+font-weight: normal;
+font-style: normal;
+}
+
+@font-face {
+font-family: 'Discord Bold';
+src: url('../../static/Uni\ Sans\ Heavy.otf');
+font-weight: normal;
+font-style: normal;
+}
+
+.message-sender {
+    font-family: 'PixelPal';
+    font-weight: bold;
+    font-size: 18px;
+    color: white
+}
+
+.message-content {
+    font-family: 'PixelPal';
+    font-size: 18px;
+    color: white
+}

@@ -51,26 +51,22 @@ export const createMessage = (message) => async dispatch => {
 
 
 // initial state for reducer:
-const initialState = { messages: null };
+const initialState = {};
 
 // reducer:
 const messageReducer = (state = initialState, action) => {
-    let messages = {};
+    let newState = {};
     switch (action.type) {
         case LOAD_MESSAGES:
             const messagesArr = Object.values(action.messages);
             messagesArr.forEach(message => {
-                messages[message.id] = message;
+                newState[message.id] = message;
             });
-            return {
-                messages: messages
-            };
+            return newState;
         case ADD_MESSAGE:
-            messages = {...state};
-            messages.messages[action.message.id] = action.message;
-            return {
-                messages: messages
-            };
+            newState = {...state};
+            newState[action.message.id] = action.message;
+            return newState;
         // case EDIT_MESSAGE:
         //     return {
 

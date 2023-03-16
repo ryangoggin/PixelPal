@@ -46,7 +46,7 @@ function MessageForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        let message = { userId: user.id, channelId: channel.id, content: content, timestamp: new Date(), reactions: {} };
+        let message = { userId: user.id, channelId: channel.id, content: content, timestamp: new Date(), reactions: [] };
 
         // emit message so users can see it in real time
         // add .to('channelName') before .emit when adding room functionality?

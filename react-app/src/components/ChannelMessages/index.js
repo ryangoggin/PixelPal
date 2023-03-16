@@ -8,7 +8,7 @@ function ChannelMessages({ formMessages }) {
     // const channel = useSelector(state => state.channel.currentChannel)
     let channel = {};
     channel.id = 1; // delete once channel slice of state is made
-    const allMessages = useSelector(state => state.messages.messages);
+    const allMessages = useSelector(state => state.messages);
     // allMessages starts as null, use conditional to avoid putting undefined in Object.values
     let allMessagesArr;
     if (allMessages !== null) {
@@ -27,7 +27,7 @@ function ChannelMessages({ formMessages }) {
         return null;
     }
 
-    // console.log("formMessages: ", formMessages);
+    console.log("formMessages: ", formMessages);
     console.log("allMessagesArr: ", allMessagesArr);
 
     return (
