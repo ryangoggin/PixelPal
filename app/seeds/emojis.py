@@ -14,7 +14,7 @@ def seed_emojis():
         #6-10
         Emoji(name='heart_eyes', url='0x1F60D'),
         Emoji(name='innocent', url='0x1F607'),
-        Emoji(name='sad', url='0x1F2639'),
+        Emoji(name='sad', url='0x1F630'),
         Emoji(name='tears', url='0x1F622'),
         Emoji(name='crying', url='0x1F62D'),
 
@@ -23,7 +23,7 @@ def seed_emojis():
         Emoji(name='furious', url='0x1F92C'),
         Emoji(name='surprised', url='0x1F631'),
         Emoji(name='shocked', url='0x1F626'),
-        Emoji(name='fear', url='0xF631'),
+        Emoji(name='ghost', url='0x1F47B'),
 
         #16-20
         Emoji(name='yawning', url='0x1F971'),

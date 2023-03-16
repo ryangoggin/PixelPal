@@ -19,6 +19,11 @@ export default function GetAllEmojis({messageId}) {
   const emojis = useSelector(state => state.emoji.allEmojis)
   const emojisArr = Object.values(emojis)
 
+  for (let i = 0 ; i < emojisArr.length; i++) {
+    let emoji = emojisArr[i];
+    console.log(String.fromCodePoint(emoji.url))
+  }
+
 
   // // console.log('emojis arr', emojisArr)
 
@@ -40,16 +45,20 @@ export default function GetAllEmojis({messageId}) {
   // }
 
 
+  // onClick = {createReaction(emojiId=emoji.id, messageId, userId)}>
+
 
   return (
+
     <div className='emoji-modal-container'>
-      <p> test </p>
       {emojisArr.map(emoji => {
-        return (<div className='emoji-modal-emoji'
-        value={emoji.id}
-        // onClick = {createReaction(emojiId=emoji.id, messageId, userId)}>
-        > {String.fromCodePoint(emoji.url)} </div>)
+        return (
+        <div className='emoji-modal-emoji'>
+          {String.fromCodePoint(emoji.url)}
+          </div>
+          )
       })}
+
     </div>
   )
 }
