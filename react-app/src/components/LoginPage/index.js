@@ -17,7 +17,6 @@ function LoginPage() {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		console.log(errors);
 	  }, [errors]);
 
 
