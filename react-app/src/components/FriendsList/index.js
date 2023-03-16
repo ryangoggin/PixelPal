@@ -35,6 +35,7 @@ export default function FriendsList() {
   return (
     <div className='friendslist-container'>
       <div className='friendslist-header-container'>
+      <a href="https://www.clipartmax.com/middle/m2i8N4i8G6A0d3i8_friends-icon-png-white/"> </a>
         <span className='friendslist-friends'> Friends </span>
         <span className='friendslist-all'> All </span>
         {/* <span className='friendslist-addfriend-button'> Add Friend </span> */}
