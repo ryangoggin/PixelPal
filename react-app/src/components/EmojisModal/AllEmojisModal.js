@@ -42,15 +42,33 @@ export default function EmojisModal({messageId}) {
   const ulClassName = 'emojismodal-openmodalmenu' + ( showMenu ? "" : " hidden" )
 
   return (
-    <div className={'emojis-modal-openmodalmenuitem'}>
+    <div className='emojis-modal-openmodalmenuitem'>
+      <div className='tooltip-wrap'>
       <button onClick={openMenu} className='open-emojis-modal-button'>
         <i className="fas fa-use  r-circle" />
       </button>
+      <div className='tooltip-content'>
+        Add Reaction
+      </div>
+      </div>
       <ul className={ulClassName} ref={ulRef}>
           <div>
             <GetAllEmojis />
           </div>
       </ul>
+
+{/*
+      <div class="tooltip-wrap">
+      <div className='emojis-list-item-container'>
+        <li className='emojismodalitem' onClick={onClick}>{itemText}</li>
+      </div>
+      <div class="tooltip-content">
+          Add Reaction
+      </div>
+    </div> */}
+
+
+
       {/* <button >
       <OpenModalMenuItem
                 // can i change this to an image? or do i need to stop using modal?

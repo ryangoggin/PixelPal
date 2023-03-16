@@ -71,21 +71,23 @@
 }
 .tooltip-wrap .tooltip-content {
   display: none;
-  position: absolute;
-  width: 20px;
+  position: relative;
   height: auto;
   bottom: 20px;
   left: 5%;
   right: 5%;
   background-color: rgb(17,18,20);
   padding: .5em;
-  min-width: 10rem;
+  min-width: auto;
 }
+
 .tooltip-wrap:hover .tooltip-content {
   display: block;
   color: rgb(219,222,225);
-  width: 50px;
-  font-family: 'PixelPal'
+  width: 100px;
+
+
+  /* font-family: 'PixelPal' */
 }
 
 .hidden {
