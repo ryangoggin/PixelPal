@@ -1,7 +1,9 @@
 import React, { useEffect} from "react";
 import {useDispatch, useSelector} from 'react-redux'
 import { useModal } from "../../context/Modal";
-import { getAllEmojisThunk, createReactionThunk, loadOneEmojiThunk, allEmojis } from "../../store/emojis";
+import { getAllEmojisThunk,  } from "../../store/emojis";
+
+//createReactionThunk
 
 import "./GetAllEmojis.css"
 
@@ -41,13 +43,12 @@ export default function GetAllEmojis({messageId}) {
 
   return (
     <div className='emoji-modal-container'>
+      <p> test </p>
       {emojisArr.map(emoji => {
         return (<div className='emoji-modal-emoji'
-                value={emoji.id}
-                // onClick = {createReaction(emojiId=emoji.id, messageId, userId)}
-                >
-                {String.fromCodePoint(emoji.url)}
-                </div>)
+        value={emoji.id}
+        // onClick = {createReaction(emojiId=emoji.id, messageId, userId)}>
+        > {String.fromCodePoint(emoji.url)} </div>)
       })}
     </div>
   )
