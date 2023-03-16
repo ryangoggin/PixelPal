@@ -6,15 +6,19 @@ import ServersSidebarItem from "./ServerSidebarItem";
 import './ServerSidebar.css'
 import OpenModalButton from "../OpenModalButton";
 import CreateServerModal from "../CreateServerModal";
+import EditServerModal from "../EditServerModal";
 
 
 const ServersSidebar = () => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.session.user);
   const mainRef = useRef();
+  let test;
 
   useEffect(() => {
-    dispatch(getServers())
+    if (user) {
+      dispatch(getServers())
+    }
   }, [user, dispatch])
 
   let servers = useSelector(state => state.server.orderedList)
@@ -34,9 +38,33 @@ const ServersSidebar = () => {
               <div className='server-sidebar-server-group'>
                 {
                   servers.map(server => (
-                    <NavLink style={{ textDecoration: 'none' }} key={server.id} to={`/channels/${server.id}/${server.channels[0].id}`}>
-                      <ServersSidebarItem mainRef={mainRef} server={server} />
-                    </NavLink>
+                    <>
+                      <NavLink style={{ textDecoration: 'none' }} key={server.id} to={`/channels/${server.id}/${server.channels[0].id}`}>
+                        <ServersSidebarItem test={test} mainRef={mainRef} server={server} />
+                      </NavLink>
+
+                      <div ref={mainRef} id='server-sidebar-context-menu' style={{ listStyle: 'none' }}>
+                        <div className='server-sidebar-context-menu-item'>
+                          <li>Invite people
+                          </li>
+                        </div>
+                        <div className='server-sidebar-context-menu-item'>
+                          <OpenModalButton
+                            buttonText="Edit Server"
+                            modalComponent={<EditServerModal server={server} />}
+                          />
+                        </div>
+                        <div className='server-sidebar-context-menu-item'>
+                          <OpenModalButton
+                            buttonText="Delete Server"
+                            modalComponent={<EditServerModal />}
+                          />
+                        </div>
+                      </div>
+                    </>
+
+
+
                   ))
                 }
               </div>
@@ -49,12 +77,7 @@ const ServersSidebar = () => {
               </li>
             </ul>
           </div >
-          <div ref={mainRef} id='server-sidebar-context-menu'>
-            <div className='server-sidebar-context-menu-item'>Option 1</div>
-            <div className='server-sidebar-context-menu-item'>Option 2</div>
-            <div className='server-sidebar-context-menu-item'>Option 3</div>
-            <div className='server-sidebar-context-menu-item'>Option 4</div>
-          </div>
+
         </>
       ) : ''
       }

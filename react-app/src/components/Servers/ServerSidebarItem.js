@@ -1,7 +1,7 @@
 import { React, useEffect } from "react";
 import './ServerSidebar.css'
 
-const ServersSidebarItem = ({ mainRef, server }) => {
+const ServersSidebarItem = ({ test, mainRef, server }) => {
     let names = (server.name).split(' ');
     let serverName = []
     for (let name of names) {
@@ -12,17 +12,16 @@ const ServersSidebarItem = ({ mainRef, server }) => {
     let hasImage = false;
 
     const closeMenu = (e) => {
-        if (!mainRef.current.contains(e.target)) {
+        if (test || !mainRef.current.contains(e.target)) {
             mainRef.current.classList.remove('visible')
         }
-
     };
 
     useEffect(() => {
         document.body.addEventListener('click', closeMenu);
 
         return () => document.removeEventListener("click", closeMenu);
-    }, []);
+    });
 
     if (server.server_picture === 'image.url' || server.server_picture === '') {
         // server.server_picture = 'https://i.redd.it/6jupfeilyhx71.jpg'
@@ -41,6 +40,8 @@ const ServersSidebarItem = ({ mainRef, server }) => {
             mainRef.current.style.left = `${mouseX}px`;
 
             mainRef.current.classList.add("visible");
+
+            console.log(mainRef)
         }
     }
 

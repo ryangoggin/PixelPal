@@ -38,7 +38,7 @@ function App() {
           <Switch>
             <Route path='/channels/@me'>
               <FriendsList />
-              </Route>
+            </Route>
             {/* <Route path="/channels/:serverId/:channelId">
               <TestChannels />
             </Route> */}
