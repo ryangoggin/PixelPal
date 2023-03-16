@@ -42,6 +42,8 @@ font-style: normal;
     font-family: 'PixelPal';
     font-size: 48px;
     font-style: italic;
+    position: relative;
+    right: 4px;
     color: white;
     margin: 0;
 }

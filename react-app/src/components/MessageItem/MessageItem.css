@@ -48,6 +48,7 @@ font-style: normal;
 
 .message-sender {
     display: flex;
+    align-items: flex-end;
     font-family: 'PixelPal';
     font-size: 16px;
     color: white
@@ -55,11 +56,16 @@ font-style: normal;
 
 .message-username {
     margin: 0px 10px 0px 0px;
+    position: relative;
+    top: 1px;
+    font-size: 18px;
     font-weight: bold;
 }
 
 .message-timestamp {
     margin: 0px 0px 0px 0px;
+    font-size: 12px;
+    color:#a9bac1;
 }
 
 .message-content {
@@ -75,4 +81,8 @@ font-style: normal;
 .message-right-side {
     display: flex;
     align-items: center;
+}
+
+.reactions-container {
+    display: flex;
 }

@@ -5,6 +5,7 @@ import { getChannelMessages } from "../../store/message";
 import "./ChannelMessages.css";
 
 function ChannelMessages({ formMessages }) {
+    const currUser = useSelector(state => state.session.user)
     // const channel = useSelector(state => state.channel.currentChannel)
     let channel = {};
     channel.id = 1; // delete once channel slice of state is made
@@ -27,6 +28,8 @@ function ChannelMessages({ formMessages }) {
     if (!allMessagesArr) {
         return null;
     }
+
+    formMessages = formMessages.filter(message => message.userId !== currUser.id);
 
     console.log("formMessages: ", formMessages);
     console.log("allMessagesArr: ", allMessagesArr);

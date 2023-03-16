@@ -19,12 +19,13 @@ function MessageItem({ message }) {
 
     // get the sending user from normalized serverMembers
     let user = serverMembers[message.userId];
-    console.log("user: ", user);
 
     // convert timestamp to a Date object to an ISO string, slice to get the date
     let messageTimestampDate = new Date(message.timestamp).toISOString().slice(0, 10);
     let messageTimestampTime = new Date(message.timestamp).toISOString().slice(11, 16);
     let messageTimestamp = `${messageTimestampDate} ${messageTimestampTime}`;
+
+    let reactionsArr = message.reactions;
 
     return (
     <div className='message-item'>
@@ -37,9 +38,16 @@ function MessageItem({ message }) {
                 <p className='message-timestamp'>{messageTimestamp}</p>
             </div>
             <div className="message-content">
-                {/* <div key={ind}>{`${} ${message.msg}`}</div> */}
-
                 <p>{message.content}</p>
+            </div>
+            <div className='reactions-container'>
+            {reactionsArr.map((reaction) => {
+                return (
+                    <div key={`reaction${reaction.id}`} className='placeholder'>
+                        <p>Reaction Component here</p>
+                    </div>
+                );
+            })}
             </div>
         </div>
         <div className='message-right-side'>
