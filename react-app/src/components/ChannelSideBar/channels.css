@@ -53,12 +53,14 @@
     justify-content: space-between;
 }
 
-.plus-symbol {
+.modal-new-channel button {
     margin-right: 15px;
     color: #949BA4;
     font-size: 25px;
     padding-bottom: 6px;
     cursor: pointer;
+    background: transparent;
+    border: none;
 }
 
 .plus-symbol:hover {

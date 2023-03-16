@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, Link, Redirect, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getServerChannels, getChannelDetails } from '../../store/channels';
+import { getServerChannels, getChannelDetails, createChannel } from '../../store/channels';
 import { getServer } from '../../store/server';
+import OpenModalButton from '../OpenModalButton';
+import NewChannel from '../CreateChannel';
 import './channels.css';
 
 
@@ -18,13 +20,14 @@ function Channels() {
   let currChannel = useSelector(state => state.channels.oneChannel)
   let currServer = useSelector(state => state.server.currentServer)
 
+  const [showModal, setShowModal] = useState(false);
+  const [channelName, setChannelName] = useState('');
+
   useEffect(() => {
     dispatch(getServerChannels(serverId));
     dispatch(getChannelDetails(channelId));
     dispatch(getServer(serverId));
   }, [dispatch, serverId, channelId])
-
-
 
 
 
@@ -40,6 +43,17 @@ function Channels() {
   else currChannel = currChannel;
 
 
+
+  const handleCreateChannel = (e) => {
+    e.preventDefault();
+    dispatch(createChannel(serverId, channelName));
+    setShowModal(false);
+    setChannelName('');
+  }
+
+
+
+
   return (
     <div className='channel-sidebar'>
       {currServer && (
@@ -49,7 +63,12 @@ function Channels() {
       )}
       <div className='text-channels-container'>
         <span className='text-channels'>TEXT CHANNELS</span>
-        <span className='plus-symbol'>+</span>
+        <div className='modal-new-channel'>
+          <OpenModalButton
+              buttonText="+"
+              modalComponent={<NewChannel serverId={serverId}/>}
+          />
+        </div>
       </div>
       {allChannels.map(channel => (
         <Link
