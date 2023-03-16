@@ -1,0 +1,79 @@
+@font-face {
+    font-family: 'PixelPal';
+    src: url('../../static/ggsans-Normal.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+  @font-face {
+    font-family: 'Discord Thin';
+    src: url('../../static/Uni\ Sans\ Thin.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+  @font-face {
+    font-family: 'Discord Bold';
+    src: url('../../static/Uni\ Sans\ Heavy.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+.channel-sidebar {
+    background-color: #2B2D31;
+    position: fixed;
+    top: 0;
+    left: 68px;
+    height: 100vh;
+    width: 230px;
+}
+
+
+.server-name-container {
+    margin-bottom: 15px;
+    border-bottom: 1px rgb(35, 35, 35) solid;
+    display: flex;
+    align-items: center;
+    height: 50px;
+}
+
+.server-name-text {
+    font-family: 'PixelPal';
+    font-weight: bolder;
+    margin-left: 15px;
+    font-size: 18px;
+    color: #DEDFE1;
+}
+
+.text-channels-container {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.text-channels {
+    color: #949BA4;
+    font-family: 'Discord Bold';
+    font-size: 13px;
+    margin-left: 10px;
+}
+
+.channel-divs {
+    margin-left: 10px;
+    margin-top: 5px;
+    font-family: 'PixelPal';
+    display: flex;
+    align-items: center;
+}
+
+.hashtag {
+    color: #60636B;
+    font-size: 25px;
+    margin-right: 10px;
+}
+
+.channel-text-name {
+    font-size: 18px;
+    color: #949BA4;
+}
