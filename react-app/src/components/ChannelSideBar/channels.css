@@ -63,7 +63,7 @@
     border: none;
 }
 
-.plus-symbol:hover {
+.modal-new-channel button:hover {
     color: whitesmoke;
 }
 
