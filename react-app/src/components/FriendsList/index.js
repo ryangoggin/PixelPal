@@ -36,14 +36,14 @@ export default function FriendsList() {
     <div className='friendslist-container'>
       <div className='friendslist-header-container'>
         <span className='friendslist-friends'> Friends </span>
-        <span className='friendslist-pending'> Pending </span>
-        <span className='friendslist-addfriend-button'> Add Friend </span>
+        <span className='friendslist-all'> All </span>
+        {/* <span className='friendslist-addfriend-button'> Add Friend </span> */}
       </div>
       {friendsArr.map(friend => {
         return (
           <div className='friendslist-user-container' key={friend.id}>
-            <span className='friendslist-profile-image'>DEFAULT IMG! </span>
-            <span className='friendslist-username'> username: {friend.username.split("#")[0]} </span>
+            <img className='friendslist-profile-image' src={friend.prof_pic} alt='profile_pic_user' />
+            <span className='friendslist-username'> {friend.username.split("#")[0]} </span>
             {/* on hover it should show their tag */}
           </div>
         )
