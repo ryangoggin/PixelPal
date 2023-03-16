@@ -22,7 +22,6 @@ class Server(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "description": self.description,
             "owner_id": self.owner_id,
             "channels": [channel.to_dict() for channel in self.channels],
             "members": [member.to_dict() for member in self.members],

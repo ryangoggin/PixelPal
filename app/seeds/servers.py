@@ -6,51 +6,53 @@ from app.models import User
 # Adds a demo server, you can add other servers here if you want
 def seed_servers():
     servers = [
-        Server(
-            owner_id=1,
-            name="Direct Messages",
-            server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
-        ),
-        Server(
-            owner_id=2,
-            name="Direct Messages",
-            server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
-        ),
-        Server(
-            owner_id=3,
-            name="Direct Messages",
-            server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
-        ),
-        Server(
-            owner_id=4,
-            name="Direct Messages",
-            server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
-        ),
-        Server(
-            owner_id=5,
-            name="Direct Messages",
-            server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
-        ),
-        Server(
-            owner_id=6,
-            name="Direct Messages",
-            server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
-        ),
-        Server(
-            owner_id=7,
-            name="Direct Messages",
-            server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
-        ),
-        Server(
-            owner_id=8,
-            name="Direct Messages",
-            server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
-        ),
+        # Server(
+        #     owner_id=1, #Demo
+        #     name="Direct Messages",
+        #     server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
+        # ),
+        # Server(
+        #     owner_id=2, #Marnie
+        #     name="Direct Messages",
+        #     server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
+        # ),
+        # Server(
+        #     owner_id=3, #Bobbie
+        #     name="Direct Messages",
+        #     server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
+        # ),
+        # Server(
+        #     owner_id=4,
+        #     name="Direct Messages",
+        #     server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
+        # ),
+        # Server(
+        #     owner_id=5,
+        #     name="Direct Messages",
+        #     server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
+        # ),
+        # Server(
+        #     owner_id=6,
+        #     name="Direct Messages",
+        #     server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
+        # ),
+        # Server(
+        #     owner_id=7,
+        #     name="Direct Messages",
+        #     server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
+        # ),
+        # Server(
+        #     owner_id=8,
+        #     name="Direct Messages",
+        #     server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
+        # ),
+
         Server(
             owner_id=1,
             name="App Academy",
             server_picture=''
         ),
+
         Server(
             owner_id=4,
             name="Pixel Pals Rock",

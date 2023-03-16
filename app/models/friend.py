@@ -11,11 +11,11 @@ class Friend(db.Model):
     userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
 
     #Relationship Attribute
-    user = db.relationship("User", backref='friends', lazy=True, cascade="all, delete-orphan")
+    # user = db.relationship("User", backref='friends', lazy=True, cascade="all, delete-orphan")
 
     def to_dict(self):
         return {
             'id': self.id,
             'friendId': self.friendId,
-            'user': self.user.to_dict()
+            'userId': self.userId
         }

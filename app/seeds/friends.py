@@ -32,7 +32,6 @@ def seed_friends():
     Friend(userId=6, friendId=7),
     Friend(userId=7, friendId=6),
 
-
     ]
 
     db.session.add_all(friends)

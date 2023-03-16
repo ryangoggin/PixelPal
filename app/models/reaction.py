@@ -11,7 +11,7 @@ class Reaction(db.Model):
     emojiId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('emojis.id')), nullable=False)
     messageId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('messages.id')), nullable=False)
 
-    emoji = db.relationship('Emoji', backref='reactions', lazy=True, cascade="all, delete-orphan")
+    # emoji = db.relationship('Emoji', backref='reactions', lazy=True, cascade="all, delete-orphan")
 
 
     def to_dict(self):
@@ -19,5 +19,5 @@ class Reaction(db.Model):
             'id': self.id,
             'userId': self.userId,
             'messageId': self.messageId,
-            'emoji': self.emoji.to_dict()
+            'emojiId': self.emojiId
         }
