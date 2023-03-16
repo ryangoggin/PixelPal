@@ -4,25 +4,51 @@ from sqlalchemy.sql import text
 
 
 def seed_channels():
-    channel1 = Channel(
-        name='general',
-        description='General discussion',
-        server_id=2
-    )
+    channels = [
+    Channel(name='General Discussion', server_id=9),
+    Channel(name='Random',server_id=9),
+    Channel(name='Announcements', server_id=9 ),
+    Channel(name='General',server_id=10),
+    Channel(name='Help Channel',server_id=10),
+    Channel(name='Movie Discussions',server_id=10),
 
-    channel2 = Channel(
-        name='announcements',
-        description='Important announcements',
-        server_id=1
-    )
+    # #DM Channels
+    # #Demo DMs
+    # Channel(name="@Marnie", serverId=1),
+    # Channel(name="@Bobbie", serverId=1),
+    # Channel(name="@akim", serverId=1),
 
-    channel3 = Channel(
-        name='random',
-        description='Random discussions',
-        server_id=1
-    )
+    # # Marnie DMs
+    # Channel(name="@Demo", serverId=2),
+    # Channel(name="@Bobbie", serverId=2),
 
-    db.session.add_all([channel1, channel2, channel3])
+    # #Bobbie DMs
+    # Channel(name="@Demo", serverId=3),
+    # Channel(name="@Marnie", serverId=3),
+
+    # #AK DMs
+    # Channel(name="@Demo", serverId=4),
+    # Channel(name="@zmarediya", serverId=4),
+    # Channel(name="@rgoggin", serverId=4),
+    # Channel(name="@kleong", serverId=4),
+
+    # #ZM DMs
+    # Channel(name="@akim", serverId=5),
+    # Channel(name="@rgoggin", serverId=5),
+
+    # #RG DMs
+    # Channel(name="@akim", serverId=6),
+    # Channel(name="@zmarediya", serverId=6),
+
+    # #KL DMs
+    # Channel(name="@akim", serverId=7),
+
+    ]
+
+
+
+
+    db.session.add_all(channels)
     db.session.commit()
 
 

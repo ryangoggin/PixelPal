@@ -10,14 +10,29 @@ def seed_friends():
     Friend(userId=1, friendId=3),
     Friend(userId=3, friendId=1),
 
+    Friend(userId=1, friendId=4),
+    Friend(userId=4, friendId=1),
+
+
+    #AK Friends
     Friend(userId=4, friendId=5),
     Friend(userId=5, friendId=4),
-
     Friend(userId=4, friendId=6),
     Friend(userId=6, friendId=4),
-
     Friend(userId=4, friendId=7),
-    Friend(userId=7, friendId=4)
+    Friend(userId=7, friendId=4),
+
+    #ZM Friends
+    Friend(userId=5, friendId=6),
+    Friend(userId=6, friendId=5),
+    Friend(userId=5, friendId=7),
+    Friend(userId=7, friendId=5),
+
+    #RG Friends & KL Friends
+    Friend(userId=6, friendId=7),
+    Friend(userId=7, friendId=6),
+
+
     ]
 
     db.session.add_all(friends)

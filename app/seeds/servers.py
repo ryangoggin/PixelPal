@@ -8,16 +8,55 @@ def seed_servers():
     servers = [
         Server(
             owner_id=1,
-            name="App Academy",
-            description="Server for App Academy students to connect and help one another",
-            server_picture='image.url'
+            name="Direct Messages",
+            server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
         ),
         Server(
             owner_id=2,
+            name="Direct Messages",
+            server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
+        ),
+        Server(
+            owner_id=3,
+            name="Direct Messages",
+            server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
+        ),
+        Server(
+            owner_id=4,
+            name="Direct Messages",
+            server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
+        ),
+        Server(
+            owner_id=5,
+            name="Direct Messages",
+            server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
+        ),
+        Server(
+            owner_id=6,
+            name="Direct Messages",
+            server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
+        ),
+        Server(
+            owner_id=7,
+            name="Direct Messages",
+            server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
+        ),
+        Server(
+            owner_id=8,
+            name="Direct Messages",
+            server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
+        ),
+        Server(
+            owner_id=1,
+            name="App Academy",
+            server_picture=''
+        ),
+        Server(
+            owner_id=4,
             name="Pixel Pals Rock",
-            description="Server for the cool cats that call themselves Pixel Pals",
-            server_picture='image.url'
-        )
+            server_picture='https://as1.ftcdn.net/v2/jpg/02/73/11/70/1000_F_273117019_vWscsZD1nCUdTYkEyAvClQgLpFYExN5j.jpg'
+        ),
+
     ]
 
     users = User.query.all()

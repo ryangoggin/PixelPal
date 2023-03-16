@@ -3,12 +3,23 @@ from sqlalchemy.sql import text
 from app.models.reaction import Reaction
 
 def seed_reactions():
-    react_1 = Reaction(userId=2, emojiId=17, messageId=3) #Marnie
-    react_2 = Reaction(userId=2, emojiId=18, messageId=1) #Marnie
-    react_3 = Reaction(userId=3, emojiId=4, messageId=2) #Bobbie
-    react_4 = Reaction(userId=3, emojiId=6, messageId=3) #Bobbie
+    reactions = [
+    Reaction(userId=2, emojiId=21, messageId=1), #wave
+    Reaction(userId=3, emojiId=1, messageId=1), #smile
+    Reaction(userId=1, emojiId=25, messageId=5), #thumbs up
 
-    db.session.add_all([react_1, react_2, react_3, react_4])
+    Reaction(userId=1, emojiId=25, messageId=10), #thumbs up
+    Reaction(userId=1, emojiId=25, messageId=10), #thumbs up
+
+    Reaction(userId=4, emojiId=18, messageId=12), #heart
+    Reaction(userId=4, emojiId=18, messageId=13),
+
+    Reaction(userId=6, emojiId=15, messageId=19), #fear
+    Reaction(userId=6, emojiId=3, messageId=23), #joy
+
+    ]
+
+    db.session.add_all(reactions)
     db.session.commit()
 
 
