@@ -35,12 +35,14 @@ function Channels() {
   else allChannels = Object.values(allChannels);
 
   if (!currServer) currServer = {};
-  else currServer = currServer[1];
-
+  else {
+    currServer = Object.values(currServer)
+    currServer = currServer[0];
+}
   if (!currChannel) currChannel = {};
   else currChannel = currChannel;
 
-
+  console.log(currServer)
 
   return (
     <div className='channel-sidebar'>
@@ -56,6 +58,7 @@ function Channels() {
       </div>
       <div className='text-channels-container'>
         <span className='text-channels'>TEXT CHANNELS</span>
+        <span className='plus-symbol'>+</span>
       </div>
       {allChannels.map(channel => (
         <Link
