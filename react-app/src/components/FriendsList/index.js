@@ -32,6 +32,7 @@ export default function FriendsList() {
 //     .then(history.push("/login"))
 // }
 
+
   return (
     <div className='friendslist-container'>
       <div className='friendslist-header-container'>
@@ -40,6 +41,7 @@ export default function FriendsList() {
         <div className='friendslist-all'> All </div>
         {/* <span className='friendslist-addfriend-button'> Add Friend </span> */}
       </div>
+      <div className='friendslist-user-container-1'> Online - {friendsArr.length} </div>
       {friendsArr.map(friend => {
         return (
           <div className='friendslist-user-container' key={friend.id}>

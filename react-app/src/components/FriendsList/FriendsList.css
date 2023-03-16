@@ -34,6 +34,7 @@
   /* width: 100%;
   height: 100%; */
   background-color: rgb(49,51,56);
+  left: 20px;;
 }
 
 .friendslist-header-container {
@@ -48,17 +49,28 @@
   width: 100%;
   float: left;
   height: 50px;
-  margin-top: 10px;
+  /* margin-top: 10px; */
+  padding-top: 3px;
   margin-left: auto;
   margin-right: auto;
   display: flex;
   align-items: center;
+  border-bottom: thin rgb(57,59,65) solid;
   cursor: pointer;
 }
 
 .friendslist-user-container:hover {
   background-color: rgb(57,59,65);
   border-radius: 10px;
+}
+
+.friendslist-user-container-1 {
+  border-bottom: thin rgb(57,59,65) solid;
+  margin-left: 20px;
+  padding-top: 10px;
+  height: 30px;
+  color: rgb(179,184,191);
+  font-family: 'PixelPal'
 }
 
 .friendslist-friends,
@@ -73,11 +85,13 @@
   font-size: 25px;
   margin-left: 15px;
   padding-top: 5px;
+  padding-right: 10px;
+  border-right: thin rgb(57,59,65) solid;
 }
 
 .friendslist-all {
   margin-left: 25px;
-  margin-top: 8px;
+  margin-top: 4px;
   text-align: center;
   border-radius: 8px;
   width: 45px;
@@ -99,13 +113,6 @@
   transition-delay: 0s, 0s, 0s;
 }
 
-/*
-.friendslist-profile-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-} */
-
 .friendslist-username {
   margin-left: 10px;
 }
@@ -115,4 +122,5 @@
   margin-left:20px;
   font-size: 22px;
   margin-top: 4px;
+
 }
