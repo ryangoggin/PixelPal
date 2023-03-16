@@ -5,6 +5,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import { authenticate } from "./store/session";
 import LoginPage from "./components/LoginPage";
 import ServersSidebar from "./components/Servers/ServersSidebar";
+import Channels from "./components/Channels";
 // import TestChannels from "./components/Servers/TestChannels";
 import Home from "./components/Home/"
 import FriendsList from './components/FriendsList'
@@ -40,9 +41,9 @@ function App() {
             <Route path='/channels/@me'>
               <FriendsList />
               </Route>
-            {/* <Route path="/channels/:serverId/:channelId">
-              <TestChannels />
-            </Route> */}
+            <Route path="/channels/:serverId/:channelId">
+              <Channels />
+            </Route>
           </Switch>
         </>
       )}
