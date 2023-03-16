@@ -1,33 +1,67 @@
-import React, { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
-import { getServer } from "../../store/server"
-import ServerEditModal from "../ServerEditModal"
-import ServerDeleteModal from "../ServerDeleteModal"
-import OpenModalButton from "../OpenModalButton"
+import React, { useEffect, useState } from 'react';
+import { useHistory, Link, Redirect, useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { getServerChannels, getChannelDetails } from '../../store/channels';
+import { getServer } from '../../store/server';
+import './channels.css';
 
-const Channels = () => {
-    const dispatch = useDispatch();
-    const { serverId } = useParams();
 
-    useEffect(() => {
-        dispatch(getServer(serverId))
-    }, [dispatch, serverId])
 
-    let server = useSelector(state => state.server.currentServer);
 
-    if (!server) {
-        return null;
-    }
+function Channels() {
 
-    return (
-        <>
-            <h1> {serverId}</h1>
-            <OpenModalButton buttonText='Edit Server' modalComponent={<ServerEditModal server={server} />} />
-            <OpenModalButton buttonText='Delete Server' modalComponent={<ServerDeleteModal server={server} />} />
-        </>
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const { serverId, channelId } = useParams();
 
-    )
+  let allChannels = useSelector(state => state.channels.currServerChannels);
+  let currChannel = useSelector(state => state.channels.oneChannel)
+  let currServer = useSelector(state => state.server.currentServer)
+
+  useEffect(() => {
+    dispatch(getServerChannels(serverId));
+    dispatch(getChannelDetails(channelId));
+    dispatch(getServer(serverId));
+  }, [dispatch, serverId, channelId])
+
+
+
+
+
+  if (!allChannels) allChannels = [];
+  else allChannels = Object.values(allChannels);
+
+  if (!currServer) currServer = {};
+  else currServer = currServer[1];
+
+  if (!currChannel) currChannel = {};
+  else currChannel = currChannel;
+
+
+
+  return (
+    <div className='channel-sidebar'>
+      {currServer && (
+        <div className='server-name-container'>
+          <span className='server-name-text'>{currServer.name}</span>
+        </div>
+      )}
+      <div className='text-channels-container'>
+        <span className='text-channels'>TEXT CHANNELS</span>
+      </div>
+      {allChannels.map(channel => (
+        <Link
+          key={channel.id}
+          to={`/channels/${channel.serverId}/${channel.id}`}
+          className={`channel-divs${channel.id === currChannel?.id ? ' selected' : ''}`}
+        >
+          <span className={`hashtag${channel.id === currChannel?.id ? ' selected' : ''}`}>#</span>
+          <span className={`channel-text-name${channel.id === currChannel?.id ? ' selected' : ''}`}>{channel.name}</span>
+        </Link>
+      ))}
+    </div>
+  )
 }
 
-export default Channels
+
+export default Channels;

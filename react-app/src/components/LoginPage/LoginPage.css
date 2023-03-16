@@ -42,7 +42,7 @@ body {
   padding-right: 60px;
   padding-top: 40px;
   padding-bottom: 85px;
-  height: 350px;
+  height: 370px;
   border-radius: 5px;
 }
 
@@ -66,6 +66,11 @@ body {
   font-weight: bold;
   color: rgb(214, 214, 214);
   margin-bottom: 15px;
+}
+
+.error-msgs {
+  color: rgba(44, 125, 192, 0.837);
+  font-family: 'PixelPal';
 }
 
 .login-form {

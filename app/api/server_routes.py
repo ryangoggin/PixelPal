@@ -6,7 +6,7 @@ from app.models import db, Server, User
 
 server_routes = Blueprint('servers', __name__)
 
-# route to get all servers
+
 # GET /servers - get all servers
 @server_routes.route('', methods=["GET"])
 @login_required
@@ -17,7 +17,7 @@ def get_all_servers():
      # convert each server to a dictionary and return as JSON
     return jsonify([server.to_dict() for server in servers]), 200
 
-# route to create a new server
+
 # POST /servers - create a new server
 @server_routes.route('', methods=["POST"])
 @login_required
@@ -26,12 +26,12 @@ def create_server():
      # get the data from the request body
     data = request.get_json()
     name = data.get('name')
-    description = data.get('description')
+    # description = data.get('description')
     owner_id = data.get('owner_id')
     server_picture = data.get('server_picture')
 
     # create a new server object
-    server = Server(name=name, description=description, owner_id=owner_id, server_picture=server_picture)
+    server = Server(name=name, owner_id=owner_id, server_picture=server_picture)
     # add the server to the database
     db.session.add(server)
     db.session.commit()
@@ -70,7 +70,6 @@ def add_member_to_server(id):
     return jsonify(server.to_dict()), 200
 
 
-# route to get a specific server by ID
 # GET /servers/:id - get a specific server by ID
 @server_routes.route('/<int:id>', methods=['GET'])
 @login_required
@@ -116,9 +115,9 @@ def update_server(id):
     # return the updated server as JSON
     return jsonify(server.to_dict()), 200
 
-# route to delete a specific server by ID
+
 # DELETE /servers/:id - delete a specific server by ID
-@server_routes.route('/<int:id>', methods=["DELETE"])   
+@server_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def delete_server(id):
     ''' delete a server by id and return a message upon successful deletion'''

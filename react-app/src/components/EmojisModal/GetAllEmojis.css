@@ -1,0 +1,90 @@
+@font-face {
+  font-family: 'PixelPal';
+  src: url('../../static/ggsans-Normal.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Discord Thin';
+  src: url('../../static/Uni\ Sans\ Thin.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Discord Bold';
+  src: url('../../static/Uni\ Sans\ Heavy.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.emoji-modal-container{
+  width: 150px;
+  height: auto;
+  padding: 10px;
+  background-color:rgb(43,45,49); /* change to discord gray */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-radius: 9px; /* why is the rounded corners white? */
+}
+
+.emoji-modal-emoji {
+  padding: 2px;
+  height: 26px;
+  width: 26px;
+  margin: auto;
+  text-align: center;
+  cursor: pointer;
+  /* font-family: 'Discord Bold' */
+}
+
+.emoji-modal-emoji:hover {
+  background-color: rgb(65,67,74)
+}
+
+.emojismodalitem {
+  list-style: none;
+  color: rgb(219,222,225);
+  width: 50px;
+  /* to change into the icon later and remove reaction text*/
+  font-family: 'PixelPal';
+  cursor: pointer;
+  background-color:rgb(47,49,54)
+}
+
+.emojismodalitem:hover {
+  background-color: rgb(66,68,74);
+}
+
+.tooltip-wrap .tooltip-content {
+  display: none;
+  position: relative;
+  height: auto;
+  bottom: 60px;
+  right: 38px;
+  background-color: rgb(17,18,20);
+  width: 100px;
+}
+
+.tooltip-wrap:hover .tooltip-content {
+  display: block;
+  color: rgb(219,222,225);
+  width: 100px;
+  height: 25px;
+  border-radius: 8px;
+  font-family: 'PixelPal';
+  font-size: 13px;
+  padding-top: 6px;
+  text-align: center
+}
+
+
+.hidden {
+  display: none
+}
+
+.emojismodal-menu-allemojis {
+  display: absolute;
+}

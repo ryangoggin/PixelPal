@@ -33,9 +33,8 @@ def create_channel():
 
     if form.validate_on_submit():
         # create a new channel object
-        channel = Channel(name=data["name"], description=data["description"], server_id=data["server_id"])
-        # COMMENT SERVER_ID BACK IN WHEN SERVER IS CREATED
-        # 
+        channel = Channel(name=data["name"], server_id=data["server_id"])
+
         # add the channel to the database
         db.session.add(channel)
         db.session.commit()
@@ -102,8 +101,6 @@ def update_channel(id):
     if form.validate():
         # update the channel object with the new data
         channel.name = data["name"] or channel.name
-        channel.description = data["description"] or channel.description
-        # channel.server_id = data["server_id"] or channel.server_id
 
         # save the changes to the database
         db.session.commit()
