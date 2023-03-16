@@ -19,7 +19,7 @@
   font-style: normal;
 }
 
-#modal-content > .emoji-modal-container{
+.emoji-modal-container{
   width: 150px;
   height: auto;
   background-color:rgb(43,45,49); /* change to discord gray */
@@ -86,5 +86,8 @@
   color: rgb(219,222,225);
   width: 50px;
   font-family: 'PixelPal'
+}
 
+.hidden {
+  display: none
 }

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 // import { logout } from "../../store/session";
 import { getAllFriendsThunk } from "../../store/friends";
+import EmojisModal from "../EmojisModal/AllEmojisModal";
 import './FriendsList.css'
 
 export default function FriendsList() {
@@ -47,6 +48,8 @@ export default function FriendsList() {
           </div>
         )
       })}
+
+      <EmojisModal />
       {/* <button onClick={handleLogout}> Logout </button> */}
     </div>
   )
