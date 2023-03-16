@@ -118,7 +118,7 @@ def update_server(id):
 
 # route to delete a specific server by ID
 # DELETE /servers/:id - delete a specific server by ID
-@server_routes.route('<int:id>', methods=["DELETE"])
+@server_routes.route('/<int:id>', methods=["DELETE"])   
 @login_required
 def delete_server(id):
     ''' delete a server by id and return a message upon successful deletion'''

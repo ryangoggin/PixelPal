@@ -1,0 +1,34 @@
+$delay: 0.3s;
+
+@keyframes contexify_flipInX {
+  from {
+    transform: perspective(800px) rotate3d(1, 0, 0, 45deg);
+  }
+
+  to {
+    transform: perspective(800px);
+  }
+}
+
+@keyframes contexify_flipOutX {
+  from {
+    transform: perspective(800px);
+  }
+
+  to {
+    transform: perspective(800px) rotate3d(1, 0, 0, 45deg);
+    opacity: 0;
+  }
+}
+
+.contexify_willEnter-flip {
+  backface-visibility: visible !important;
+  transform-origin: top center;
+  animation: contexify_flipInX $delay;
+}
+
+.contexify_willLeave-flip {
+  transform-origin: top center;
+  animation: contexify_flipOutX $delay;
+  backface-visibility: visible !important;
+}
