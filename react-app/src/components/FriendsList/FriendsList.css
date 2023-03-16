@@ -76,7 +76,8 @@
 
 .friendslist-friends,
 .friendslist-all,
-.friendslist-username {
+.friendslist-username,
+.friendslist-online {
   margin-left: 15px;
   font-family: 'PixelPal';
   color: rgb(238,239,242)
@@ -90,12 +91,30 @@
   border-right: thin rgb(57,59,65) solid;
 }
 
-.friendslist-all {
+.friendslist-online {
   margin-left: 25px;
+  font-size: 17px;
   margin-top: 4px;
   text-align: center;
   border-radius: 8px;
-  width: 45px;
+  width: auto;
+  padding: 5px;
+  background-color: rgb(66,68,74)
+}
+
+.friendslist-all {
+  margin-left: 25px;
+  font-size: 17px;
+  margin-top: 4px;
+  text-align: center;
+  border-radius: 8px;
+  width: auto;
+  padding: 5px;
+
+}
+
+.friendslist-all:hover {
+  border-radius: 8px;
   background-color: rgb(66,68,74)
 }
 
