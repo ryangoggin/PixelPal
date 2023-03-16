@@ -5,9 +5,10 @@ import { NavLink } from 'react-router-dom';
 import ServersSidebarItem from "./ServerSidebarItem";
 import './ServerSidebar.css'
 import OpenModalButton from "../OpenModalButton";
-import CreateServerModal from "../CreateServerModal";
-import EditServerModal from "../EditServerModal";
+import CreateServerModal from "../ServerCreateModal";
+import EditServerModal from "../ServerEditModal";
 import ContextMenu from "../ContextMenu";
+import ServerCreateModal from "../ServerCreateModal";
 
 
 
@@ -32,7 +33,7 @@ const ServersSidebar = () => {
       {user !== null ? (
         <>
           <div className="server-sidebar">
-            <ul className='server-sidebar-ul' >
+            <ul className='server-sidebar-ul'>
               <NavLink key='Direct Messages' to={'/channels/@me'}>
                 <img className='server-sidebar-icon' src='https://i.redd.it/6jupfeilyhx71.jpg' alt='preview'></img>
               </NavLink>
@@ -50,9 +51,10 @@ const ServersSidebar = () => {
               <li className='server-sidebar-add-server-btn'>
                 <OpenModalButton
                   buttonText='+'
-                  modalComponent={<CreateServerModal />}
+                  modalComponent={<ServerCreateModal />}
                 />
               </li>
+
             </ul>
           </div >
         </>

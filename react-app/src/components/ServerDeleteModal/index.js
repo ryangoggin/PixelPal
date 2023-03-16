@@ -3,9 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom"
 import { useModal } from "../../context/Modal";
 import { addServer } from "../../store/server";
-import "./CreateServer.css";
+import "./ServerDelete.css"
 
-function CreateServerModal() {
+function ServerDeleteModal({ server }) {
+
+	console.log(server);
+
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const [name, setName] = useState("");
@@ -44,7 +47,7 @@ function CreateServerModal() {
 		<>
 			<div className='create-server-page'>
 				<div className='create-server-modal'>
-					<h1 className='create-server-header'>Create A Server </h1>
+					<h1 className='create-server-header'>Delete A Server </h1>
 					<p className='create-server-para'>Your server is where your and your friends hang out. Make yours and start talking. </p>
 					<form className='create-server-form' onSubmit={handleSubmit}>
 						<ul>
@@ -63,6 +66,7 @@ function CreateServerModal() {
 								value={name}
 								onChange={(e) => setName(e.target.value)}
 								required
+								placeholder={server.name}
 							/>
 						</div>
 						<div className='create-server-form-group'>
@@ -104,4 +108,4 @@ function CreateServerModal() {
 	);
 }
 
-export default CreateServerModal;
+export default ServerDeleteModal;

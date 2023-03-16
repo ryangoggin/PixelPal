@@ -11,14 +11,6 @@ const ServersSidebarItem = ({ test, mainRef, server }) => {
     let className = '';
     let hasImage = false;
 
-    useEffect(() => {
-        const handleClick = () => setClicked(false);
-        window.addEventListener("click", handleClick);
-        return () => {
-            window.removeEventListener("click", handleClick);
-        };
-    }, []);
-
     if (server.server_picture === 'image.url' || server.server_picture === '') {
         // server.server_picture = 'https://i.redd.it/6jupfeilyhx71.jpg'
         className = 'server-sidebar-no-img-icon'

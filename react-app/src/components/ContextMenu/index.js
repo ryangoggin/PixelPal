@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import OpenModalButton from "../OpenModalButton";
-import EditServerModal from "../EditServerModal";
+import EditServerModal from "../ServerEditModal";
 
 const ContextMenu = ({ server, top, left }) => {
 
