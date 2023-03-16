@@ -45,8 +45,15 @@ export default function FriendsList() {
       {friendsArr.map(friend => {
         return (
           <div className='friendslist-user-container' key={friend.id}>
-            <img className='friendslist-profile-image' src={friend.prof_pic} alt='profile_pic_user' />
-            <span className='friendslist-username'> {friend.username.split("#")[0]} </span>
+            <div className='friendslist-pic-username'>
+              <div> <img className='friendslist-profile-image' src={friend.prof_pic} alt='profile_pic_user' /> </div>
+              <div className='friendslist-username'> {friend.username.split("#")[0]} </div>
+            </div>
+
+            <div className='friendslist-chat-icon'>
+              <div> <i class="fa-solid fa-message" /> </div>
+              <div> <i class="fa-solid fa-ellipsis-vertical" /></div>
+            </div>
             {/* on hover it should show their tag */}
           </div>
         )
