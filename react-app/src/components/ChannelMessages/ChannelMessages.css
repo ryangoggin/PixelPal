@@ -1,4 +1,67 @@
+@font-face {
+    font-family: 'PixelPal';
+    src: url('../../static/ggsans-Normal.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+font-family: 'Discord Thin';
+src: url('../../static/Uni\ Sans\ Thin.otf');
+font-weight: normal;
+font-style: normal;
+}
+
+@font-face {
+font-family: 'Discord Bold';
+src: url('../../static/Uni\ Sans\ Heavy.otf');
+font-weight: normal;
+font-style: normal;
+}
+
+.channel-messages-top {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    border-bottom: solid 1px #a9bac181;
+    margin-bottom: 15px;
+}
+
+.channel-icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 53px;
+    width: 50px;
+    background-color: #41434a;
+}
+
+.channel-icon {
+    font-family: 'PixelPal';
+    font-size: 48px;
+    color: white;
+    margin: 0;
+}
+
+.channel-messages-welcome {
+    font-family: 'PixelPal';
+    font-size: 36px;
+    color: white;
+    margin: 10px 0px 10px;
+}
+
+.channel-messages-start {
+    font-family: 'PixelPal';
+    color: #a9bac1;
+    margin: 0px 0px 20px;
+}
 
 .channel-messages-container {
     background-color: #313338;
+    padding: 15px;
+    height: 65vw;
+}
+
+.message-item {
+    display: flex;
 }

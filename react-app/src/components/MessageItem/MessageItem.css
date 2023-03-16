@@ -20,14 +20,22 @@ font-style: normal;
 }
 
 .message-sender {
+    display: flex;
     font-family: 'PixelPal';
-    font-weight: bold;
     font-size: 18px;
     color: white
+}
+
+.message-sender p {
+    margin: 0
 }
 
 .message-content {
     font-family: 'PixelPal';
     font-size: 18px;
     color: white
+}
+
+.message-content p {
+    margin: 0px 0px 10px
 }

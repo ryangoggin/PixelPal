@@ -8,6 +8,7 @@ function ChannelMessages({ formMessages }) {
     // const channel = useSelector(state => state.channel.currentChannel)
     let channel = {};
     channel.id = 1; // delete once channel slice of state is made
+    channel.name = "Test Server";
     const allMessages = useSelector(state => state.messages);
     // allMessages starts as null, use conditional to avoid putting undefined in Object.values
     let allMessagesArr;
@@ -32,6 +33,13 @@ function ChannelMessages({ formMessages }) {
 
     return (
         <div className='channel-messages-container'>
+            <div className="channel-messages-top">
+                <div className="channel-icon-container">
+                    <h1 className="channel-icon"><i>#</i></h1>
+                </div>
+                <h2 className="channel-messages-welcome">Welcome to #{channel.name}!</h2>
+                <p className="channel-messages-start">This is the start of the #{channel.name} channel.</p>
+            </div>
             {allMessagesArr.map((message) => {
                 return (
                     <div key={`message${message.id}`} className='message-item-container'>

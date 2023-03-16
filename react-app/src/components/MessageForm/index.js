@@ -54,21 +54,14 @@ function MessageForm() {
 
         // add message to DB
         await dispatch(createMessage(message))
-        //   .catch(
-        //     async (res) => {
-        //       const data = await res.json();
-        //       if (data && data.errors) console.log(data.errors);
-        //     }
-        //   );
+
         setContent("");
         // return "thunk in progress..." // will be deleted once thunk is created
     };
 
     return (
         <>
-            <div className="channel-messages-container">
-                <ChannelMessages formMessages={messages}/>
-            </div>
+            <ChannelMessages formMessages={messages}/>
             <div className='message-form-container'>
                 <form className="message-form" onSubmit={handleSubmit}>
                 {/* at 1800 characters start a counter for characters allowed left (starts at 200), disable the send button above 2000  */}
