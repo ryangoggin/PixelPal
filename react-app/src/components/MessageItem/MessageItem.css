@@ -29,6 +29,23 @@ font-style: normal;
     background-color: #5e6066;
 }
 
+.message-left-side {
+    display: flex;
+    align-items: center;
+}
+
+.message-profile-pic {
+    height: 40px;
+    width: 40px;
+    border-radius: 50px;
+    margin-right: 10px;
+}
+
+.message-center {
+    overflow-wrap: break-word;
+    width: 100%;
+}
+
 .message-sender {
     display: flex;
     font-family: 'PixelPal';
@@ -53,4 +70,9 @@ font-style: normal;
 
 .message-content p {
     margin: 0
+}
+
+.message-right-side {
+    display: flex;
+    align-items: center;
 }

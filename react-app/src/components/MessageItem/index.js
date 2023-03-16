@@ -19,6 +19,7 @@ function MessageItem({ message }) {
 
     // get the sending user from normalized serverMembers
     let user = serverMembers[message.userId];
+    console.log("user: ", user);
 
     // convert timestamp to a Date object to an ISO string, slice to get the date
     let messageTimestampDate = new Date(message.timestamp).toISOString().slice(0, 10);
@@ -28,9 +29,9 @@ function MessageItem({ message }) {
     return (
     <div className='message-item'>
         <div className='message-left-side'>
-            <img className='message-profile-pic' src={`${user.profilePic}`} alt={`${user.username.slice(0, -5)} Profile Pic`} />
+            <img className='message-profile-pic' src={`${user.prof_pic}`} alt={`${user.username.slice(0, -5)} Profile Pic`} />
         </div>
-        <div className='message-right-side'>
+        <div className='message-center'>
             <div className='message-sender'>
                 <p className='message-username'>{user.username.slice(0, -5)}</p>
                 <p className='message-timestamp'>{messageTimestamp}</p>
@@ -40,6 +41,9 @@ function MessageItem({ message }) {
 
                 <p>{message.content}</p>
             </div>
+        </div>
+        <div className='message-right-side'>
+            <button>Add Emoji</button>
         </div>
     </div>
     );
