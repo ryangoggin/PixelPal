@@ -35,9 +35,9 @@ export default function FriendsList() {
   return (
     <div className='friendslist-container'>
       <div className='friendslist-header-container'>
-      <a href="https://www.clipartmax.com/middle/m2i8N4i8G6A0d3i8_friends-icon-png-white/"> </a>
-        <span className='friendslist-friends'> Friends </span>
-        <span className='friendslist-all'> All </span>
+        <i class="fa-solid fa-user-group" />
+        <div className='friendslist-friends'> Friends </div>
+        <div className='friendslist-all'> All </div>
         {/* <span className='friendslist-addfriend-button'> Add Friend </span> */}
       </div>
       {friendsArr.map(friend => {
