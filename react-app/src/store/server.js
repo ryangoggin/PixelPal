@@ -146,7 +146,7 @@ export default function serverReducer(state = initialState, action) {
       let myServers = [];
 
       for (let server of action.list) {
-        if (server.owner_id == action.user.id) {
+        if (server.owner_id === action.user.id) {
           myServers.push(server);
         }
 
