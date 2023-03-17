@@ -44,7 +44,10 @@ export default function FriendsList() {
         <div className='friendslist-channel-item'> Friends </div>
       </div>
 
-      <div> Direct Messages </div>
+      <div className='friendslist-channel-dm-container'>
+        <div className='friendslist-channel-dm'> Direct Messages </div>
+        <i className="fa-solid fa-plus" />
+      </div>
     </div>
 
     <div className='friendslist-container'>

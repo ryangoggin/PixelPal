@@ -181,13 +181,13 @@
   left: 68px;
   width: 230px;
   height: 100%;
-  background-color: rgb(43,45,49)
+  background-color: #2B2D31
 }
 
 .friendslist-channel-item  {
   font-family: 'PixelPal';
   color: rgb(242,243,245);
-  font-size: 15px;
+  font-size: 18px;
   margin-top: 3px;
 }
 
@@ -209,7 +209,7 @@
 
 .friendslist-channel-friendscontainer > i {
   color: rgb(242,243,245);
-  font-size: 17px;
+  font-size: 20px;
   margin-top: 3px;
   margin-right: 10px;
   margin-left: 5px
@@ -237,6 +237,22 @@
   text-align: left;
 }
 
-#friendslist-search:active {
-  border: none
+.friendslist-channel-dm, .friendslist-channel-plus {
+  font-family: 'PixelPal';
+  font-size: 15px;
+  margin-left: 15px;
+  color: rgb(146,153,162)
+}
+
+
+
+.friendslist-channel-dm-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fa-plus {
+  color: rgb(181,186,193);
+  margin-right: 15px;
 }
