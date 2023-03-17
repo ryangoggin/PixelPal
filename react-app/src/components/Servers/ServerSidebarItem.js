@@ -1,7 +1,7 @@
 import { React, useEffect, useRef, useState } from "react";
 import './ServerSidebar.css'
 
-const ServersSidebarItem = ({ test, mainRef, server }) => {
+const ServersSidebarItem = ({ server }) => {
     let names = (server.name).split(' ');
     let serverName = []
     for (let name of names) {

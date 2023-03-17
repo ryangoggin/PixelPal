@@ -1,10 +1,10 @@
-// Constants
+// ----------------------------------- constants ----------------------------------------
 const LOAD_SERVERS = 'servers/load'
 const LOAD_SERVER = 'servers/server'
 const ADD_SERVER = 'servers/create'
+const EDIT_SERVER = 'servers/edit'
 
-
-// Action Creators
+// ----------------------------------- action creators ----------------------------------------
 const loadServers = list => ({
   type: LOAD_SERVERS,
   list
@@ -20,10 +20,14 @@ const createServer = server => ({
   server
 })
 
-// Selectors
+const updateServer = server => ({
+  type: EDIT_SERVER,
+  server
+})
 
+// ----------------------------------- thunk action creators ----------------------------------------
 
-// Thunks
+// GET ALL SERVERS //
 export const getServers = () => async (dispatch) => {
   const response = await fetch('/api/servers');
 
@@ -33,6 +37,7 @@ export const getServers = () => async (dispatch) => {
   }
 };
 
+// GET SINGLE SERVER BY ID // 
 export const getServer = (id) => async (dispatch) => {
   const response = await fetch(`/api/servers/${id}`);
 
@@ -44,6 +49,7 @@ export const getServer = (id) => async (dispatch) => {
   }
 }
 
+// ADD A NEW SERVER // 
 export const addServer = (server) => async (dispatch) => {
   const response = await fetch('/api/servers', {
     method: 'POST',
@@ -79,7 +85,26 @@ export const addServer = (server) => async (dispatch) => {
   }
 }
 
-// reducer
+// EDIT A SERVER // 
+export const editServer = (serverId, server) => async (dispatch) => {
+  const response = await fetch(`/api/servers/${serverId}`, {
+    method: 'PUT',
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(server)
+  })
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(updateServer(data));
+    return data;
+  }
+}
+
+// DELETE A SERVER // 
+
+
+// ----------------------------------- reducer ----------------------------------------
+
 
 let initialState = {}
 
@@ -112,6 +137,13 @@ export default function serverReducer(state = initialState, action) {
       allUserServers[action.server.id] = action.server;
       orderedList.unshift(action.server);
       return { ...newState, allUserServers, orderedList };
+    }
+
+    case EDIT_SERVER: {
+      return {
+        ...state,
+        currentServer: { ...state.currentServer, [action.server.id]: action.server }
+      }
     }
 
     default:
