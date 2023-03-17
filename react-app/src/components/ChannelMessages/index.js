@@ -20,7 +20,7 @@ function ChannelMessages({ formMessages }) {
         } else {
             return null;
         }
-    }, [dispatch, channelId]);
+    }, [dispatch, channelId, allMessages]);
 
     // return null if can't get channel until next render
     if (!channel) return null
