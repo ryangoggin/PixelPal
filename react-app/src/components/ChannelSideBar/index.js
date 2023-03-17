@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getServerChannels, getChannelDetails, createChannel } from '../../store/channels';
+import { getServerChannels, getChannelDetails } from '../../store/channels';
 import { getServer } from '../../store/server';
 import OpenModalButton from '../OpenModalButton';
 import NewChannel from '../CreateChannel';
