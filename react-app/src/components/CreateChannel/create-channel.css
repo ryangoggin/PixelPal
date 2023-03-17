@@ -50,3 +50,9 @@
     font-size: 12px;
     margin-bottom: 20px;
 }
+
+.channel-type {
+    font-family: 'Discord Bold';
+    color: #ADB2BA;
+    font-size: 13px;
+}

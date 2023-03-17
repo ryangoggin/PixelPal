@@ -53,7 +53,7 @@ export const getChannelDetails = (id) => async (dispatch) => {
 
 
 // CREATE A NEW CHANNEL
-export const createChannel = (name, description, serverId) => async (dispatch) => {
+export const createChannel = (name, serverId) => async (dispatch) => {
     const response = await fetch('/api/channels', {
       method: 'POST',
       headers: {
@@ -61,7 +61,6 @@ export const createChannel = (name, description, serverId) => async (dispatch) =
       },
       body: JSON.stringify({
         name,
-        description,
         server_id: serverId,
       }),
     });
@@ -103,15 +102,14 @@ export const removeChannel = (channelId) => async (dispatch) => {
 };
 
 // EDIT A CHANNEL
-export const updateChannel = (channelId, name, description) => async (dispatch) => {
+export const updateChannel = (channelId, name) => async (dispatch) => {
     const response = await fetch(`/api/channels/${channelId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        name,
-        description,
+        name
       }),
     });
 

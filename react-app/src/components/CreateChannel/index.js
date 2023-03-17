@@ -11,7 +11,7 @@ function NewChannel({ serverId }) {
 
 
     const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
+    const [channelType, setChannelType] = useState('text');
     const [errors, setErrors] = useState([]);
 
     const { closeModal } = useModal();
@@ -19,7 +19,7 @@ function NewChannel({ serverId }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const data = await dispatch(createChannel(name, description, serverId));
+        const data = await dispatch(createChannel(name, serverId));
         if (data) {
           setErrors(data);
         } else {
@@ -38,6 +38,17 @@ function NewChannel({ serverId }) {
                     {errors.map((error, idx) => <li key={idx} className='modal-error'>{error}</li>)}
                 </ul>
                 )}
+                <span className="channel-type">CHANNEL TYPE</span>
+                <div className="radio-buttons-container">
+                    <div className="radio-button">
+                        <input type="radio" id="text" name="channel-type" value="text" checked={channelType === "text"} onChange={() => setChannelType("text")} />
+                        <label htmlFor="text"><span>Text</span></label>
+                    </div>
+                    <div className="radio-button">
+                        <input type="radio" id="voice" name="channel-type" value="voice" checked={channelType === "voice"} onChange={() => setChannelType("voice")} />
+                        <label htmlFor="voice"><span>Voice</span></label>
+                    </div>
+                </div>
                 <label className='modal-label'>
                 Name:
                 <input
@@ -47,14 +58,6 @@ function NewChannel({ serverId }) {
                     onChange={(e) => setName(e.target.value)}
                     required
                 />
-                </label>
-                <label className='modal-label'>
-                Description:
-                <textarea
-                    className='modal-textarea'
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                ></textarea>
                 </label>
                 <button className='modal-submit' type='submit'>Create</button>
                 <button className='modal-cancel' onClick={closeModal}>Cancel</button>
