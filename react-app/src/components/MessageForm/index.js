@@ -56,7 +56,11 @@ function MessageForm() {
 
         // emit message so users can see it in real time
         // add .to('channelName') before .emit when adding room functionality?
-        socket.emit("chat", message);
+        if (socket) {
+            // emit message so users can see it in real time
+            // add .to('channelName') before .emit when adding room functionality?
+            socket.emit("chat", message);
+        }
 
         // add message to DB
         await dispatch(createMessage(message))
