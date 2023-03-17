@@ -193,3 +193,8 @@ input[type="radio"] {
 .modal-submit:hover {
     background-color: #4d56b3;
 }
+
+.modal-submit:disabled {
+    cursor: not-allowed;
+    background-color: #5b65cfa0;
+  }
