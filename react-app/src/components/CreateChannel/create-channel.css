@@ -23,7 +23,7 @@
 
 .create-channel-modal {
     background-color: #313338;
-    height: 400px;
+    height: 430px;
     display: flex;
     flex-direction: column;
     border: rgb(0, 0, 0) 1px solid;
@@ -152,4 +152,44 @@ input[type="radio"] {
     position: fixed;
     margin-top: 292px;
     margin-left: 15px;
+}
+
+.channel-submit-div {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.modal-cancel {
+    color: whitesmoke;
+    background-color: none;
+    cursor: pointer;
+    font-family: 'PixelPal';
+    font-size: 14px;
+    font-weight: bolder;
+}
+
+.modal-submit {
+    margin-right: 15px;
+    background-color: #5b65cf;
+    border: none;
+    border-radius: 4px;
+    height: 40px;
+    width: 130px;
+    color: whitesmoke;
+    font-family: 'PixelPal';
+    font-weight: bolder;
+    font-size: 14px;
+    margin-left: 30px;
+    cursor: pointer;
+}
+
+.modal-cancel:hover {
+    text-decoration: underline;
+}
+
+.modal-submit:hover {
+    background-color: #4d56b3;
 }

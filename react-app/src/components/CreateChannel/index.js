@@ -69,8 +69,10 @@ function NewChannel({ serverId }) {
                     onChange={(e) => setName(e.target.value)}
                     required
                 />
-                <button className='modal-submit' type='submit'>Create</button>
-                <button className='modal-cancel' onClick={closeModal}>Cancel</button>
+                <div className="channel-submit-div">
+                    <span className='modal-cancel' onClick={closeModal}>Cancel</span>
+                    <button className='modal-submit' type='submit'>Create Channel</button>
+                </div>
             </form>
             </div>
         </div>
