@@ -14,29 +14,34 @@ export default function FriendsList() {
 
   const allFriends = useSelector(state => state.friends)
   const friendsArr = Object.values(allFriends)
-  // console.log('friends Arr with object.values', friendsArr)
-  // console.log('friends from dispatching thunk in component', allFriends)
+
 
   useEffect(() => {
     dispatch(getAllFriendsThunk(currentUserId))
-    // console.log('use effect running to dispatch allfriends thunk')
+
   }, [dispatch])
-
-//   if (!currentUserId) {
-//     return (<Redirect to="/login"/>)
-//   }
-//   const handleLogout = async (e) => {
-//     e.preventDefault()
-
-//     dispatch(logout())
-//     .then(history.push("/login"))
-// }
 
 
   return (
+    <div>
+    <div className='friendslist-channel-container'>
+      <div className='friendslist-search-div'>
+        <input placeholder='Find or start a conversation' id='friendslist-search'></input>
+      </div>
+      <div className='friendslist-channel-friendscontainer'>
+        <i className="fa-solid fa-user-group" />
+        <div className='friendslist-channel-item'> Friends </div>
+      </div>
+
+      <div className='friendslist-channel-dm-container'>
+        <div className='friendslist-channel-dm'> Direct Messages </div>
+        <i className="fa-solid fa-plus" />
+      </div>
+    </div>
+
     <div className='friendslist-container'>
       <div className='friendslist-header-container'>
-        <i class="fa-solid fa-user-group" />
+        <i className="fa-solid fa-user-group" />
         <div className='friendslist-friends'> Friends </div>
         <div className='friendslist-online'> Online </div>
         <div className='friendslist-all'> All </div>
@@ -47,7 +52,7 @@ export default function FriendsList() {
       <div className='friendslist-user-container-1'> Online - {friendsArr.length} </div>
       {friendsArr.map(friend => {
         return (
-          <div className='friendslist-user-container' key={friend.id}>
+          <div className='friendslist-user-container' key={`friend${friend.id}`}>
             <div className='friendslist-pic-username'>
               <div> <img className='friendslist-profile-image' src={friend.prof_pic} alt='profile_pic_user' /> </div>
               <div className='friendslist-username'> {friend.username.split("#")[0]} </div>
@@ -62,6 +67,7 @@ export default function FriendsList() {
         )
       })}
 
+    </div>
     </div>
   )
 }

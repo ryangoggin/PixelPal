@@ -20,7 +20,7 @@ function ChannelMessages({ formMessages }) {
         } else {
             return null;
         }
-    }, [dispatch, channelId]);
+    }, [dispatch, channelId, allMessages]);
 
     // return null if can't get channel until next render
     if (!channel) return null
@@ -37,8 +37,8 @@ function ChannelMessages({ formMessages }) {
 
     formMessages = formMessages.filter(message => message.userId !== currUser.id);
 
-    console.log("formMessages: ", formMessages);
-    console.log("allMessagesArr: ", allMessagesArr);
+    // console.log("formMessages: ", formMessages);
+    // console.log("allMessagesArr: ", allMessagesArr);
 
     return (
         <div className='channel-messages-container'>

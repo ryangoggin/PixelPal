@@ -6,7 +6,7 @@ import os
 if os.environ.get('FLASK_ENV') == 'production':
     origins = [
         'http://pixelpal.onrender.com',
-        'https://pixelpal.onrender.com/'
+        'https://pixelpal.onrender.com'
     ]
 else:
     origins = "*"

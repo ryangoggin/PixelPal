@@ -25,7 +25,7 @@ function MessageForm() {
     useEffect(() => {
         // open socket connection
         // create websocket
-        socket = io();
+        const socket = io();
 
         // socket.on('subscribe', function(channel) {
         //     try{
@@ -43,9 +43,7 @@ function MessageForm() {
         })
         // when component unmounts, disconnect
         return (() => {
-            if (socket.readyState === 1){
-                socket.disconnect();
-            }
+            socket.disconnect();
         })
     }, []);
 
@@ -58,7 +56,11 @@ function MessageForm() {
 
         // emit message so users can see it in real time
         // add .to('channelName') before .emit when adding room functionality?
-        socket.emit("chat", message);
+        if (socket) {
+            // emit message so users can see it in real time
+            // add .to('channelName') before .emit when adding room functionality?
+            socket.emit("chat", message);
+        }
 
         // add message to DB
         await dispatch(createMessage(message))

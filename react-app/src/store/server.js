@@ -44,7 +44,7 @@ export const getServers = (user) => async (dispatch) => {
   }
 };
 
-// GET SINGLE SERVER BY ID // 
+// GET SINGLE SERVER BY ID //
 export const getServer = (id) => async (dispatch) => {
   const response = await fetch(`/api/servers/${id}`);
 
@@ -56,7 +56,7 @@ export const getServer = (id) => async (dispatch) => {
   }
 }
 
-// ADD A NEW SERVER // 
+// ADD A NEW SERVER //
 export const addServer = (server, username) => async (dispatch) => {
   const response = await fetch('/api/servers', {
     method: 'POST',
@@ -98,7 +98,7 @@ export const addServer = (server, username) => async (dispatch) => {
 }
 
 
-// EDIT A SERVER // 
+// EDIT A SERVER //
 export const editServer = (serverId, server) => async (dispatch) => {
   const response = await fetch(`/api/servers/${serverId}`, {
     method: 'PUT',
@@ -113,7 +113,7 @@ export const editServer = (serverId, server) => async (dispatch) => {
   }
 }
 
-// DELETE A SERVER // 
+// DELETE A SERVER //
 
 export const deleteServer = (serverId) => async (dispatch) => {
   const response = await fetch(`/api/servers/${serverId}`, {
@@ -173,7 +173,7 @@ export default function serverReducer(state = initialState, action) {
     case LOAD_SERVER: {
       const currentServer = {};
       currentServer[action.server.id] = action.server;
-      return { ...state, currentServer: { ...currentServer } };
+      return { ...state, currentServer: { ...action.server } };
     }
 
     case ADD_SERVER: {
