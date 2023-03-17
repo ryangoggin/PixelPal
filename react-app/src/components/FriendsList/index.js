@@ -34,9 +34,25 @@ export default function FriendsList() {
 
 
   return (
+    <div>
+    <div className='friendslist-channel-container'>
+      <div className='friendslist-search-div'>
+        <input placeholder='Find or start a conversation' id='friendslist-search'></input>
+      </div>
+      <div className='friendslist-channel-friendscontainer'>
+        <i className="fa-solid fa-user-group" />
+        <div className='friendslist-channel-item'> Friends </div>
+      </div>
+
+      <div className='friendslist-channel-dm-container'>
+        <div className='friendslist-channel-dm'> Direct Messages </div>
+        <i className="fa-solid fa-plus" />
+      </div>
+    </div>
+
     <div className='friendslist-container'>
       <div className='friendslist-header-container'>
-        <i class="fa-solid fa-user-group" />
+        <i className="fa-solid fa-user-group" />
         <div className='friendslist-friends'> Friends </div>
         <div className='friendslist-online'> Online </div>
         <div className='friendslist-all'> All </div>
@@ -62,6 +78,7 @@ export default function FriendsList() {
         )
       })}
 
+    </div>
     </div>
   )
 }
