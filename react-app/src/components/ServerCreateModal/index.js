@@ -21,7 +21,6 @@ function ServerCreateModal() {
 
 		let newServer = {
 			"name": name,
-			"description": description,
 			"owner_id": user.id,
 			"server_picture": server_picture
 		}
@@ -64,20 +63,6 @@ function ServerCreateModal() {
 								onChange={(e) => setName(e.target.value)}
 								required
 							/>
-						</div>
-						<div className='create-server-form-group'>
-							<label className='create-server-form-label'>
-								Description
-							</label>
-							<br></br>
-							<textarea className='create-server-form-input'
-								type="text"
-								id="description"
-								value={description}
-								onChange={(e) => setDescription(e.target.value)}
-								required
-							/>
-
 						</div>
 						<div className='create-server-form-group'>
 							<label className='create-server-form-label'>
