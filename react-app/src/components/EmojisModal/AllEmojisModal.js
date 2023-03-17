@@ -7,10 +7,11 @@ import '../EmojisModal/GetAllEmojis.css'
 
 
 
-export default function EmojisModal({messageId, userId}) {
+export default function EmojisModal({props}) {
 
   const ulRef = useRef()
   const dispatch = useDispatch()
+
 
   const [showMenu, setShowMenu] = useState(false);
 
@@ -43,12 +44,17 @@ export default function EmojisModal({messageId, userId}) {
 
     <div className='emojis-modal-openmodalmenuitem'>
       <div className='tooltip-wrap'>
-        <button onClick={openMenu} className='open-emojis-modal-button'> Reactions </button>
+        <div className='addreaction-container'>
+          <i class="fa-solid fa-face-smile-beam open-emojis-modal-button"
+          onClick={openMenu} />
+          <i class="fa-solid fa-plus open-emojis-modal-button"
+          onClick={openMenu}/>
+        </div>
         <div className='tooltip-content'> Add Reaction </div>
       </div>
       <ul className={ulClassName} ref={ulRef}>
           <div className='emojismodal-menu-allemojis'>
-            <GetAllEmojis messageId={messageId} userId={userId}/>
+            <GetAllEmojis props={props}/>
           </div>
       </ul>
       </div>

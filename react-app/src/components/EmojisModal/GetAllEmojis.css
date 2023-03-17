@@ -88,3 +88,33 @@
 .emojismodal-menu-allemojis {
   display: absolute;
 }
+
+
+.fa-solid:hover {
+  color: rgb(238,239,242);
+}
+
+.fa-face-smile-beam,
+.fa-plus {
+  color:  rgb(238,239,242);
+
+}
+
+.fa-face-smile-beam {
+  font-size: 20px;
+}
+
+.fa-plus {
+  font-size: 10px;
+}
+
+.addreaction-container {
+  cursor: pointer;
+}
+
+.addreaction-container:hover {
+  background-color: rgb(43,45,49);
+  width: 30px;
+  padding: 5px;
+  border-radius: 10px;
+}

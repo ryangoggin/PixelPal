@@ -62,8 +62,6 @@ export default function FriendsList() {
         )
       })}
 
-      <EmojisModal />
-      {/* <button onClick={handleLogout}> Logout </button> */}
     </div>
   )
 }
