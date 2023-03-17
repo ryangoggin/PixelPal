@@ -25,9 +25,7 @@ function MessageForm() {
     useEffect(() => {
         // open socket connection
         // create websocket
-        const socket = io({
-            timeout: 10000, // set timeout duration to 10 seconds
-        });
+        const socket = io();
 
         // socket.on('subscribe', function(channel) {
         //     try{
@@ -45,9 +43,7 @@ function MessageForm() {
         })
         // when component unmounts, disconnect
         return (() => {
-            if (socket.readyState === 1){
-                socket.disconnect();
-            }
+            socket.disconnect();
         })
     }, []);
 
