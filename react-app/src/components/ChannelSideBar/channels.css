@@ -101,7 +101,11 @@
     display: flex;
     align-items: center;
     text-decoration: none;
+    width: 200px;
+    justify-content: space-between;
 }
+
+
 
 .channel-divs:hover {
     background-color: #42444C;

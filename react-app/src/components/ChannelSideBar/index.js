@@ -64,10 +64,12 @@ function ChannelSideBar() {
           <Link
             key={channel.id}
             to={`/channels/${channel.serverId}/${channel.id}`}
-            className={`channel-divs${channel.id === currChannel?.id ? ' selected' : ''}`}
+            className={`channel-divs${channel.id === currChannel?.id ? ' selected' : ''} channel-link`}
           >
-            <span className={`hashtag${channel.id === currChannel?.id ? ' selected' : ''}`}>#</span>
-            <span className={`channel-text-name${channel.id === currChannel?.id ? ' selected' : ''}`}>{channel.name}</span>
+            <div className='channel-starter'>
+              <span className={`hashtag${channel.id === currChannel?.id ? ' selected' : ''}`}>#</span>
+              <span className={`channel-text-name${channel.id === currChannel?.id ? ' selected' : ''}`}>{channel.name}</span>
+            </div>
             <OpenModalButton
               buttonText={<i class="fa-solid fa-gear"></i>}
               modalComponent={<UpdateChannel channelId={channel.id}/>}
