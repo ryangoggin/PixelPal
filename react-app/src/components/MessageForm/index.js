@@ -45,7 +45,9 @@ function MessageForm() {
         return (() => {
             socket.disconnect()
         })
-    }, [])
+    }, []);
+
+    if (!channel) return null;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
