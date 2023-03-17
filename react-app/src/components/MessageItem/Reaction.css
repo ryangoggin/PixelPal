@@ -5,7 +5,7 @@
   font-style: normal;
 }
 
-.messageitem-reactiondiv {
+.other-user-reaction {
   margin-top: 10px;
   display: flex;
   align-items: center;
@@ -13,18 +13,44 @@
   height: 30px;
   padding: 3px;
   border-radius: 10px;
-  border: 2px rgb(238,239,242) solid;
+  background-color: rgb(43,45,49);
   font-family: 'PixelPal';
   color: rgb(238,239,242);
   cursor: pointer;
   margin-right: 8px;
+  margin-bottom: 5px;
 }
 
+.other-user-reaction:hover {
+  background-color: rgb(43,45,49);
+  border: thin rgb(117, 118, 120) solid;
+}
+
+.user-emoji-reaction {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  width: 55px;
+  height: 30px;
+  padding: 3px;
+  border-radius: 10px;
+  border: 2px rgb(88,101,242) solid;
+  background-color: rgb(56,58,84);
+  font-family: 'PixelPal';
+  color: rgb(238,239,242);
+  cursor: pointer;
+  margin-right: 8px;
+  margin-bottom: 5px;
+}
+
+
+
 .emojis-count {
-  margin-left: 5px;
-  padding-right: 5px;
+  margin-left: 7px;
+  padding-right: 0px;
+  font-size: 15px;
 }
 
 .emojis-emojichar {
-  margin-left: 2px;
+  margin-left: 3px;
 }
