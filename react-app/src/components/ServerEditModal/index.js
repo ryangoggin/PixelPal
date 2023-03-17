@@ -1,21 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom"
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { editServer, getServers } from "../../store/server";
+import { editServer } from "../../store/server";
 import "./EditServer.css";
 
 function ServerEditModal({ server }) {
 	const dispatch = useDispatch();
-	const history = useHistory();
 
 	const [newServer, setNewServer] = useState({ ...server })
 	const [errors, setErrors] = useState([]);
 	const [formErrors, setFormErrors] = useState({});
 	const { closeModal } = useModal();
-
-	const user = useSelector(state => state.session.user);
-	const allServers = useSelector(state => state.session.allUserServers)
 
 	const handleUpdate = async (e) => {
 		setNewServer({ ...newServer, [e.target.name]: e.target.value })
