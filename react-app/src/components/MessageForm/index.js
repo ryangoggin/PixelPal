@@ -25,7 +25,7 @@ function MessageForm() {
     useEffect(() => {
         // open socket connection
         // create websocket
-        socket = io();
+        const socket = io();
 
         // socket.on('subscribe', function(channel) {
         //     try{
@@ -43,9 +43,7 @@ function MessageForm() {
         })
         // when component unmounts, disconnect
         return (() => {
-            if (socket.readyState === 1){
-                socket.disconnect();
-            }
+            socket.disconnect();
         })
     }, []);
 
