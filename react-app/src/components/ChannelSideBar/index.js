@@ -6,7 +6,6 @@ import { getServer } from '../../store/server';
 import ServerEditModal from "../ServerEditModal"
 import ServerDeleteModal from "../ServerDeleteModal"
 import OpenModalButton from "../OpenModalButton"
-import OpenModalButton from '../OpenModalButton';
 import NewChannel from '../CreateChannel';
 import UpdateChannel from '../EditChannel';
 import './channels.css';
