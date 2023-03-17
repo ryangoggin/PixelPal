@@ -197,4 +197,8 @@ input[type="radio"] {
 .modal-submit:disabled {
     cursor: not-allowed;
     background-color: #5b65cfa0;
-  }
+}
+
+.channel-update-form-submit.cursor-not-allowed {
+    cursor: not-allowed;
+}

@@ -75,7 +75,7 @@ function UpdateChannel({ channelId }) {
             <div className='btn-option-div'>
                 <span onClick={closeModal} className="channel-update-form-cancel">Cancel</span>
                 <button type="button" onClick={handleDelete} className="channel-update-form-delete">Delete Channel</button>
-                <button type="submit" className="channel-update-form-submit" onClick={handleUpdate}>Update Channel</button>
+                <button type="submit" className={`channel-update-form-submit${name.length === 0 ? ' cursor-not-allowed' : ''}`} onClick={handleUpdate} disabled={name.length === 0}>Update Channel</button>
             </div>
           </form>
         </div>
