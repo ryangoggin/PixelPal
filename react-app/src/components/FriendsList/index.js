@@ -52,7 +52,7 @@ export default function FriendsList() {
       <div className='friendslist-user-container-1'> Online - {friendsArr.length} </div>
       {friendsArr.map(friend => {
         return (
-          <div className='friendslist-user-container' key={friend.id}>
+          <div className='friendslist-user-container' key={`friend${friend.id}`}>
             <div className='friendslist-pic-username'>
               <div> <img className='friendslist-profile-image' src={friend.prof_pic} alt='profile_pic_user' /> </div>
               <div className='friendslist-username'> {friend.username.split("#")[0]} </div>

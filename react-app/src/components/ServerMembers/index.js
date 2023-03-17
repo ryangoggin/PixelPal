@@ -1,23 +1,22 @@
-import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
-import { getServer } from '../../store/server';
-import { useEffect } from 'react';
+// import { useSelector, useDispatch } from "react-redux";
+// import { useParams } from "react-router-dom";
+// import { getServer } from '../../store/server';
+// import { useEffect } from 'react';
 
 
-import './ServerMembers.css'
+// import './ServerMembers.css'
 
 export default function ServerMembers() {
 
   // let currentServer = useSelector(state => state.server.currentServer);
-  const dispatch = useDispatch()
-  let { serverId } = useParams();
+  // const dispatch = useDispatch()
+  // let { serverId } = useParams();
 
-  let currentServer = useSelector(state => state.server.currentServer);
-  console.log(currentServer)
+  // let currentServer = useSelector(state => state.server.currentServer);
 
-  useEffect(() => {
-    dispatch(getServer(serverId))
-  }, [dispatch, serverId])
+  // useEffect(() => {
+  //   dispatch(getServer(serverId))
+  // }, [dispatch, serverId])
 
   // const currentServerMembers = currentServer.members
 
@@ -28,6 +27,7 @@ export default function ServerMembers() {
   return (
     <div>
       <div> SERVER MEMBERS</div>
+
       {/* <div className='servermembers-container'>
         {currentServerMembers.map((member) => {
           return (
@@ -40,6 +40,7 @@ export default function ServerMembers() {
           )
         })
       }
+
       </div> */}
 
     </div>
