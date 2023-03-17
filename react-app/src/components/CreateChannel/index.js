@@ -41,12 +41,22 @@ function NewChannel({ serverId }) {
                 <span className="channel-type">CHANNEL TYPE</span>
                 <div className="radio-buttons-container">
                     <div className="radio-button">
+                        <i class="fa-regular fa-hashtag"></i>
+                        <div className="text-radio-option">
+                            <span className="text-radio">Text</span>
+                            <span className="text-radio-desc">Send messages, images, GIFs, emojis, opinions, and puns</span>
+                        </div>
                         <input type="radio" id="text" name="channel-type" value="text" checked={channelType === "text"} onChange={() => setChannelType("text")} />
-                        <label htmlFor="text"><span>Text</span></label>
                     </div>
-                    <div className="radio-button">
-                        <input type="radio" id="voice" name="channel-type" value="voice" checked={channelType === "voice"} onChange={() => setChannelType("voice")} />
-                        <label htmlFor="voice"><span>Voice</span></label>
+                </div>
+                <div className="radio-buttons-container">
+                    <div className="radio-button-na">
+                        <i class="fa-solid fa-volume-high"></i>
+                        <div className="text-radio-option">
+                            <span className="text-radio">Voice</span>
+                            <span className="text-radio-desc">Hang out together with voice, video, and screenshare</span>
+                        </div>
+                        <input type="radio" id="text" name="channel-type" value="text" disabled/>
                     </div>
                 </div>
                 <label className='modal-label'>
