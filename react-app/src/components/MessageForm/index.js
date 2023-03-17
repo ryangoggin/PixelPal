@@ -25,7 +25,9 @@ function MessageForm() {
     useEffect(() => {
         // open socket connection
         // create websocket
-        socket = io();
+        const socket = io({
+            timeout: 10000, // set timeout duration to 10 seconds
+        });
 
         // socket.on('subscribe', function(channel) {
         //     try{
