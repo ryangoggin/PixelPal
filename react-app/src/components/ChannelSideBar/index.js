@@ -20,7 +20,6 @@ function Channels() {
   let currServer = useSelector(state => state.server.currentServer)
 
   const [showModal, setShowModal] = useState(false);
-  const [channelName, setChannelName] = useState('');
 
   useEffect(() => {
     dispatch(getServerChannels(serverId));

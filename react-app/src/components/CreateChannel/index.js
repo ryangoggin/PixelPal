@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal"
 import { getServerChannels, getChannelDetails, createChannel } from '../../store/channels';
 import './create-channel.css';
