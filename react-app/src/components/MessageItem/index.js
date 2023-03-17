@@ -1,14 +1,18 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import './MessageItem.css';
+import './Reaction.css'
+import EmojisModal from '../EmojisModal/AllEmojisModal';
 
 function MessageItem({ message }) {
     //   let currentServers = useSelector(state => state.server.currentServer);
     let allServers = useSelector(state => state.server.allUserServers);
+
     let serverMembersArr;
-    if (!allServers) {
-        return null;
-    }
+
+
+    if (!allServers) return null
+
     serverMembersArr = allServers[1]["members"]; //hard coded to use a specific server until currentServer slice merged in from dev
 
     // normalize serverMembers to allow for keying to get sending user
@@ -25,7 +29,12 @@ function MessageItem({ message }) {
     let messageTimestampTime = new Date(message.timestamp).toISOString().slice(11, 16);
     let messageTimestamp = `${messageTimestampDate} ${messageTimestampTime}`;
 
-    let reactionsArr = message.reactions;
+    let reactionsArr = Object.values(message.reactions);
+
+
+    let [messageId, userId] = [message.id, user.id]
+    let props = {messageId, userId}
+
 
     return (
     <div className='message-item'>
@@ -44,8 +53,10 @@ function MessageItem({ message }) {
                 <div className='reactions-container'>
                 {reactionsArr.map((reaction) => {
                     return (
-                        <div key={`reaction${reaction.id}`} className='placeholder'>
-                            <p>Reaction Component here</p>
+                        <div key={`${reaction.id}`} className='messageitem-reactiondiv'>
+                            <p className='emojis-emojichar'> {String.fromCodePoint(reaction.emojiId)}</p>
+                            {/* need to make this dynamically count */}
+                            <p className='emojis-count'> 1 </p>
                         </div>
                     );
                 })}
@@ -53,7 +64,7 @@ function MessageItem({ message }) {
             </div>
         </div>
         <div className='message-right-side'>
-            <button>Add Emoji</button>
+            <EmojisModal props={props}/>
         </div>
     </div>
     );
