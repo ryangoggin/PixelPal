@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import { io } from 'socket.io-client';
 import ChannelMessages from "../ChannelMessages";
-import UserMenu from "../UserMenu"; // DELETE ONCE PROPERLY IMPLEMENTED
+import { getChannelDetails } from '../../store/channels';
 import { createMessage } from "../../store/message";
 import "./MessageForm.css";
 
@@ -11,14 +12,16 @@ let socket;
 function MessageForm() {
     const dispatch = useDispatch();
     const [content, setContent] = useState("");
-    const [messages, setMessages] = useState([]); // default messages should be channelMessages
-    const user = useSelector(state => state.session.user)
-    // const channel = useSelector(state => state.channels.currentChannel)
-    let channel = {};
-    channel.name = "#sample-channel";
-    channel.id = 1; //delete once currentChannel slice of state is made
+    const [messages, setMessages] = useState([]);
+    const user = useSelector(state => state.session.user);
+    const channel = useSelector(state => state.channels.oneChannel);
+    const { serverId, channelId } = useParams();
 
-    // will need room functionality tp broadcast to just users in the room (channel), not all users --> add channel to dependency array?
+    useEffect(() => {
+        dispatch(getChannelDetails(channelId));
+      }, [dispatch, serverId, channelId])
+
+    // // will need room functionality tp broadcast to just users in the room (channel), not all users --> add channel to dependency array?
     useEffect(() => {
         // open socket connection
         // create websocket
@@ -42,7 +45,9 @@ function MessageForm() {
         return (() => {
             socket.disconnect()
         })
-    }, [])
+    }, []);
+
+    if (!channel) return null;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -57,18 +62,15 @@ function MessageForm() {
         await dispatch(createMessage(message))
 
         setContent("");
-        // return "thunk in progress..." // will be deleted once thunk is created
     };
 
     return (
         <>
-            <UserMenu />
             <ChannelMessages formMessages={messages}/>
             <div className="message-form-background">
                 <div className='message-form-container'>
                     <form className="message-form" onSubmit={handleSubmit}>
                     {/* at 1800 characters start a counter for characters allowed left (starts at 200), disable the send button above 2000  */}
-                    {/* need to figure out dynamic sizing with css? */}
                     <textarea
                     type="text"
                     value={content}

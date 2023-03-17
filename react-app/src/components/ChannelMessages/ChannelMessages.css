@@ -22,7 +22,7 @@ font-style: normal;
 .channel-messages-top {
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: flex-start;
     border-bottom: solid 1px #a9bac181;
     margin-bottom: 15px;
 }
@@ -64,12 +64,12 @@ font-style: normal;
 .channel-messages-container {
     background-color: #313338;
     position: fixed;
-    top: 0;
+    top: 51px;
     left: 298px;
-    right: 0;
+    right: 232px;
+    bottom: 49px;
     padding: 15px;
     margin: 0;
-    height: 95vh;
     box-sizing: border-box;
     overflow-y: scroll;
     -ms-overflow-style: none;  /* Internet Explorer 10+ */

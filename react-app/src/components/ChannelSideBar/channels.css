@@ -144,16 +144,18 @@
     align-items: center;
 }
 
-.channel-mapping button{
+.channel-divs button{
     font-size: 14px;
     color: #60636B;
     left: 258px;
     background-color: transparent;
     border: none;
+    cursor: pointer;
 }
 
-.channel-mapping button:hover {
+.channel-divs button:hover {
     color: #808490;
     transform: scale(1.2);
     transition: transform 0.2s ease-in-out;
+    cursor: pointer;
 }

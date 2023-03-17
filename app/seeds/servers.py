@@ -59,16 +59,18 @@ def seed_servers():
             server_picture='https://as1.ftcdn.net/v2/jpg/02/73/11/70/1000_F_273117019_vWscsZD1nCUdTYkEyAvClQgLpFYExN5j.jpg'
         ),
 
+
     ]
 
     users = User.query.all()
 
-    first_group = list(users[0:3])
-    second_group = list(users[3:])
+
+    # first_group = list(users) #demo bobbie marnie
+    # second_group = list(users[0:3]) #demo bobbie marnie ak
 
 
-    servers[0].members.extend(first_group)
-    servers[1].members.extend(second_group)
+    servers[0].members.extend(users)
+    servers[1].members.extend(users)
 
 
     db.session.add_all(servers)
