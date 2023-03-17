@@ -12,6 +12,8 @@ import FriendsList from './components/FriendsList'
 import MessageForm from "./components/MessageForm";
 import GetAllEmojis from "./components/EmojisModal";
 // import GetAllEmojis from "./components/EmojisModal";
+import ChannelTopBar from "./components/ChannelTopBar";
+import UserMenu from "./components/UserMenu";
 
 
 function App() {
@@ -42,16 +44,12 @@ function App() {
           <Switch>
             <Route path='/channels/@me'>
               <FriendsList />
-              </Route>
-            {/* <Route path="/channels/:serverId/:channelId">
-              <TestChannels />
-            </Route> */}
-            {/* for testing messages ONLY */}
-            <Route path='/messages'>
-              <MessageForm />
             </Route>
             <Route path="/channels/:serverId/:channelId">
               <ChannelSideBar />
+              <ChannelTopBar />
+              <MessageForm />
+              <UserMenu />
             </Route>
           </Switch>
         </>
