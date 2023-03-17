@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import './MessageItem.css';
+import './Reaction.css'
 import EmojisModal from '../EmojisModal/AllEmojisModal';
 
 function MessageItem({ message }) {
@@ -53,7 +54,9 @@ function MessageItem({ message }) {
                 {reactionsArr.map((reaction) => {
                     return (
                         <div key={`${reaction.id}`} className='messageitem-reactiondiv'>
-                            <p> reaction emoji {String.fromCodePoint(reaction.emojiId)}</p>
+                            <p className='emojis-emojichar'> {String.fromCodePoint(reaction.emojiId)}</p>
+                            {/* need to make this dynamically count */}
+                            <p className='emojis-count'> 1 </p>
                         </div>
                     );
                 })}

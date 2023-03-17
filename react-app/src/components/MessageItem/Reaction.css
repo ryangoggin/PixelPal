@@ -1,0 +1,30 @@
+@font-face {
+  font-family: 'PixelPal';
+  src: url('../../static/ggsans-Normal.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.messageitem-reactiondiv {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  width: 55px;
+  height: 30px;
+  padding: 3px;
+  border-radius: 10px;
+  border: 2px rgb(238,239,242) solid;
+  font-family: 'PixelPal';
+  color: rgb(238,239,242);
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+.emojis-count {
+  margin-left: 5px;
+  padding-right: 5px;
+}
+
+.emojis-emojichar {
+  margin-left: 2px;
+}
