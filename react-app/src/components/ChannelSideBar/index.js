@@ -5,6 +5,7 @@ import { getServerChannels, getChannelDetails } from '../../store/channels';
 import { getServer } from '../../store/server';
 import OpenModalButton from '../OpenModalButton';
 import NewChannel from '../CreateChannel';
+import UpdateChannel from '../EditChannel';
 import './channels.css';
 
 
@@ -41,6 +42,7 @@ function Channels() {
   else currChannel = currChannel;
 
 
+
   return (
     <div className='channel-sidebar'>
       {currServer && (
@@ -68,8 +70,8 @@ function Channels() {
             <span className={`channel-text-name${channel.id === currChannel?.id ? ' selected' : ''}`}>{channel.name}</span>
           </Link>
           <OpenModalButton
-              buttonText={<i class="fa-solid fa-gear"></i>}
-              modalComponent={<NewChannel serverId={serverId}/>}
+            buttonText={<i class="fa-solid fa-gear"></i>}
+            modalComponent={<UpdateChannel channelId={channel.id}/>}
           />
         </div>
       ))}

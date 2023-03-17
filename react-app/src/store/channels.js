@@ -12,6 +12,11 @@ const loadChannelDetails = (channel) => ({
     channel
 });
 
+const loadUpdatedChannel = (channel) => ({
+  type: 'LOAD_UPDATE',
+  channel
+});
+
 const addChannel = (channel) => ({
     type: 'ADD_CHANNEL',
     channel
@@ -41,6 +46,7 @@ export const getServerChannels = (id) => async dispatch => {
     }
 }
 
+
 // GET A SPECIFIC CHANNEL BY CHANNEL ID
 export const getChannelDetails = (id) => async (dispatch) => {
     const response = await fetch(`/api/channels/${id}`);
@@ -49,6 +55,16 @@ export const getChannelDetails = (id) => async (dispatch) => {
         const channel = await response.json();
         dispatch(loadChannelDetails(channel)); // Dispatch an action to update the Redux store
     }
+};
+
+// GET CHANNEL TO BE UPDATED
+export const getUpdatedChannel = (id) => async (dispatch) => {
+  const response = await fetch(`/api/channels/${id}`);
+
+  if (response.ok) {
+      const channel = await response.json();
+      dispatch(loadUpdatedChannel(channel)); // Dispatch an action to update the Redux store
+  }
 };
 
 
@@ -152,6 +168,12 @@ const channelReducer = (state = initialState, action) => {
                 ...state,
                 oneChannel: oneChannel
             }
+        case 'LOAD_UPDATE':
+          const updatedChannel = action.channel;
+          return {
+            ...state,
+            updatedChannel: updatedChannel
+          }
         case 'ADD_CHANNEL':
             return {
                 ...state,

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal"
-import { getServerChannels, getChannelDetails, createChannel } from '../../store/channels';
+import { getServerChannels, createChannel } from '../../store/channels';
 import './create-channel.css';
 
 
