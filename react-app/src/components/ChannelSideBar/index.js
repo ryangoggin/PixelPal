@@ -68,7 +68,7 @@ function ChannelSideBar() {
       {allChannels.map(channel => (
         <div className='channel-mapping'>
           <Link
-            key={channel.id}
+            key={`channel${channel.id}`}
             to={`/channels/${channel.serverId}/${channel.id}`}
             className={`channel-divs${channel.id === currChannel?.id ? ' selected' : ''} channel-link`}
           >
