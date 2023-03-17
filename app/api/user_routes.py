@@ -10,7 +10,7 @@ user_routes = Blueprint('users', __name__)
 
 #GET all /users
 @user_routes.route('')
-# @login_required
+@login_required
 def users():
     ''' Query for all users and returns them in a list of user dictionaries '''
     users = User.query.all()

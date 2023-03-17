@@ -13,13 +13,14 @@ const ServersSidebar = () => {
 
   useEffect(() => {
     if (user) {
-      dispatch(getServers())
+      dispatch(getServers(user))
     }
   }, [user, dispatch])
 
   let servers = useSelector(state => state.server.orderedList)
   if (!servers) return null;
   servers = Object.values(servers);
+  console.log(servers);
 
   return (
     <>
@@ -34,7 +35,7 @@ const ServersSidebar = () => {
               <div className='server-sidebar-server-group'>
                 {
                   servers.map(server => (
-                    <NavLink style={{ textDecoration: 'none' }} key={server.id} to={`/channels/${server.id}/${server.channels[0].id}`}>
+                    < NavLink style={{ textDecoration: 'none' }} key={server.id} to={`/channels/${server.id}/${server.channels[0].id}`}>
                       <ServersSidebarItem server={server} />
                     </NavLink>
                   ))

@@ -2,18 +2,30 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom"
 import { useModal } from "../../context/Modal";
-import { deleteServer } from "../../store/server";
+import { deleteServer, getServers } from "../../store/server";
 import "./ServerDelete.css"
 
 function ServerDeleteModal({ server }) {
 	const dispatch = useDispatch();
+	const user = useSelector(state => state.session.user);
 	const history = useHistory();
 	const { closeModal } = useModal();
+	const [errors, setErrors] = useState([])
 
-	const handleDelete = () => {
-		dispatch(deleteServer(server.id))
-			.then(closeModal)
-			.then(history.push('/channels/@me'));
+	const handleDelete = async (e) => {
+		e.preventDefault();
+
+		try {
+			await dispatch(deleteServer(server.id));
+			await dispatch(getServers(user));
+			closeModal();
+			history.push(`/channels/@me`);
+
+		}
+		catch (response) {
+			const data = await response.json();
+			if (data && data.errors) setErrors(data.errors);
+		}
 	}
 
 	const handleNo = () => {
