@@ -1,7 +1,9 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import sessionReducer from './session'
+import sessionReducer from './session';
 import serverReducer from './server';
+// import userReducer from './user';
+import messageReducer from './message';
 import emojisReducer from './emojis';
 import friendsReducer from './friends';
 import channelReducer from './channels';
@@ -9,6 +11,8 @@ import channelReducer from './channels';
 const rootReducer = combineReducers({
   session: sessionReducer,
   server: serverReducer,
+  // user: userReducer,
+  messages: messageReducer,
   emoji: emojisReducer,
   friends: friendsReducer,
   channels: channelReducer
