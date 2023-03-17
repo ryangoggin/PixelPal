@@ -27,10 +27,6 @@ function Channels() {
     dispatch(getServer(serverId));
   }, [dispatch, serverId, channelId])
 
-
-
-
-
   if (!allChannels) allChannels = [];
   else allChannels = Object.values(allChannels);
 
@@ -38,11 +34,9 @@ function Channels() {
   else {
     currServer = Object.values(currServer)
     currServer = currServer[0];
-}
+  }
   if (!currChannel) currChannel = {};
   else currChannel = currChannel;
-
-  console.log(currServer)
 
   return (
     <div className='channel-sidebar'>
@@ -52,7 +46,6 @@ function Channels() {
         </div>
       )}
       <div>
-        {console.log(currServer)}
         <OpenModalButton buttonText='Edit Server' modalComponent={<ServerEditModal server={currServer} />} />
         <OpenModalButton buttonText='Delete Server' modalComponent={<ServerDeleteModal server={currServer} />} />
       </div>

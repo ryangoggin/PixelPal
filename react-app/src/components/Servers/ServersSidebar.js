@@ -41,7 +41,7 @@ const ServersSidebar = () => {
                 }
               </div>
 
-              <li className='server-sidebar-add-server-btn'>
+              <li style={{ listStyle: 'none' }} className='server-sidebar-add-server-btn'>
                 <OpenModalButton
                   buttonText='+'
                   modalComponent={<ServerCreateModal />}

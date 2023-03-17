@@ -26,9 +26,10 @@ const updateServer = server => ({
   server
 })
 
-const removeServer = serverId => ({
+const removeServer = (id) => ({
   type: DELETE_SERVER,
-  serverId: serverId
+  serverId: id
+
 })
 // ----------------------------------- thunk action creators ----------------------------------------
 
@@ -121,7 +122,16 @@ export const deleteServer = (serverId) => async (dispatch) => {
 
   if (response.ok) {
     dispatch(removeServer(serverId));
+    return null;
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ['An error occurred. Please try again.'];
   }
+
 }
 
 // ----------------------------------- reducer ----------------------------------------
@@ -161,19 +171,22 @@ export default function serverReducer(state = initialState, action) {
     }
 
     case EDIT_SERVER: {
-      return {
-        ...state,
-        currentServer: { ...state.currentServer, [action.server.id]: action.server }
-      }
-    }
-
-    case DELETE_SERVER: {
-      const newState = { ...state };
       const allUserServers = { ...state.allUserServers };
       const currentServer = { ...state.currentServer };
       delete allUserServers[action.serverId];
+      const orderedList = Object.values(allUserServers).reverse();
       delete currentServer[action.serverId];
-      return { ...newState, currentServer }
+      return { ...state, allUserServers, orderedList, currentServer };
+    }
+
+    case DELETE_SERVER: {
+      const allUserServers = { ...state.allUserServers };
+      const orderedList = [...state.orderedList];
+      const currentServer = { ...state.currentServer };
+      delete allUserServers[action.serverId];
+      orderedList.shift();
+      delete currentServer[action.serverId];
+      return { ...state, orderedList, currentServer };
     }
 
     default:
