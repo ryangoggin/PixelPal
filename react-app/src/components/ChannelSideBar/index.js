@@ -17,8 +17,8 @@ function ChannelSideBar() {
   const { serverId, channelId } = useParams();
 
   let allChannels = useSelector(state => state.channels.currServerChannels);
-  let currChannel = useSelector(state => state.channels.oneChannel)
-  let currServer = useSelector(state => state.server.currentServer)
+  let currChannel = useSelector(state => state.channels.oneChannel);
+  let currServer = useSelector(state => state.server.currentServer);
 
   const [showModal, setShowModal] = useState(false);
 
