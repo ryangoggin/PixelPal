@@ -33,6 +33,7 @@ function MessageItem({ message }) {
     let reactionsArr = Object.values(message.reactions);
     let [messageId, userId] = [message.id, user.id]
     let props = {messageId, userId}
+    let emojiId
 
     // if a reaction is not yours you can click on a reaction to add one
     const addReaction = async (userId, messageId, emojiId ) => {
@@ -41,14 +42,29 @@ function MessageItem({ message }) {
     }
 
     // if a reaction is yours, you can click on a reaction and delete it
-
     const deleteReaction = async (reactionId, messageId) => {
         let deleted_reaction = await dispatch(deleteReactionThunk(reactionId, messageId))
         return deleted_reaction
     }
 
-    let emojiId
 
+    // if the reaction with that emoji already exists, and it's not yours, only increase the count and highlight
+    let emojisCount = {}
+
+    reactionsArr.map((reaction) => {
+        if (emojisCount[reaction.emojiURL] === undefined ) {
+            emojisCount[reaction.emojiURL] = 1
+        }
+        else {
+            emojisCount[reaction.emojiURL] += 1
+            // emojisCount[reaction.emojiURL]['users'].push(reaction.userId)
+        }
+
+    })
+
+    // console.log('emojiscount arr', Object.values(emojisCount)
+
+    // reactionsArr.map((reaction) => console.log(userId === reaction.userId))
 
     return (
     <div className='message-item'>
@@ -68,25 +84,27 @@ function MessageItem({ message }) {
                 {reactionsArr.map((reaction) => {
                     return (
                     <div>
-                        {user.id === reaction.userId ?
+                        {reaction.userId === user.id ?
                         <div
                         className='user-emoji-reaction'
                         key={`${reaction.id}`}
                         onClick={() => {deleteReaction(reaction.id, messageId)}}
                         >
-                            <p className='emojis-emojichar'> {String.fromCodePoint(reaction.emojiURL)}</p>
-                            <p className='emojis-count'> 1 </p>
+                        <p className='emojis-emojichar'> {String.fromCodePoint(reaction.emojiURL)}</p>
+                        <p className='emojis-count'> {emojisCount[reaction.emojiURL]} </p>
                         </div>
-                        : <div
+                        :
+                        <div
                         className='other-user-reaction'
                         key={`${reaction.id}`}
-                        onClick={() => {addReaction(userId, emojiId=reaction.emojiId, messageId)}}
-
+                        onClick={() => {addReaction(reaction.emojiId, messageId, userId)}}
                         >
-                            <p className='emojis-emojichar'> {String.fromCodePoint(reaction.emojiURL)}</p>
-                            <p className='emojis-count'> 1 </p>
-                        </div> }
+                        <p className='emojis-emojichar'> {String.fromCodePoint(reaction.emojiURL)}</p>
+                        <p className='emojis-count'> {emojisCount[reaction.emojiURL]} </p>
+                        </div>
 
+
+                         }
                     </div>
                     );
                 })}
