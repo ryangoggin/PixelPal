@@ -19,28 +19,19 @@ export default function GetAllEmojis({props: {messageId, userId, emojisArr}}) {
   }, [dispatch])
 
   const emojis = useSelector(state => state.emoji.allEmojis)
-  // const emoji = useSelector(state => state.emoji.emoji)
   const allEmojisArr = Object.values(emojis)
 
 
-  // useEffect(() => {
-  //   console.log('use effect to create reaction thunk running')
-  //   console.log(reaction)
-  //   dispatch(createReactionThunk(emoji, userId, messageId))
-  // }, [reaction])
 
   const createReaction = async (emojiId, messageId, userId) => {
-  // get create a reaction from the click
-    // console.log('am i passing this into the function correclty', emojiId, messageId, userId)
     let new_reaction = await dispatch(createReactionThunk(emojiId, messageId, userId))
-    // console.log(new_reaction)
     return (new_reaction)
     }
+
 
   // to handle clicking on an existing reaction to delete it with value of reactionid
   // const deleteReaction = (reactionId) => {
     // let deleted_reaction = await dispatch(deleteReactionThunk(reactionId))
-
 
   // }
 

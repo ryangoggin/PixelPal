@@ -20,9 +20,6 @@ const deleteReaction = () => ({
 })
 
 
-// Selectors
-// export const allEmojis = state => state.emojis.allEmojis
-
 // Thunks
 export const getAllEmojisThunk = () => async dispatch => {
   const response = await fetch('/api/emojis');
@@ -61,18 +58,17 @@ export const deleteReactionThunk = (reactionId) => async dispatch => {
 
 let initialState = {
   allEmojis: {},
-  emoji: {}
 }
 
 export default function emojisReducer( state = initialState, action) {
   let newState = {}
   switch(action.type) {
     case LOAD_EMOJIS:
-      newState = {...state, allEmojis: { }, emoji: { ...state.emoji }};
+      newState = {...state, allEmojis: { }};
       action.emojis.emojis.forEach(emoji => newState.allEmojis[emoji.id] = emoji)
       return newState
     case LOAD_ONE_EMOJI:
-      newState = {...state, allEmojis: { ...state.allEmojis }, emoji: {}};
+      newState = {...state, allEmojis: { ...state.allEmojis }};
       newState.emoji = action.emoji
       return newState
     default:
