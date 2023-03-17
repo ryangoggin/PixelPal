@@ -29,6 +29,11 @@
     background-color: #1e1f22;
     overflow-y: auto;
     z-index: 1;
+    scrollbar-width: none;
+}
+
+.server-sidebar::-webkit-scrollbar {
+    display: none;
 }
 
 .server-sidebar-ul {
@@ -99,6 +104,7 @@
     color: green;
     font-family: 'PixelPal';
     border: 0px;
+    list-style: none;
     cursor: pointer;
 }
 
@@ -132,4 +138,18 @@
 
 #server-sidebar-context-menu .server-sidebar-context-menu-item:hover {
     background: #5865F2
+}
+
+.server-sidebar-context-menu-item>button {
+    background: none;
+    border: none;
+    font-family: 'PixelPal';
+    font-size: 15px;
+    color: #B0b5bc;
+    cursor: pointer;
+    border-radius: inherit;
+    display: flex;
+    padding-left: 0px;
+    width: 100%;
+
 }

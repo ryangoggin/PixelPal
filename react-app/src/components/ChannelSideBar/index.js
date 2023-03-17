@@ -3,7 +3,9 @@ import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getServerChannels, getChannelDetails } from '../../store/channels';
 import { getServer } from '../../store/server';
-import OpenModalButton from '../OpenModalButton';
+import ServerEditModal from "../ServerEditModal"
+import ServerDeleteModal from "../ServerDeleteModal"
+import OpenModalButton from "../OpenModalButton"
 import NewChannel from '../CreateChannel';
 import UpdateChannel from '../EditChannel';
 import './channels.css';
@@ -17,8 +19,8 @@ function ChannelSideBar() {
   const { serverId, channelId } = useParams();
 
   let allChannels = useSelector(state => state.channels.currServerChannels);
-  let currChannel = useSelector(state => state.channels.oneChannel)
-  let currServer = useSelector(state => state.server.currentServer)
+  let currChannel = useSelector(state => state.channels.oneChannel);
+  let currServer = useSelector(state => state.server.currentServer);
 
   const [showModal, setShowModal] = useState(false);
 
@@ -37,7 +39,7 @@ function ChannelSideBar() {
   else {
     currServer = Object.values(currServer)
     currServer = currServer[0];
-}
+  }
   if (!currChannel) currChannel = {};
   else currChannel = currChannel;
 
@@ -46,16 +48,20 @@ function ChannelSideBar() {
   return (
     <div className='channel-sidebar'>
       {currServer && (
-      <div className='server-name-container'>
-        <span className='server-name-text'>{currServer.name}</span>
-      </div>
+        <div className='server-name-container'>
+          <span className='server-name-text'>{currServer.name}</span>
+        </div>
       )}
+      <div>
+        <OpenModalButton buttonText='Edit Server' modalComponent={<ServerEditModal server={currServer} />} />
+        <OpenModalButton buttonText='Delete Server' modalComponent={<ServerDeleteModal server={currServer} />} />
+      </div>
       <div className='text-channels-container'>
         <span className='text-channels'>TEXT CHANNELS</span>
         <div className='modal-new-channel'>
           <OpenModalButton
-              buttonText="+"
-              modalComponent={<NewChannel serverId={serverId}/>}
+            buttonText="+"
+            modalComponent={<NewChannel serverId={serverId} />}
           />
         </div>
       </div>
@@ -72,7 +78,7 @@ function ChannelSideBar() {
             </div>
             <OpenModalButton
               buttonText={<i class="fa-solid fa-gear"></i>}
-              modalComponent={<UpdateChannel channelId={channel.id}/>}
+              modalComponent={<UpdateChannel channelId={channel.id} />}
             />
           </Link>
         </div>

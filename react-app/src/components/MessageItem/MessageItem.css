@@ -28,6 +28,7 @@ font-style: normal;
 
 .message-left-and-center {
     display: flex;
+    width: 80%;
 }
 
 .message-item:hover {
@@ -49,7 +50,7 @@ font-style: normal;
 
 .message-center {
     overflow-wrap: break-word;
-    width: 80%;
+    width: 90%;
 }
 
 .message-sender {
@@ -74,14 +75,11 @@ font-style: normal;
     color:#a9bac1;
 }
 
-.message-content {
+.message-content p {
     font-family: 'PixelPal';
     font-size: 18px;
-    color: white
-}
-
-.message-content p {
-    margin: 0
+    color: white;
+    margin: 0;
 }
 
 .message-right-side {

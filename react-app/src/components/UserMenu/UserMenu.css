@@ -27,6 +27,7 @@ font-style: normal;
     position: fixed;
     bottom: 0;
     left: 68px;
+    box-sizing: border-box;
     width: 230px;
     padding: 5px;
 }

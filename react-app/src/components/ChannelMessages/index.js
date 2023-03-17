@@ -1,29 +1,35 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import MessageItem from "../MessageItem";
 import { getChannelMessages } from "../../store/message";
 import "./ChannelMessages.css";
 
 function ChannelMessages({ formMessages }) {
     const currUser = useSelector(state => state.session.user)
-    // const channel = useSelector(state => state.channel.currentChannel)
-    let channel = {};
-    channel.id = 1; // delete once channel slice of state is made
-    channel.name = "Test Server";
+    const channel = useSelector(state => state.channels.oneChannel)
     const allMessages = useSelector(state => state.messages);
-    // allMessages starts as null, use conditional to avoid putting undefined in Object.values
-    let allMessagesArr;
-    if (allMessages !== null) {
-        allMessagesArr = Object.values(allMessages);
-    }
+    const { channelId } = useParams();
 
     const dispatch = useDispatch();
 
     //populate store with channelMessages on render and when channel.id changes
     useEffect(() => {
-        dispatch(getChannelMessages(channel.id));
-    }, [dispatch, channel.id]);
+        if (channelId) {
+            dispatch(getChannelMessages(channelId));
+        } else {
+            return null;
+        }
+    }, [dispatch, channelId]);
 
+    // return null if can't get channel until next render
+    if (!channel) return null
+
+    // allMessages starts as null, use conditional to avoid putting undefined in Object.values
+    let allMessagesArr;
+    if (allMessages !== null) {
+        allMessagesArr = Object.values(allMessages);
+    }
 
     if (!allMessagesArr) {
         return null;
@@ -52,7 +58,7 @@ function ChannelMessages({ formMessages }) {
             })}
             {formMessages.map((message, ind) => {
                 return (
-                    <div key={ind} className='message-item-container'>
+                    <div key={`formMessage${ind}`} className='message-item-container'>
                         <MessageItem message={message}/>
                     </div>
                 );

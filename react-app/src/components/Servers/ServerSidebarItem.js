@@ -1,7 +1,7 @@
-import { React, useEffect } from "react";
+import { React, useEffect, useRef, useState } from "react";
 import './ServerSidebar.css'
 
-const ServersSidebarItem = ({ mainRef, server }) => {
+const ServersSidebarItem = ({ server }) => {
     let names = (server.name).split(' ');
     let serverName = []
     for (let name of names) {
@@ -11,16 +11,6 @@ const ServersSidebarItem = ({ mainRef, server }) => {
     let className = '';
     let hasImage = false;
 
-    const closeMenu = () => {
-        mainRef.current.classList.remove('visible')
-    };
-
-    useEffect(() => {
-        document.body.addEventListener('click', closeMenu);
-
-        return () => document.removeEventListener("click", closeMenu);
-    }, []);
-
     if (server.server_picture === 'image.url' || server.server_picture === '') {
         // server.server_picture = 'https://i.redd.it/6jupfeilyhx71.jpg'
         className = 'server-sidebar-no-img-icon'
@@ -29,28 +19,16 @@ const ServersSidebarItem = ({ mainRef, server }) => {
         hasImage = true;
     }
 
-    const handleClick = (e) => {
-        if (e.type === 'contextmenu') {
-            e.preventDefault();
-            const { clientX: mouseX, clientY: mouseY } = e;
-
-            mainRef.current.style.top = `${mouseY}px`;
-            mainRef.current.style.left = `${mouseX}px`;
-
-            mainRef.current.classList.add("visible");
-        }
-    }
-
     return (
-        // each item will redirect to channel component
-        <>
-            <div className={className} onClick={handleClick} onContextMenu={handleClick}>
-                {hasImage ?
-                    <img src={server.server_picture} alt='preview'></img> :
-                    <p>{serverName}</p>
-                }
-            </div>
-        </>
+        // each item will redirect to channel component 
+        <div className={className}>
+            {hasImage ?
+                <img src={server.server_picture} alt='preview'></img> :
+                <p>{serverName}</p>
+            }
+        </div>
     )
 }
+
+
 export default ServersSidebarItem
