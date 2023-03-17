@@ -106,7 +106,6 @@
 }
 
 
-
 .channel-divs:hover {
     background-color: #42444C;
     width: 200px;
@@ -150,4 +149,6 @@
 
 .channel-mapping button:hover {
     color: #808490;
+    transform: scale(1.2);
+    transition: transform 0.2s ease-in-out;
 }
