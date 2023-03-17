@@ -1,11 +1,15 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { createReactionThunk, deleteReactionThunk } from '../../store/message';
 import { useParams } from 'react-router-dom';
 import './MessageItem.css';
 import './Reaction.css'
 import EmojisModal from '../EmojisModal/AllEmojisModal';
 
 function MessageItem({ message }) {
+
+    const dispatch = useDispatch()
+
     let allServers = useSelector(state => state.server.allUserServers);
     let { serverId } = useParams();
 
@@ -31,6 +35,38 @@ function MessageItem({ message }) {
 
     let [messageId, userId] = [message.id, user.id]
     let props = {messageId, userId}
+    let emojiId
+
+    // if a reaction is not yours you can click on a reaction to add one
+    const addReaction = async (userId, messageId, emojiId ) => {
+        let addedReaction = await dispatch(createReactionThunk(userId, messageId, emojiId))
+        return addedReaction
+    }
+
+    // if a reaction is yours, you can click on a reaction and delete it
+    const deleteReaction = async (reactionId, messageId) => {
+        let deleted_reaction = await dispatch(deleteReactionThunk(reactionId, messageId))
+        return deleted_reaction
+    }
+
+
+    // if the reaction with that emoji already exists, and it's not yours, only increase the count and highlight
+    let emojisCount = {}
+
+    reactionsArr.map((reaction) => {
+        if (emojisCount[reaction.emojiURL] === undefined ) {
+            emojisCount[reaction.emojiURL] = 1
+        }
+        else {
+            emojisCount[reaction.emojiURL] += 1
+            // emojisCount[reaction.emojiURL]['users'].push(reaction.userId)
+        }
+
+    })
+
+    console.log('emojiscount arr', emojisCount)
+
+    // reactionsArr.map((reaction) => console.log(userId === reaction.userId))
 
     return (
         <div className='message-item'>
@@ -48,14 +84,19 @@ function MessageItem({ message }) {
                     </div>
                     <div className='reactions-container'>
                     {reactionsArr.map((reaction) => {
-                        return (
-                            <div key={`${reaction.id}`} className='messageitem-reactiondiv'>
-                                <p className='emojis-emojichar'> {String.fromCodePoint(reaction.emojiId)}</p>
-                                {/* need to make this dynamically count */}
-                                <p className='emojis-count'> 1 </p>
+                    return (
+                        <div>
+                            <div
+                            className= {reaction.userId === user.id ? 'user-emoji-reaction' : 'other-user-reaction'}
+                            key={`reaction${reaction.id}`}
+                            onClick={reaction.userId === user.id ? () => {deleteReaction(reaction.id, messageId)} : () => {addReaction(reaction.emojiId, messageId, userId)}}
+                            >
+                                <p className='emojis-emojichar'> {String.fromCodePoint(reaction.emojiURL)}</p>
+                                <p className='emojis-count'> {emojisCount[reaction.emojiURL]} </p>
                             </div>
-                        );
-                    })}
+                        </div>
+                    );
+                })}
                     </div>
                 </div>
             </div>
@@ -65,5 +106,8 @@ function MessageItem({ message }) {
         </div>
     );
 };
+
+
+
 
 export default MessageItem;
