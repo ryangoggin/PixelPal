@@ -118,4 +118,38 @@
 input[type="radio"] {
     width: 20px;
     height: 20px;
-  }
+}
+
+.channel-name-text {
+    font-family: 'Discord Bold';
+    color: #ADB2BA;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.modal-input {
+    height: 40px;
+    background-color: #181818;
+    border: none;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-family: 'PixelPal';
+    border-radius: 5px;
+    color: rgb(192, 192, 192);
+}
+
+.modal-content input[placeholder='new-channel'] {
+    padding-left: 30px;
+}
+
+.modal-input:focus {
+    outline: none;
+}
+
+.hashtag-channel-name {
+    font-size: 20px;
+    color: #9ba0a8;
+    position: fixed;
+    margin-top: 292px;
+    margin-left: 15px;
+}

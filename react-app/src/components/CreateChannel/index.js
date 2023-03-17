@@ -59,16 +59,16 @@ function NewChannel({ serverId }) {
                         <input type="radio" id="text" name="channel-type" value="text" disabled/>
                     </div>
                 </div>
-                <label className='modal-label'>
-                Name:
+                <span className="channel-name-text">CHANNEL NAME</span>
+                <span className="hashtag-channel-name">#</span>
                 <input
                     className='modal-input'
                     type='text'
                     value={name}
+                    placeholder='new-channel'
                     onChange={(e) => setName(e.target.value)}
                     required
                 />
-                </label>
                 <button className='modal-submit' type='submit'>Create</button>
                 <button className='modal-cancel' onClick={closeModal}>Cancel</button>
             </form>
