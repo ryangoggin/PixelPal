@@ -185,13 +185,14 @@ export default function serverReducer(state = initialState, action) {
     }
 
     case DELETE_SERVER: {
-      const allUserServers = { ...state.allUserServers };
-      const orderedList = [...state.orderedList];
-      const currentServer = { ...state.currentServer };
-      delete allUserServers[action.serverId];
-      orderedList.shift();
-      delete currentServer[action.serverId];
-      return { ...state, orderedList, currentServer };
+      // const allUserServers = { ...state.allUserServers };
+      // const orderedList = [...state.orderedList];
+      // const currentServer = { ...state.currentServer };
+      // delete allUserServers[action.serverId];
+      // orderedList.shift();
+      // delete currentServer[action.serverId];
+      const newState = { ...state }
+      return newState;
     }
 
     default:

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { editServer } from "../../store/server";
+import { editServer, getServers } from "../../store/server";
 import "./EditServer.css";
 
 function ServerEditModal({ server }) {
@@ -45,6 +45,7 @@ function ServerEditModal({ server }) {
 		try {
 			let edittedServer = await dispatch(editServer(server.id, newServer));
 			if (edittedServer) {
+				await dispatch(getServers());
 				// history.push(`/channels/${createdServer.id}/${createdServer.channels[0].id}`)
 				closeModal();
 			}
