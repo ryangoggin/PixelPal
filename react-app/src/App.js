@@ -44,6 +44,7 @@ function App() {
           <Switch>
             <Route path='/channels/@me'>
               <FriendsList />
+              <UserMenu />
             </Route>
             <Route path="/channels/:serverId/:channelId">
               <ChannelSideBar />

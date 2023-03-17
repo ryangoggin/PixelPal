@@ -31,15 +31,15 @@ function ChannelTopBar() {
     <div className='channel-topbar-container'>
         <div className='channel-topbar-left-side'>
             <div className='channel-name'>
-                <i class="fa-solid fa-hashtag"></i>
+                <i className="fa-solid fa-hashtag"></i>
                 <p className='channel-topbar-name'>{currChannel.name}</p>
             </div>
         </div>
         <div className='channel-topbar-right-side'>
-            <button className='threads-button' onClick={handleThreads}><i class="fa-solid fa-hashtag"></i></button>
-            <button className='threads-button' onClick={handleNotifications}><i class="fa-solid fa-bell-slash"></i></button>
-            <button className='threads-button' onClick={handlePinned}><i class="fa-solid fa-thumbtack"></i></button>
-            <button className='threads-button' onClick={handleMemberToggle}><i class="fa-solid fa-users"></i></button>
+            <button className='threads-button' onClick={handleThreads}><i className="fa-solid fa-hashtag"></i></button>
+            <button className='threads-button' onClick={handleNotifications}><i className="fa-solid fa-bell-slash"></i></button>
+            <button className='threads-button' onClick={handlePinned}><i className="fa-solid fa-thumbtack"></i></button>
+            <button className='threads-button' onClick={handleMemberToggle}><i className="fa-solid fa-users"></i></button>
         </div>
     </div>
     );

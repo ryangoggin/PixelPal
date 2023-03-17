@@ -99,13 +99,13 @@ def update_server(id):
     # get the data from the request body
     data = request.get_json()
     name = data.get('name')
-    description = data.get('description')
+    # description = data.get('description')
     owner_id = data.get('owner_id')
     server_picture = data.get('server_picture')
 
     # update the server object with the new data
     server.name = name or server.name
-    server.description = description or server.description
+    # server.description = description or server.description
     server.owner_id = owner_id or server.owner_id
     server.server_picture = server_picture or server.server_picture
 

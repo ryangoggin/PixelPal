@@ -9,13 +9,13 @@ function ChannelMessages({ formMessages }) {
     const currUser = useSelector(state => state.session.user)
     const channel = useSelector(state => state.channels.oneChannel)
     const allMessages = useSelector(state => state.messages);
-    const { serverId, channelId } = useParams();
+    const { channelId } = useParams();
 
     const dispatch = useDispatch();
 
     //populate store with channelMessages on render and when channel.id changes
     useEffect(() => {
-        if (channel) {
+        if (channelId) {
             dispatch(getChannelMessages(channelId));
         } else {
             return null;
@@ -58,7 +58,7 @@ function ChannelMessages({ formMessages }) {
             })}
             {formMessages.map((message, ind) => {
                 return (
-                    <div key={ind} className='message-item-container'>
+                    <div key={`formMessage${ind}`} className='message-item-container'>
                         <MessageItem message={message}/>
                     </div>
                 );

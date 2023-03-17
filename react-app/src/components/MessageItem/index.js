@@ -6,13 +6,12 @@ import './Reaction.css'
 import EmojisModal from '../EmojisModal/AllEmojisModal';
 
 function MessageItem({ message }) {
-    let currentServer = useSelector(state => state.server.currentServer);
-    // let allServers = useSelector(state => state.server.allUserServers);
-    let {serverId, channelId} = useParams();
+    let allServers = useSelector(state => state.server.allUserServers);
+    let { serverId } = useParams();
 
     let serverMembersArr;
-    if (!currentServer) return null;
-    serverMembersArr = currentServer[serverId]["members"];
+    if (!allServers) return null;
+    serverMembersArr = allServers[serverId]["members"];
 
     // normalize serverMembers to allow for keying to get sending user
     let serverMembers = {};
@@ -30,42 +29,40 @@ function MessageItem({ message }) {
 
     let reactionsArr = Object.values(message.reactions);
 
-
     let [messageId, userId] = [message.id, user.id]
     let props = {messageId, userId}
 
-
     return (
-    <div className='message-item'>
-        <div className='message-left-and-center'>
-            <div className='message-left-side'>
-                <img className='message-profile-pic' src={`${user.prof_pic}`} alt={`${user.username.slice(0, -5)} Profile Pic`} />
+        <div className='message-item'>
+            <div className='message-left-and-center'>
+                <div className='message-left-side'>
+                    <img className='message-profile-pic' src={`${user.prof_pic}`} alt={`${user.username.slice(0, -5)} Profile Pic`} />
+                </div>
+                <div className='message-center'>
+                    <div className='message-sender'>
+                        <p className='message-username'>{user.username.slice(0, -5)}</p>
+                        <p className='message-timestamp'>{messageTimestamp}</p>
+                    </div>
+                    <div className="message-content">
+                        <p>{message.content}</p>
+                    </div>
+                    <div className='reactions-container'>
+                    {reactionsArr.map((reaction) => {
+                        return (
+                            <div key={`${reaction.id}`} className='messageitem-reactiondiv'>
+                                <p className='emojis-emojichar'> {String.fromCodePoint(reaction.emojiId)}</p>
+                                {/* need to make this dynamically count */}
+                                <p className='emojis-count'> 1 </p>
+                            </div>
+                        );
+                    })}
+                    </div>
+                </div>
             </div>
-            <div className='message-center'>
-                <div className='message-sender'>
-                    <p className='message-username'>{user.username.slice(0, -5)}</p>
-                    <p className='message-timestamp'>{messageTimestamp}</p>
-                </div>
-                <div className="message-content">
-                    <p>{message.content}</p>
-                </div>
-                <div className='reactions-container'>
-                {reactionsArr.map((reaction) => {
-                    return (
-                        <div key={`${reaction.id}`} className='messageitem-reactiondiv'>
-                            <p className='emojis-emojichar'> {String.fromCodePoint(reaction.emojiId)}</p>
-                            {/* need to make this dynamically count */}
-                            <p className='emojis-count'> 1 </p>
-                        </div>
-                    );
-                })}
-                </div>
+            <div className='message-right-side'>
+                <EmojisModal props={props}/>
             </div>
         </div>
-        <div className='message-right-side'>
-            <EmojisModal props={props}/>
-        </div>
-    </div>
     );
 };
 

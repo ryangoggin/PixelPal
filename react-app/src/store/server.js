@@ -1,10 +1,11 @@
-// Constants
-const LOAD_SERVERS = 'servers/load'
-const LOAD_SERVER = 'servers/server'
+// ----------------------------------- constants ----------------------------------------
+const LOAD_SERVERS = 'servers/load_all'
+const LOAD_SERVER = 'servers/load_one'
 const ADD_SERVER = 'servers/create'
+const EDIT_SERVER = 'servers/edit'
+const DELETE_SERVER = 'servers/delete'
 
-
-// Action Creators
+// ----------------------------------- action creators ----------------------------------------
 const loadServers = list => ({
   type: LOAD_SERVERS,
   list
@@ -20,10 +21,19 @@ const createServer = server => ({
   server
 })
 
-// Selectors
+const updateServer = server => ({
+  type: EDIT_SERVER,
+  server
+})
 
+const removeServer = (id) => ({
+  type: DELETE_SERVER,
+  serverId: id
 
-// Thunks
+})
+// ----------------------------------- thunk action creators ----------------------------------------
+
+// GET ALL SERVERS //
 export const getServers = () => async (dispatch) => {
   const response = await fetch('/api/servers');
 
@@ -33,6 +43,7 @@ export const getServers = () => async (dispatch) => {
   }
 };
 
+// GET SINGLE SERVER BY ID // 
 export const getServer = (id) => async (dispatch) => {
   const response = await fetch(`/api/servers/${id}`);
 
@@ -44,7 +55,8 @@ export const getServer = (id) => async (dispatch) => {
   }
 }
 
-export const addServer = (server) => async (dispatch) => {
+// ADD A NEW SERVER // 
+export const addServer = (server, username) => async (dispatch) => {
   const response = await fetch('/api/servers', {
     method: 'POST',
     headers: { "Content-Type": "application/json" },
@@ -67,19 +79,63 @@ export const addServer = (server) => async (dispatch) => {
     if (responseChannels.ok) {
       const data = await responseChannels.json();
 
-      const responseNewServer = await fetch(`/api/servers/${data.serverId}`)
+      const responseMembers = await fetch(`/api/servers/${data.serverId}/members`, {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: username
+        })
+      })
 
-      if (responseNewServer.ok) {
-        const data = await responseNewServer.json();
+      if (responseMembers.ok) {
+        const data = await responseMembers.json();
         dispatch(createServer(data));
         return data;
       }
-
     }
   }
 }
 
-// reducer
+
+// EDIT A SERVER // 
+export const editServer = (serverId, server) => async (dispatch) => {
+  const response = await fetch(`/api/servers/${serverId}`, {
+    method: 'PUT',
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(server)
+  })
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(updateServer(data));
+    return data;
+  }
+}
+
+// DELETE A SERVER // 
+
+export const deleteServer = (serverId) => async (dispatch) => {
+  const response = await fetch(`/api/servers/${serverId}`, {
+    method: 'DELETE',
+    headers: { "Content-Type": "application/json" }
+  })
+
+  if (response.ok) {
+    dispatch(removeServer(serverId));
+    return null;
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ['An error occurred. Please try again.'];
+  }
+
+}
+
+// ----------------------------------- reducer ----------------------------------------
+
 
 let initialState = {}
 
@@ -90,7 +146,7 @@ export default function serverReducer(state = initialState, action) {
       action.list.forEach(server => {
         allUserServers[server.id] = server
       })
-      const orderedList = Object.values(allUserServers);
+      const orderedList = Object.values(allUserServers).reverse();
 
       return {
         ...state,
@@ -112,6 +168,30 @@ export default function serverReducer(state = initialState, action) {
       allUserServers[action.server.id] = action.server;
       orderedList.unshift(action.server);
       return { ...newState, allUserServers, orderedList };
+    }
+
+    case EDIT_SERVER: {
+      // const allUserServers = { ...state.allUserServers };
+      // const currentServer = { ...state.currentServer };
+      // delete allUserServers[action.serverId];
+      // const orderedList = Object.values(allUserServers).reverse();
+      // delete currentServer[action.serverId];
+      // return { ...state, allUserServers, orderedList, currentServer };
+
+      return {
+        ...state,
+        currentServer: { ...state.currentServer, [action.server.id]: action.server }
+      }
+    }
+
+    case DELETE_SERVER: {
+      const allUserServers = { ...state.allUserServers };
+      const orderedList = [...state.orderedList];
+      const currentServer = { ...state.currentServer };
+      delete allUserServers[action.serverId];
+      orderedList.shift();
+      delete currentServer[action.serverId];
+      return { ...state, orderedList, currentServer };
     }
 
     default:
