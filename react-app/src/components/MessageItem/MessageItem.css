@@ -21,8 +21,13 @@ font-style: normal;
 
 .message-item {
     display: flex;
+    justify-content: space-between;
     width: 100%;
     border-radius: 5px;
+}
+
+.message-left-and-center {
+    display: flex;
 }
 
 .message-item:hover {

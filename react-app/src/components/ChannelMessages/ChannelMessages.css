@@ -63,10 +63,13 @@ font-style: normal;
 
 .channel-messages-container {
     background-color: #313338;
+    position: fixed;
+    top: 0;
+    left: 298px;
+    right: 0;
     padding: 15px;
     margin: 0;
-    height: 65vw;
-    width: 800px;
+    height: 95vh;
     box-sizing: border-box;
     overflow-y: scroll;
     -ms-overflow-style: none;  /* Internet Explorer 10+ */

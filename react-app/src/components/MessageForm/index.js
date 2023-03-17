@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { io } from 'socket.io-client';
 import ChannelMessages from "../ChannelMessages";
+import UserMenu from "../UserMenu"; // DELETE ONCE PROPERLY IMPLEMENTED
 import { createMessage } from "../../store/message";
 import "./MessageForm.css";
 
@@ -61,6 +62,7 @@ function MessageForm() {
 
     return (
         <>
+            <UserMenu />
             <ChannelMessages formMessages={messages}/>
             <div className="message-form-background">
                 <div className='message-form-container'>

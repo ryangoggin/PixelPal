@@ -1,0 +1,81 @@
+@font-face {
+    font-family: 'PixelPal';
+    src: url('../../static/ggsans-Normal.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+font-family: 'Discord Thin';
+src: url('../../static/Uni\ Sans\ Thin.otf');
+font-weight: normal;
+font-style: normal;
+}
+
+@font-face {
+font-family: 'Discord Bold';
+src: url('../../static/Uni\ Sans\ Heavy.otf');
+font-weight: normal;
+font-style: normal;
+}
+
+.user-menu-container {
+    background-color: #232428;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 68px;
+    width: 230px;
+    padding: 5px;
+}
+
+.user-menu-left-side {
+    display: flex;
+    align-items: center;
+    padding: 0px 10px 0px 5px;
+    border-radius: 5px;
+}
+
+.user-menu-left-side:hover {
+    background-color:  #3d3e41;
+}
+
+.user-menu-profile-pic {
+    height: 40px;
+    width: 40px;
+    border-radius: 50px;
+    margin-top: 4px;
+    margin-right: 10px;
+}
+
+.user-menu-username {
+    font-family: 'PixelPal';
+    font-weight: bold;
+    color: white;
+    margin: 0;
+}
+
+.user-tag {
+    font-family: 'PixelPal';
+    font-size: 12px;
+    color: white;
+    margin: 0;
+}
+
+.logout-button {
+    font-family: 'PixelPal';
+    color: white;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    background: none;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.logout-button:hover {
+    cursor: pointer;
+    background-color:  #3d3e41;
+}
