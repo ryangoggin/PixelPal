@@ -7,7 +7,7 @@ import '../EmojisModal/GetAllEmojis.css'
 
 
 
-export default function EmojisModal({messageId}) {
+export default function EmojisModal({messageId, userId}) {
 
   const ulRef = useRef()
   const dispatch = useDispatch()
@@ -48,7 +48,7 @@ export default function EmojisModal({messageId}) {
       </div>
       <ul className={ulClassName} ref={ulRef}>
           <div className='emojismodal-menu-allemojis'>
-            <GetAllEmojis />
+            <GetAllEmojis messageId={messageId} userId={userId}/>
           </div>
       </ul>
       </div>

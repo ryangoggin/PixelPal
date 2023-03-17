@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import './MessageItem.css';
+import EmojisModal from '../EmojisModal/AllEmojisModal';
 
 function MessageItem({ message }) {
     //   let currentServers = useSelector(state => state.server.currentServer);
@@ -19,6 +20,7 @@ function MessageItem({ message }) {
 
     // get the sending user from normalized serverMembers
     let user = serverMembers[message.userId];
+    console.log('user from messageitem component', user)
 
     // convert timestamp to a Date object to an ISO string, slice to get the date
     let messageTimestampDate = new Date(message.timestamp).toISOString().slice(0, 10);
@@ -51,7 +53,7 @@ function MessageItem({ message }) {
             </div>
         </div>
         <div className='message-right-side'>
-            <button>Add Emoji</button>
+            <EmojisModal messageId={message.id} userId={user.id}/>
         </div>
     </div>
     );

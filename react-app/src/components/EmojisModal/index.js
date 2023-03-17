@@ -1,13 +1,14 @@
 import React, { useEffect} from "react";
 import {useDispatch, useSelector} from 'react-redux'
 import { useModal } from "../../context/Modal";
-import { getAllEmojisThunk,  } from "../../store/emojis";
+import { getAllEmojisThunk, createReactionThunk  } from "../../store/emojis";
+
 
 //createReactionThunk
 
 import "./GetAllEmojis.css"
 
-export default function GetAllEmojis({messageId}) {
+export default function GetAllEmojis({messageId, userId}) {
 
   const dispatch = useDispatch()
   const {closeModal} = useModal()
@@ -20,16 +21,13 @@ export default function GetAllEmojis({messageId}) {
   const emojisArr = Object.values(emojis)
 
 
-
-  // const userId = useSelector(state => state.session.user?.id)
-
-  // const createReaction = (emojiId, messageId, userId) => {
+  const createReaction = async (emojiId, messageId, userId) => {
   // get create a reaction from the click
-  //   let new_reaction = await dispatch(createReactionThunk(emojiId, messageId, userId))
-
-  //   return new_reaction
-  //   .then(closeModal)
-  //   }
+    let new_reaction = await dispatch(createReactionThunk(emojiId, messageId, userId))
+    console.log(new_reaction)
+    return new_reaction
+    .then(closeModal)
+    }
 
   // to handle clicking on an existing reaction to delete it with value of reactionid
   // const deleteReaction = (reactionId) => {
@@ -46,7 +44,8 @@ export default function GetAllEmojis({messageId}) {
     <div className='emoji-modal-container'>
       {emojisArr.map(emoji => {
         return (
-        <div className='emoji-modal-emoji'>
+        <div className='emoji-modal-emoji'
+        onClick={() => createReaction(emoji.id, messageId, userId)}>
           {String.fromCodePoint(emoji.url)}
           </div>
           )
