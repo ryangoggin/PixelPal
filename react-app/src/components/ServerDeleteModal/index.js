@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom"
 import { useModal } from "../../context/Modal";
 import { deleteServer, getServers } from "../../store/server";
@@ -7,6 +7,7 @@ import "./ServerDelete.css"
 
 function ServerDeleteModal({ server }) {
 	const dispatch = useDispatch();
+	const user = useSelector(state => state.session.user);
 	const history = useHistory();
 	const { closeModal } = useModal();
 	const [errors, setErrors] = useState([])
@@ -16,7 +17,7 @@ function ServerDeleteModal({ server }) {
 
 		try {
 			await dispatch(deleteServer(server.id));
-			await dispatch(getServers());
+			await dispatch(getServers(user));
 			closeModal();
 			history.push(`/channels/@me`);
 
