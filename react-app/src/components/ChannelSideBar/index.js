@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory, Link, Redirect, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getServerChannels, getChannelDetails } from '../../store/channels';
 import { getServer } from '../../store/server';
 import ServerEditModal from "../ServerEditModal"
 import ServerDeleteModal from "../ServerDeleteModal"
 import OpenModalButton from "../OpenModalButton"
+import OpenModalButton from '../OpenModalButton';
+import NewChannel from '../CreateChannel';
+import UpdateChannel from '../EditChannel';
 import './channels.css';
 
 
 
 
-function Channels() {
+function ChannelSideBar() {
 
-  const history = useHistory();
   const dispatch = useDispatch();
   const { serverId, channelId } = useParams();
 
@@ -21,11 +23,15 @@ function Channels() {
   let currChannel = useSelector(state => state.channels.oneChannel)
   let currServer = useSelector(state => state.server.currentServer)
 
+  const [showModal, setShowModal] = useState(false);
+
   useEffect(() => {
     dispatch(getServerChannels(serverId));
     dispatch(getChannelDetails(channelId));
     dispatch(getServer(serverId));
   }, [dispatch, serverId, channelId])
+
+
 
   if (!allChannels) allChannels = [];
   else allChannels = Object.values(allChannels);
@@ -37,6 +43,8 @@ function Channels() {
   }
   if (!currChannel) currChannel = {};
   else currChannel = currChannel;
+
+
 
   return (
     <div className='channel-sidebar'>
@@ -51,21 +59,34 @@ function Channels() {
       </div>
       <div className='text-channels-container'>
         <span className='text-channels'>TEXT CHANNELS</span>
-        <span className='plus-symbol'>+</span>
+        <div className='modal-new-channel'>
+          <OpenModalButton
+            buttonText="+"
+            modalComponent={<NewChannel serverId={serverId} />}
+          />
+        </div>
       </div>
       {allChannels.map(channel => (
-        <Link
-          key={channel.id}
-          to={`/channels/${channel.serverId}/${channel.id}`}
-          className={`channel-divs${channel.id === currChannel?.id ? ' selected' : ''}`}
-        >
-          <span className={`hashtag${channel.id === currChannel?.id ? ' selected' : ''}`}>#</span>
-          <span className={`channel-text-name${channel.id === currChannel?.id ? ' selected' : ''}`}>{channel.name}</span>
-        </Link>
+        <div className='channel-mapping'>
+          <Link
+            key={channel.id}
+            to={`/channels/${channel.serverId}/${channel.id}`}
+            className={`channel-divs${channel.id === currChannel?.id ? ' selected' : ''} channel-link`}
+          >
+            <div className='channel-starter'>
+              <span className={`hashtag${channel.id === currChannel?.id ? ' selected' : ''}`}>#</span>
+              <span className={`channel-text-name${channel.id === currChannel?.id ? ' selected' : ''}`}>{channel.name}</span>
+            </div>
+            <OpenModalButton
+              buttonText={<i class="fa-solid fa-gear"></i>}
+              modalComponent={<UpdateChannel channelId={channel.id} />}
+            />
+          </Link>
+        </div>
       ))}
     </div>
   )
 }
 
 
-export default Channels;
+export default ChannelSideBar;

@@ -1,3 +1,24 @@
+@font-face {
+  font-family: 'PixelPal';
+  src: url('../../static/ggsans-Normal.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Discord Thin';
+  src: url('../../static/Uni\ Sans\ Thin.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Discord Bold';
+  src: url('../../static/Uni\ Sans\ Heavy.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .friendslist-header-friends {
   font-size: 30px;
 }
@@ -5,20 +26,169 @@
 .friendslist-container {
   display: flex;
   flex-direction: column;
-  border: red 2px solid;
   height: 800px;
-  margin-top: auto;
-  margin-bottom:auto;
+  margin-left:auto;
+  width: 1500px;
+  background-color: rgb(49,51,56);
+  left: 20px;;
+}
+
+.friendslist-header-container {
+  display: flex;
+  align-items: center;
+  padding-bottom: 5px;
+  border-bottom: .5px rgb(38,39,43) solid
 }
 
 .friendslist-user-container {
-  border: red 2px solid;
   align-content: center;
-  flex-direction:row;
-  width: 1300px;
-  height: 40px;
-  margin-top: 10px;
+  width: 100%;
+  float: left;
+  height: 50px;
+  /* margin-top: 10px; */
+  padding-top: 3px;
   margin-left: auto;
   margin-right: auto;
+  display: flex;
+  align-items: center;
+  border-bottom: thin rgb(57,59,65) solid;
+  cursor: pointer;
+  justify-content: space-between;
+}
 
+.friendslist-user-container:hover {
+  background-color: rgb(57,59,65);
+  border-radius: 10px;
+}
+
+.friendslist-user-container-1 {
+  border-bottom: thin rgb(57,59,65) solid;
+  margin-left: 20px;
+  padding-top: 10px;
+  height: 30px;
+  color: rgb(179,184,191);
+  font-family: 'PixelPal'
+}
+
+.friendslist-friends,
+.friendslist-all,
+.friendslist-username,
+.friendslist-online {
+  margin-left: 15px;
+  font-family: 'PixelPal';
+  color: rgb(238,239,242)
+}
+
+.friendslist-friends {
+  font-size: 25px;
+  margin-left: 15px;
+  padding-top: 5px;
+  padding-right: 10px;
+  border-right: thin rgb(57,59,65) solid;
+}
+
+.friendslist-online {
+  margin-left: 25px;
+  font-size: 17px;
+  margin-top: 4px;
+  text-align: center;
+  border-radius: 8px;
+  width: auto;
+  padding: 5px;
+  background-color: rgb(66,68,74)
+}
+
+.friendslist-all {
+  margin-left: 25px;
+  font-size: 17px;
+  margin-top: 4px;
+  text-align: center;
+  border-radius: 8px;
+  width: auto;
+  padding: 5px;
+
+}
+
+.friendslist-all:hover {
+  border-radius: 8px;
+  background-color: rgb(66,68,74)
+}
+
+.friendslist-profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-left: 20px;
+}
+
+.friendslist-pic-username {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+
+.friendslist-header-container i {
+  color: rgb(238,239,242);
+  margin-left:20px;
+  font-size: 22px;
+  margin-top: 4px;
+
+}
+
+.friendslist-user-container i {
+  color:rgb(181,186,193);
+  padding: 10px;
+}
+
+.friendslist-user-container {
+  display: flex;
+  flex-direction: row;
+}
+
+
+.friendslist-chat-icon {
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.friendslist-chat-icon div {
+  background-color: rgb(43,45,49);
+  border-radius: 30px;
+  text-align: center;
+  margin-right: 5px;
+  margin-left: 5px;
+  width: 40px;
+}
+
+.fa-solid:hover {
+  color: rgb(238,239,242);
+}
+
+.fa-face-smile-beam,
+.fa-plus {
+  color:  rgb(238,239,242);
+
+}
+
+.fa-face-smile-beam {
+  font-size: 20px;
+}
+
+.fa-plus {
+  font-size: 10px;
+}
+
+.addreaction-container {
+  cursor: pointer;
+}
+
+.addreaction-container:hover {
+  background-color: rgb(43,45,49);
+  width: 30px;
+  padding: 5px;
+  border-radius: 10px;
 }

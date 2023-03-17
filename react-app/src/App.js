@@ -5,10 +5,12 @@ import SignupFormPage from "./components/SignupFormPage";
 import { authenticate } from "./store/session";
 import LoginPage from "./components/LoginPage";
 import ServersSidebar from "./components/Servers/ServersSidebar";
-import Channels from "./components/ChannelSideBar";
+import ChannelSideBar from "./components/ChannelSideBar";
 // import TestChannels from "./components/Servers/TestChannels";
 import Home from "./components/Home/"
 import FriendsList from './components/FriendsList'
+import MessageForm from "./components/MessageForm";
+import GetAllEmojis from "./components/EmojisModal";
 // import GetAllEmojis from "./components/EmojisModal";
 
 
@@ -41,8 +43,11 @@ function App() {
             <Route path='/channels/@me'>
               <FriendsList />
             </Route>
+            <Route path='/messages'>
+              <MessageForm />
+            </Route>
             <Route path="/channels/:serverId/:channelId">
-              <Channels />
+              <ChannelSideBar />
             </Route>
           </Switch>
         </>

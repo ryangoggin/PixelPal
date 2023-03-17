@@ -1,0 +1,121 @@
+@font-face {
+    font-family: 'PixelPal';
+    src: url('../../static/ggsans-Normal.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+  @font-face {
+    font-family: 'Discord Thin';
+    src: url('../../static/Uni\ Sans\ Thin.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+  @font-face {
+    font-family: 'Discord Bold';
+    src: url('../../static/Uni\ Sans\ Heavy.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+.channel-update-form-container {
+    background-color: #25262b;
+    height: 230px;
+    width: 400px;
+    border-radius: 10px;
+    border: 1px black solid;
+}
+
+.channel-update-form {
+    padding: 20px;
+}
+
+.channel-update-form-title {
+    font-family: 'PixelPal';
+    color: whitesmoke;
+    font-size: 25px;
+}
+
+.channel-update-form-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+    margin-top: 25px;
+}
+
+.channel-update-form-label {
+    font-family: 'PixelPal';
+    color: #ADB2BA;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+#ch-name-input {
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    color: whitesmoke;
+    background-color: #131416;
+    font-size: 17px;
+    padding-left: 15px;
+    font-family: 'PixelPal';
+}
+
+#ch-name-input:focus {
+    outline: none;
+}
+
+.btn-option-div {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+
+.channel-update-form-cancel {
+    color: whitesmoke;
+    font-family: 'PixelPal';
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.channel-update-form-cancel:hover {
+    text-decoration: underline;
+    color: white;
+}
+
+.channel-update-form-delete {
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    background-color: #c84040;
+    font-family: 'PixelPal';
+    color: whitesmoke;
+    font-weight: bolder;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+}
+
+.channel-update-form-delete:hover {
+    background-color:#c73030;
+}
+
+.channel-update-form-submit:hover {
+    background-color: #4550cc;
+}
+
+.channel-update-form-submit {
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    background-color: #5b65cf;
+    font-family: 'PixelPal';
+    color: whitesmoke;
+    font-weight: bolder;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+}
