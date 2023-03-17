@@ -1,0 +1,204 @@
+@font-face {
+    font-family: 'PixelPal';
+    src: url('../../static/ggsans-Normal.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+  @font-face {
+    font-family: 'Discord Thin';
+    src: url('../../static/Uni\ Sans\ Thin.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+  @font-face {
+    font-family: 'Discord Bold';
+    src: url('../../static/Uni\ Sans\ Heavy.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+.create-channel-modal {
+    background-color: #313338;
+    height: 430px;
+    display: flex;
+    flex-direction: column;
+    border: rgb(0, 0, 0) 1px solid;
+    border-radius: 20px;
+    outline: none;
+}
+
+.create-channel-form {
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+    padding: 20px;
+}
+
+.modal-header {
+    font-family: 'PixelPal';
+    color: whitesmoke;
+    font-size: 20px;
+}
+
+.subheading-modal {
+    font-family: 'PixelPal';
+    color: #ADB2BA;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+.channel-type {
+    font-family: 'Discord Bold';
+    color: #ADB2BA;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.text-radio {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    color: #ADB2BA;
+    font-size: 16px;
+}
+
+.text-radio-option {
+    display: flex;
+    flex-direction: column;
+}
+
+.radio-button  {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #42444C;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    cursor: pointer;
+}
+
+.radio-button-na {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #2B2D31;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    cursor: pointer;
+}
+
+.radio-button-na:hover {
+    background-color: #42444C;
+}
+
+
+.radio-button .fa-hashtag, .radio-button-na .fa-volume-high {
+    margin-right: 10px;
+    font-size: 25px;
+    color: #ADB2BA;
+    margin-right: 15px;
+    padding-left: 15px;
+}
+
+.text-radio-desc {
+    font-size: 14px;
+    color: #ADB2BA;
+    font-family: 'PixelPal';
+}
+
+input[type="radio"] {
+    width: 20px;
+    height: 20px;
+}
+
+.channel-name-text {
+    font-family: 'Discord Bold';
+    color: #ADB2BA;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.modal-input {
+    height: 40px;
+    background-color: #181818;
+    border: none;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-family: 'PixelPal';
+    border-radius: 5px;
+    color: rgb(192, 192, 192);
+}
+
+.modal-content input[placeholder='new-channel'] {
+    padding-left: 30px;
+}
+
+.modal-input:focus {
+    outline: none;
+}
+
+.hashtag-channel-name {
+    font-size: 20px;
+    color: #9ba0a8;
+    position: fixed;
+    margin-top: 292px;
+    margin-left: 15px;
+}
+
+.channel-submit-div {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.modal-cancel {
+    color: whitesmoke;
+    background-color: none;
+    cursor: pointer;
+    font-family: 'PixelPal';
+    font-size: 14px;
+    font-weight: bolder;
+}
+
+.modal-submit {
+    margin-right: 15px;
+    background-color: #5b65cf;
+    border: none;
+    border-radius: 4px;
+    height: 40px;
+    width: 130px;
+    color: whitesmoke;
+    font-family: 'PixelPal';
+    font-weight: bolder;
+    font-size: 14px;
+    margin-left: 30px;
+    cursor: pointer;
+}
+
+.modal-cancel:hover {
+    text-decoration: underline;
+}
+
+.modal-submit:hover {
+    background-color: #4d56b3;
+}
+
+.modal-submit:disabled {
+    cursor: not-allowed;
+    background-color: #5b65cfa0;
+}
+
+.channel-update-form-submit.cursor-not-allowed {
+    cursor: not-allowed;
+}

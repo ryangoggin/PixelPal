@@ -21,8 +21,13 @@ font-style: normal;
 
 .message-item {
     display: flex;
+    justify-content: space-between;
     width: 100%;
     border-radius: 5px;
+}
+
+.message-left-and-center {
+    display: flex;
 }
 
 .message-item:hover {
@@ -31,19 +36,20 @@ font-style: normal;
 
 .message-left-side {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .message-profile-pic {
     height: 40px;
     width: 40px;
     border-radius: 50px;
+    margin-top: 4px;
     margin-right: 10px;
 }
 
 .message-center {
     overflow-wrap: break-word;
-    width: 100%;
+    width: 80%;
 }
 
 .message-sender {

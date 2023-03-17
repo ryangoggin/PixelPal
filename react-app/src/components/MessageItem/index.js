@@ -31,25 +31,27 @@ function MessageItem({ message }) {
 
     return (
     <div className='message-item'>
-        <div className='message-left-side'>
-            <img className='message-profile-pic' src={`${user.prof_pic}`} alt={`${user.username.slice(0, -5)} Profile Pic`} />
-        </div>
-        <div className='message-center'>
-            <div className='message-sender'>
-                <p className='message-username'>{user.username.slice(0, -5)}</p>
-                <p className='message-timestamp'>{messageTimestamp}</p>
+        <div className='message-left-and-center'>
+            <div className='message-left-side'>
+                <img className='message-profile-pic' src={`${user.prof_pic}`} alt={`${user.username.slice(0, -5)} Profile Pic`} />
             </div>
-            <div className="message-content">
-                <p>{message.content}</p>
-            </div>
-            <div className='reactions-container'>
-            {reactionsArr.map((reaction) => {
-                return (
-                    <div key={`reaction${reaction.id}`} className='placeholder'>
-                        <p>Reaction Component here</p>
-                    </div>
-                );
-            })}
+            <div className='message-center'>
+                <div className='message-sender'>
+                    <p className='message-username'>{user.username.slice(0, -5)}</p>
+                    <p className='message-timestamp'>{messageTimestamp}</p>
+                </div>
+                <div className="message-content">
+                    <p>{message.content}</p>
+                </div>
+                <div className='reactions-container'>
+                {reactionsArr.map((reaction) => {
+                    return (
+                        <div key={`reaction${reaction.id}`} className='placeholder'>
+                            <p>Reaction Component here</p>
+                        </div>
+                    );
+                })}
+                </div>
             </div>
         </div>
         <div className='message-right-side'>

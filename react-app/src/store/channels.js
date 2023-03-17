@@ -12,6 +12,11 @@ const loadChannelDetails = (channel) => ({
     channel
 });
 
+const loadUpdatedChannel = (channel) => ({
+  type: 'LOAD_UPDATE',
+  channel
+});
+
 const addChannel = (channel) => ({
     type: 'ADD_CHANNEL',
     channel
@@ -41,6 +46,7 @@ export const getServerChannels = (id) => async dispatch => {
     }
 }
 
+
 // GET A SPECIFIC CHANNEL BY CHANNEL ID
 export const getChannelDetails = (id) => async (dispatch) => {
     const response = await fetch(`/api/channels/${id}`);
@@ -51,9 +57,19 @@ export const getChannelDetails = (id) => async (dispatch) => {
     }
 };
 
+// GET CHANNEL TO BE UPDATED
+export const getUpdatedChannel = (id) => async (dispatch) => {
+  const response = await fetch(`/api/channels/${id}`);
+
+  if (response.ok) {
+      const channel = await response.json();
+      dispatch(loadUpdatedChannel(channel)); // Dispatch an action to update the Redux store
+  }
+};
+
 
 // CREATE A NEW CHANNEL
-export const createChannel = (name, description, serverId) => async (dispatch) => {
+export const createChannel = (name, serverId) => async (dispatch) => {
     const response = await fetch('/api/channels', {
       method: 'POST',
       headers: {
@@ -61,7 +77,6 @@ export const createChannel = (name, description, serverId) => async (dispatch) =
       },
       body: JSON.stringify({
         name,
-        description,
         server_id: serverId,
       }),
     });
@@ -103,15 +118,14 @@ export const removeChannel = (channelId) => async (dispatch) => {
 };
 
 // EDIT A CHANNEL
-export const updateChannel = (channelId, name, description) => async (dispatch) => {
+export const updateChannel = (channelId, name) => async (dispatch) => {
     const response = await fetch(`/api/channels/${channelId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        name,
-        description,
+        name
       }),
     });
 
@@ -154,6 +168,12 @@ const channelReducer = (state = initialState, action) => {
                 ...state,
                 oneChannel: oneChannel
             }
+        case 'LOAD_UPDATE':
+          const updatedChannel = action.channel;
+          return {
+            ...state,
+            updatedChannel: updatedChannel
+          }
         case 'ADD_CHANNEL':
             return {
                 ...state,

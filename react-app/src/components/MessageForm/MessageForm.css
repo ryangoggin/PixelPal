@@ -21,8 +21,11 @@ font-style: normal;
 
 .message-form-background {
     background-color: #313338;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 298px;
     box-sizing: border-box;
-    width: 800px;
     padding: 0px 20px 20px;
 }
 
