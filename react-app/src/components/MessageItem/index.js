@@ -64,7 +64,7 @@ function MessageItem({ message }) {
 
     })
 
-    console.log('emojiscount arr', emojisCount)
+    // console.log('emojiscount arr', emojisCount)
 
     // reactionsArr.map((reaction) => console.log(userId === reaction.userId))
 

@@ -37,8 +37,8 @@ function ChannelMessages({ formMessages }) {
 
     formMessages = formMessages.filter(message => message.userId !== currUser.id);
 
-    console.log("formMessages: ", formMessages);
-    console.log("allMessagesArr: ", allMessagesArr);
+    // console.log("formMessages: ", formMessages);
+    // console.log("allMessagesArr: ", allMessagesArr);
 
     return (
         <div className='channel-messages-container'>
