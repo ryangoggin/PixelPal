@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory, Link, Redirect, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getServerChannels, getChannelDetails, createChannel } from '../../store/channels';
 import { getServer } from '../../store/server';
@@ -12,7 +12,6 @@ import './channels.css';
 
 function Channels() {
 
-  const history = useHistory();
   const dispatch = useDispatch();
   const { serverId, channelId } = useParams();
 
@@ -41,17 +40,6 @@ function Channels() {
 }
   if (!currChannel) currChannel = {};
   else currChannel = currChannel;
-
-
-
-  const handleCreateChannel = (e) => {
-    e.preventDefault();
-    dispatch(createChannel(serverId, channelName));
-    setShowModal(false);
-    setChannelName('');
-  }
-
-
 
 
   return (

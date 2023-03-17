@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal"
-import { useState } from 'react';
-import { createChannel } from '../../store/channels'
+import { getServerChannels, getChannelDetails, createChannel } from '../../store/channels';
 import './create-channel.css';
 
 
@@ -20,10 +19,12 @@ function NewChannel({ serverId }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = await dispatch(createChannel(name, serverId));
+
         if (data) {
           setErrors(data);
         } else {
           closeModal();
+          dispatch(getServerChannels(serverId));
         }
       }
 
