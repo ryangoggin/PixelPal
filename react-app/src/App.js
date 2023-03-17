@@ -14,6 +14,7 @@ import GetAllEmojis from "./components/EmojisModal";
 // import GetAllEmojis from "./components/EmojisModal";
 import ChannelTopBar from "./components/ChannelTopBar";
 import UserMenu from "./components/UserMenu";
+import ChatRoom from "./components/ChatRoom";
 
 
 function App() {
@@ -51,6 +52,9 @@ function App() {
               <ChannelTopBar />
               <MessageForm />
               <UserMenu />
+            </Route>
+            <Route path='/chatroom'>
+              <ChatRoom />
             </Route>
           </Switch>
         </>

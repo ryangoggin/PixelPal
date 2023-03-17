@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getServerChannels, getChannelDetails } from '../../store/channels';
@@ -22,8 +22,6 @@ function ChannelSideBar() {
   let currChannel = useSelector(state => state.channels.oneChannel);
   let currServer = useSelector(state => state.server.currentServer);
 
-  const [showModal, setShowModal] = useState(false);
-
   useEffect(() => {
     dispatch(getServerChannels(serverId));
     dispatch(getChannelDetails(channelId));
@@ -41,7 +39,6 @@ function ChannelSideBar() {
     currServer = currServer[0];
   }
   if (!currChannel) currChannel = {};
-  else currChannel = currChannel;
 
 
 
