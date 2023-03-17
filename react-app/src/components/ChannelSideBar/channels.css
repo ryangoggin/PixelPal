@@ -98,6 +98,7 @@
 .channel-text-name {
     font-size: 16px;
     color: #949BA4;
+    margin-right: 5px;
 }
 
 .channel-divs.selected {
@@ -105,4 +106,25 @@
     color: #fff;
     width: 200px;
     border-radius: 3px;
+}
+
+.channel-mapping {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.channel-mapping button{
+    font-size: 14px;
+    position: fixed;
+    color: #60636B;
+    left: 258px;
+    margin-top: 6px;
+    background-color: transparent;
+    border: none;
+}
+
+.channel-mapping button:hover {
+    color: #808490;
 }
