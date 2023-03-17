@@ -1,8 +1,9 @@
 // ----------------------------------- constants ----------------------------------------
-const LOAD_SERVERS = 'servers/load'
-const LOAD_SERVER = 'servers/server'
+const LOAD_SERVERS = 'servers/load_all'
+const LOAD_SERVER = 'servers/load_one'
 const ADD_SERVER = 'servers/create'
 const EDIT_SERVER = 'servers/edit'
+const DELETE_SERVER = 'servers/delete'
 
 // ----------------------------------- action creators ----------------------------------------
 const loadServers = list => ({
@@ -25,6 +26,10 @@ const updateServer = server => ({
   server
 })
 
+const removeServer = serverId => ({
+  type: DELETE_SERVER,
+  serverId: serverId
+})
 // ----------------------------------- thunk action creators ----------------------------------------
 
 // GET ALL SERVERS //
@@ -108,6 +113,16 @@ export const editServer = (serverId, server) => async (dispatch) => {
 
 // DELETE A SERVER // 
 
+export const deleteServer = (serverId) => async (dispatch) => {
+  const response = await fetch(`/api/servers/${serverId}`, {
+    method: 'DELETE',
+    headers: { "Content-Type": "application/json" }
+  })
+
+  if (response.ok) {
+    dispatch(removeServer(id));
+  }
+}
 
 // ----------------------------------- reducer ----------------------------------------
 
@@ -150,6 +165,12 @@ export default function serverReducer(state = initialState, action) {
         ...state,
         currentServer: { ...state.currentServer, [action.server.id]: action.server }
       }
+    }
+
+    case DELETE_SERVER: {
+      const currentServer = { ...state.currentServer };
+      delete currentServer[action.serverId];
+      return { ...state, currentServer }
     }
 
     default:
