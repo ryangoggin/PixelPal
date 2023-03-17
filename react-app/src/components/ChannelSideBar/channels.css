@@ -88,6 +88,12 @@
     text-decoration: none;
 }
 
+.channel-divs:hover {
+    background-color: #42444C;
+    width: 200px;
+    border-radius: 3px;
+}
+
 .hashtag {
     color: #60636B;
     font-size: 25px;

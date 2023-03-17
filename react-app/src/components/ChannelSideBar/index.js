@@ -11,7 +11,7 @@ import './channels.css';
 
 
 
-function Channels() {
+function ChannelSideBar() {
 
   const dispatch = useDispatch();
   const { serverId, channelId } = useParams();
@@ -68,11 +68,11 @@ function Channels() {
           >
             <span className={`hashtag${channel.id === currChannel?.id ? ' selected' : ''}`}>#</span>
             <span className={`channel-text-name${channel.id === currChannel?.id ? ' selected' : ''}`}>{channel.name}</span>
+            <OpenModalButton
+              buttonText={<i class="fa-solid fa-gear"></i>}
+              modalComponent={<UpdateChannel channelId={channel.id}/>}
+            />
           </Link>
-          <OpenModalButton
-            buttonText={<i class="fa-solid fa-gear"></i>}
-            modalComponent={<UpdateChannel channelId={channel.id}/>}
-          />
         </div>
       ))}
     </div>
@@ -80,4 +80,4 @@ function Channels() {
 }
 
 
-export default Channels;
+export default ChannelSideBar;
