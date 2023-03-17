@@ -62,7 +62,7 @@ function MessageItem({ message }) {
 
     })
 
-    // console.log('emojiscount arr', Object.values(emojisCount)
+    console.log('emojiscount arr', emojisCount)
 
     // reactionsArr.map((reaction) => console.log(userId === reaction.userId))
 
@@ -84,27 +84,18 @@ function MessageItem({ message }) {
                 {reactionsArr.map((reaction) => {
                     return (
                     <div>
-                        {reaction.userId === user.id ?
+
                         <div
-                        className='user-emoji-reaction'
+                        className= {reaction.userId === user.id ? 'user-emoji-reaction' : 'other-user-reaction'}
                         key={`${reaction.id}`}
-                        onClick={() => {deleteReaction(reaction.id, messageId)}}
-                        >
-                        <p className='emojis-emojichar'> {String.fromCodePoint(reaction.emojiURL)}</p>
-                        <p className='emojis-count'> {emojisCount[reaction.emojiURL]} </p>
-                        </div>
-                        :
-                        <div
-                        className='other-user-reaction'
-                        key={`${reaction.id}`}
-                        onClick={() => {addReaction(reaction.emojiId, messageId, userId)}}
+                        onClick={reaction.userId === user.id ? () => {deleteReaction(reaction.id, messageId)} : () => {addReaction(reaction.emojiId, messageId, userId)}}
                         >
                         <p className='emojis-emojichar'> {String.fromCodePoint(reaction.emojiURL)}</p>
                         <p className='emojis-count'> {emojisCount[reaction.emojiURL]} </p>
                         </div>
 
 
-                         }
+
                     </div>
                     );
                 })}
