@@ -14,6 +14,7 @@ import GetAllEmojis from "./components/EmojisModal";
 // import GetAllEmojis from "./components/EmojisModal";
 import ChannelTopBar from "./components/ChannelTopBar";
 import UserMenu from "./components/UserMenu";
+import ServerMembers from "./components/ServerMembers"
 
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
               <ChannelTopBar />
               <MessageForm />
               <UserMenu />
+              <ServerMembers />
             </Route>
           </Switch>
         </>

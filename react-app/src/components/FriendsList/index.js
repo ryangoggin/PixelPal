@@ -14,23 +14,12 @@ export default function FriendsList() {
 
   const allFriends = useSelector(state => state.friends)
   const friendsArr = Object.values(allFriends)
-  // console.log('friends Arr with object.values', friendsArr)
-  // console.log('friends from dispatching thunk in component', allFriends)
+
 
   useEffect(() => {
     dispatch(getAllFriendsThunk(currentUserId))
-    // console.log('use effect running to dispatch allfriends thunk')
+
   }, [dispatch])
-
-//   if (!currentUserId) {
-//     return (<Redirect to="/login"/>)
-//   }
-//   const handleLogout = async (e) => {
-//     e.preventDefault()
-
-//     dispatch(logout())
-//     .then(history.push("/login"))
-// }
 
 
   return (
