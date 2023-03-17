@@ -50,7 +50,7 @@ export const getServer = (id) => async (dispatch) => {
 }
 
 // ADD A NEW SERVER // 
-export const addServer = (server) => async (dispatch) => {
+export const addServer = (server, username) => async (dispatch) => {
   const response = await fetch('/api/servers', {
     method: 'POST',
     headers: { "Content-Type": "application/json" },
@@ -73,17 +73,23 @@ export const addServer = (server) => async (dispatch) => {
     if (responseChannels.ok) {
       const data = await responseChannels.json();
 
-      const responseNewServer = await fetch(`/api/servers/${data.serverId}`)
+      const responseMembers = await fetch(`/api/servers/${data.serverId}/members`, {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: username
+        })
+      })
 
-      if (responseNewServer.ok) {
-        const data = await responseNewServer.json();
+      if (responseMembers.ok) {
+        const data = await responseMembers.json();
         dispatch(createServer(data));
         return data;
       }
-
     }
   }
 }
+
 
 // EDIT A SERVER // 
 export const editServer = (serverId, server) => async (dispatch) => {
@@ -115,7 +121,7 @@ export default function serverReducer(state = initialState, action) {
       action.list.forEach(server => {
         allUserServers[server.id] = server
       })
-      const orderedList = Object.values(allUserServers);
+      const orderedList = Object.values(allUserServers).reverse();
 
       return {
         ...state,

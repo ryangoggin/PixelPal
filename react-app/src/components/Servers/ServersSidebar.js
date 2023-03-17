@@ -1,22 +1,15 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { getServers } from "../../store/server";
 import { NavLink } from 'react-router-dom';
 import ServersSidebarItem from "./ServerSidebarItem";
 import './ServerSidebar.css'
 import OpenModalButton from "../OpenModalButton";
-import CreateServerModal from "../ServerCreateModal";
-import EditServerModal from "../ServerEditModal";
-import ContextMenu from "../ContextMenu";
 import ServerCreateModal from "../ServerCreateModal";
-
-
 
 const ServersSidebar = () => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.session.user);
-  let mainRef = useRef();
-  let test;
 
   useEffect(() => {
     if (user) {
