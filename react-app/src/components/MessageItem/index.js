@@ -51,18 +51,18 @@ function MessageItem({ message }) {
 
 
     // if the reaction with that emoji already exists, and it's not yours, only increase the count and highlight
-    let emojisCount = {}
+    // let emojisCount = {}
 
-    reactionsArr.map((reaction) => {
-        if (emojisCount[reaction.emojiURL] === undefined ) {
-            emojisCount[reaction.emojiURL] = 1
-        }
-        else {
-            emojisCount[reaction.emojiURL] += 1
-            // emojisCount[reaction.emojiURL]['users'].push(reaction.userId)
-        }
+    // reactionsArr.map((reaction) => {
+    //     if (emojisCount[reaction.emojiURL] === undefined ) {
+    //         emojisCount[reaction.emojiURL] = 1
+    //     }
+    //     else {
+    //         emojisCount[reaction.emojiURL] += 1
+    //         // emojisCount[reaction.emojiURL]['users'].push(reaction.userId)
+    //     }
 
-    })
+    // })
 
     // console.log('emojiscount arr', emojisCount)
 
@@ -92,7 +92,7 @@ function MessageItem({ message }) {
                             onClick={reaction.userId === user.id ? () => {deleteReaction(reaction.id, messageId)} : () => {addReaction(reaction.emojiId, messageId, userId)}}
                             >
                                 <p className='emojis-emojichar'> {String.fromCodePoint(reaction.emojiURL)}</p>
-                                <p className='emojis-count'> {emojisCount[reaction.emojiURL]} </p>
+                                <p className='emojis-count'> 1 </p>
                             </div>
                         </div>
                     );
