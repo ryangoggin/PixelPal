@@ -28,8 +28,11 @@
   flex-wrap: wrap;
   justify-content: center;
   border-radius: 9px; /* why is the rounded corners white? */
-  position: fixed;
+  position: relative;
   right: 100px;
+  /* transform: translateX(40%); */
+  transform: translateY(-55%);
+
 }
 
 .emoji-modal-emoji {
