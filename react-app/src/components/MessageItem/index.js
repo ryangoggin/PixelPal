@@ -30,9 +30,6 @@ function MessageItem({ message }) {
     // get the sending user from normalized serverMembers
     let user = serverMembers[message.userId];
 
-
-
-
     // convert timestamp to a Date object to an ISO string, slice to get the date
     let messageTimestampDate = new Date(message.timestamp).toISOString().slice(0, 10);
     let messageTimestampTime = new Date(message.timestamp).toISOString().slice(11, 16);
