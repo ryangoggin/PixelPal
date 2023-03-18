@@ -1,19 +1,23 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { logout } from '../../store/session';
 import './UserMenu.css';
 
 function UserMenu() {
     let currUser = useSelector(state => state.session.user);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const handleLogout = async (e) => {
 		e.preventDefault();
-		await dispatch(logout());
+		await dispatch(logout())
+        .then(() => {
+            history.push('/');
+        });
 	};
 
-    if (!currUser) return <Redirect to="/" />;
+    if (!currUser) return null;
 
     return (
     <div className='user-menu-container'>

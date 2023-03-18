@@ -12,8 +12,8 @@ export default function FriendsList() {
 
   const currentUser = useSelector(state => state.session.user)
 
-  let currentUserId
-  if (currentUser) {currentUserId = currentUser.id}
+  let currentUserId;
+  if (currentUser) currentUserId = currentUser.id;
 
   const allFriends = useSelector(state => state.friends)
   const friendsArr = Object.values(allFriends)

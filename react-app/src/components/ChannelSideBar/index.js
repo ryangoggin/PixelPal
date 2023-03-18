@@ -21,7 +21,7 @@ function ChannelSideBar() {
   let allChannels = useSelector(state => state.channels.currServerChannels);
   let currChannel = useSelector(state => state.channels.oneChannel);
   let currServer = useSelector(state => state.server.currentServer);
-
+  console.log('1', currServer)
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
@@ -30,20 +30,13 @@ function ChannelSideBar() {
     dispatch(getServer(serverId));
   }, [dispatch, serverId, channelId])
 
-
+  console.log('2', currServer)
 
   if (!allChannels) allChannels = [];
   else allChannels = Object.values(allChannels);
 
-  if (!currServer) currServer = {};
-  else {
-    currServer = Object.values(currServer)
-    currServer = currServer[0];
-  }
-  if (!currChannel) currChannel = {};
-  else currChannel = currChannel;
-
-
+  if (!currChannel) return null;
+  if (!currServer) return null;
 
   return (
     <div className='channel-sidebar'>
