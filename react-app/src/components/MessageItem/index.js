@@ -42,7 +42,6 @@ function MessageItem({ message }) {
 
     let messageId = message.id;
     let props = {messageId, sessionUserId}
-    let emojiId
 
     // if a reaction is not yours you can click on a reaction to add one
     const addReaction = async (sessionUserId, messageId, emojiId ) => {
@@ -60,24 +59,6 @@ function MessageItem({ message }) {
         return deleted_reaction
     }
 
-
-    // if the reaction with that emoji already exists, and it's not yours, only increase the count and highlight
-
-    // let emojisCount = {}
-    // reactionsArr.map((reaction) => {
-    //     if (emojisCount[reaction.emojiURL] === undefined ) {
-    //         emojisCount[reaction.emojiURL] = 1
-    //     }
-    //     else {
-    //         emojisCount[reaction.emojiURL] += 1
-    //         // emojisCount[reaction.emojiURL]['users'].push(reaction.userId)
-    //     }
-
-    // })
-
-    // console.log('emojiscount arr', emojisCount)
-
-    // reactionsArr.map((reaction) => console.log(userId === reaction.userId))
 
     return (
         <div className='message-item'>
