@@ -10,7 +10,10 @@ export default function FriendsList() {
   // const history = useHistory();
   const dispatch = useDispatch()
 
-  const currentUserId = useSelector(state => state.session.user.id)
+  const currentUser = useSelector(state => state.session.user)
+
+  let currentUserId;
+  if (currentUser) currentUserId = currentUser.id;
 
   const allFriends = useSelector(state => state.friends)
   const friendsArr = Object.values(allFriends)
@@ -18,8 +21,7 @@ export default function FriendsList() {
 
   useEffect(() => {
     dispatch(getAllFriendsThunk(currentUserId))
-
-  }, [dispatch])
+  }, [dispatch, currentUserId])
 
 
   return (
