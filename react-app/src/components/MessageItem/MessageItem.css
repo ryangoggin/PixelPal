@@ -24,6 +24,7 @@ font-style: normal;
     justify-content: space-between;
     width: 100%;
     border-radius: 5px;
+    padding-bottom: 5px;
 }
 
 .message-left-and-center {
@@ -33,6 +34,7 @@ font-style: normal;
 
 .message-item:hover {
     background-color: rgb(45,48,53);
+    padding-bottom: 5px;
     margin-left: 0px;
     margin-right: 0px;
 }
