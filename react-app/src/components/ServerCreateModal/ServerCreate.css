@@ -20,23 +20,36 @@
 }
 
 .create-server-page {
-    max-width: 300px;
-    max-height: 500px;
+    display: flex;
+    flex-direction: column;
+    background-color: #25262b;
+    max-width: 400px;
+    max-height: 250px;
+    border: 1px black solid;
     padding-left: 60px;
     padding-right: 60px;
     padding-top: 40px;
     padding-bottom: 90px;
-    height: 300px;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .create-server-modal {
     display: flex;
     flex-direction: column;
+    background-color: #25262b;
+    max-width: 400px;
+    max-height: 300px;
+    border: 1px black solid;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 40px;
+    padding-bottom: 90px;
+    border-radius: 10px;
 }
 
 .create-server-header {
     font-family: 'PixelPal';
+    color: whitesmoke;
     font-size: 20px;
     font-weight: 900;
     text-align: center;
@@ -54,7 +67,6 @@
 
 .create-server-form-group {
     display: flex;
-    align-items: flex-start;
     flex-direction: column;
 }
 
@@ -67,9 +79,10 @@
 }
 
 .create-server-form-label {
-    font-family: 'Discord Bold';
-    font-size: 14px;
-    color: #313338;
+    font-family: 'PixelPal';
+    color: #ADB2BA;
+    font-size: 15px;
+    margin-bottom: 5px;
 }
 
 .create-server-form-button {
@@ -84,6 +97,10 @@
     color: whitesmoke;
     font-weight: bolder;
     cursor: pointer;
+}
+
+.create-server-form-button:hover {
+    background-color: #6772ed;
 }
 
 .disabled-btn {

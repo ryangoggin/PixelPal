@@ -64,22 +64,21 @@ function ServerCreateModal() {
 	};
 
 	return (
-		<div className='create-server-page'>
-			<div className='create-server-modal'>
-				<h1 className='create-server-header'>Create A Server </h1>
-				<p className='create-server-para'>Your server is where your and your friends hang out. Make yours and start talking. </p>
+		<div className='create-server-modal'>
+			<div className='create-server-modal-content'>
 				<form className='create-server-form' onSubmit={handleSubmit}>
+					<h1 className='create-server-header'>Create A Server </h1>
+					<p className='create-server-para'>Your server is where your and your friends hang out. Make yours and start talking. </p>
+					<ul>
+						{errors.map((error, idx) => (
+							<li key={idx}>{error}</li>
+						))}
+					</ul>
 					<div className='create-server-form-group'>
-						<ul>
-							{errors.map((error, idx) => (
-								<li key={idx}>{error}</li>
-							))}
-						</ul>
-						<label className='create-server-form-label'>
+						<span className='create-server-form-label'>
 							Server Name
-						</label>
-						<br></br>
-						<input className='create-server-form-input'
+						</span>
+						<input style={{ height: '30px' }} className='modal-input'
 							type="text"
 							id="name"
 							name="name"
@@ -90,11 +89,11 @@ function ServerCreateModal() {
 					</div>
 					<br></br>
 					<div className='create-server-form-group'>
-						<label className='create-server-form-label'>
+						<span className='create-server-form-label'>
 							Server Image
-						</label>
+						</span>
 						<br></br>
-						<input className='create-server-form-input'
+						<input style={{ height: '30px' }} className='modal-input'
 							type="text"
 							id="server_picture"
 							name="server_picture"
@@ -108,6 +107,7 @@ function ServerCreateModal() {
 						<button
 							disabled={!name}
 							className={!name ? "disabled-btn" : "edit-server-form-button"} type="submit">Create Server</button>
+						<span onClick={closeModal} className="channel-update-form-cancel">Cancel</span>
 					</div>
 
 				</form>

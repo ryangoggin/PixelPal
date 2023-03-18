@@ -58,22 +58,21 @@ function ServerEditModal({ server }) {
 	};
 
 	return (
-		<div className='edit-server-page'>
-			<div className='edit-server-modal'>
-				<h1 className='edit-server-header'>Edit A Server </h1>
-				<p className='edit-server-para'>Your server is where your and your pals hang out. Personalize it to make it yours. </p>
+		<div className='edit-server-modal'>
+			<div className='edit-server-modal-content'>
 				<form className='edit-server-form' onSubmit={handleSubmit}>
+					<h1 className='edit-server-header'>Edit A Server </h1>
+					<p className='edit-server-para'>Your server is where your and your pals hang out. Personalize it to make it yours. </p>
 					<ul>
 						{errors.map((error, idx) => (
 							<li key={idx}>{error}</li>
 						))}
 					</ul>
 					<div className='edit-server-form-group'>
-						<label className='edit-server-form-label'>
+						<span className='edit-server-form-label'>
 							Server Name
-						</label>
-						<br></br>
-						<input className='edit-server-form-input'
+						</span>
+						<input style={{ height: '30px' }} className='modal-input'
 							type="text"
 							id="name"
 							name="name"
@@ -85,11 +84,11 @@ function ServerEditModal({ server }) {
 					</div>
 					<br></br>
 					<div className='edit-server-form-group'>
-						<label className='edit-server-form-label'>
+						<span className='edit-server-form-label'>
 							Server Image
-						</label>
+						</span>
 						<br></br>
-						<input className='edit-server-form-input'
+						<input style={{ height: '30px' }} className='modal-input'
 							type="text"
 							id="server_picture"
 							name="server_picture"
@@ -103,6 +102,10 @@ function ServerEditModal({ server }) {
 						<button
 							disabled={!newServer.name}
 							className={!newServer.name ? "disabled-btn" : "edit-server-form-button"} type="submit">Update Server</button>
+
+						<span onClick={closeModal} className="channel-update-form-cancel">Cancel</span>
+						{/* <button type="submit" className={`channel-update-form-submit${name.length === 0 ? ' cursor-not-allowed' : ''}`} onClick={handleUpdate} disabled={name.length === 0}>Update Channel</button> */}
+
 					</div>
 				</form>
 			</div>
