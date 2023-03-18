@@ -19,17 +19,6 @@
     font-style: normal;
 }
 
-.create-server-page {
-    max-width: 300px;
-    max-height: 500px;
-    padding-left: 60px;
-    padding-right: 60px;
-    padding-top: 40px;
-    padding-bottom: 90px;
-    height: 300px;
-    border-radius: 5px;
-}
-
 .delete-server-modal {
     display: flex;
     flex-direction: column;
@@ -60,40 +49,6 @@
     color: gray;
     text-align: center;
     margin-top: 5px;
-}
-
-.create-server-form-group {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-}
-
-.create-server-form-input {
-    margin-bottom: 15px;
-    border-radius: 5px;
-    padding-top: 0;
-    padding-left: 0;
-    border: 1px solid lightgray;
-}
-
-.create-server-form-label {
-    font-family: 'Discord Bold';
-    font-size: 14px;
-    color: #313338;
-}
-
-.create-server-form-button {
-    height: 45px;
-    width: 100%;
-    background-color: #5865F2;
-    border: none;
-    border-radius: 3px;
-    font-family: 'PixelPal';
-    font-size: 16px;
-    margin-bottom: 10px;
-    color: whitesmoke;
-    font-weight: bolder;
-    cursor: pointer;
 }
 
 .delete-form-cancel {
