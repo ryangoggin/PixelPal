@@ -253,7 +253,7 @@
   align-items: center;
 }
 
-.fa-plus {
+.friendslist-channel-dm-container > .fa-plus {
   color: rgb(181,186,193);
   margin-right: 15px;
 }
