@@ -26,6 +26,14 @@ function MessageItem({ message }) {
     // get the sending user from normalized serverMembers
     let user = serverMembers[message.userId];
 
+    // get the session user
+    let sessionUser = useSelector(state => state.session.user);
+    let sessionUserId
+    if (sessionUser) {
+        sessionUserId = sessionuser.id
+    }
+
+
     // convert timestamp to a Date object to an ISO string, slice to get the date
     let messageTimestampDate = new Date(message.timestamp).toISOString().slice(0, 10);
     let messageTimestampTime = new Date(message.timestamp).toISOString().slice(11, 16);
@@ -33,26 +41,30 @@ function MessageItem({ message }) {
 
     let reactionsArr = Object.values(message.reactions);
 
-    let [messageId, userId] = [message.id, user.id]
-    let props = {messageId, userId}
+    let messageId = message.id;
+    let props = {messageId, sessionUserId}
     let emojiId
 
     // if a reaction is not yours you can click on a reaction to add one
-    const addReaction = async (userId, messageId, emojiId ) => {
-        let addedReaction = await dispatch(createReactionThunk(userId, messageId, emojiId))
+    const addReaction = async (sessionUserId, messageId, emojiId ) => {
+        // console.log('#TRACKADD add reaction running')
+        let addedReaction = await dispatch(createReactionThunk(sessionUserId, messageId, emojiId))
+        // console.log('#TRACKADDuserId from add reaction function in messageItem', userId)
+
         return addedReaction
     }
 
     // if a reaction is yours, you can click on a reaction and delete it
     const deleteReaction = async (reactionId, messageId) => {
         let deleted_reaction = await dispatch(deleteReactionThunk(reactionId, messageId))
+        // console.log('#TRACKDELETE delete reaction running');
         return deleted_reaction
     }
 
 
     // if the reaction with that emoji already exists, and it's not yours, only increase the count and highlight
-    // let emojisCount = {}
 
+    // let emojisCount = {}
     // reactionsArr.map((reaction) => {
     //     if (emojisCount[reaction.emojiURL] === undefined ) {
     //         emojisCount[reaction.emojiURL] = 1
