@@ -8,7 +8,7 @@ import { io } from 'socket.io-client';
 
 import "./GetAllEmojis.css"
 
-export default function GetAllEmojis({props: {messageId, userId}}) {
+export default function GetAllEmojis({props: {messageId, sessionUserId}}) {
 
   const dispatch = useDispatch()
 
@@ -44,25 +44,28 @@ export default function GetAllEmojis({props: {messageId, userId}}) {
 //     })
 // }, []);
 
-  const createReaction = async (emojiId, messageId, userId) => {
-    let new_reaction = await dispatch(createReactionThunk(emojiId, messageId, userId))
+  const createReaction = async (emojiId, messageId, sessionUserId) => {
+    let new_reaction = await dispatch(createReactionThunk(emojiId, messageId, sessionUserId))
+    console.log("#TRACKTHIS create reaction running")
     // socket.emit("chat", new_reaction);
     return (new_reaction)
     }
 
 
   return (
+    <div className='emojis-modal-container-container'>
     <div className='emoji-modal-container'>
       {allEmojisArr.map(emoji => {
         return (
         <div className='emoji-modal-emoji'
         value={emoji.id}
-        onClick={() => {createReaction(emoji.id, messageId, userId)}}
+        onClick={() => {createReaction(emoji.id, messageId, sessionUserId)}}
         >
           {String.fromCodePoint(emoji.url)}
           </div>
           )
       })}
+    </div>
     </div>
   )
 }

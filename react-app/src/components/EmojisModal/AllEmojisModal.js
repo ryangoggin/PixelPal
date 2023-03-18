@@ -45,13 +45,14 @@ export default function EmojisModal({props}) {
           <i className="fa-solid fa-plus open-emojis-modal-button"
           onClick={openMenu}/>
         </div>
-        <div className='tooltip-content'> Add Reaction </div>
+          <div className='tooltip-content'> Add Reaction </div>
       </div>
-      <ul className={ulClassName} ref={ulRef}>
-          <div className='emojismodal-menu-allemojis'>
+
+      <div className={ulClassName} ref={ulRef}>
+          <ul className='emojismodal-menu-allemojis'>
             <GetAllEmojis props={props}/>
-          </div>
-      </ul>
+          </ul>
+      </div>
       </div>
 
   )

@@ -28,7 +28,7 @@
   flex-wrap: wrap;
   justify-content: center;
   border-radius: 9px; /* why is the rounded corners white? */
-  position: relative;
+  position: fixed;
   right: 100px;
 }
 
@@ -84,7 +84,7 @@
   text-align: center;
   position: relative;
   height: auto;
-  bottom: 30px;
+  /* bottom: 30px; */
 
 }
 
@@ -98,42 +98,53 @@
 }
 
 
-.fa-solid:hover {
+.addreaction-container .fa-solid:hover {
   color: rgb(238,239,242);
 }
 
-.fa-face-smile-beam,
-.fa-plus {
+.addreaction-container > .fa-face-smile-beam,
+.addreaction-container > .fa-plus {
   color:  rgb(238,239,242);
-
 }
 
-.fa-face-smile-beam {
+.addreaction-container > .fa-face-smile-beam {
   font-size: 20px;
   padding-top: 5px;
 }
 
-.fa-plus {
+.addreaction-container > .fa-plus {
   font-size: 10px;
 }
 
 .addreaction-container {
   cursor: pointer;
-  right: 60px;
+  right: 50px;
   position: absolute;
-  padding-left: 5px;
-  padding-top: 5px;
   width: 50px;
 }
 
 .addreaction-container:hover,
 .addreaction-container:active,
-.addreaction-container:focus {
+.addreaction-container:focus,
+.addreaction-container:visited {
   background-color: rgb(43,45,49);
+  right: 50px;
   position: absolute;
-  width: 60px;
-  padding: 5px;
+  /* margin-top: 10px;
+  padding-left: 5px;
+  padding-top: 5px;
+  width: 50px; */
+  margin-top: 15px;
   border-radius: 10px;
+  /* margin-bottom: 10px; */
   /* padding-left: 5px;
   padding-top: 5px; */
+}
+
+.emojis-modal-container-container {
+  display: block;
+  position: static;
+  right: 0px;
+  top: 20px;
+  /* top: 200px; */
 }
