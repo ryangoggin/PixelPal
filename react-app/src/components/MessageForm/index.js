@@ -27,16 +27,7 @@ function MessageForm() {
         // create websocket
         const socket = io();
 
-        // socket.on('subscribe', function(channel) {
-        //     try{
-        //       console.log('[socket]','join channel :', channel)
-        //       socket.join(channel);
-        //       socket.to(channel).emit('user joined', socket.id);
-        //     }catch(e){
-        //       console.log('[error]','join channel :',e);
-        //       socket.emit('error','couldnt perform requested action');
-        //     }
-        // })
+        socket.emit('join', { channel_id: channelId, username: user.username })
 
         socket.on("chat", (chat) => {
             setMessages(messages => [...messages, chat])
