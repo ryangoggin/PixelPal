@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createReactionThunk, deleteReactionThunk } from '../../store/message';
 import { useParams } from 'react-router-dom';
@@ -10,54 +10,89 @@ function MessageItem({ message }) {
 
     const dispatch = useDispatch()
 
-    let allServers = useSelector(state => state.server.allUserServers);
-    let sessionUser = useSelector(state => state.session.user);
-    let sessionUserId
+    // select data from the Redux store
+    const allServers = useSelector((state) => state.server.allUserServers);
+    const sessionUser = useSelector((state) => state.session.user);
+    const { serverId } = useParams();
 
-    let { serverId } = useParams();
+    /*
+    useMemo is a hook provided by React that helps to optimize the performance
+    of functional components by memoizing the result of a computation.
+    In general, useMemo accepts two arguments: a function that performs the computation,
+    and an array of dependencies. The hook returns the result of the computation,
+    which will be memoized and only re-computed when any of the dependencies change.
+    */
 
-    let serverMembersArr;
 
-    if (!allServers) return null;
-    serverMembersArr = allServers[serverId]["members"];
+    // memoize the server members array to prevent unnecessary recomputations
+    const serverMembersArr = useMemo(() => {
+        if (!allServers) return [];
+        const currentServer = allServers[serverId];
+
+        if (!currentServer) return [];
+
+        const { members } = currentServer;
+
+        return members || [];
+    }, [allServers, serverId]);
 
     // normalize serverMembers to allow for keying to get sending user
-    let serverMembers = {};
-    serverMembersArr.forEach(member => {
-        serverMembers[member.id] = member;
-    });
+    const serverMembers = useMemo(() => {
+        const normalized = {};
+        for (const member of serverMembersArr) {
+        normalized[member.id] = member;
+        }
+        return normalized;
+    }, [serverMembersArr]);
 
-    // get the sending user from normalized serverMembers
-    let user = serverMembers[message.userId];
+    // memoize the user object to prevent unnecessary recomputations
+    const user = useMemo(() => serverMembers[message.userId], [
+        message.userId,
+        serverMembers,
+    ]);
 
-    // convert timestamp to a Date object to an ISO string, slice to get the date
-    let messageTimestampDate = new Date(message.timestamp).toISOString().slice(0, 10);
-    let messageTimestampTime = new Date(message.timestamp).toISOString().slice(11, 16);
-    let messageTimestamp = `${messageTimestampDate} ${messageTimestampTime}`;
 
-    let reactionsArr = Object.values(message.reactions);
+    // memoize the message timestamp string to prevent unnecessary recomputations
+    const messageTimestamp = useMemo(() => {
+        const date = new Date(message.timestamp);
+        return `${date.toDateString()} ${date.toLocaleTimeString()}`;
+    }, [message.timestamp]);
 
-    if (!sessionUser) return null
-    else sessionUserId = sessionUser.id
+    // memoize the reactions array to prevent unnecessary recomputations
+    const reactionsArr = useMemo(
+        () => Object.values(message.reactions),
+        [message.reactions]
+    );
+
+
+    // memoize the session user ID to prevent unnecessary recomputations
+    const sessionUserId = sessionUser?.id;
+
 
     let messageId = message.id;
     let props = {messageId, sessionUserId}
 
-    // if a reaction is not yours you can click on a reaction to add one
-    const addReaction = async (sessionUserId, messageId, emojiId ) => {
-        // console.log('#TRACKADD add reaction running')
-        let addedReaction = await dispatch(createReactionThunk(sessionUserId, messageId, emojiId))
-        // console.log('#TRACKADDuserId from add reaction function in messageItem', userId)
+    // memoize the addReaction and deleteReaction functions to prevent unnecessary re-renders of child components
+    const addReaction = useCallback(
+        async (emojiId) => {
+        const addedReaction = await dispatch(
+            createReactionThunk(sessionUserId, message.id, emojiId)
+        );
+        return addedReaction;
+        },
+        [dispatch, sessionUserId, message.id]
+    );
 
-        return addedReaction
-    }
 
-    // if a reaction is yours, you can click on a reaction and delete it
-    const deleteReaction = async (reactionId, messageId) => {
-        let deleted_reaction = await dispatch(deleteReactionThunk(reactionId, messageId))
-        // console.log('#TRACKDELETE delete reaction running');
-        return deleted_reaction
-    }
+    const deleteReaction = useCallback(
+        async (reactionId) => {
+          const deleted_reaction = await dispatch(
+            deleteReactionThunk(reactionId, message.id)
+          );
+          return deleted_reaction;
+        },
+        [dispatch, message.id]
+      );
 
 
     return (
