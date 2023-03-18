@@ -11,9 +11,13 @@ function MessageItem({ message }) {
     const dispatch = useDispatch()
 
     let allServers = useSelector(state => state.server.allUserServers);
+    let sessionUser = useSelector(state => state.session.user);
+    let sessionUserId
+
     let { serverId } = useParams();
 
     let serverMembersArr;
+
     if (!allServers) return null;
     serverMembersArr = allServers[serverId]["members"];
 
@@ -26,12 +30,7 @@ function MessageItem({ message }) {
     // get the sending user from normalized serverMembers
     let user = serverMembers[message.userId];
 
-    // get the session user
-    let sessionUser = useSelector(state => state.session.user);
-    let sessionUserId
-    if (sessionUser) {
-        sessionUserId = sessionuser.id
-    }
+
 
 
     // convert timestamp to a Date object to an ISO string, slice to get the date
@@ -40,6 +39,9 @@ function MessageItem({ message }) {
     let messageTimestamp = `${messageTimestampDate} ${messageTimestampTime}`;
 
     let reactionsArr = Object.values(message.reactions);
+
+    if (!sessionUser) return null
+    else sessionUserId = sessionUser.id
 
     let messageId = message.id;
     let props = {messageId, sessionUserId}
@@ -99,9 +101,9 @@ function MessageItem({ message }) {
                     return (
                         <div>
                             <div
-                            className= {reaction.userId === user.id ? 'user-emoji-reaction' : 'other-user-reaction'}
+                            className= {+reaction.userId === +sessionUserId ? 'user-emoji-reaction' : 'other-user-reaction'}
                             key={`reaction${reaction.id}`}
-                            onClick={reaction.userId === user.id ? () => {deleteReaction(reaction.id, messageId)} : () => {addReaction(reaction.emojiId, messageId, userId)}}
+                            onClick={+reaction.userId === +sessionUserId ? () => {deleteReaction(reaction.id, messageId)} : () => {addReaction(reaction.emojiId, messageId, sessionUserId)}}
                             >
                                 <p className='emojis-emojichar'> {String.fromCodePoint(reaction.emojiURL)}</p>
                                 <p className='emojis-count'> 1 </p>
