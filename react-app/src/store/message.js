@@ -81,16 +81,21 @@ export const createReactionThunk = (emoji, messageId, userId ) => async dispatch
       body: JSON.stringify({'emojiId':emoji, 'messageId':messageId, 'userId':userId})
     })
 
+    console.log("#TRACKTHIS create reaction thunk running")
+    console.log("#TRACKTHIS emoji messageId and userId", emoji, messageId, userId)
+
     if (response.ok) {
       const newReaction = await response.json();
 
       const emoji = await fetch(`/api/emojis/${newReaction.emojiId}`)
       if (emoji.ok) {
         const emojiJSON = await emoji.json()
+        console.log("TRACKTHIS emoji json?", emojiJSON)
         newReaction['emojiURL'] = emojiJSON.url
       }
 
       dispatch(createReaction(newReaction))
+      console.log("TRACKTHIS new reaction created", newReaction)
       return newReaction
     }
 
