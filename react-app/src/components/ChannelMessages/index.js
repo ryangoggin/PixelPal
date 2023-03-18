@@ -23,17 +23,15 @@ function ChannelMessages({ formMessages }) {
 
     // memoize the array of all messages to prevent unnecessary re-renders
     const allMessagesArr = useMemo(() => {
-        if (allMessages) {
-        return Object.values(allMessages);
-        }
+        if (allMessages) return Object.values(allMessages);
+
         return [];
     }, [allMessages]);
 
     // memoize the array of form messages to prevent unnecessary re-renders
     const formMessagesArr = useMemo(() => {
-        if (formMessages) {
-        return formMessages.filter((message) => message.userId !== currUser.id);
-        }
+        if (formMessages) return formMessages.filter((message) => message.userId !== currUser.id);
+
         return [];
     }, [formMessages, currUser]);
 
