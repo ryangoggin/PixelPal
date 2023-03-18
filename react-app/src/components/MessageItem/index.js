@@ -92,8 +92,9 @@ function MessageItem({ message }) {
           return deleted_reaction;
         },
         [dispatch, message.id]
-      );
+    );
 
+    if (!user) return null
 
     return (
         <div className='message-item'>

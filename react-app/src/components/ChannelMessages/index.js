@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import MessageItem from "../MessageItem";
@@ -6,6 +6,7 @@ import { getChannelMessages } from "../../store/message";
 import "./ChannelMessages.css";
 
 function ChannelMessages({ formMessages }) {
+    // select data from the Redux store
     const currUser = useSelector(state => state.session.user)
     const channel = useSelector(state => state.channels.oneChannel)
     const allMessages = useSelector(state => state.messages);
@@ -14,31 +15,29 @@ function ChannelMessages({ formMessages }) {
     const dispatch = useDispatch();
 
     //populate store with channelMessages on render and when channel.id changes
+    //trying to remove allMessages from dependency array (ADD BACK IN IF NEEDED)
     useEffect(() => {
-        if (channelId) {
-            dispatch(getChannelMessages(channelId));
-        } else {
-            return null;
+        dispatch(getChannelMessages(channelId));
+    }, [dispatch, channelId, formMessages]);
+
+
+    // memoize the array of all messages to prevent unnecessary re-renders
+    const allMessagesArr = useMemo(() => {
+        if (allMessages) {
+        return Object.values(allMessages);
         }
-    }, [dispatch, channelId, allMessages]);
+        return [];
+    }, [allMessages]);
 
-    // return null if can't get channel until next render
-    if (!channel) return null
+    // memoize the array of form messages to prevent unnecessary re-renders
+    const formMessagesArr = useMemo(() => {
+        if (formMessages) {
+        return formMessages.filter((message) => message.userId !== currUser.id);
+        }
+        return [];
+    }, [formMessages, currUser]);
 
-    // allMessages starts as null, use conditional to avoid putting undefined in Object.values
-    let allMessagesArr;
-    if (allMessages !== null) {
-        allMessagesArr = Object.values(allMessages);
-    }
 
-    if (!allMessagesArr) {
-        return null;
-    }
-
-    formMessages = formMessages.filter(message => message.userId !== currUser.id);
-
-    // console.log("formMessages: ", formMessages);
-    // console.log("allMessagesArr: ", allMessagesArr);
 
     return (
         <div className='channel-messages-container'>
