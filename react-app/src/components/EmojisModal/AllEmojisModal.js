@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect  } from "react";
 import OpenModalMenuItem from './OpenModalMenuItem';
 import GetAllEmojis from "./index";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 
 import '../EmojisModal/GetAllEmojis.css'
 
@@ -10,9 +10,6 @@ import '../EmojisModal/GetAllEmojis.css'
 export default function EmojisModal({props}) {
 
   const ulRef = useRef()
-  const dispatch = useDispatch()
-
-
   const [showMenu, setShowMenu] = useState(false);
 
 
@@ -21,15 +18,11 @@ export default function EmojisModal({props}) {
     setShowMenu(true);
   };
 
-  const closeMenu = () => setShowMenu(false);
-
   useEffect(() => {
     if (!showMenu) return;
 
     const closeMenu = (e) => {
       setShowMenu(false);
-      // if (!ulRef.current.contains(e.target)) {
-      // }
     };
 
     document.addEventListener('click', closeMenu);
