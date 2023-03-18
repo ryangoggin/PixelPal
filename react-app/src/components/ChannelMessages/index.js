@@ -14,12 +14,8 @@ function ChannelMessages({ formMessages }) {
 
     const dispatch = useDispatch();
 
-<<<<<<< HEAD
-    //populate store with channelMessages on render and when channel.id/allMessages changes
-=======
     //populate store with channelMessages on render and when channel.id changes
     //trying to remove allMessages from dependency array (ADD BACK IN IF NEEDED)
->>>>>>> dev
     useEffect(() => {
         dispatch(getChannelMessages(channelId));
     }, [dispatch, channelId, allMessages]);
