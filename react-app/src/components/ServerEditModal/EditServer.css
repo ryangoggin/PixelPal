@@ -100,6 +100,10 @@
     cursor: pointer;
 }
 
+.edit-server-form-button:hover {
+    background-color: #6772ed;
+}
+
 .disabled-btn {
     background-color: gray;
     height: 45px;

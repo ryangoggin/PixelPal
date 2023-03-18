@@ -30,13 +30,23 @@
     border-radius: 5px;
 }
 
-.create-server-modal {
+.delete-server-modal {
     display: flex;
     flex-direction: column;
+    background-color: #25262b;
+    max-width: 400px;
+    max-height: 300px;
+    border: 1px black solid;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 40px;
+    padding-bottom: 90px;
+    border-radius: 10px;
 }
 
-.create-server-header {
+.delete-server-header {
     font-family: 'PixelPal';
+    color: whitesmoke;
     font-size: 20px;
     font-weight: 900;
     text-align: center;
@@ -44,7 +54,7 @@
     margin-bottom: 0px;
 }
 
-.create-server-para {
+.delete-server-para {
     font-family: 'PixelPal';
     font-size: 15px;
     color: gray;
@@ -84,6 +94,52 @@
     color: whitesmoke;
     font-weight: bolder;
     cursor: pointer;
+}
+
+.delete-form-cancel {
+    color: whitesmoke;
+    font-family: 'PixelPal';
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.delete-form-delete {
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    background-color: #c84040;
+    font-family: 'PixelPal';
+    color: whitesmoke;
+    font-weight: bolder;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+}
+
+
+.delete-form-cancel:hover {
+    text-decoration: underline;
+    color: white;
+}
+
+
+
+.delete-server-form-button {
+    height: 45px;
+    width: 100%;
+    background-color: #5865F2;
+    border: none;
+    border-radius: 3px;
+    font-family: 'PixelPal';
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: whitesmoke;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.delete-server-form-button:hover {
+    background-color: #6772ed;
 }
 
 #name,
