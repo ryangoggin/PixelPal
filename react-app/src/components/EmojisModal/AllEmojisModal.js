@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect  } from "react";
-import OpenModalMenuItem from './OpenModalMenuItem';
 import GetAllEmojis from "./index";
 // import { useDispatch } from "react-redux";
 

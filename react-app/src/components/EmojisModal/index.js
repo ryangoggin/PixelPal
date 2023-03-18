@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux'
-import { useModal } from "../../context/Modal";
 import { getAllEmojisThunk  } from "../../store/emojis";
 import { createReactionThunk } from "../../store/message";
-import { io } from 'socket.io-client';
+
 
 
 import "./GetAllEmojis.css"
