@@ -33,20 +33,16 @@ function ServerDeleteModal({ server }) {
 	}
 
 	return (
-		<div>
-			<div>
-				<h1 >Delete '{server.name}'</h1>
-			</div>
-			<div>
-				<p>Are you sure you want to delete {server.name}? This action cannot be undone.</p>
-			</div>
-			<div>
-				<span>
-					<button onClick={handleDelete}>Yes</button>
-				</span>
-				<span>
-					<button onClick={handleNo}>No</button>
-				</span>
+		<div className='delete-server-modal'>
+			<div className='delete-server-modal-content'>
+				<form>
+					<h1 className='delete-server-header'>Delete '{server.name}'</h1>
+					<p className='delete-server-para'>Are you sure you want to delete {server.name}? This action cannot be undone.</p>
+					<div>
+						<span><button type="button" onClick={handleDelete} className="delete-server-form-button">Delete Channel</button></span>
+						<span onClick={closeModal} className="delete-form-cancel">Cancel</span>
+					</div>
+				</form>
 			</div>
 		</div>
 	)
