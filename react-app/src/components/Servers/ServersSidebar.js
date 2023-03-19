@@ -56,7 +56,6 @@ const ServersSidebar = () => {
       }
     </>
     // return a ul of mapping each server to a sidebar item
-
   )
 }
 
