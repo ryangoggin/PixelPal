@@ -68,7 +68,7 @@ function ChannelSideBar() {
               <div className='server-setting-dropdown'>
                 <div id="server-dropdown" className={serverSettingClassName}>
                   <div>
-                    <OpenModalButton buttonText='Edit Server' modalComponent={<ServerEditModal server={currServer} />} />
+                    <OpenModalButton buttonText='Edit Server' modalComponent={<ServerEditModal server={currServer} serverId={serverId} />} />
                   </div>
                   <div>
                     <OpenModalButton buttonText='Delete Server' modalComponent={<ServerDeleteModal server={currServer} />} />
