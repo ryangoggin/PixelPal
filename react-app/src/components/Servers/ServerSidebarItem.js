@@ -20,7 +20,7 @@ const ServersSidebarItem = ({ server }) => {
     }
 
     return (
-        // each item will redirect to channel component 
+        // each item will redirect to channel component
         <div className={className}>
             {hasImage ?
                 <img src={server.server_picture} alt='preview'></img> :
