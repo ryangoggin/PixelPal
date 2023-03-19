@@ -41,14 +41,23 @@ function ChannelSideBar() {
   return (
     <div className='channel-sidebar'>
       {currServer && (
-        <div className='server-name-container'>
-          <span className='server-name-text'>{currServer.name}</span>
-        </div>
+        <>
+          <div className='server-name-container'>
+            <span className='server-name-text'>{currServer.name}</span>
+            <span type='button' className='server-setting-btn' onClick={() => window.alert('hello')}><i class="fa-solid fa-gear"></i></span>
+            <>
+              {/* <div className='server-setting-dropdown'>
+                <div id="server-dropdown" class="server-dropdown-content">
+                  <OpenModalButton buttonText='Edit Server' modalComponent={<ServerEditModal server={currServer} />} />
+                  <OpenModalButton buttonText='Delete Server' modalComponent={<ServerDeleteModal server={currServer} />} />
+                </div>
+              </div> */}
+
+            </>
+          </div>
+
+        </>
       )}
-      <div>
-        <OpenModalButton buttonText='Edit Server' modalComponent={<ServerEditModal server={currServer} />} />
-        <OpenModalButton buttonText='Delete Server' modalComponent={<ServerDeleteModal server={currServer} />} />
-      </div>
       <div className='text-channels-container'>
         <span className='text-channels'>TEXT CHANNELS</span>
         <div className='modal-new-channel'>
