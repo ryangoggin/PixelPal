@@ -34,7 +34,13 @@ const deleteReaction = (reactionId, messageId) => ({
 
 // thunk action creators:
 export const getChannelMessages = (channelId) => async (dispatch) => {
-  const resMessages = await fetch(`/api/channels/${channelId}/messages`);
+
+  let resMessages;
+  try {
+    resMessages = await fetch(`/api/channels/${channelId}/messages`);
+  } catch(error) {
+    console.error('Failed to fetch channel messages', error)
+  }
 
   if (resMessages.ok) {
     // Parse the JSON response to get all messages with their reactions
