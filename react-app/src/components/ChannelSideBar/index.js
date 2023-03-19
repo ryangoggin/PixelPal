@@ -21,7 +21,6 @@ function ChannelSideBar() {
   let allChannels = useSelector(state => state.channels.currServerChannels);
   let currChannel = useSelector(state => state.channels.oneChannel);
   let currServer = useSelector(state => state.server.currentServer);
-  console.log('1', currServer)
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
@@ -30,13 +29,28 @@ function ChannelSideBar() {
     dispatch(getServer(serverId));
   }, [dispatch, serverId, channelId])
 
-  console.log('2', currServer)
-
   if (!allChannels) allChannels = [];
   else allChannels = Object.values(allChannels);
 
   if (!currChannel) return null;
   if (!currServer) return null;
+
+  const handleClick = () => {
+    document.getElementById("server-dropdown").classList.add('visible')
+  }
+
+  window.onclick = function (event) {
+    console.log(event);
+
+    if (!event.target.matches('.server-btn')) {
+      var dropdown = document.getElementById("server-dropdown");
+
+      if (dropdown.classList.contains('visible')) {
+        dropdown.classList.remove('visible');
+      }
+    }
+  }
+
 
   return (
     <div className='channel-sidebar'>
@@ -44,14 +58,18 @@ function ChannelSideBar() {
         <>
           <div className='server-name-container'>
             <span className='server-name-text'>{currServer.name}</span>
-            <span type='button' className='server-setting-btn' onClick={() => window.alert('hello')}><i class="fa-solid fa-gear"></i></span>
+            <span type='button' className='server-setting-btn' onClick={handleClick}><i class="fa-solid fa-gear server-btn"></i></span>
             <>
-              {/* <div className='server-setting-dropdown'>
+              <div className='server-setting-dropdown'>
                 <div id="server-dropdown" class="server-dropdown-content">
-                  <OpenModalButton buttonText='Edit Server' modalComponent={<ServerEditModal server={currServer} />} />
-                  <OpenModalButton buttonText='Delete Server' modalComponent={<ServerDeleteModal server={currServer} />} />
+                  <div>
+                    <OpenModalButton buttonText='Edit Server' modalComponent={<ServerEditModal server={currServer} />} />
+                  </div>
+                  <div>
+                    <OpenModalButton buttonText='Delete Server' modalComponent={<ServerDeleteModal server={currServer} />} />
+                  </div>
                 </div>
-              </div> */}
+              </div>
 
             </>
           </div>
