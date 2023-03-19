@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getServerChannels, getChannelDetails } from '../../store/channels';
@@ -14,9 +14,10 @@ import './channels.css';
 
 
 function ChannelSideBar() {
-
+  const serverSetting = useRef();
   const dispatch = useDispatch();
   const { serverId, channelId } = useParams();
+  const [showMenu, setShowMenu] = useState(false);
 
   let allChannels = useSelector(state => state.channels.currServerChannels);
   let currChannel = useSelector(state => state.channels.oneChannel);
@@ -28,27 +29,53 @@ function ChannelSideBar() {
     dispatch(getServer(serverId));
   }, [dispatch, serverId, channelId])
 
+
+  useEffect(() => {
+    if (!showMenu) return;
+
+    const closeMenu = (e) => {
+      if (!serverSetting.current.contains(e.target)) {
+        setShowMenu(false);
+      }
+    };
+
+    document.addEventListener('click', closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu]);
+
   if (!allChannels) allChannels = [];
   else allChannels = Object.values(allChannels);
 
   if (!currChannel) return null;
   if (!currServer) return null;
 
-  const handleClick = () => {
-    document.getElementById("server-dropdown").classList.add('visible')
+  let serverSettingClassName;
+  if (showMenu) {
+    serverSettingClassName = "server-dropdown-content"
+  } else {
+    serverSettingClassName = 'hidden'
   }
 
-  window.onclick = function (event) {
-    console.log(event);
 
-    if (!event.target.matches('.server-btn')) {
-      var dropdown = document.getElementById("server-dropdown");
 
-      if (dropdown.classList.contains('visible')) {
-        dropdown.classList.remove('visible');
-      }
-    }
-  }
+  // const handleClick = () => {
+  //   document.getElementById("server-dropdown").classList.add('visible')
+  // }
+
+  // window.onclick = function (event) {
+  //   console.log(event);
+
+  //   if (!event.target.matches('.server-btn')) {
+  //     var dropdown = document.getElementById("server-dropdown");
+
+  //     if (dropdown.classList.contains('visible')) {
+  //       dropdown.classList.remove('visible');
+  //     }
+  //   }
+  // }
+
+
 
 
   return (
@@ -57,10 +84,10 @@ function ChannelSideBar() {
         <>
           <div className='server-name-container'>
             <span className='server-name-text'>{currServer.name}</span>
-            <span type='button' className='server-setting-btn' onClick={handleClick}><i class="fa-solid fa-gear server-btn"></i></span>
+            <span type='button' className='server-setting-btn'><i ref={serverSetting} onClick={() => setShowMenu(!showMenu)} class="fa-solid fa-gear server-btn"></i></span>
             <>
               <div className='server-setting-dropdown'>
-                <div id="server-dropdown" class="server-dropdown-content">
+                <div id="server-dropdown" className={serverSettingClassName}>
                   <div>
                     <OpenModalButton buttonText='Edit Server' modalComponent={<ServerEditModal server={currServer} />} />
                   </div>

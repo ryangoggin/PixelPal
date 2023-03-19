@@ -182,7 +182,7 @@
 }
 
 .server-dropdown-content {
-    display: none;
+    /* display: block; */
     position: absolute;
     background-color: #131416;
     min-width: 140px;
@@ -212,6 +212,6 @@
     color: whitesmoke;
 }
 
-.visible {
-    display: block;
+.hidden {
+    display: none;
 }
