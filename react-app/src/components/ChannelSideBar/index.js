@@ -57,27 +57,6 @@ function ChannelSideBar() {
     serverSettingClassName = 'hidden'
   }
 
-
-
-  // const handleClick = () => {
-  //   document.getElementById("server-dropdown").classList.add('visible')
-  // }
-
-  // window.onclick = function (event) {
-  //   console.log(event);
-
-  //   if (!event.target.matches('.server-btn')) {
-  //     var dropdown = document.getElementById("server-dropdown");
-
-  //     if (dropdown.classList.contains('visible')) {
-  //       dropdown.classList.remove('visible');
-  //     }
-  //   }
-  // }
-
-
-
-
   return (
     <div className='channel-sidebar'>
       {currServer && (
