@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getServerChannels, getChannelDetails } from '../../store/channels';
@@ -21,7 +21,6 @@ function ChannelSideBar() {
   let allChannels = useSelector(state => state.channels.currServerChannels);
   let currChannel = useSelector(state => state.channels.oneChannel);
   let currServer = useSelector(state => state.server.currentServer);
-  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     dispatch(getServerChannels(serverId));
@@ -88,7 +87,7 @@ function ChannelSideBar() {
       {allChannels.map(channel => (
         <div className='channel-mapping'>
           <Link
-            key={`channel${channel.id}`}
+            key={`channel-${channel.id}`}
             to={`/channels/${channel.serverId}/${channel.id}`}
             className={`channel-divs${channel.id === currChannel?.id ? ' selected' : ''} channel-link`}
           >

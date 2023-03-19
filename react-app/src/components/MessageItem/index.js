@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createReactionThunk, deleteReactionThunk } from '../../store/message';
 import { useParams } from 'react-router-dom';
@@ -10,63 +10,91 @@ function MessageItem({ message }) {
 
     const dispatch = useDispatch()
 
-    let allServers = useSelector(state => state.server.allUserServers);
-    let { serverId } = useParams();
+    // select data from the Redux store
+    const allServers = useSelector((state) => state.server.allUserServers);
+    const sessionUser = useSelector((state) => state.session.user);
+    const { serverId } = useParams();
 
-    let serverMembersArr;
-    if (!allServers) return null;
-    serverMembersArr = allServers[serverId]["members"];
+    /*
+    useMemo is a hook provided by React that helps to optimize the performance
+    of functional components by memoizing the result of a computation.
+    In general, useMemo accepts two arguments: a function that performs the computation,
+    and an array of dependencies. The hook returns the result of the computation,
+    which will be memoized and only re-computed when any of the dependencies change.
+    */
+
+
+    // memoize the server members array to prevent unnecessary recomputations
+    const serverMembersArr = useMemo(() => {
+        if (!allServers) return [];
+        const currentServer = allServers[serverId];
+
+        if (!currentServer) return [];
+
+        const { members } = currentServer;
+
+        return members || [];
+    }, [allServers, serverId]);
 
     // normalize serverMembers to allow for keying to get sending user
-    let serverMembers = {};
-    serverMembersArr.forEach(member => {
-        serverMembers[member.id] = member;
-    });
+    const serverMembers = useMemo(() => {
+        const normalized = {};
+        for (const member of serverMembersArr) {
+        normalized[member.id] = member;
+        }
+        return normalized;
+    }, [serverMembersArr]);
 
-    // get the sending user from normalized serverMembers
-    let user = serverMembers[message.userId];
-
-    // convert timestamp to a Date object to an ISO string, slice to get the date
-    let messageTimestampDate = new Date(message.timestamp).toISOString().slice(0, 10);
-    let messageTimestampTime = new Date(message.timestamp).toISOString().slice(11, 16);
-    let messageTimestamp = `${messageTimestampDate} ${messageTimestampTime}`;
-
-    let reactionsArr = Object.values(message.reactions);
-
-    let [messageId, userId] = [message.id, user.id]
-    let props = {messageId, userId}
-    let emojiId
-
-    // if a reaction is not yours you can click on a reaction to add one
-    const addReaction = async (userId, messageId, emojiId ) => {
-        let addedReaction = await dispatch(createReactionThunk(userId, messageId, emojiId))
-        return addedReaction
-    }
-
-    // if a reaction is yours, you can click on a reaction and delete it
-    const deleteReaction = async (reactionId, messageId) => {
-        let deleted_reaction = await dispatch(deleteReactionThunk(reactionId, messageId))
-        return deleted_reaction
-    }
+    // memoize the user object to prevent unnecessary recomputations
+    const user = useMemo(() => serverMembers[message.userId], [
+        message.userId,
+        serverMembers,
+    ]);
 
 
-    // if the reaction with that emoji already exists, and it's not yours, only increase the count and highlight
-    // let emojisCount = {}
+    // memoize the message timestamp string to prevent unnecessary recomputations
+    const messageTimestamp = useMemo(() => {
+        const date = new Date(message.timestamp);
+        return `${date.toDateString()} ${date.toLocaleTimeString()}`;
+    }, [message.timestamp]);
 
-    // reactionsArr.map((reaction) => {
-    //     if (emojisCount[reaction.emojiURL] === undefined ) {
-    //         emojisCount[reaction.emojiURL] = 1
-    //     }
-    //     else {
-    //         emojisCount[reaction.emojiURL] += 1
-    //         // emojisCount[reaction.emojiURL]['users'].push(reaction.userId)
-    //     }
+    // memoize the reactions array to prevent unnecessary recomputations
+    const reactionsArr = useMemo(
+        () => Object.values(message.reactions),
+        [message.reactions]
+    );
 
-    // })
 
-    // console.log('emojiscount arr', emojisCount)
+    // memoize the session user ID to prevent unnecessary recomputations
+    const sessionUserId = sessionUser?.id;
 
-    // reactionsArr.map((reaction) => console.log(userId === reaction.userId))
+
+    let messageId = message.id;
+    let props = {messageId, sessionUserId}
+
+    // memoize the addReaction and deleteReaction functions to prevent unnecessary re-renders of child components
+    const addReaction = useCallback(
+        async (emojiId) => {
+        const addedReaction = await dispatch(
+            createReactionThunk(sessionUserId, message.id, emojiId)
+        );
+        return addedReaction;
+        },
+        [dispatch, sessionUserId, message.id]
+    );
+
+
+    const deleteReaction = useCallback(
+        async (reactionId) => {
+          const deleted_reaction = await dispatch(
+            deleteReactionThunk(reactionId, message.id)
+          );
+          return deleted_reaction;
+        },
+        [dispatch, message.id]
+    );
+
+    if (!user) return null
 
     return (
         <div className='message-item'>
@@ -87,9 +115,9 @@ function MessageItem({ message }) {
                     return (
                         <div>
                             <div
-                            className= {reaction.userId === user.id ? 'user-emoji-reaction' : 'other-user-reaction'}
+                            className= {+reaction.userId === +sessionUserId ? 'user-emoji-reaction' : 'other-user-reaction'}
                             key={`reaction${reaction.id}`}
-                            onClick={reaction.userId === user.id ? () => {deleteReaction(reaction.id, messageId)} : () => {addReaction(reaction.emojiId, messageId, userId)}}
+                            onClick={+reaction.userId === +sessionUserId ? () => {deleteReaction(reaction.id, messageId)} : () => {addReaction(reaction.emojiId, messageId, sessionUserId)}}
                             >
                                 <p className='emojis-emojichar'> {String.fromCodePoint(reaction.emojiURL)}</p>
                                 <p className='emojis-count'> 1 </p>

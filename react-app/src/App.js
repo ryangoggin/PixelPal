@@ -10,8 +10,6 @@ import ChannelSideBar from "./components/ChannelSideBar";
 import Home from "./components/Home/"
 import FriendsList from './components/FriendsList'
 import MessageForm from "./components/MessageForm";
-import GetAllEmojis from "./components/EmojisModal";
-// import GetAllEmojis from "./components/EmojisModal";
 import ChannelTopBar from "./components/ChannelTopBar";
 import UserMenu from "./components/UserMenu";
 import ServerMembers from "./components/ServerMembers"

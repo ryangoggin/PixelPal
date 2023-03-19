@@ -21,22 +21,24 @@ function MessageForm() {
         dispatch(getChannelDetails(channelId));
       }, [dispatch, serverId, channelId])
 
-    // // will need room functionality tp broadcast to just users in the room (channel), not all users --> add channel to dependency array?
+    // // will need room functionality to broadcast to just users in the room (channel), not all users --> add channel to dependency array?
     useEffect(() => {
         // open socket connection
         // create websocket
         const socket = io();
 
-        socket.emit('join', { channel_id: channelId, username: user.username })
+        if (socket && user) {
+            socket.emit('join', { channel_id: channelId, username: user.username })
 
-        socket.on("chat", (chat) => {
-            setMessages(messages => [...messages, chat])
-        })
+            socket.on("chat", (chat) => {
+                setMessages(messages => [...messages, chat])
+            })
+        }
         // when component unmounts, disconnect
         return (() => {
             socket.disconnect();
         })
-    }, []);
+    }, [channelId, user]);
 
     if (!channel) return null;
 

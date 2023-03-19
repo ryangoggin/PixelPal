@@ -70,6 +70,10 @@
     flex-direction: column;
 }
 
+.text-radio-option.voice {
+    margin-right: 10px;
+}
+
 .radio-button  {
     display: flex;
     flex-direction: row;
@@ -101,12 +105,17 @@
 }
 
 
-.radio-button .fa-hashtag, .radio-button-na .fa-volume-high {
-    margin-right: 10px;
+.radio-button .fa-hashtag {
+    margin-right: 15px;
     font-size: 25px;
     color: #ADB2BA;
-    margin-right: 15px;
-    padding-left: 15px;
+    margin-left: 10px;
+}
+
+.fa-solid.fa-volume-high {
+    font-size: 25px;
+    color: #ADB2BA;
+    margin-left: 10px;
 }
 
 .text-radio-desc {

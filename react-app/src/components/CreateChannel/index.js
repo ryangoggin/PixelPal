@@ -53,7 +53,7 @@ function NewChannel({ serverId }) {
                 <div className="radio-buttons-container">
                     <div className="radio-button-na">
                         <i class="fa-solid fa-volume-high"></i>
-                        <div className="text-radio-option">
+                        <div className="text-radio-option voice">
                             <span className="text-radio">Voice</span>
                             <span className="text-radio-desc">Hang out together with voice, video, and screenshare</span>
                         </div>
