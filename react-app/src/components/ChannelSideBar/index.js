@@ -19,9 +19,12 @@ function ChannelSideBar() {
   const { serverId, channelId } = useParams();
   const [showMenu, setShowMenu] = useState(false);
 
+  const user = useSelector(state => state.session.user);
   let allChannels = useSelector(state => state.channels.currServerChannels);
   let currChannel = useSelector(state => state.channels.oneChannel);
   let currServer = useSelector(state => state.server.currentServer);
+
+  let isServerOwner;
 
   useEffect(() => {
     dispatch(getServerChannels(serverId));
@@ -48,7 +51,12 @@ function ChannelSideBar() {
   else allChannels = Object.values(allChannels);
 
   if (!currChannel) return null;
-  if (!currServer) return null;
+  if (!currServer) {
+    return null;
+  } else {
+    isServerOwner = (user.id === currServer.owner_id);
+  }
+
 
   let serverSettingClassName;
   if (showMenu) {
@@ -63,19 +71,21 @@ function ChannelSideBar() {
         <>
           <div className='server-name-container'>
             <span className='server-name-text'>{currServer.name}</span>
-            <div>
-              <span type='button' className='server-setting-btn'><i ref={serverSetting} onClick={() => setShowMenu(!showMenu)} class="fa-solid fa-gear server-btn"></i></span>
-              <div className='server-setting-dropdown'>
-                <div id="server-dropdown" className={serverSettingClassName}>
-                  <div>
-                    <OpenModalButton buttonText='Edit Server' modalComponent={<ServerEditModal server={currServer} serverId={serverId} />} />
-                  </div>
-                  <div>
-                    <OpenModalButton buttonText='Delete Server' modalComponent={<ServerDeleteModal server={currServer} />} />
+            {isServerOwner && (
+              <div>
+                <span type='button' className='server-setting-btn'><i ref={serverSetting} onClick={() => setShowMenu(!showMenu)} class="fa-solid fa-gear server-btn"></i></span>
+                <div className='server-setting-dropdown'>
+                  <div id="server-dropdown" className={serverSettingClassName}>
+                    <div>
+                      <OpenModalButton buttonText='Edit Server' modalComponent={<ServerEditModal server={currServer} serverId={serverId} />} />
+                    </div>
+                    <div>
+                      <OpenModalButton buttonText='Delete Server' modalComponent={<ServerDeleteModal server={currServer} />} />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </>
       )}
