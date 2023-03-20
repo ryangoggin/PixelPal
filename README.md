@@ -17,9 +17,11 @@ Discordable is a free text chat app that a user can create his/her own servers a
 
 **Home Page**
 * Signup
-![signup](https://user-images.githubusercontent.com/90532956/184512189-3abcfbc2-6dfc-4057-9dfc-54f17f9b6ea1.gif)
 * Login
-![loginAndDemoLogin](https://user-images.githubusercontent.com/90532956/184512190-100ba832-a2cd-4007-8feb-1d24733f2296.gif)
+* Demo Login
+
+**User Menu**
+* Logout
 
 **Servers**
 * Create, Read, Update & Delete Server
