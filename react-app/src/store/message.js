@@ -7,24 +7,24 @@ const DELETE_REACTION = 'emojis/DELETE_REACTION'
 
 // POJO action creators:
 const loadMessages = messages => ({
-    type: LOAD_MESSAGES,
-    messages
+  type: LOAD_MESSAGES,
+  messages
 });
 
 const addMessage = message => ({
-    type: ADD_MESSAGE,
-    message
+  type: ADD_MESSAGE,
+  message
 });
 
 const createReaction = (reaction) => ({
-    type: CREATE_REACTION,
-    reaction
+  type: CREATE_REACTION,
+  reaction
 })
 
 const deleteReaction = (reactionId, messageId) => ({
-    type: DELETE_REACTION,
-    reactionId,
-    messageId
+  type: DELETE_REACTION,
+  reactionId,
+  messageId
 })
 
 // const editMessage = message => ({
@@ -38,7 +38,7 @@ export const getChannelMessages = (channelId) => async (dispatch) => {
   let resMessages;
   try {
     resMessages = await fetch(`/api/channels/${channelId}/messages`);
-  } catch(error) {
+  } catch (error) {
     console.error('Failed to fetch channel messages', error)
   }
 
@@ -91,62 +91,57 @@ export const getChannelMessages = (channelId) => async (dispatch) => {
 
 
 export const createMessage = (message) => async dispatch => {
-    const resMessage = await fetch(`/api/messages`, {
-        method: "POST",
-        headers: { 'Content-Type': 'application/json'},
-        body: JSON.stringify(message)
-    });
+  const resMessage = await fetch(`/api/messages`, {
+    method: "POST",
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(message)
+  });
 
-    if (resMessage.ok) {
-        const message = await resMessage.json();
-        dispatch(addMessage(message));
-        return message;
-    }
+  if (resMessage.ok) {
+    const message = await resMessage.json();
+    dispatch(addMessage(message));
+    return message;
+  }
 };
 
 // export const updateMessage = (message, messageId) => async dispatch => {
 
 // };
 
-export const createReactionThunk = (emoji, messageId, userId ) => async dispatch => {
-    const response = await fetch("/api/emojis", {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({'emojiId':emoji, 'messageId':messageId, 'userId':userId})
-    })
+export const createReactionThunk = (emoji, messageId, userId) => async dispatch => {
+  const response = await fetch("/api/emojis", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ 'emojiId': emoji, 'messageId': messageId, 'userId': userId })
+  })
 
-    console.log("#TRACKTHIS create reaction thunk running")
-    console.log("#TRACKTHIS emoji messageId and userId", emoji, messageId, userId)
+  if (response.ok) {
+    const newReaction = await response.json();
 
-    if (response.ok) {
-      const newReaction = await response.json();
-
-      const emoji = await fetch(`/api/emojis/${newReaction.emojiId}`)
-      if (emoji.ok) {
-        const emojiJSON = await emoji.json()
-        console.log("TRACKTHIS emoji json?", emojiJSON)
-        newReaction['emojiURL'] = emojiJSON.url
-      }
-
-      dispatch(createReaction(newReaction))
-      console.log("TRACKTHIS new reaction created", newReaction)
-      return newReaction
+    const emoji = await fetch(`/api/emojis/${newReaction.emojiId}`)
+    if (emoji.ok) {
+      const emojiJSON = await emoji.json()
+      newReaction['emojiURL'] = emojiJSON.url
     }
 
+    dispatch(createReaction(newReaction))
+    return newReaction
   }
 
+}
 
-  export const deleteReactionThunk = (reactionId, messageId) => async dispatch => {
-    const response = await fetch(`/api/emojis/${reactionId}`, {
-      method: 'DELETE',
-      headers: {'Content-Type': 'application/json'},
-    })
 
-    if (response.ok) {
-      dispatch(deleteReaction(reactionId, messageId))
-      return ('successfully deleted!')
-    }
+export const deleteReactionThunk = (reactionId, messageId) => async dispatch => {
+  const response = await fetch(`/api/emojis/${reactionId}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+  })
+
+  if (response.ok) {
+    dispatch(deleteReaction(reactionId, messageId))
+    return ('successfully deleted!')
   }
+}
 
 
 // initial state for reducer:
@@ -159,27 +154,23 @@ const messageReducer = (state = initialState, action) => {
     case LOAD_MESSAGES:
       const messagesArr = Object.values(action.messages);
       messagesArr.forEach(message => {
-          newState[message.id] = message;
+        newState[message.id] = message;
       });
       return newState;
     case ADD_MESSAGE:
-      newState = {...state};
+      newState = { ...state };
       newState[action.message.id] = action.message;
       return newState;
-    // case EDIT_MESSAGE:
-    //     return {
-
-    //     }
     case CREATE_REACTION:
-      newState = {...state}
+      newState = { ...state }
       newState[action.reaction.messageId].reactions[action.reaction.id] = action.reaction
       return newState
     case DELETE_REACTION:
-      newState = {...state}
+      newState = { ...state }
       delete newState[action.messageId].reactions[action.reactionId]
       return newState
     default:
-        return state;
+      return state;
   }
 }
 

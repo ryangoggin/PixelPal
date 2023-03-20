@@ -191,6 +191,7 @@
     right: 0;
     left: auto;
     border-radius: 5px;
+    margin-top: 5px;
 }
 
 .server-dropdown-content button {

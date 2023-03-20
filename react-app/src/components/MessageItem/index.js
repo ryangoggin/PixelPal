@@ -23,7 +23,6 @@ function MessageItem({ message }) {
     which will be memoized and only re-computed when any of the dependencies change.
     */
 
-
     // memoize the server members array to prevent unnecessary recomputations
     const serverMembersArr = useMemo(() => {
         if (!allServers) return [];
@@ -40,7 +39,7 @@ function MessageItem({ message }) {
     const serverMembers = useMemo(() => {
         const normalized = {};
         for (const member of serverMembersArr) {
-        normalized[member.id] = member;
+            normalized[member.id] = member;
         }
         return normalized;
     }, [serverMembersArr]);
@@ -50,7 +49,6 @@ function MessageItem({ message }) {
         message.userId,
         serverMembers,
     ]);
-
 
     // memoize the message timestamp string to prevent unnecessary recomputations
     const messageTimestamp = useMemo(() => {
@@ -64,35 +62,23 @@ function MessageItem({ message }) {
         [message.reactions]
     );
 
-
     // memoize the session user ID to prevent unnecessary recomputations
     const sessionUserId = sessionUser?.id;
 
-
     let messageId = message.id;
-    let props = {messageId, sessionUserId}
-
-    // memoize the addReaction and deleteReaction functions to prevent unnecessary re-renders of child components
-    const addReaction = useCallback(
-        async (emojiId) => {
-        const addedReaction = await dispatch(
-            createReactionThunk(sessionUserId, message.id, emojiId)
-        );
-        return addedReaction;
-        },
-        [dispatch, sessionUserId, message.id]
-    );
+    let props = { messageId, sessionUserId }
 
 
-    const deleteReaction = useCallback(
-        async (reactionId) => {
-          const deleted_reaction = await dispatch(
-            deleteReactionThunk(reactionId, message.id)
-          );
-          return deleted_reaction;
-        },
-        [dispatch, message.id]
-    );
+    const addReaction = async (sessionUserId, messageId, emojiId ) => {
+        let addedReaction = await dispatch(createReactionThunk(sessionUserId, messageId, emojiId))
+        return addedReaction
+        }
+
+
+    const deleteReaction = async (reactionId, messageId) => {
+        let deleted_reaction = await dispatch(deleteReactionThunk(reactionId, messageId))
+        return deleted_reaction
+    }
 
     if (!user) return null
 
@@ -111,31 +97,29 @@ function MessageItem({ message }) {
                         <p>{message.content}</p>
                     </div>
                     <div className='reactions-container'>
-                    {reactionsArr.map((reaction) => {
-                    return (
-                        <div>
-                            <div
-                            className= {+reaction.userId === +sessionUserId ? 'user-emoji-reaction' : 'other-user-reaction'}
-                            key={`reaction${reaction.id}`}
-                            onClick={+reaction.userId === +sessionUserId ? () => {deleteReaction(reaction.id, messageId)} : () => {addReaction(reaction.emojiId, messageId, sessionUserId)}}
-                            >
-                                <p className='emojis-emojichar'> {String.fromCodePoint(reaction.emojiURL)}</p>
-                                <p className='emojis-count'> 1 </p>
-                            </div>
-                        </div>
-                    );
-                })}
+                        {reactionsArr.map((reaction) => {
+                            return (
+                                <div>
+                                    <div
+                                        className={+reaction.userId === +sessionUserId ? 'user-emoji-reaction' : 'other-user-reaction'}
+                                        key={`reaction${reaction.id}`}
+                                        onClick={+reaction.userId === +sessionUserId ? () => { deleteReaction(reaction.id, messageId) } : () => { addReaction(reaction.emojiId, messageId, sessionUserId) }}
+                                    >
+                                        <p className='emojis-emojichar'> {String.fromCodePoint(reaction.emojiURL)}</p>
+                                        <p className='emojis-count'> 1 </p>
+                                    </div>
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             </div>
             <div className='message-right-side'>
-                <EmojisModal props={props}/>
+                <EmojisModal props={props} />
             </div>
         </div>
     );
 };
-
-
 
 
 export default MessageItem;

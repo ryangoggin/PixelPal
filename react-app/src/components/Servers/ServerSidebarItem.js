@@ -12,7 +12,6 @@ const ServersSidebarItem = ({ server }) => {
     let hasImage = false;
 
     if (server.server_picture === 'image.url' || server.server_picture === '') {
-        // server.server_picture = 'https://i.redd.it/6jupfeilyhx71.jpg'
         className = 'server-sidebar-no-img-icon'
     } else {
         className = 'server-sidebar-icon';

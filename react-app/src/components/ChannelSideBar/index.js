@@ -10,25 +10,24 @@ import NewChannel from '../CreateChannel';
 import UpdateChannel from '../EditChannel';
 import './channels.css';
 
-
-
-
 function ChannelSideBar() {
   const serverSetting = useRef();
   const dispatch = useDispatch();
   const { serverId, channelId } = useParams();
   const [showMenu, setShowMenu] = useState(false);
 
+  const user = useSelector(state => state.session.user);
   let allChannels = useSelector(state => state.channels.currServerChannels);
   let currChannel = useSelector(state => state.channels.oneChannel);
   let currServer = useSelector(state => state.server.currentServer);
+
+  let isServerOwner;
 
   useEffect(() => {
     dispatch(getServerChannels(serverId));
     dispatch(getChannelDetails(channelId));
     dispatch(getServer(serverId));
   }, [dispatch, serverId, channelId])
-
 
   useEffect(() => {
     if (!showMenu) return;
@@ -47,36 +46,14 @@ function ChannelSideBar() {
   if (!allChannels) allChannels = [];
   else allChannels = Object.values(allChannels);
 
+  if (!user) return null;
   if (!currChannel) return null;
   if (!currServer) return null;
+  else isServerOwner = (user.id === currServer.owner_id);
 
   let serverSettingClassName;
-  if (showMenu) {
-    serverSettingClassName = "server-dropdown-content"
-  } else {
-    serverSettingClassName = 'hidden'
-  }
-
-
-
-  // const handleClick = () => {
-  //   document.getElementById("server-dropdown").classList.add('visible')
-  // }
-
-  // window.onclick = function (event) {
-  //   console.log(event);
-
-  //   if (!event.target.matches('.server-btn')) {
-  //     var dropdown = document.getElementById("server-dropdown");
-
-  //     if (dropdown.classList.contains('visible')) {
-  //       dropdown.classList.remove('visible');
-  //     }
-  //   }
-  // }
-
-
-
+  if (showMenu) serverSettingClassName = "server-dropdown-content";
+  else serverSettingClassName = 'hidden';
 
   return (
     <div className='channel-sidebar'>
@@ -84,22 +61,22 @@ function ChannelSideBar() {
         <>
           <div className='server-name-container'>
             <span className='server-name-text'>{currServer.name}</span>
-            <span type='button' className='server-setting-btn'><i ref={serverSetting} onClick={() => setShowMenu(!showMenu)} class="fa-solid fa-gear server-btn"></i></span>
-            <>
-              <div className='server-setting-dropdown'>
-                <div id="server-dropdown" className={serverSettingClassName}>
-                  <div>
-                    <OpenModalButton buttonText='Edit Server' modalComponent={<ServerEditModal server={currServer} />} />
-                  </div>
-                  <div>
-                    <OpenModalButton buttonText='Delete Server' modalComponent={<ServerDeleteModal server={currServer} />} />
+            {isServerOwner && (
+              <div>
+                <span type='button' className='server-setting-btn'><i ref={serverSetting} onClick={() => setShowMenu(!showMenu)} class="fa-solid fa-gear server-btn"></i></span>
+                <div className='server-setting-dropdown'>
+                  <div id="server-dropdown" className={serverSettingClassName}>
+                    <div>
+                      <OpenModalButton buttonText='Edit Server' modalComponent={<ServerEditModal server={currServer} serverId={serverId} />} />
+                    </div>
+                    <div>
+                      <OpenModalButton buttonText='Delete Server' modalComponent={<ServerDeleteModal server={currServer} />} />
+                    </div>
                   </div>
                 </div>
               </div>
-
-            </>
+            )}
           </div>
-
         </>
       )}
       <div className='text-channels-container'>

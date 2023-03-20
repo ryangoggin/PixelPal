@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { editServer, getServers } from "../../store/server";
+import { editServer, getServer, getServers } from "../../store/server";
 import "./EditServer.css";
 
-function ServerEditModal({ server }) {
+function ServerEditModal({ server, serverId }) {
 	const dispatch = useDispatch();
 	const user = useSelector(state => state.session.user);
 
@@ -47,7 +47,7 @@ function ServerEditModal({ server }) {
 			let edittedServer = await dispatch(editServer(server.id, newServer));
 			if (edittedServer) {
 				await dispatch(getServers(user));
-				// history.push(`/channels/${createdServer.id}/${createdServer.channels[0].id}`)
+				await dispatch(getServer(serverId));
 				closeModal();
 			}
 		}
@@ -102,10 +102,7 @@ function ServerEditModal({ server }) {
 						<button
 							disabled={!newServer.name}
 							className={!newServer.name ? "disabled-btn" : "edit-server-form-button"} type="submit">Update Server</button>
-
 						<span onClick={closeModal} className="channel-update-form-cancel">Cancel</span>
-						{/* <button type="submit" className={`channel-update-form-submit${name.length === 0 ? ' cursor-not-allowed' : ''}`} onClick={handleUpdate} disabled={name.length === 0}>Update Channel</button> */}
-
 					</div>
 				</form>
 			</div>
