@@ -10,9 +10,6 @@ import NewChannel from '../CreateChannel';
 import UpdateChannel from '../EditChannel';
 import './channels.css';
 
-
-
-
 function ChannelSideBar() {
   const serverSetting = useRef();
   const dispatch = useDispatch();
@@ -32,7 +29,6 @@ function ChannelSideBar() {
     dispatch(getServer(serverId));
   }, [dispatch, serverId, channelId])
 
-
   useEffect(() => {
     if (!showMenu) return;
 
@@ -50,20 +46,14 @@ function ChannelSideBar() {
   if (!allChannels) allChannels = [];
   else allChannels = Object.values(allChannels);
 
+  if (!user) return null;
   if (!currChannel) return null;
-  if (!currServer) {
-    return null;
-  } else {
-    isServerOwner = (user.id === currServer.owner_id);
-  }
-
+  if (!currServer) return null;
+  else isServerOwner = (user.id === currServer.owner_id);
 
   let serverSettingClassName;
-  if (showMenu) {
-    serverSettingClassName = "server-dropdown-content"
-  } else {
-    serverSettingClassName = 'hidden'
-  }
+  if (showMenu) serverSettingClassName = "server-dropdown-content";
+  else serverSettingClassName = 'hidden';
 
   return (
     <div className='channel-sidebar'>

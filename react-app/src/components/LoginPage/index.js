@@ -4,45 +4,38 @@ import { useSelector, useDispatch } from 'react-redux';
 import './LoginPage.css';
 import { login } from '../../store/session';
 
-
-
 function LoginPage() {
-
 	const sessionUser = useSelector(state => state.session.user);
 	const [errors, setErrors] = useState([]);
 	const [email, setEmail] = useState('');
-  	const [password, setPassword] = useState('');
+	const [password, setPassword] = useState('');
 
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-	  }, [errors]);
-
+	}, [errors]);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-		  await dispatch(login(email, password));
+			await dispatch(login(email, password));
 		} catch (err) {
-		  setErrors([err.message]);
+			setErrors([err.message]);
 		}
-	  };
-
+	};
 
 	const handleDemoLogin = async (e) => {
 		e.preventDefault();
 		await dispatch(login('demo@aa.io', 'password'))
-		  .catch(
-			async (res) => {
-			  const errData = await res.json();
-			  console.log(errData)
-			}
-		  )
-	  };
+			.catch(
+				async (res) => {
+					const errData = await res.json();
+					console.log(errData)
+				}
+			)
+	};
 
 	if (sessionUser) return <Redirect to="/channels/@me" />;
-
-
 
 	return (
 		<>
@@ -58,30 +51,30 @@ function LoginPage() {
 					<form className="login-form" onSubmit={handleSubmit}>
 						<div className="form-group">
 							<label className="form-label" htmlFor="emailOrPhone">
-							EMAIL OR PHONE NUMBER
+								EMAIL OR PHONE NUMBER
 							</label>
 							<br></br>
 							<input
-							className="form-input"
-							type="text"
-							id="emailOrPhone"
-							name="emailOrPhone"
-							required
-							onChange={(e) => setEmail(e.target.value)}
+								className="form-input"
+								type="text"
+								id="emailOrPhone"
+								name="emailOrPhone"
+								required
+								onChange={(e) => setEmail(e.target.value)}
 							/>
 						</div>
 						<div className="form-group">
 							<label className="form-label" htmlFor="password">
-							PASSWORD
+								PASSWORD
 							</label>
 							<br></br>
 							<input
-							className="form-input"
-							type="password"
-							id="password"
-							name="password"
-							required
-							onChange={(e) => setPassword(e.target.value)}
+								className="form-input"
+								type="password"
+								id="password"
+								name="password"
+								required
+								onChange={(e) => setPassword(e.target.value)}
 							/>
 						</div>
 						<button className="login-button" type="submit">Log In</button>

@@ -7,7 +7,7 @@ import "./ChannelMessages.css";
 
 function ChannelMessages({ formMessages }) {
     // select data from the Redux store
-    const currUser = useSelector(state => state.session.user)
+    //const currUser = useSelector(state => state.session.user)
     const channel = useSelector(state => state.channels.oneChannel)
     const allMessages = useSelector(state => state.messages);
     const { channelId } = useParams();
@@ -29,12 +29,11 @@ function ChannelMessages({ formMessages }) {
     }, [allMessages]);
 
     // memoize the array of form messages to prevent unnecessary re-renders
-    const formMessagesArr = useMemo(() => {
-        if (formMessages) return formMessages.filter((message) => message.userId !== currUser.id);
+    // const formMessagesArr = useMemo(() => {
+    //     if (formMessages) return formMessages.filter((message) => message.userId !== currUser.id);
 
-        return [];
-    }, [formMessages, currUser]);
-
+    //     return [];
+    // }, [formMessages, currUser]);
 
 
     return (
@@ -49,14 +48,14 @@ function ChannelMessages({ formMessages }) {
             {allMessagesArr.map((message) => {
                 return (
                     <div key={`message${message.id}`} className='message-item-container'>
-                        <MessageItem message={message}/>
+                        <MessageItem message={message} />
                     </div>
                 );
             })}
             {formMessages.map((message, ind) => {
                 return (
                     <div key={`formMessage${ind}`} className='message-item-container'>
-                        <MessageItem message={message}/>
+                        <MessageItem message={message} />
                     </div>
                 );
             })}
