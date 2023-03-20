@@ -12,7 +12,6 @@ const ServersSidebarItem = ({ server }) => {
     let hasImage = false;
 
     if (server.server_picture === 'image.url' || server.server_picture === '') {
-        // server.server_picture = 'https://i.redd.it/6jupfeilyhx71.jpg'
         className = 'server-sidebar-no-img-icon'
     } else {
         className = 'server-sidebar-icon';
@@ -20,7 +19,7 @@ const ServersSidebarItem = ({ server }) => {
     }
 
     return (
-        // each item will redirect to channel component 
+        // each item will redirect to channel component
         <div className={className}>
             {hasImage ?
                 <img src={server.server_picture} alt='preview'></img> :

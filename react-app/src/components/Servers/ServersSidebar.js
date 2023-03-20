@@ -20,7 +20,6 @@ const ServersSidebar = () => {
   let servers = useSelector(state => state.server.orderedList)
   if (!servers) return null;
   servers = Object.values(servers);
-  // console.log(servers);
 
   return (
     <>
@@ -55,8 +54,6 @@ const ServersSidebar = () => {
       ) : ''
       }
     </>
-    // return a ul of mapping each server to a sidebar item
-
   )
 }
 

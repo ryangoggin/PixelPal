@@ -5,14 +5,14 @@
     font-style: normal;
 }
 
-  @font-face {
+@font-face {
     font-family: 'Discord Thin';
     src: url('../../static/Uni\ Sans\ Thin.otf');
     font-weight: normal;
     font-style: normal;
 }
 
-  @font-face {
+@font-face {
     font-family: 'Discord Bold';
     src: url('../../static/Uni\ Sans\ Heavy.otf');
     font-weight: normal;
@@ -29,6 +29,7 @@
     width: 230px;
     overflow-y: scroll;
 }
+
 .channel-sidebar::-webkit-scrollbar {
     width: 0;
     height: 0;
@@ -46,17 +47,19 @@
 
 
 .server-name-container {
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 15px;
     border-bottom: 1px rgb(35, 35, 35) solid;
-    display: flex;
+    margin-left: 15px;
     align-items: center;
     height: 50px;
+    width: 200px;
 }
 
 .server-name-text {
     font-family: 'PixelPal';
     font-weight: bolder;
-    margin-left: 15px;
     font-size: 18px;
     color: #DEDFE1;
 }
@@ -144,7 +147,7 @@
     align-items: center;
 }
 
-.channel-divs button{
+.channel-divs button {
     font-size: 14px;
     color: #60636B;
     left: 258px;
@@ -158,4 +161,58 @@
     transform: scale(1.2);
     transition: transform 0.2s ease-in-out;
     cursor: pointer;
+}
+
+.server-setting-btn {
+    color: #60636B;
+    padding-left: 56px;
+}
+
+.server-setting-btn:hover {
+    color: #808490;
+    /* transform: scale(1.1);
+    transition: transform 0.2s ease-in-out; */
+    cursor: pointer;
+}
+
+.server-setting-dropdown {
+    position: relative;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.server-dropdown-content {
+    /* display: block; */
+    position: absolute;
+    background-color: #131416;
+    min-width: 140px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    right: 0;
+    left: auto;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.server-dropdown-content button {
+    font-family: 'PixelPal';
+    color: #808490;
+    /* padding: 12px 16px; */
+    text-decoration: none;
+    display: block;
+    border: none;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-size: 14px;
+    background-color: #131416;
+    width: 140px;
+}
+
+.server-dropdown-content button:hover {
+    background-color: #60636B;
+    color: whitesmoke;
+}
+
+.hidden {
+    display: none;
 }

@@ -1,14 +1,8 @@
-import { useState, useRef, useEffect  } from "react";
-import OpenModalMenuItem from './OpenModalMenuItem';
+import { useState, useRef, useEffect } from "react";
 import GetAllEmojis from "./index";
-// import { useDispatch } from "react-redux";
-
 import '../EmojisModal/GetAllEmojis.css'
 
-
-
-export default function EmojisModal({props}) {
-
+export default function EmojisModal({ props }) {
   const ulRef = useRef()
   const [showMenu, setShowMenu] = useState(false);
 
@@ -31,29 +25,24 @@ export default function EmojisModal({props}) {
   }, [showMenu]);
 
 
-
-
-  const ulClassName = 'emojismodal-openmodalmenu' + ( showMenu ? "" : " hidden" )
+  const ulClassName = 'emojismodal-openmodalmenu' + (showMenu ? "" : " hidden")
 
   return (
-
     <div className='emojis-modal-openmodalmenuitem'>
       <div className='tooltip-wrap'>
         <div className='addreaction-container'>
           <i className="fa-solid fa-face-smile-beam open-emojis-modal-button"
-          onClick={openMenu} />
+            onClick={openMenu} />
           <i className="fa-solid fa-plus open-emojis-modal-button"
-          onClick={openMenu}/>
+            onClick={openMenu} />
         </div>
-          <div className='tooltip-content'> Add Reaction </div>
+        <div className='tooltip-content'> Add Reaction </div>
       </div>
-
       <div className={ulClassName} ref={ulRef}>
-          <ul className='emojismodal-menu-allemojis'>
-            <GetAllEmojis props={props}/>
-          </ul>
+        <ul className='emojismodal-menu-allemojis'>
+          <GetAllEmojis props={props} />
+        </ul>
       </div>
-      </div>
-
+    </div>
   )
 }

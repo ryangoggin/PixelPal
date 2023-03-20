@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getServerChannels, getChannelDetails } from '../../store/channels';
@@ -10,19 +10,18 @@ import NewChannel from '../CreateChannel';
 import UpdateChannel from '../EditChannel';
 import './channels.css';
 
-
-
-
 function ChannelSideBar() {
-
+  const serverSetting = useRef();
   const dispatch = useDispatch();
   const { serverId, channelId } = useParams();
+  const [showMenu, setShowMenu] = useState(false);
 
+  const user = useSelector(state => state.session.user);
   let allChannels = useSelector(state => state.channels.currServerChannels);
   let currChannel = useSelector(state => state.channels.oneChannel);
   let currServer = useSelector(state => state.server.currentServer);
-  console.log('1', currServer)
-  const [showModal, setShowModal] = useState(false);
+
+  let isServerOwner;
 
   useEffect(() => {
     dispatch(getServerChannels(serverId));
@@ -30,25 +29,56 @@ function ChannelSideBar() {
     dispatch(getServer(serverId));
   }, [dispatch, serverId, channelId])
 
-  console.log('2', currServer)
+  useEffect(() => {
+    if (!showMenu) return;
+
+    const closeMenu = (e) => {
+      if (!serverSetting.current.contains(e.target)) {
+        setShowMenu(false);
+      }
+    };
+
+    document.addEventListener('click', closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu]);
 
   if (!allChannels) allChannels = [];
   else allChannels = Object.values(allChannels);
 
+  if (!user) return null;
   if (!currChannel) return null;
   if (!currServer) return null;
+  else isServerOwner = (user.id === currServer.owner_id);
+
+  let serverSettingClassName;
+  if (showMenu) serverSettingClassName = "server-dropdown-content";
+  else serverSettingClassName = 'hidden';
 
   return (
     <div className='channel-sidebar'>
       {currServer && (
-        <div className='server-name-container'>
-          <span className='server-name-text'>{currServer.name}</span>
-        </div>
+        <>
+          <div className='server-name-container'>
+            <span className='server-name-text'>{currServer.name}</span>
+            {isServerOwner && (
+              <div>
+                <span type='button' className='server-setting-btn'><i ref={serverSetting} onClick={() => setShowMenu(!showMenu)} class="fa-solid fa-gear server-btn"></i></span>
+                <div className='server-setting-dropdown'>
+                  <div id="server-dropdown" className={serverSettingClassName}>
+                    <div>
+                      <OpenModalButton buttonText='Edit Server' modalComponent={<ServerEditModal server={currServer} serverId={serverId} />} />
+                    </div>
+                    <div>
+                      <OpenModalButton buttonText='Delete Server' modalComponent={<ServerDeleteModal server={currServer} />} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </>
       )}
-      <div>
-        <OpenModalButton buttonText='Edit Server' modalComponent={<ServerEditModal server={currServer} />} />
-        <OpenModalButton buttonText='Delete Server' modalComponent={<ServerDeleteModal server={currServer} />} />
-      </div>
       <div className='text-channels-container'>
         <span className='text-channels'>TEXT CHANNELS</span>
         <div className='modal-new-channel'>
@@ -61,7 +91,7 @@ function ChannelSideBar() {
       {allChannels.map(channel => (
         <div className='channel-mapping'>
           <Link
-            key={`channel${channel.id}`}
+            key={`channel-${channel.id}`}
             to={`/channels/${channel.serverId}/${channel.id}`}
             className={`channel-divs${channel.id === currChannel?.id ? ' selected' : ''} channel-link`}
           >

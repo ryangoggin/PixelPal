@@ -6,16 +6,11 @@ import { authenticate } from "./store/session";
 import LoginPage from "./components/LoginPage";
 import ServersSidebar from "./components/Servers/ServersSidebar";
 import ChannelSideBar from "./components/ChannelSideBar";
-// import TestChannels from "./components/Servers/TestChannels";
 import Home from "./components/Home/"
 import FriendsList from './components/FriendsList'
 import MessageForm from "./components/MessageForm";
-import GetAllEmojis from "./components/EmojisModal";
-// import GetAllEmojis from "./components/EmojisModal";
 import ChannelTopBar from "./components/ChannelTopBar";
 import UserMenu from "./components/UserMenu";
-import ServerMembers from "./components/ServerMembers"
-
 
 function App() {
   const dispatch = useDispatch();
@@ -25,7 +20,6 @@ function App() {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
-  // setIsLoaded(false);
   return (
     <>
       <Switch>
@@ -52,7 +46,6 @@ function App() {
               <ChannelTopBar />
               <MessageForm />
               <UserMenu />
-              <ServerMembers />
             </Route>
           </Switch>
         </>

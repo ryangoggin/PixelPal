@@ -13,18 +13,12 @@ function SignupPage() {
   const [month, setMonth] = useState("");
   const [day, setDay] = useState("");
   const [year, setYear] = useState("");
-  // const [errors, setErrors] = useState([]);
 
   if (sessionUser) return <Redirect to="/channels/@me" />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // custom frontend validations
-
     await dispatch(signUp(username, email, password))
-
-
   };
 
   const generateOptions = (start, end) => {
@@ -90,6 +84,5 @@ function SignupPage() {
     </div>
   );
 }
-
 
 export default SignupPage;
