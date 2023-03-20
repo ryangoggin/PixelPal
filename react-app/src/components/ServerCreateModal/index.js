@@ -8,12 +8,12 @@ import "./ServerCreate.css";
 function ServerCreateModal() {
 	const dispatch = useDispatch();
 	const history = useHistory();
+	const { closeModal } = useModal();
 
 	const [name, setName] = useState("");
 	const [server_picture, setServerPicture] = useState("");
 	const [errors, setErrors] = useState([]);
 	const [formErrors, setFormErrors] = useState({});
-	const { closeModal } = useModal();
 
 	const user = useSelector(state => state.session.user);
 
@@ -109,7 +109,6 @@ function ServerCreateModal() {
 							className={!name ? "disabled-btn" : "edit-server-form-button"} type="submit">Create Server</button>
 						<span onClick={closeModal} className="channel-update-form-cancel">Cancel</span>
 					</div>
-
 				</form>
 			</div >
 		</div >

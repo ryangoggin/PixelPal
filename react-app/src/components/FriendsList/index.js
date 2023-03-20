@@ -53,7 +53,6 @@ export default function FriendsList() {
           <div className='friendslist-all'> All </div>
           <div className='friendslist-all'> Pending </div>
           <div className='friendslist-all'> Blocked </div>
-          {/* <span className='friendslist-addfriend-button'> Add Friend </span> */}
         </div>
         <div className='friendslist-user-container-1'> Online - {friendsArr.length} </div>
         {friendsArr.map(friend => {

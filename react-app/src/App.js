@@ -6,14 +6,11 @@ import { authenticate } from "./store/session";
 import LoginPage from "./components/LoginPage";
 import ServersSidebar from "./components/Servers/ServersSidebar";
 import ChannelSideBar from "./components/ChannelSideBar";
-// import TestChannels from "./components/Servers/TestChannels";
 import Home from "./components/Home/"
 import FriendsList from './components/FriendsList'
 import MessageForm from "./components/MessageForm";
 import ChannelTopBar from "./components/ChannelTopBar";
 import UserMenu from "./components/UserMenu";
-//import ServerMembers from "./components/ServerMembers"
-
 
 function App() {
   const dispatch = useDispatch();

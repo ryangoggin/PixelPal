@@ -102,10 +102,7 @@ function ServerEditModal({ server, serverId }) {
 						<button
 							disabled={!newServer.name}
 							className={!newServer.name ? "disabled-btn" : "edit-server-form-button"} type="submit">Update Server</button>
-
 						<span onClick={closeModal} className="channel-update-form-cancel">Cancel</span>
-						{/* <button type="submit" className={`channel-update-form-submit${name.length === 0 ? ' cursor-not-allowed' : ''}`} onClick={handleUpdate} disabled={name.length === 0}>Update Channel</button> */}
-
 					</div>
 				</form>
 			</div>
