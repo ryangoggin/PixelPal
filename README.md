@@ -1,7 +1,7 @@
-# Discordable
+# PixelPal
 
 ## About
-Discordable is a free text chat app that a user can create his/her own servers and channel to talk and hang out with their communities and friends! Website inspired by Discord.
+PixelPal is a live text messaging app that a user use to can create servers with channels to talk to and interact with other users in their communities in real time. PixelPal is a clone based off Discord.
 
 **[Live Site](https://pixelpal.onrender.com/)**
 
