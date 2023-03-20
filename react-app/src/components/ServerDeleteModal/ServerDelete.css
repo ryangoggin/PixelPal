@@ -24,12 +24,12 @@
     flex-direction: column;
     background-color: #25262b;
     max-width: 400px;
-    max-height: 300px;
+    max-height: 200px;
     border: 1px black solid;
     padding-left: 60px;
     padding-right: 60px;
     padding-top: 40px;
-    padding-bottom: 90px;
+    padding-bottom: 60px;
     border-radius: 10px;
 }
 
