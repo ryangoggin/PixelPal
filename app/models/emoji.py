@@ -11,7 +11,7 @@ class Emoji(db.Model):
     url = db.Column(db.String(100), nullable=False, unique=True)
 
     #Relationship Attributes
-    # reactions = db.relationship("Reaction", back_populates='emojis', lazy=True)
+    reactions = db.relationship("Reaction", back_populates='emoji', lazy=True)
 
     def to_dict(self):
         return {

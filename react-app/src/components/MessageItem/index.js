@@ -107,7 +107,7 @@ function MessageItem({ message }) {
                                         key={`reaction${reaction.id}`}
                                         onClick={+reaction.userId === +sessionUserId ? () => { deleteReaction(reaction.id, messageId) } : () => { addReaction(reaction.emojiId, messageId, sessionUserId) }}
                                     >
-                                        <p className='emojis-emojichar'> {String.fromCodePoint(reaction.emojiURL)}</p>
+                                        <p className='emojis-emojichar'> {String.fromCodePoint(reaction.emoji.url)}</p>
                                         <p className='emojis-count'> 1 </p>
                                     </div>
                                 </div>
