@@ -5,8 +5,7 @@ import MessageItem from "../MessageItem";
 import { getChannelMessages } from "../../store/message";
 import "./ChannelMessages.css";
 
-function ChannelMessages({ formMessages }) {
-    // select data from the Redux store
+function ChannelMessages({ msg }) {
     //const currUser = useSelector(state => state.session.user)
     const channel = useSelector(state => state.channels.oneChannel)
     const allMessages = useSelector(state => state.messages);
@@ -18,13 +17,15 @@ function ChannelMessages({ formMessages }) {
     //trying to remove allMessages from dependency array (ADD BACK IN IF NEEDED)
     useEffect(() => {
         dispatch(getChannelMessages(channelId));
-    }, [dispatch, channelId, allMessages]);
+    }, [dispatch, channelId]); //allMessages
 
 
     // memoize the array of all messages to prevent unnecessary re-renders
+    // if the incoming msg has a channelId, rewrite it in state so that we aren't rendering same data twice
+    if (msg?.channelId) allMessages[msg.id] = msg
+
     const allMessagesArr = useMemo(() => {
         if (allMessages) return Object.values(allMessages);
-
         return [];
     }, [allMessages]);
 
@@ -52,13 +53,13 @@ function ChannelMessages({ formMessages }) {
                     </div>
                 );
             })}
-            {formMessages.map((message, ind) => {
+            {/* {formMessages.map((message, ind) => {
                 return (
                     <div key={`formMessage${ind}`} className='message-item-container'>
                         <MessageItem message={message} />
                     </div>
                 );
-            })}
+            })} */}
         </div>
     );
 }

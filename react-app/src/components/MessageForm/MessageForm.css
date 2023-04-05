@@ -46,7 +46,7 @@ font-style: normal;
     font-size: 18px;
 }
 
-.message-form textarea {
+.message-form input {
     font-family: 'PixelPal';
     font-size: 18px;
     color: white;
@@ -61,11 +61,11 @@ font-style: normal;
     scrollbar-width: none;  /* Firefox */
 }
 
-.message-form textarea::-webkit-scrollbar {
+.message-form input::-webkit-scrollbar {
     display: none;  /* Safari and Chrome */
 }
 
-.message-form textarea:focus {
+.message-form input:focus {
     border: none;
     outline: none;
 }

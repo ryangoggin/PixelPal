@@ -12,7 +12,7 @@ let socket;
 function MessageForm() {
     const dispatch = useDispatch();
     const [content, setContent] = useState("");
-    const [messages, setMessages] = useState([]);
+    const [messages, setMessages] = useState({});
     const user = useSelector(state => state.session.user);
     const channel = useSelector(state => state.channels.oneChannel);
     const { serverId, channelId } = useParams();
@@ -28,10 +28,11 @@ function MessageForm() {
 
         if (socket && user) {
             socket.emit('join', { channel_id: channelId, username: user.username })
+            socket.on("chat", (chat) => setMessages(chat) )
 
-            socket.on("chat", (chat) => {
-                setMessages(messages => [...messages, chat])
-            })
+            // socket.on("chat", (chat) => {
+            //     setMessages(messages => [...messages, chat])
+            // })
         }
         // when component unmounts, disconnect
         return (() => {
@@ -44,18 +45,10 @@ function MessageForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        let message = { userId: user.id, channelId: channel.id, content: content, timestamp: new Date(), reactions: [] };
+        let message = { userId: user?.id, channelId: channel.id, content: content, timestamp: new Date(), reactions: [] };
 
-        // emit message so users can see it in real time
-        // add .to('channelName') before .emit when adding room functionality?
-        if (socket) {
-            // emit message so users can see it in real time
-            // add .to('channelName') before .emit when adding room functionality?
-            socket.emit("chat", message);
-        }
-
-        // add message to DB
-        await dispatch(createMessage(message))
+        let createdMsg = await dispatch(createMessage(message))
+        if (socket) { socket.emit("chat", createdMsg) }
 
         setContent("");
     };
@@ -67,7 +60,7 @@ function MessageForm() {
                 <div className='message-form-container'>
                     <form className="message-form" onSubmit={handleSubmit}>
                         {/* at 1800 characters start a counter for characters allowed left (starts at 200), disable the send button above 2000  */}
-                        <textarea
+                        <input
                             type="text"
                             value={content}
                             onChange={(e) => setContent(e.target.value)}
