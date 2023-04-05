@@ -2,43 +2,38 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { io } from 'socket.io-client';
-import ChannelMessages from "../ChannelMessages";
 import { getChannelDetails } from '../../store/channels';
 import { createMessage } from "../../store/message";
+import ChannelMessages from "../ChannelMessages";
 import "./MessageForm.css";
 
 let socket;
 
 function MessageForm() {
     const dispatch = useDispatch();
+
+    const { serverId, channelId } = useParams();
+
     const [content, setContent] = useState("");
     const [messages, setMessages] = useState({});
+
     const user = useSelector(state => state.session.user);
     const channel = useSelector(state => state.channels.oneChannel);
-    const { serverId, channelId } = useParams();
 
     useEffect(() => {
         dispatch(getChannelDetails(channelId));
     }, [dispatch, serverId, channelId])
 
     useEffect(() => {
-        // open socket connection
-        // create websocket
         const socket = io();
 
         if (socket && user) {
             socket.emit('join', { channel_id: channelId, username: user.username })
             socket.on("chat", (chat) => setMessages(chat) )
-
-            // socket.on("chat", (chat) => {
-            //     setMessages(messages => [...messages, chat])
-            // })
         }
         // when component unmounts, disconnect
-        return (() => {
-            socket.disconnect();
-        })
-    }, [channelId, user]);
+        return (() => socket.disconnect() )
+    }, [])
 
     if (!channel) return null;
 
@@ -46,16 +41,15 @@ function MessageForm() {
         e.preventDefault();
 
         let message = { userId: user?.id, channelId: channel.id, content: content, timestamp: new Date(), reactions: [] };
-
         let createdMsg = await dispatch(createMessage(message))
-        if (socket) { socket.emit("chat", createdMsg) }
+        if (socket) socket.emit("chat", createdMsg)
 
         setContent("");
     };
 
     return (
         <>
-            <ChannelMessages formMessages={messages} />
+            <ChannelMessages messages={messages} />
             <div className="message-form-background">
                 <div className='message-form-container'>
                     <form className="message-form" onSubmit={handleSubmit}>
