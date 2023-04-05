@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import MessageItem from "../MessageItem";
-import { getChannelMessages } from "../../store/message";
+import { clearMessages, getChannelMessages } from "../../store/message";
 import "./ChannelMessages.css";
 
 function ChannelMessages({ msg }) {
@@ -17,6 +17,9 @@ function ChannelMessages({ msg }) {
     //trying to remove allMessages from dependency array (ADD BACK IN IF NEEDED)
     useEffect(() => {
         dispatch(getChannelMessages(channelId));
+
+        // clear state every time channel Id changes
+        return () => dispatch(clearMessages())
     }, [dispatch, channelId]); //allMessages
 
 
@@ -46,6 +49,7 @@ function ChannelMessages({ msg }) {
                 <h2 className="channel-messages-welcome">Welcome to #{channel.name}!</h2>
                 <p className="channel-messages-start">This is the start of the #{channel.name} channel.</p>
             </div>
+            <div id='scroller'>
             {allMessagesArr.map((message) => {
                 return (
                     <div key={`message${message.id}`} className='message-item-container'>
@@ -53,6 +57,8 @@ function ChannelMessages({ msg }) {
                     </div>
                 );
             })}
+            <div id='anchor'></div>
+            </div>
             {/* {formMessages.map((message, ind) => {
                 return (
                     <div key={`formMessage${ind}`} className='message-item-container'>

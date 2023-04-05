@@ -4,6 +4,7 @@ const ADD_MESSAGE = 'messages/ADD_MESSAGE';
 const CREATE_REACTION = 'emojis/CREATE_REACTION'
 const DELETE_REACTION = 'emojis/DELETE_REACTION'
 // const EDIT_MESSAGE = 'messages/EDIT_MESSAGE';
+const CLEAR_MESSAGES = 'messages/CLEAR_MESSAGES'
 
 // POJO action creators:
 const loadMessages = messages => ({
@@ -31,6 +32,10 @@ const deleteReaction = (reactionId, messageId) => ({
 //     type: EDIT_MESSAGE,
 //     message
 // });
+
+export const clearMessages = () => ({
+  type: CLEAR_MESSAGES
+})
 
 // thunk action creators:
 export const getChannelMessages = (channelId) => async (dispatch) => {
@@ -169,6 +174,10 @@ const messageReducer = (state = initialState, action) => {
       newState = { ...state }
       delete newState[action.messageId].reactions[action.reactionId]
       return newState
+    case CLEAR_MESSAGES:
+      newState = {}
+      return newState;
+
     default:
       return state;
   }
