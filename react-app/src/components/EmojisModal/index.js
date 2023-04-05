@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllEmojisThunk } from "../../store/emojis";
-import { createReactionThunk } from "../../store/message";
+import { createReactionThunk, getChannelMessages } from "../../store/message";
 import "./GetAllEmojis.css"
 
 export default function GetAllEmojis({ props: { messageId, sessionUserId } }) {
@@ -12,10 +12,12 @@ export default function GetAllEmojis({ props: { messageId, sessionUserId } }) {
   }, [dispatch])
 
   const emojis = useSelector(state => state.emoji.allEmojis)
+  const channel = useSelector(state => state.channels.oneChannel)
   const allEmojisArr = Object.values(emojis)
 
   const createReaction = async (emojiId, messageId, sessionUserId) => {
     let new_reaction = await dispatch(createReactionThunk(emojiId, messageId, sessionUserId))
+    dispatch(getChannelMessages(channel?.id))
     return (new_reaction)
   }
 
