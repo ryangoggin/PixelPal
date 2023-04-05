@@ -1,6 +1,6 @@
 import React, { useMemo, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { createReactionThunk, deleteReactionThunk } from '../../store/message';
+import { createReactionThunk, deleteReactionThunk, getChannelMessages } from '../../store/message';
 import { useParams } from 'react-router-dom';
 import './MessageItem.css';
 import './Reaction.css'
@@ -71,12 +71,14 @@ function MessageItem({ message }) {
 
     const addReaction = async (sessionUserId, messageId, emojiId ) => {
         let addedReaction = await dispatch(createReactionThunk(sessionUserId, messageId, emojiId))
+        dispatch(getChannelMessages(message.channelId))
         return addedReaction
         }
 
 
     const deleteReaction = async (reactionId, messageId) => {
         let deleted_reaction = await dispatch(deleteReactionThunk(reactionId, messageId))
+        dispatch(getChannelMessages(message.channelId))
         return deleted_reaction
     }
 
