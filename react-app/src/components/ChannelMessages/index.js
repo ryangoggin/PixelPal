@@ -59,13 +59,6 @@ function ChannelMessages({ msg }) {
             })}
             <div id='anchor'></div>
             </div>
-            {/* {formMessages.map((message, ind) => {
-                return (
-                    <div key={`formMessage${ind}`} className='message-item-container'>
-                        <MessageItem message={message} />
-                    </div>
-                );
-            })} */}
         </div>
     );
 }
