@@ -15,7 +15,7 @@ const ServersSidebar = () => {
     if (user) {
       dispatch(getServers(user))
     }
-  }, [user, dispatch])
+  }, [dispatch]) //user
 
   let servers = useSelector(state => state.server.orderedList)
   if (!servers) return null;

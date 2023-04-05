@@ -34,6 +34,16 @@ function LoginPage() {
 				}
 			)
 	};
+	const handleDemoLogin2 = async (e) => {
+		e.preventDefault();
+		await dispatch(login('marnie@aa.io', 'password'))
+			.catch(
+				async (res) => {
+					const errData = await res.json();
+					console.log(errData)
+				}
+			)
+	};
 
 	if (sessionUser) return <Redirect to="/channels/@me" />;
 
@@ -78,7 +88,8 @@ function LoginPage() {
 							/>
 						</div>
 						<button className="login-button" type="submit">Log In</button>
-						<button className="demo-button" onClick={handleDemoLogin}>Demo User</button>
+						<button className="demo-button" onClick={handleDemoLogin}>Demo User 1</button>
+						<button className="demo-button" onClick={handleDemoLogin2}>Demo User 2</button>
 						<div className="register-group">
 							<span className="label-register">Need an account?</span>
 							<Link to='/register' className="register">Register</Link>
