@@ -15,7 +15,7 @@ class Message(db.Model):
     channel_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('channels.id')), nullable=False)
 
     #Relationship Attribute
-    reactions = db.relationship('Reaction', backref='message', lazy=True, cascade="all, delete-orphan")
+    reactions = db.relationship('Reaction', back_populates='message', lazy=True, cascade="all, delete")
 
     def to_dict(self):
         return {

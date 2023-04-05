@@ -11,11 +11,16 @@ class Reaction(db.Model):
     emojiId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('emojis.id')), nullable=False)
     messageId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('messages.id')), nullable=False)
 
+    #Relationship Attributes
+    emoji = db.relationship("Emoji", back_populates='reactions', lazy=True)
+    message = db.relationship("Message", back_populates='reactions', lazy=True)
+
 
     def to_dict(self):
         return {
             'id': self.id,
             'userId': self.userId,
             'messageId': self.messageId,
-            'emojiId': self.emojiId
+            'emojiId': self.emojiId,
+            'emoji': self.emoji.to_dict()
         }
