@@ -25,7 +25,7 @@ function MessageForm() {
     }, [dispatch, serverId, channelId])
 
     useEffect(() => {
-        const socket = io();
+        socket = io();
 
         if (socket && user) {
             socket.emit('join', { channel_id: channelId, username: user.username })
@@ -41,8 +41,12 @@ function MessageForm() {
         e.preventDefault();
 
         let message = { userId: user?.id, channelId: channel.id, content: content, timestamp: new Date(), reactions: [] };
+        console.log('what is socket?!', socket)
         let createdMsg = await dispatch(createMessage(message))
-        if (socket) socket.emit("chat", createdMsg)
+        if (socket) {
+            console.log("HITTING THIS WITHIN SUBMIT")
+            socket.emit("chat", createdMsg)
+        }
 
         setContent("");
     };

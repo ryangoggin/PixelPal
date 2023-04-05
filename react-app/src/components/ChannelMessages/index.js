@@ -9,7 +9,6 @@ function ChannelMessages( { messages } ) {
     const channel = useSelector(state => state.channels.oneChannel)
     const allMessages = useSelector(state => state.messages);
     // if the incoming msg has a channelId, rewrite it in state so that we aren't rendering same data twice
-    console.log('what is msg in channelmessages', messages)
     if (messages?.channelId) allMessages[messages.id] = messages
     const { channelId } = useParams();
 
