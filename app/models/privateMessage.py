@@ -10,16 +10,19 @@
 #         __table_args__ = {'schema': SCHEMA}
 
 #     id = db.Column(db.Integer, primary_key=True)
-#     server_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('server.id')), nullable=False)
 #     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('user.id')), nullable=False)
-#     chatting_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('user.id')), nullable=False)
+#     friend_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('user.id')), nullable=False)
 
-#     messages = db.relationship('Message', backref='private_messages', lazy=True, cascade='all, delete-orphan')
+#     messages = db.relationship('Message', back_populates='private_message', lazy=True, cascade='all, delete')
+#     user = db.relationship("User", lazy=True, foreign_keys =[user_id])
+#     friend = db.relationship("User", lazy=True, foreign_keys=[friend_id])
 
 #     def to_dict(self):
 #         return {
 #             "id": self.id,
-#             "serverId": self.server_id,
-#             'members': {'user': self.user_id, 'pixelPal': self.chatting_user_id},
+#             'userId': self.user_id,
+#             'friendId': self.friend_id,
+#             'user': self.user.to_dict(),
+#             'friend': self.friend.to_dict(),
 #             'messages': [message.to_dict() for message in self.messages]
 #         }
