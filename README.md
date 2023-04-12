@@ -10,7 +10,7 @@ PixelPal is a live text messaging app that a user can use to can create servers 
 [User Stories](https://github.com/ryangoggin/PixelPal/wiki/User-Stories)\
 [Feature List](https://github.com/ryangoggin/PixelPal/wiki/PixelPal-Features-List)\
 [Database Schema](https://github.com/ryangoggin/PixelPal/wiki/PixelPal-Database-Schema)\
-[API Routes](https://github.com/ryangoggin/PixelPal/wiki/API-Routes)
+[Backend Routes](https://github.com/ryangoggin/PixelPal/wiki/Backend-Routes)
 
 ## Technologies/Frameworks Used:
 ### Frontend:
