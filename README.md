@@ -3,7 +3,7 @@
 ## About
 PixelPal is a live text messaging app that a user can use to can create servers with channels to talk to and interact with other users in their communities in real time. PixelPal is a clone based off Discord.
 
-**[Live Site](https://pixelpal.onrender.com/)**
+## Deployed Live Link: [PixelPal](https://pixelpal.onrender.com/)
 
 ## Project Planning
 **Project wiki links below:**\
