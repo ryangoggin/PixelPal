@@ -31,6 +31,12 @@ PixelPal is a live text messaging app that a user can use to can create servers 
 ### Deployment:
 ![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)
 
+## Future Implementation Goals:
+* AWS for File Uploads
+* Updating User Profile Pictures
+* Adding Members to a Server
+* Live Friend DMs 
+
 ## Features
 
 **Home Page**
