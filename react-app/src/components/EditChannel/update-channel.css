@@ -22,7 +22,7 @@
 
 .channel-update-form-container {
     background-color: #25262b;
-    height: 230px;
+    min-height: 230px;
     width: 400px;
     border-radius: 10px;
     border: 1px black solid;
@@ -118,4 +118,13 @@
     padding-left: 10px;
     padding-right: 10px;
     cursor: pointer;
+}
+
+.err-msg {
+    font-family: 'PixelPal';
+    color: red;
+}
+
+.update-ch-err-div {
+    margin-top: 10px;
 }

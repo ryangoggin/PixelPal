@@ -18,7 +18,7 @@ function ChannelMessages({ formMessages }) {
     //trying to remove allMessages from dependency array (ADD BACK IN IF NEEDED)
     useEffect(() => {
         dispatch(getChannelMessages(channelId));
-    }, [dispatch, channelId, allMessages]);
+    }, [dispatch, channelId]);
 
 
     // memoize the array of all messages to prevent unnecessary re-renders

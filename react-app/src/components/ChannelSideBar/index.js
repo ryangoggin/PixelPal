@@ -101,7 +101,7 @@ function ChannelSideBar() {
             </div>
             <OpenModalButton
               buttonText={<i class="fa-solid fa-gear"></i>}
-              modalComponent={<UpdateChannel channelId={channel.id} />}
+              modalComponent={<UpdateChannel channelId={channel.id} serverId={serverId} />}
             />
           </Link>
         </div>
