@@ -3,14 +3,14 @@
 ## About
 PixelPal is a live text messaging app that a user can use to can create servers with channels to talk to and interact with other users in their communities in real time. PixelPal is a clone based off Discord.
 
-**[Live Site](https://pixelpal.onrender.com/)**
+## Deployed Live Link: [PixelPal](https://pixelpal.onrender.com/)
 
 ## Project Planning
 **Project wiki links below:**\
 [User Stories](https://github.com/ryangoggin/PixelPal/wiki/User-Stories)\
 [Feature List](https://github.com/ryangoggin/PixelPal/wiki/PixelPal-Features-List)\
 [Database Schema](https://github.com/ryangoggin/PixelPal/wiki/PixelPal-Database-Schema)\
-[API Routes](https://github.com/ryangoggin/PixelPal/wiki/API-Routes)
+[Backend Routes](https://github.com/ryangoggin/PixelPal/wiki/Backend-Routes)
 
 ## Technologies/Frameworks Used:
 ### Frontend:
@@ -30,6 +30,12 @@ PixelPal is a live text messaging app that a user can use to can create servers 
 
 ### Deployment:
 ![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)
+
+## Future Implementation Goals:
+* AWS for File Uploads
+* Updating User Profile Pictures
+* Adding Members to a Server
+* Live Friend DMs 
 
 ## Features
 
