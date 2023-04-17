@@ -6,7 +6,8 @@ import { authenticate } from "./store/session";
 import LoginPage from "./components/LoginPage";
 import ServersSidebar from "./components/Servers/ServersSidebar";
 import ChannelSideBar from "./components/ChannelSideBar";
-import Home from "./components/Home/"
+import SplashPage from "./components/SplashPage";
+// import Home from "./components/Home/"
 import FriendsList from './components/FriendsList'
 import MessageForm from "./components/MessageForm";
 import ChannelTopBar from "./components/ChannelTopBar";
@@ -24,7 +25,7 @@ function App() {
     <>
       <Switch>
         <Route exact path="/">
-          <Home />
+          <SplashPage />
         </Route>
         <Route exact path="/login">
           <LoginPage />

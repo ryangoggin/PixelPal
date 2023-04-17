@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './LoginPage.css';
+import wallpaper from "../../static/pixelpal-wallpaper.png";
 import { login } from '../../store/session';
 
 function LoginPage() {
@@ -49,6 +50,7 @@ function LoginPage() {
 
 	return (
 		<>
+			<img className='wallpaper' src={wallpaper} alt="wallpaper" />
 			<div className="login-page">
 				<div className="login-box">
 					<div className="login-headings">

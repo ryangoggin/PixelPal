@@ -1,0 +1,355 @@
+/* .splash-container {
+    position:fixed;
+    top: 0;
+    bottom:0;
+
+    width: 100;
+    overflow-y:scroll;
+} */
+
+.splash-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 500px;
+}
+
+.splash-top-background {
+    position: fixed;
+    top: 0;
+
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.splash-top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: space-between;
+
+    width: 100%;
+    padding-top: 20px;
+}
+
+.splash-top-nav-left {
+    display: flex;
+    align-items: center;
+
+    padding-left: 40px;
+}
+
+.splash-top-nav-left:hover {
+    cursor: pointer;
+}
+
+.pixel-pal-logo-text {
+    font-family: 'Prompt', sans-serif;
+    color: white;
+    margin: 0;
+}
+
+.pixel-pal-logo-white {
+    height: 34px;
+    width: 34px;
+}
+
+.splash-top-nav-center {
+    display: flex;
+    align-items: center;
+}
+
+.demo-login-button {
+    font-family: "Noto Sans", sans-serif;
+    color: white;
+
+    background: none;
+    border: none;
+
+    width: 100px;
+    margin: 0px 25px 0px;
+}
+
+.demo-login-button:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.splash-top-nav-right {
+    display: flex;
+    align-items: center;
+}
+
+.splash-login-button {
+    background-color: white;
+
+    padding: 7px 16px 7px;
+    margin-right: 40px;
+
+    border: 1px solid rgba(255, 255, 255, 0);
+    border-radius: 40px;
+}
+
+.splash-login-button:hover {
+    cursor: pointer;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.splash-top-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 650px;
+}
+
+.imagine-text {
+    font-family: "Noto Sans", sans-serif;
+    color: white;
+    font-weight: bold;
+    font-size: 56px;
+
+    margin: 0;
+}
+
+.where-you-can-text {
+    font-family: "Noto Sans", sans-serif;
+    color: white;
+    font-size: 24px;
+
+    text-align: center;
+}
+
+.splash-open-button {
+    font-family: "Noto Sans", sans-serif;
+    color: white;
+    font-size: 20px;
+
+    background: #23272a;
+    border: 1px solid rgba(255, 255, 255, 0);
+    border-radius: 40px;
+
+    padding: 16px 32px 16px;
+}
+
+.splash-open-button:hover {
+    cursor: pointer;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.splash-middle {
+    background-color: white;
+    position: fixed;
+    top: 500px;
+    bottom: 250px;
+    left: 0;
+
+    width: 100%;
+}
+
+.meet-developers-text {
+    font-family: "Noto Sans", sans-serif;
+    font-size: 48px;
+    color: #23272a;
+
+    padding: 20px 0px 20px;
+    margin: 0;
+
+    text-align: center;
+}
+
+.devs-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    margin: 0px 40px 0px;
+}
+
+.portfolio-button {
+    padding: 0;
+    margin: 15px 30px 15px;
+
+    border: none;
+    border-radius: 20px;
+}
+
+.ryan-button:hover {
+    cursor: pointer;
+    -webkit-box-shadow: 0 0 20px #ec459e;
+        box-shadow: 0 0 20px #ec459e;
+}
+
+.aileen-button:hover {
+    cursor: pointer;
+    -webkit-box-shadow: 0 0 20px #5865f2;
+        box-shadow: 0 0 20px #5865f2;
+}
+
+.zaineb-button:hover {
+    cursor: pointer;
+    -webkit-box-shadow: 0 0 20px #3442d9;
+        box-shadow: 0 0 20px #3442d9;
+}
+
+.kenny-button:hover {
+    cursor: pointer;
+    -webkit-box-shadow: 0 0 20px #fee75b;
+        box-shadow: 0 0 20px #fee75b;
+}
+
+.dev-container {
+    height: 200px;
+    width: 300px;
+    border-radius: 20px;
+
+    box-sizing: border-box;
+    padding: 7px;
+}
+
+.ryan-container {
+    background-image: url("../../static/SplashPage/splash-ryan.jpg");
+    background-size: cover;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.aileen-container {
+    background-image: url("../../static/SplashPage/splash-aileen.jpg");
+    background-size: cover;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.zaineb-container {
+    background-image: url("../../static/SplashPage/splash-zaineb.jpg");
+    background-size: cover;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.ken-container {
+    background-image: url("../../static/SplashPage/splash-ken.jpg");
+    background-size: cover;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.dev-name-text {
+    font-family: "Noto Sans", sans-serif;
+    font-size: 20px;
+    margin: 0;
+}
+
+.ryan-text {
+    color: #fee75b;
+}
+
+.aileen-text {
+    color:#8ad9ff;
+}
+
+.zaineb-text {
+    color: #29cc7b;
+}
+
+.kenny-text {
+    color: #ff78ba;
+}
+
+.dev-social-media-container {
+    margin-top: 5px;
+}
+
+.fa-brands.fa-linkedin, .fa-brands.fa-github {
+    font-size: 24px;
+}
+
+.linkedin-button, .github-button {
+    background: none;
+    border: none;
+}
+
+.linkedin-button:hover, .github-button:hover {
+    cursor: pointer;
+}
+
+.splash-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #23272a;
+
+    width: 100%;
+    height: 250px;
+}
+
+.tech-stack-container {
+    display: flex;
+    justify-content: space-evenly;
+
+    width: 100%;
+    margin: 30px 0px 0px;
+}
+
+.tech-stack-text {
+    font-family: "Prompt", sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    color: #404eed;
+    margin: 0px 0px 0px 40px;
+
+    width: 300px;
+}
+
+.technologies {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tech-list {
+    list-style: none;
+    padding-right: 60px;
+    margin: 0px 0px 16px;
+}
+
+.tech-type {
+    font-family: "Noto Sans", sans-serif;
+    font-size: 16px;
+    color: #404eed;
+    margin: 0px 0px 3px;
+}
+
+.tech-item {
+    font-family: "Noto Sans", sans-serif;
+    font-size: 16px;
+    color: white;
+    margin: 0px 0px 2px;
+}
