@@ -54,14 +54,16 @@ function UpdateChannel({ channelId, serverId }) {
         dispatch(getServerChannels(serverId))
       })
 
+    let index;
+
     for (let i=0; i<channelArr.length; i++) {
-      if (channelArr[i].id === channelId) {
-        channelArr.splice(i, 1);
+      if (channelArr[i].id !== channelId) {
+        index = i;
         break;
       }
     }
 
-    history.push(`/channels/${serverId}/${channelArr[0].id}`)
+    history.push(`/channels/${serverId}/${channelArr[index].id}`)
     closeModal();
   };
 
