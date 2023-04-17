@@ -56,7 +56,8 @@ function UpdateChannel({ channelId, serverId }) {
 
     for (let i=0; i<channelArr.length; i++) {
       if (channelArr[i].id === channelId) {
-        channelArr.splice(i, 1)
+        channelArr.splice(i, 1);
+        break;
       }
     }
 
