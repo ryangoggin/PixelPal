@@ -7,7 +7,6 @@ import LoginPage from "./components/LoginPage";
 import ServersSidebar from "./components/Servers/ServersSidebar";
 import ChannelSideBar from "./components/ChannelSideBar";
 import SplashPage from "./components/SplashPage";
-// import Home from "./components/Home/"
 import FriendsList from './components/FriendsList'
 import MessageForm from "./components/MessageForm";
 import ChannelTopBar from "./components/ChannelTopBar";
