@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import { authenticate } from "./store/session";
@@ -12,16 +12,19 @@ import FriendsList from './components/FriendsList'
 import MessageForm from "./components/MessageForm";
 import ChannelTopBar from "./components/ChannelTopBar";
 import UserMenu from "./components/UserMenu";
+import NotFoundPageLoggedOut from "./components/NotFoundPageLoggedOut";
+import NotFoundPageLoggedIn from "./components/NotFoundPageLoggedIn";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const sessionUser = useSelector((state) => state.session.user);
 
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
-  return (
+  return(
     <>
       <Switch>
         <Route exact path="/">
@@ -33,20 +36,26 @@ function App() {
         <Route exact path='/register'>
           <SignupFormPage />
         </Route>
+        <Route>
+          <NotFoundPageLoggedOut sessionUser={sessionUser}/>
+        </Route>
       </Switch>
       {isLoaded && (
         <>
           <ServersSidebar />
           <Switch>
-            <Route path='/channels/@me'>
+            <Route exact path='/channels/@me'>
               <FriendsList />
               <UserMenu />
             </Route>
-            <Route path="/channels/:serverId/:channelId">
+            <Route exact path="/channels/:serverId/:channelId">
               <ChannelSideBar />
               <ChannelTopBar />
               <MessageForm />
               <UserMenu />
+            </Route>
+            <Route>
+              <NotFoundPageLoggedIn sessionUser={sessionUser}/>
             </Route>
           </Switch>
         </>
