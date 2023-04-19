@@ -28,7 +28,7 @@ export default function EmojisModal({ props }) {
   const ulClassName = 'emojismodal-openmodalmenu' + (showMenu ? "" : " hidden")
 
   return (
-    <div className='emojis-modal-openmodalmenuitem'>
+    <div className='emojis-modal-container'>
       <div className='tooltip-wrap'>
         <div className='addreaction-container'>
           <i className="fa-solid fa-face-smile-beam open-emojis-modal-button"

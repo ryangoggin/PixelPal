@@ -89,6 +89,7 @@ font-style: normal;
 .message-right-side {
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 .reactions-container {
