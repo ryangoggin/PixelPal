@@ -23,40 +23,52 @@ function App() {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
-  return(
+  return (
     <>
-      <Switch>
-        <Route exact path="/">
-          <SplashPage />
-        </Route>
-        <Route exact path="/login">
-          <LoginPage />
-        </Route>
-        <Route exact path='/register'>
-          <SignupFormPage />
-        </Route>
-        <Route>
-          <NotFoundPageLoggedOut sessionUser={sessionUser}/>
-        </Route>
-      </Switch>
       {isLoaded && (
         <>
-          <ServersSidebar />
-          <Switch>
-            <Route exact path='/channels/@me'>
-              <FriendsList />
-              <UserMenu />
+          {sessionUser ? (
+            <>
+            <Switch>
+              <Route exact path='/'>
+                <FriendsList />
+                <UserMenu />
+                <ServersSidebar />
+              </Route>
+              <Route exact path='/channels/@me'>
+                <FriendsList />
+                <UserMenu />
+                <ServersSidebar />
+              </Route>
+              <Route exact path="/channels/:serverId/:channelId">
+                <ChannelSideBar />
+                <ChannelTopBar />
+                <MessageForm />
+                <UserMenu />
+                <ServersSidebar />
+              </Route>
+              <Route>
+                <NotFoundPageLoggedIn />
+              </Route>
+            </Switch>
+          </>
+          ) :
+          (
+            <Switch>
+            <Route exact path="/">
+              <SplashPage />
             </Route>
-            <Route exact path="/channels/:serverId/:channelId">
-              <ChannelSideBar />
-              <ChannelTopBar />
-              <MessageForm />
-              <UserMenu />
+            <Route exact path="/login">
+              <LoginPage />
+            </Route>
+            <Route exact path='/register'>
+              <SignupFormPage />
             </Route>
             <Route>
-              <NotFoundPageLoggedIn sessionUser={sessionUser}/>
+              <NotFoundPageLoggedOut />
             </Route>
           </Switch>
+          )}
         </>
       )}
     </>
