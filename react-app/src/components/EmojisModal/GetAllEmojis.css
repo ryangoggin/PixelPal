@@ -65,7 +65,7 @@
 
 .tooltip-wrap .tooltip-content {
   display: none;
-  position: relative;
+  position: absolute;
   height: auto;
   bottom: 30px;
   right: 25px;
@@ -88,7 +88,7 @@
   text-align: center;
   position: relative;
   height: auto;
-  bottom: 50px;
+  bottom: 60px;
 
 }
 
@@ -128,10 +128,8 @@
 
 .emojis-modal-container-container {
   display: block;
-  position: static;
-  right: 0px;
-  top: 20px;
-  /* top: 200px; */
+  position: absolute;
+  right: -50px;
 }
 
 .emojis-modal-container {
