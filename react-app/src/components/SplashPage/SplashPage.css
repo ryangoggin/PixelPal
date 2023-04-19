@@ -7,7 +7,12 @@
     overflow-y:scroll;
 } */
 
+.splash-container {
+    border: 2px solid pink;
+}
+
 .splash-top {
+    border: 2px solid red;
     position: fixed;
     top: 0;
     left: 0;
