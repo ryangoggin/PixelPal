@@ -65,7 +65,7 @@ function App() {
               <SignupFormPage />
             </Route>
             <Route>
-              <NotFoundPageLoggedOut />
+              <NotFoundPageLoggedIn />
             </Route>
           </Switch>
           )}
