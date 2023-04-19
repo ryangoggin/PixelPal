@@ -100,10 +100,10 @@ function SplashPage() {
                         </div>
                         <div className='splash-top-nav-center'>
                             <button className='demo-login-button' onClick={handleDemoLogin1}>
-                                Demo User 1 Log In
+                                Login as Demo 1
                             </button>
                             <button className='demo-login-button' onClick={handleDemoLogin2}>
-                                Demo User 2 Log In
+                                Login as Demo 2
                             </button>
                         </div>
                         <div className='splash-top-nav-right'>

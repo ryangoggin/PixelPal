@@ -82,12 +82,14 @@ body {
 
 .demo-login-button {
     font-family: "Noto Sans", sans-serif;
+    font-size: 18px;
     color: white;
 
     background: none;
     border: none;
 
-    width: 100px;
+    width: 170px;
+    border: 1px solid red;
     margin: 0px 25px 0px;
 }
 
@@ -102,7 +104,8 @@ body {
 }
 
 .splash-login-button {
-    background-color: white;
+    background-color: whitesmoke;
+    font-size: 15px;
 
     padding: 7px 16px 7px;
     margin-right: 40px;
@@ -161,6 +164,8 @@ body {
 .splash-middle {
     background-color: white;
     width: 100%;
+    margin-bottom: 140px;
+    margin-top: 100px;
 }
 
 .meet-developers-text {
