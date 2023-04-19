@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Redirect, useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import './LoginPage.css';
 import wallpaper from "../../static/pixelpal-wallpaper.png";
 import { login } from '../../store/session';
 
 function LoginPage() {
-	const sessionUser = useSelector(state => state.session.user);
 	const [errors, setErrors] = useState([]);
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -35,11 +34,6 @@ function LoginPage() {
 			.then(() => {
 				history.push(`/channels/@me`)
 			})
-			.catch(
-				async (res) => {
-					const errData = await res.json();
-				}
-			)
 	};
 	const handleDemoLogin2 = async (e) => {
 		e.preventDefault();
@@ -47,11 +41,6 @@ function LoginPage() {
 			.then(() => {
 				history.push(`/channels/@me`)
 			})
-			.catch(
-				async (res) => {
-					const errData = await res.json();
-				}
-			)
 	};
 
 	return (

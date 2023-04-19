@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from 'react';
+import React, { useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createReactionThunk, deleteReactionThunk, getChannelMessages } from '../../store/message';
 import { useParams } from 'react-router-dom';

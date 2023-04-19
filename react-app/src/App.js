@@ -11,7 +11,6 @@ import FriendsList from './components/FriendsList'
 import MessageForm from "./components/MessageForm";
 import ChannelTopBar from "./components/ChannelTopBar";
 import UserMenu from "./components/UserMenu";
-import NotFoundPageLoggedOut from "./components/NotFoundPageLoggedOut";
 import NotFoundPageLoggedIn from "./components/NotFoundPageLoggedIn";
 
 function App() {

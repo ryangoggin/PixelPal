@@ -33,7 +33,7 @@ function MessageForm() {
         }
         // when component unmounts, disconnect
         return (() => socket.disconnect() )
-    }, [])
+    }, [channelId, user])
 
     if (!channel) return null;
 
