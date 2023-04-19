@@ -56,16 +56,8 @@ function MessageItem({ message }) {
         return `${date.toDateString()} ${date.toLocaleTimeString()}`;
     }, [message.timestamp]);
 
-    const reactionsArr = Object.values(message.reactions);
-    let reactionsObj = {}
-    reactionsArr.forEach(emoji => {
-        if (reactionsObj[emoji.emoji.name]) {
-            reactionsObj[emoji.emoji.name] += 1;
-        } else {
-            reactionsObj[emoji.emoji.name] = 1;
-        }
-    })
 
+    const reactionsArr = Object.values(message.reactions);
 
     const sessionUserId = sessionUser?.id;
 
