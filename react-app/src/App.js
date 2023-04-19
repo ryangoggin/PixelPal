@@ -11,7 +11,7 @@ import FriendsList from './components/FriendsList'
 import MessageForm from "./components/MessageForm";
 import ChannelTopBar from "./components/ChannelTopBar";
 import UserMenu from "./components/UserMenu";
-import NotFoundPageLoggedIn from "./components/NotFoundPageLoggedIn";
+import NotFound from "./components/NotFound";
 
 function App() {
   const dispatch = useDispatch();
@@ -47,7 +47,7 @@ function App() {
                 <ServersSidebar />
               </Route>
               <Route>
-                <NotFoundPageLoggedIn />
+                <NotFound />
               </Route>
             </Switch>
           </>
@@ -64,7 +64,7 @@ function App() {
               <SignupFormPage />
             </Route>
             <Route>
-              <NotFoundPageLoggedIn />
+              <NotFound />
             </Route>
           </Switch>
           )}

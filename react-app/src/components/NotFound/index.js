@@ -1,10 +1,10 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import './NotFoundPageLoggedOut.css';
+import './NotFoundPageLoggedIn.css';
 import notFoundGif from '../../static/NotFoundPage/discord-404.gif';
 import pixelPalLogoBlack from '../../static/NotFoundPage/pixel-pal-logo-black.png';
 
-function NotFoundPageLoggedOut({sessionUser}) {
+function NotFound ({sessionUser}) {
     const history = useHistory();
 
     const returnHome = async (e) => {
@@ -12,7 +12,7 @@ function NotFoundPageLoggedOut({sessionUser}) {
         history.push("/");
     }
 
-    if (sessionUser !== null) {
+    if (sessionUser === null) {
         return null;
     } else {
         return (
@@ -43,4 +43,4 @@ function NotFoundPageLoggedOut({sessionUser}) {
     }
 }
 
-export default NotFoundPageLoggedOut;
+export default NotFound;
