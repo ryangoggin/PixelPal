@@ -92,7 +92,7 @@ function SplashPage() {
 		<>
 			<div className="splash-container">
                 <div className='splash-top'>
-                <img className='splash-top-background' src={backgroundTop} alt="splash top background" />
+                    <img className='splash-top-background' src={backgroundTop} alt="splash top background" />
                     <div className='splash-top-nav'>
                         <div className='splash-top-nav-left'>
                             <img className='pixel-pal-logo-white' src={pixelPalLogoWhite} alt="pixel pal white logo" />
