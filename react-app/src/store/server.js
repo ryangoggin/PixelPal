@@ -4,6 +4,8 @@ const LOAD_SERVER = 'servers/load_one'
 const ADD_SERVER = 'servers/create'
 const EDIT_SERVER = 'servers/edit'
 const DELETE_SERVER = 'servers/delete'
+const ADD_SERVER_MEMBER = 'servers/members/add'
+const DELETE_SERVER_MEMBER = 'servers/members/add'
 
 // ----------------------------------- action creators ----------------------------------------
 const loadServers = (list, user) => ({
@@ -32,6 +34,16 @@ const removeServer = (id) => ({
   serverId: id
 
 })
+
+const createServerMember = () => ({
+  type: ADD_SERVER_MEMBER
+})
+
+const removeServerMember = () => ({
+  type: DELETE_SERVER_MEMBER
+})
+
+
 // ----------------------------------- thunk action creators ----------------------------------------
 
 // GET ALL SERVERS //
@@ -135,6 +147,52 @@ export const deleteServer = (serverId) => async (dispatch) => {
 
 }
 
+
+// ADD SERVER MEMEBER // 
+
+export const addServerMember = (serverId, user) => async (dispatch) => {
+  const response = await fetch(`/api/servers/${serverId}/members`, {
+    method: 'POST',
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(user)
+  })
+
+  if (response.ok) {
+    dispatch(createServerMember());
+    return null;
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ['An error occurred. Please try again.'];
+  }
+}
+
+// REMOVE SERVER MEMEBER // 
+
+export const deleteServerMember = (serverId, user) => async (dispatch) => {
+  const response = await fetch(`/api/servers/${serverId}/members`, {
+    method: 'DELETE',
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(user)
+  })
+
+  if (response.ok) {
+    dispatch(removeServerMember());
+    return null;
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ['An error occurred. Please try again.'];
+  }
+}
+
+
 // ----------------------------------- reducer ----------------------------------------
 
 let initialState = {}
@@ -195,6 +253,14 @@ export default function serverReducer(state = initialState, action) {
     case DELETE_SERVER: {
       const newState = { ...state }
       return newState;
+    }
+
+    case ADD_SERVER_MEMBER: {
+      return { ...state };
+    }
+
+    case DELETE_SERVER_MEMBER: {
+      return { ...state };
     }
 
     default:

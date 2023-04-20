@@ -1,0 +1,130 @@
+@font-face {
+    font-family: 'PixelPal';
+    src: url('../../static/ggsans-Normal.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Discord Thin';
+    src: url('../../static/Uni\ Sans\ Thin.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Discord Bold';
+    src: url('../../static/Uni\ Sans\ Heavy.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.create-server-page {
+    display: flex;
+    flex-direction: column;
+    background-color: #25262b;
+    max-width: 400px;
+    max-height: 250px;
+    border: 1px black solid;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 40px;
+    padding-bottom: 90px;
+    border-radius: 10px;
+}
+
+.create-server-modal {
+    display: flex;
+    flex-direction: column;
+    background-color: #25262b;
+    max-width: 400px;
+    max-height: 300px;
+    border: 1px black solid;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 40px;
+    padding-bottom: 90px;
+    border-radius: 10px;
+}
+
+.create-server-header {
+    font-family: 'PixelPal';
+    color: whitesmoke;
+    font-size: 20px;
+    font-weight: 900;
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.create-server-para {
+    font-family: 'PixelPal';
+    font-size: 15px;
+    color: gray;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.create-server-form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.create-server-form-input {
+    margin-bottom: 0;
+    border-radius: 5px;
+    padding-top: 0;
+    padding-left: 0;
+    border: 1px solid lightgray;
+}
+
+.create-server-form-label {
+    font-family: 'PixelPal';
+    color: #ADB2BA;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.create-server-form-button {
+    height: 45px;
+    width: 100%;
+    background-color: #5865F2;
+    border: none;
+    border-radius: 3px;
+    font-family: 'PixelPal';
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: whitesmoke;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.create-server-form-button:hover {
+    background-color: #6772ed;
+}
+
+.disabled-btn {
+    background-color: gray;
+    height: 45px;
+    width: 100%;
+    border: none;
+    border-radius: 3px;
+    font-family: 'PixelPal';
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: white;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.create-server-error {
+    color: rgba(44, 125, 192, 0.837);
+    font-family: 'PixelPal'
+}
+
+#name,
+#server_picture {
+    height: 20px;
+    width: 100%;
+    margin-top: 5px;
+}
