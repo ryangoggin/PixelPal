@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import ServerMembersSidebar from '../ServerMembersSidebar';
 import { useModal } from "../../context/Modal";
@@ -9,7 +9,6 @@ function ChannelTopBar() {
     const { setModalContent } = useModal();
 
     if (!currChannel) return null;
-
 
     const handleThreads = (e) => {
         e.preventDefault();
@@ -49,7 +48,6 @@ function ChannelTopBar() {
                 </div>
             </div>
         </>
-
     );
 };
 
