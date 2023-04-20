@@ -38,21 +38,22 @@ function MessageForm() {
     if (!channel) return null;
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        // e is undefined if message sent with Enter key, check if it exists (message sent by clicking Send button) before running e.preventDefault()
+        if (e) e.preventDefault();
 
         let message = { userId: user?.id, channelId: channel.id, content: content, timestamp: new Date(), reactions: [] };
-        let createdMsg = await dispatch(createMessage(message))
+        let createdMsg = await dispatch(createMessage(message));
 
-        if (socket) socket.emit("chat", createdMsg)
+        if (socket) socket.emit("chat", createdMsg);
         setContent("");
     };
 
     const enterKey = (e) => {
         if (e.key === 'Enter') {
-            e.preventDefault()
-            handleSubmit()
+            e.preventDefault();
+            handleSubmit();
         }
-      }
+    }
 
     return (
         <>

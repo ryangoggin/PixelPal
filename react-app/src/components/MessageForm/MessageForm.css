@@ -57,6 +57,7 @@ font-style: normal;
     margin-top: 5px; */
     background: none;
     border: none;
+    padding: 10px 0px 10px;
     resize: none;
 
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
@@ -82,6 +83,7 @@ font-style: normal;
     color: white;
     background: none;
     border: none;
+    height: 41px;
 }
 
 .message-form-button:hover {
