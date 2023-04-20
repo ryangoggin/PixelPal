@@ -37,8 +37,8 @@ function MessageForm() {
 
     if (!channel) return null;
 
-    const handleSubmit = async () => {
-        // e.preventDefault();
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
         let message = { userId: user?.id, channelId: channel.id, content: content, timestamp: new Date(), reactions: [] };
         let createdMsg = await dispatch(createMessage(message))
@@ -48,7 +48,10 @@ function MessageForm() {
     };
 
     const enterKey = (e) => {
-        if (e.key === 'Enter') handleSubmit()
+        if (e.key === 'Enter') {
+            e.preventDefault()
+            handleSubmit()
+        }
       }
 
     return (
