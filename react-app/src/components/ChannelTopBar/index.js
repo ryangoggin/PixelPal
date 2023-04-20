@@ -1,28 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import ServerMembersSidebar from '../ServerMembersSidebar';
+import { useModal } from "../../context/Modal";
 import './ChannelTopBar.css';
 
 function ChannelTopBar() {
     let currChannel = useSelector(state => state.channels.oneChannel);
-
-    const [sidebarVisible, setSidebarVisible] = useState(false);
-    const sidebarRef = useRef();
-
-    const toggleSidebar = () => {
-        setSidebarVisible(!sidebarVisible);
-    };
-
-    const handleClickOutside = (event) => {
-        if (sidebarRef.current && !sidebarRef.current.contains(event.target) && event.target.id !== "toggle-sidebar-button") {
-            setSidebarVisible(false);
-        }
-    }
-
-    useEffect(() => {
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => { document.removeEventListener("mousedown", handleClickOutside) };
-    })
+    const { setModalContent } = useModal();
 
     if (!currChannel) return null;
 
@@ -42,10 +26,11 @@ function ChannelTopBar() {
         window.alert('Pinned Messages Feature Coming Soon...');
     }
 
-    const handleMemberToggle = (e) => {
-        e.preventDefault();
-        window.alert('Member List Toggle Feature Coming Soon...');
+    //opens the server members sidebar component
+    const openServerMemberSideBar = () => {
+        setModalContent(<ServerMembersSidebar />);
     }
+
 
     return (
         <>
@@ -60,22 +45,12 @@ function ChannelTopBar() {
                     <button className='threads-button' onClick={handleThreads}><i className="fa-solid fa-hashtag"></i></button>
                     <button className='threads-button' onClick={handleNotifications}><i className="fa-solid fa-bell-slash"></i></button>
                     <button className='threads-button' onClick={handlePinned}><i className="fa-solid fa-thumbtack"></i></button>
-                    <button className='threads-button' id="toggle-sidebar-button" onClick={toggleSidebar}><i className="fa-solid fa-users"></i></button>
+                    <button className='threads-button' id="toggle-sidebar-button" onClick={() => openServerMemberSideBar()}><i className="fa-solid fa-users"></i></button>
                 </div>
-
             </div>
-            {sidebarVisible && (
-                <div className="overlay">
-                    <div ref={sidebarRef}>
-                        <ServerMembersSidebar />
-                    </div>
-                </div>
-            )}
-
         </>
 
     );
 };
 
 export default ChannelTopBar;
-

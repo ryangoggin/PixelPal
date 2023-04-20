@@ -22,9 +22,6 @@ const ServerMembersSidebar = () => {
     const handleDelete = async (e, member) => {
         e.preventDefault();
 
-        console.log("********", server);
-
-
         const data = await dispatch(deleteServerMember(server.id, member));
 
         if (data) {
@@ -81,4 +78,4 @@ const ServerMembersSidebar = () => {
 
 }
 
-export default ServerMembersSidebar; 
+export default ServerMembersSidebar;
