@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { addServerMember, getServer, getServers } from "../../store/server";
 import { getServerChannels } from "../../store/channels";
+import { getAllFriendsThunk } from "../../store/friends";
 import "./ServerCreate.css";
 
 function ServerMemberAdd({ server }) {
@@ -12,6 +13,11 @@ function ServerMemberAdd({ server }) {
 	const [errors, setErrors] = useState([]);
 
 	const user = useSelector(state => state.session.user);
+
+	useEffect(() => {
+		dispatch(getAllFriendsThunk(user.id))
+	}, [dispatch, user])
+
 	let friends = useSelector(state => state.friends)
 
 	friends = Object.values(friends);
