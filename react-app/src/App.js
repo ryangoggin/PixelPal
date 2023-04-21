@@ -11,8 +11,7 @@ import FriendsList from './components/FriendsList'
 import MessageForm from "./components/MessageForm";
 import ChannelTopBar from "./components/ChannelTopBar";
 import UserMenu from "./components/UserMenu";
-import NotFoundPageLoggedOut from "./components/NotFoundPageLoggedOut";
-import NotFoundPageLoggedIn from "./components/NotFoundPageLoggedIn";
+import NotFound from "./components/NotFound";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,40 +22,52 @@ function App() {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
-  return(
+  return (
     <>
-      <Switch>
-        <Route exact path="/">
-          <SplashPage />
-        </Route>
-        <Route exact path="/login">
-          <LoginPage />
-        </Route>
-        <Route exact path='/register'>
-          <SignupFormPage />
-        </Route>
-        <Route>
-          <NotFoundPageLoggedOut sessionUser={sessionUser}/>
-        </Route>
-      </Switch>
       {isLoaded && (
         <>
-          <ServersSidebar />
-          <Switch>
-            <Route exact path='/channels/@me'>
-              <FriendsList />
-              <UserMenu />
+          {sessionUser ? (
+            <>
+            <Switch>
+              <Route exact path='/'>
+                <FriendsList />
+                <UserMenu />
+                <ServersSidebar />
+              </Route>
+              <Route exact path='/channels/@me'>
+                <FriendsList />
+                <UserMenu />
+                <ServersSidebar />
+              </Route>
+              <Route exact path="/channels/:serverId/:channelId">
+                <ChannelSideBar />
+                <ChannelTopBar />
+                <MessageForm />
+                <UserMenu />
+                <ServersSidebar />
+              </Route>
+              <Route>
+                <NotFound />
+              </Route>
+            </Switch>
+          </>
+          ) :
+          (
+            <Switch>
+            <Route exact path="/">
+              <SplashPage />
             </Route>
-            <Route exact path="/channels/:serverId/:channelId">
-              <ChannelSideBar />
-              <ChannelTopBar />
-              <MessageForm />
-              <UserMenu />
+            <Route exact path="/login">
+              <LoginPage />
+            </Route>
+            <Route exact path='/register'>
+              <SignupFormPage />
             </Route>
             <Route>
-              <NotFoundPageLoggedIn sessionUser={sessionUser}/>
+              <NotFound />
             </Route>
           </Switch>
+          )}
         </>
       )}
     </>

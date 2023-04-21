@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Redirect } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import './LoginPage.css';
 import wallpaper from "../../static/pixelpal-wallpaper.png";
 import { login } from '../../store/session';
 
 function LoginPage() {
-	const sessionUser = useSelector(state => state.session.user);
 	const [errors, setErrors] = useState([]);
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const history = useHistory();
 
 	const dispatch = useDispatch();
 
@@ -19,7 +19,10 @@ function LoginPage() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			await dispatch(login(email, password));
+			await dispatch(login(email, password))
+				.then(() => {
+					history.push(`/channels/@me`)
+				})
 		} catch (err) {
 			setErrors([err.message]);
 		}
@@ -28,25 +31,17 @@ function LoginPage() {
 	const handleDemoLogin = async (e) => {
 		e.preventDefault();
 		await dispatch(login('demo@aa.io', 'password'))
-			.catch(
-				async (res) => {
-					const errData = await res.json();
-					console.log(errData)
-				}
-			)
+			.then(() => {
+				history.push(`/channels/@me`)
+			})
 	};
 	const handleDemoLogin2 = async (e) => {
 		e.preventDefault();
 		await dispatch(login('marnie@aa.io', 'password'))
-			.catch(
-				async (res) => {
-					const errData = await res.json();
-					console.log(errData)
-				}
-			)
+			.then(() => {
+				history.push(`/channels/@me`)
+			})
 	};
-
-	if (sessionUser) return <Redirect to="/channels/@me" />;
 
 	return (
 		<>

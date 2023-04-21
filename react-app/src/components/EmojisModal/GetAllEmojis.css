@@ -65,7 +65,7 @@
 
 .tooltip-wrap .tooltip-content {
   display: none;
-  position: relative;
+  position: absolute;
   height: auto;
   bottom: 30px;
   right: 25px;
@@ -75,6 +75,7 @@
 
 .tooltip-wrap:hover .tooltip-content {
   display: block;
+  position: absolute;
   color: rgb(219,222,225);
   width: 100px;
   height: 25px;
@@ -87,7 +88,7 @@
   text-align: center;
   position: relative;
   height: auto;
-  /* bottom: 30px; */
+  bottom: 60px;
 
 }
 
@@ -119,35 +120,26 @@
   font-size: 10px;
 }
 
-.addreaction-container {
-  cursor: pointer;
-  right: 50px;
-  position: absolute;
-  width: 50px;
-}
-
-.addreaction-container:hover,
-.addreaction-container:active,
-.addreaction-container:focus,
-.addreaction-container:visited {
+.addreaction-container:hover {
   background-color: rgb(43,45,49);
-  right: 50px;
-  position: absolute;
-  /* margin-top: 10px;
-  padding-left: 5px;
-  padding-top: 5px;
-  width: 50px; */
-  margin-top: 15px;
-  border-radius: 10px;
-  /* margin-bottom: 10px; */
-  /* padding-left: 5px;
-  padding-top: 5px; */
+
 }
 
 .emojis-modal-container-container {
   display: block;
-  position: static;
-  right: 0px;
-  top: 20px;
-  /* top: 200px; */
+  position: absolute;
+  right: -50px;
+}
+
+.emojis-modal-container {
+  position: absolute;
+  right: 50px;
+  border-radius: 10px;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+
+
+
+
 }

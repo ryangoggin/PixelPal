@@ -40,7 +40,7 @@ function NewChannel({ serverId }) {
                     <span className="channel-type">CHANNEL TYPE</span>
                     <div className="radio-buttons-container">
                         <div className="radio-button">
-                            <i class="fa-regular fa-hashtag"></i>
+                            <i className="fa-regular fa-hashtag"></i>
                             <div className="text-radio-option">
                                 <span className="text-radio">Text</span>
                                 <span className="text-radio-desc">Send messages, images, GIFs, emojis, opinions, and puns</span>
@@ -50,7 +50,7 @@ function NewChannel({ serverId }) {
                     </div>
                     <div className="radio-buttons-container">
                         <div className="radio-button-na">
-                            <i class="fa-solid fa-volume-high"></i>
+                            <i className="fa-solid fa-volume-high"></i>
                             <div className="text-radio-option voice">
                                 <span className="text-radio">Voice</span>
                                 <span className="text-radio-desc">Hang out together with voice, video, and screenshare</span>
