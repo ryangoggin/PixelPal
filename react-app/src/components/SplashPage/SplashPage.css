@@ -99,7 +99,7 @@ body {
 
 .splash-login-button {
     background-color: rgb(25, 25, 25);
-    font-size: 15px;
+    font-size: 17px;
     color: rgb(218, 99, 218);
     font-family: 'PixelPal';
 
@@ -131,9 +131,30 @@ body {
     color: white;
     font-weight: bold;
     font-size: 56px;
-
     margin: 0;
+
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid rgb(210, 210, 210); /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .05em; /* Adjust as needed */
+    animation:
+    typing 3.5s steps(25, end),
+    blink-caret 1s step-end infinite;
 }
+
+/* The typing effect */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 80% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: rgb(224, 224, 224); }
+}
+
 
 .where-you-can-text {
     font-family: "PixelPal";

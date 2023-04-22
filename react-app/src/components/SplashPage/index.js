@@ -103,14 +103,14 @@ function SplashPage() {
                             <img className='pixel-pal-logo-white' src={pixelPalLogoWhite} alt="pixel pal white logo" />
                             <h3 className='pixel-pal-logo-text'>PixelPal</h3>
                         </div>
-                        <div className='splash-top-nav-center'>
+                        {/* <div className='splash-top-nav-center'>
                             <button className='demo-login-button' onClick={handleDemoLogin1}>
                                 Login as Guest User 1
                             </button>
                             <button className='demo-login-button' onClick={handleDemoLogin2}>
                             Login as Guest User 2
                             </button>
-                        </div>
+                        </div> */}
                         <div className='splash-top-nav-right'>
                             <button className='splash-login-button signup' onClick={handleSignup}>Sign Up</button>
                             <button className='splash-login-button' onClick={handleLoginClick}>Log In</button>
