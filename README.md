@@ -54,6 +54,19 @@ PixelPal is a web application inspired by Discord that allows users to create se
 ![signup-user](https://user-images.githubusercontent.com/47682357/233805371-934a5e78-ea61-4e4b-8a3d-831142598da5.gif)
 
 
+## User Login and Authentication:
+
+* You are able to login as long as your credentials are stored within the database (hashed)
+* If there are no matching credentials an error message is displayed
+* Login button is disabled if there are null fields or if the amount of characters entered is not within the acceptable range
+
+
+
+
+
+
+
+
 
 **Home Page**
 * Signup
