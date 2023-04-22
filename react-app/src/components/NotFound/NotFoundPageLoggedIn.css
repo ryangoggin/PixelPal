@@ -1,0 +1,87 @@
+.not-found-container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: white;
+}
+
+.not-found-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    padding: 20px 0px 0px 40px;
+}
+
+.not-found-home-button {
+    background: none;
+    border: none;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0;
+    margin: 0;
+}
+
+.not-found-home-button:hover {
+    cursor: pointer;
+}
+
+.pixel-pal-logo-text-black {
+    font-family: 'Prompt', sans-serif;
+    font-size: 18px;
+    margin: 0;
+}
+
+.pixel-pal-logo-black {
+    height: 34px;
+    width: 34px;
+}
+
+.not-found-gif {
+    width: 300px;
+}
+
+.not-found-text-container {
+    width: 500px;
+}
+
+.wrong-turn-text {
+    font-family: "Noto Sans", sans-serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: #5865F2;
+}
+
+.lost-text {
+    font-family: "Noto Sans", sans-serif;
+    font-size: 18px;
+}
+
+.return-button {
+    font-family: "Noto Sans", sans-serif;
+    font-size: 20px;
+    color: #00bbfd;
+
+    background: none;
+    border: none;
+
+    padding: 0;
+    margin: 0;
+}
+
+.return-button:hover {
+    cursor: pointer;
+    color: #0090d8;
+}

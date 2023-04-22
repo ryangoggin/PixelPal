@@ -92,7 +92,7 @@ function SplashPage() {
 		<>
 			<div className="splash-container">
                 <div className='splash-top'>
-                <img className='splash-top-background' src={backgroundTop} alt="splash top background" />
+                    <img className='splash-top-background' src={backgroundTop} alt="splash top background" />
                     <div className='splash-top-nav'>
                         <div className='splash-top-nav-left'>
                             <img className='pixel-pal-logo-white' src={pixelPalLogoWhite} alt="pixel pal white logo" />
@@ -100,10 +100,10 @@ function SplashPage() {
                         </div>
                         <div className='splash-top-nav-center'>
                             <button className='demo-login-button' onClick={handleDemoLogin1}>
-                                Demo User 1 Log In
+                                Login as Demo 1
                             </button>
                             <button className='demo-login-button' onClick={handleDemoLogin2}>
-                                Demo User 2 Log In
+                                Login as Demo 2
                             </button>
                         </div>
                         <div className='splash-top-nav-right'>

@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from 'react';
+import React, { useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createReactionThunk, deleteReactionThunk, getChannelMessages } from '../../store/message';
 import { useParams } from 'react-router-dom';
@@ -56,13 +56,9 @@ function MessageItem({ message }) {
         return `${date.toDateString()} ${date.toLocaleTimeString()}`;
     }, [message.timestamp]);
 
-    // memoize the reactions array to prevent unnecessary recomputations
-    const reactionsArr = useMemo(
-        () => Object.values(message.reactions),
-        [message.reactions]
-    );
 
-    // memoize the session user ID to prevent unnecessary recomputations
+    const reactionsArr = Object.values(message.reactions);
+
     const sessionUserId = sessionUser?.id;
 
     let messageId = message.id;
@@ -70,16 +66,14 @@ function MessageItem({ message }) {
 
 
     const addReaction = async (sessionUserId, messageId, emojiId ) => {
-        let addedReaction = await dispatch(createReactionThunk(sessionUserId, messageId, emojiId))
-        dispatch(getChannelMessages(message.channelId))
-        return addedReaction
+        dispatch(createReactionThunk(sessionUserId, messageId, emojiId))
         }
 
 
     const deleteReaction = async (reactionId, messageId) => {
-        let deleted_reaction = await dispatch(deleteReactionThunk(reactionId, messageId))
+        dispatch(deleteReactionThunk(reactionId, messageId))
         dispatch(getChannelMessages(message.channelId))
-        return deleted_reaction
+
     }
 
     if (!user) return null
@@ -99,6 +93,9 @@ function MessageItem({ message }) {
                         <p>{message.content}</p>
                     </div>
                     <div className='reactions-container'>
+
+                        {reactionsArr.length ?
+                        <>
                         {reactionsArr.map((reaction) => {
                             return (
                                 <div>
@@ -113,6 +110,8 @@ function MessageItem({ message }) {
                                 </div>
                             );
                         })}
+                        </>
+                        : null}
                     </div>
                 </div>
             </div>

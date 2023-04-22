@@ -1,18 +1,19 @@
 # PixelPal
 
-## About
-PixelPal is a live text messaging app that a user can use to can create servers with channels to talk to and interact with other users in their communities in real time. PixelPal is a clone based off Discord.
+PixelPal is a web application inspired by Discord that allows users to create servers where they can interact in real time with other users in their communities. This project aims to replicate Discord's ease of use and the ability to share content with other PixelPal clients running at the same time instantaneously through the use of WebSockets. PixelPal is built with a Python/Flask backend and a React/Redux frontend for responsiveness.
 
-## Deployed Live Link: [PixelPal](https://pixelpal.onrender.com/)
+[Click here to view PixelPal's Live Site](https://pixelpal.onrender.com/)
 
-## Project Planning
-**Project wiki links below:**\
+
+## Navigate to:
+
 [User Stories](https://github.com/ryangoggin/PixelPal/wiki/User-Stories)\
 [Feature List](https://github.com/ryangoggin/PixelPal/wiki/PixelPal-Features-List)\
 [Database Schema](https://github.com/ryangoggin/PixelPal/wiki/PixelPal-Database-Schema)\
 [Backend Routes](https://github.com/ryangoggin/PixelPal/wiki/Backend-Routes)
 
 ## Technologies/Frameworks Used:
+
 ### Frontend:
 ![JavaScript](https://img.shields.io/badge/Javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![React](https://img.shields.io/badge/react-676E77?style=for-the-badge&logo=react&logoColor=#61DAFB)
@@ -31,13 +32,26 @@ PixelPal is a live text messaging app that a user can use to can create servers 
 ### Deployment:
 ![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)
 
-## Future Implementation Goals:
-* AWS for File Uploads
-* Updating User Profile Pictures
-* Adding Members to a Server
-* Live Friend DMs 
 
-## Features
+
+# Features:
+
+## Demo User Implementation:
+
+* Feel free to test the site features through clicking the "Demo User" button which will directly log you in
+* There are exactly TWO different guest logins built for users looking to test the real-time messaging capabilities of PixelPal
+
+![demo-user](https://user-images.githubusercontent.com/47682357/233800295-73113d34-bd59-4796-bc7b-cbe0e5629053.gif)
+
+## Sign up a User:
+
+* You will be able to sign up and automatically be redirected to the logged in page
+* There are validations for signing up such as username length requirements, valid email address, password length, etc
+* Passwords must be matching when entered twice or the signup button will be disabled
+* Friendly reminders will display and signup will be blocked if fields are not properly filled out
+
+
+
 
 **Home Page**
 * Signup
@@ -58,3 +72,12 @@ PixelPal is a live text messaging app that a user can use to can create servers 
 
 **Reactions**
 * Create, Read & Delete Reactions
+
+
+
+## Features Coming Soon:
+
+* AWS for File Uploads
+* Updating User Profile Pictures
+* Adding Members to a Server
+* Live Friend DMs 
