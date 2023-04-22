@@ -60,21 +60,16 @@ PixelPal is a web application inspired by Discord that allows users to create se
 * If there are no matching credentials an error message is displayed
 * Login button is disabled if there are null fields or if the amount of characters entered is not within the acceptable range
 
+![login-demo](https://user-images.githubusercontent.com/47682357/233807303-f5dfe268-f669-478e-9ea1-338921a77bf0.gif)
+
+
+## Live Messaging Between PixelPal Clients:
+
+* You are able to send messages to other PixelPal clients as long as they are within the same server and channel
+* You must be logged in to use the live messaging feature
 
 
 
-
-
-
-
-
-**Home Page**
-* Signup
-* Login
-* Demo Login
-
-**User Menu**
-* Logout
 
 **Servers**
 * Create, Read, Update & Delete Server
