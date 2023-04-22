@@ -68,14 +68,22 @@ PixelPal is a web application inspired by Discord that allows users to create se
 * You are able to send messages to other PixelPal clients as long as they are within the same server and channel
 * You must be logged in to use the live messaging feature
 
+![live-messaging](https://user-images.githubusercontent.com/47682357/233807618-de6efc72-f64e-40fa-9101-6ff0d2418e9f.gif)
 
 
 
-**Servers**
-* Create, Read, Update & Delete Server
+## Create a Server
 
-**Channels**
-* Create, Read, Update & Delete Channel
+* Users are able to create a server and add their friends to a server
+
+![create-server](https://user-images.githubusercontent.com/47682357/233807725-6b409614-b341-479e-a138-9f11221f27ff.gif)
+
+
+## Create a Channel
+
+* Create a channel for your friends by topic or interest
+
+
 
 **Messages**
 * Create & Read Messages
