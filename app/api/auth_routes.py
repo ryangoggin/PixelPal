@@ -69,7 +69,8 @@ def sign_up():
         user = User(
             username=username_hashtag,
             email=form.data['email'],
-            password=form.data['password']
+            password=form.data['password'],
+            prof_pic = "https://bst.icons8.com/wp-content/uploads/2021/08/22.png"
         )
         db.session.add(user)
         db.session.commit()
