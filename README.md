@@ -41,7 +41,8 @@ PixelPal is a web application inspired by Discord that allows users to create se
 * Feel free to test the site features through clicking the "Demo User" button which will directly log you in
 * There are exactly TWO different guest logins built for users looking to test the real-time messaging capabilities of PixelPal
 
-![demo-user](https://user-images.githubusercontent.com/47682357/233800295-73113d34-bd59-4796-bc7b-cbe0e5629053.gif)
+![demo-user](https://user-images.githubusercontent.com/47682357/233805234-93ea9d85-540f-4178-b560-683a4708b6de.gif)
+
 
 ## Sign up a User:
 
@@ -50,22 +51,39 @@ PixelPal is a web application inspired by Discord that allows users to create se
 * Passwords must be matching when entered twice or the signup button will be disabled
 * Friendly reminders will display and signup will be blocked if fields are not properly filled out
 
+![signup-user](https://user-images.githubusercontent.com/47682357/233805371-934a5e78-ea61-4e4b-8a3d-831142598da5.gif)
+
+
+## User Login and Authentication:
+
+* You are able to login as long as your credentials are stored within the database (hashed)
+* If there are no matching credentials an error message is displayed
+* Login button is disabled if there are null fields or if the amount of characters entered is not within the acceptable range
+
+![login-demo](https://user-images.githubusercontent.com/47682357/233807303-f5dfe268-f669-478e-9ea1-338921a77bf0.gif)
+
+
+## Live Messaging Between PixelPal Clients:
+
+* You are able to send messages to other PixelPal clients as long as they are within the same server and channel
+* You must be logged in to use the live messaging feature
+
+![live-messaging](https://user-images.githubusercontent.com/47682357/233807618-de6efc72-f64e-40fa-9101-6ff0d2418e9f.gif)
 
 
 
-**Home Page**
-* Signup
-* Login
-* Demo Login
+## Create a Server
 
-**User Menu**
-* Logout
+* Users are able to create a server and add their friends to a server
 
-**Servers**
-* Create, Read, Update & Delete Server
+![create-server](https://user-images.githubusercontent.com/47682357/233807725-6b409614-b341-479e-a138-9f11221f27ff.gif)
 
-**Channels**
-* Create, Read, Update & Delete Channel
+
+## Create a Channel
+
+* Create a channel for your friends by topic or interest
+
+
 
 **Messages**
 * Create & Read Messages
