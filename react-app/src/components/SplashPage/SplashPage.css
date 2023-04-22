@@ -163,8 +163,11 @@ body {
 .splash-middle {
     background-color: rgb(21, 21, 21);
     width: 100%;
-    padding-bottom: 100px;
-    padding-top: 60px;
+    padding-bottom: 70px;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .meet-developers-text {
@@ -180,10 +183,13 @@ body {
 
 .devs-container {
     display: flex;
+    flex-direction: row;
+    align-items: center;
     justify-content: center;
     flex-wrap: wrap;
 
     margin: 0px 40px 0px;
+    width: 70%;
 }
 
 .portfolio-button {
