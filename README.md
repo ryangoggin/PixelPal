@@ -41,7 +41,8 @@ PixelPal is a web application inspired by Discord that allows users to create se
 * Feel free to test the site features through clicking the "Demo User" button which will directly log you in
 * There are exactly TWO different guest logins built for users looking to test the real-time messaging capabilities of PixelPal
 
-![demo-user](https://user-images.githubusercontent.com/47682357/233800295-73113d34-bd59-4796-bc7b-cbe0e5629053.gif)
+![demo-user](https://user-images.githubusercontent.com/47682357/233805175-c08c0fad-2a5c-49b0-8ce4-a2848550ac1b.gif)
+
 
 ## Sign up a User:
 
