@@ -1,11 +1,9 @@
-/* .splash-container {
-    position:fixed;
-    top: 0;
-    bottom:0;
-
-    width: 100;
-    overflow-y:scroll;
-} */
+@font-face {
+    font-family: 'PixelPal';
+    src: url('../../static/ggsans-Normal.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
 
 body {
     width: 100%;
@@ -13,7 +11,6 @@ body {
 }
 
 .splash-container {
-    /* border: 2px solid red; */
     width: 100%;
     position: absolute;
     left: 0;
@@ -81,14 +78,12 @@ body {
 }
 
 .demo-login-button {
-    font-family: "Noto Sans", sans-serif;
+    font-family: "PixelPal";
     font-size: 18px;
     color: white;
 
     background: none;
     border: none;
-
-    width: 170px;
     margin: 0px 25px 0px;
 }
 
@@ -103,10 +98,15 @@ body {
 }
 
 .splash-login-button {
-    background-color: whitesmoke;
+    background-color: rgb(25, 25, 25);
     font-size: 15px;
+    color: rgb(218, 99, 218);
+    font-family: 'PixelPal';
 
-    padding: 7px 16px 7px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     margin-right: 40px;
 
     border: 1px solid rgba(255, 255, 255, 0);
@@ -127,7 +127,7 @@ body {
 }
 
 .imagine-text {
-    font-family: "Noto Sans", sans-serif;
+    font-family: "PixelPal";
     color: white;
     font-weight: bold;
     font-size: 56px;
@@ -136,7 +136,7 @@ body {
 }
 
 .where-you-can-text {
-    font-family: "Noto Sans", sans-serif;
+    font-family: "PixelPal";
     color: white;
     font-size: 24px;
 
@@ -144,12 +144,12 @@ body {
 }
 
 .splash-open-button {
-    font-family: "Noto Sans", sans-serif;
-    color: white;
+    font-family: "PixelPal";
+    color: rgb(168, 150, 237);
     font-size: 20px;
 
-    background: #23272a;
-    border: 1px solid rgba(255, 255, 255, 0);
+    background: #000000c1;
+    border: 0.5px solid rgba(203, 203, 203, 0.681);
     border-radius: 40px;
 
     padding: 16px 32px 16px;
@@ -161,16 +161,16 @@ body {
 }
 
 .splash-middle {
-    background-color: white;
+    background-color: rgb(21, 21, 21);
     width: 100%;
-    margin-bottom: 140px;
-    margin-top: 100px;
+    padding-bottom: 100px;
+    padding-top: 60px;
 }
 
 .meet-developers-text {
-    font-family: "Noto Sans", sans-serif;
+    font-family: "PixelPal";
     font-size: 48px;
-    color: #23272a;
+    color: #dbdbdb;
 
     padding: 20px 0px 20px;
     margin: 0;

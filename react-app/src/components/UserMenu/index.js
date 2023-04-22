@@ -13,7 +13,7 @@ function UserMenu() {
 		e.preventDefault();
 		await dispatch(logout())
         .then(() => {
-            history.push('/');
+            history.push('/login');
         });
 	};
 
