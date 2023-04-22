@@ -83,13 +83,15 @@ PixelPal is a web application inspired by Discord that allows users to create se
 
 * Create a channel for your friends by topic or interest
 
+![create-channel](https://user-images.githubusercontent.com/47682357/233808307-4ce84e9c-2808-44fc-b5af-baaf1edd033c.gif)
 
 
-**Messages**
-* Create & Read Messages
+## React to Messages with Emojis
 
-**Reactions**
-* Create, Read & Delete Reactions
+* Users are able to react to messages with emojis
+* Users can see each other's reactions
+
+![reactions](https://user-images.githubusercontent.com/47682357/233808362-25657cd6-ea72-4451-8573-5b468ae4ef90.gif)
 
 
 
