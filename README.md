@@ -4,6 +4,8 @@ PixelPal is a web application inspired by Discord that allows users to create se
 
 [Click here to view PixelPal's Live Site](https://pixelpal.onrender.com/)
 
+![landing](https://user-images.githubusercontent.com/47682357/233813848-f7a1d32e-a5b7-4774-bb04-c9fa3b0d245a.png)
+
 
 ## Navigate to:
 
