@@ -6,46 +6,6 @@ from app.models import User
 # Adds a demo server, you can add other servers here if you want
 def seed_servers():
     servers = [
-        # Server(
-        #     owner_id=1, #Demo
-        #     name="Direct Messages",
-        #     server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
-        # ),
-        # Server(
-        #     owner_id=2, #Marnie
-        #     name="Direct Messages",
-        #     server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
-        # ),
-        # Server(
-        #     owner_id=3, #Bobbie
-        #     name="Direct Messages",
-        #     server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
-        # ),
-        # Server(
-        #     owner_id=4,
-        #     name="Direct Messages",
-        #     server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
-        # ),
-        # Server(
-        #     owner_id=5,
-        #     name="Direct Messages",
-        #     server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
-        # ),
-        # Server(
-        #     owner_id=6,
-        #     name="Direct Messages",
-        #     server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
-        # ),
-        # Server(
-        #     owner_id=7,
-        #     name="Direct Messages",
-        #     server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
-        # ),
-        # Server(
-        #     owner_id=8,
-        #     name="Direct Messages",
-        #     server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
-        # ),
 
         Server(
             owner_id=1,
@@ -60,18 +20,100 @@ def seed_servers():
         ),
 
 
+        #DM Servers for Demo
+        #3 Demo + Marnie
+        Server(
+            owner_id=1,
+            name='Demo and Marnie',
+            server_picture = ''
+        ),
+
+        #4 Demo and Bobbie
+        Server(
+            owner_id=1,
+            name='Demo and Bobbie',
+            server_picture = ''
+        ),
+
+        #5 Demo and Aileen
+        Server(
+            owner_id=1,
+            name='Demo and Aileen',
+            server_picture = ''
+        ),
+
+        #6 Demo and Zaineb
+        Server(
+            owner_id=1,
+            name='Demo and Zaineb',
+            server_picture = ''
+        ),
+
+        #7 Demo and Ken
+        Server(
+            owner_id=1,
+            name='Demo and Ken',
+            server_picture = ''
+        ),
+
+        #8 Demo and Ryan
+        Server(
+            owner_id=1,
+            name='Demo and Ryan',
+            server_picture = ''
+        ),
+
+        #DM Servers for Marnie
+        #9 Marnie and Bobbie
+        Server(
+            owner_id=2,
+            name='Marnie and Bobbie',
+            server_picture = ''
+        ),
+
+        #10 Marnie and Aileen
+        Server(
+            owner_id=2,
+            name='Marnie and Aileen',
+            server_picture = ''
+        ),
+
+        #11 Marnie and Zaineb
+        Server(
+            owner_id=2,
+            name='Marnie and Zaineb',
+            server_picture = ''
+        ),
+
+        #12 Marnie and Ryan
+        Server(
+            owner_id=2,
+            name='Marnie and Ryan',
+            server_picture = ''
+        ),
+
+        #13 Marnie and Ken
+        Server(
+            owner_id=2,
+            name='Marnie and Ken',
+            server_picture = ''
+        ),
+
+
     ]
 
     users = User.query.all()
 
-
-    # first_group = list(users) #demo bobbie marnie
-    # second_group = list(users[0:3]) #demo bobbie marnie ak
-
-
     servers[0].members.extend(users)
     servers[1].members.extend(users)
 
+    #DMs
+    servers[2].members.extend(users[0], users[1]) #Marnie
+    servers[3].members.extend(users[0], users[2]) #Bobbie
+    servers[4].members.extend(users[0], users[3]) #AK
+    servers[5].members.extend(users[0], users[4]) #ZM
+    servers[6].members.extend(users[0], users[5]) #RG
+    servers[7].members.extend(users[0], users[6]) #KL
 
     db.session.add_all(servers)
     db.session.commit()
