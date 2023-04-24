@@ -210,7 +210,18 @@ body {
     flex-wrap: wrap;
 
     margin: 0px 40px 0px;
-    width: 70%;
+}
+
+@media (max-width: 1519px) {
+    .devs-container {
+        width: 1000px;
+    }
+}
+
+@media (max-width: 780px) {
+    .devs-container {
+        width: 500px;
+    }
 }
 
 .portfolio-button {
