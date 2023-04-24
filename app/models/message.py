@@ -12,7 +12,8 @@ class Message(db.Model):
     content = db.Column(db.String(2000), nullable=False)
     timestamp = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-    channel_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('channels.id')), nullable=False)
+    channel_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('channels.id')), nullable=True)
+    private_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('private_channels.id'), nullable=True))
 
     #Relationship Attribute
     reactions = db.relationship('Reaction', back_populates='message', lazy=True, cascade="all, delete")
@@ -25,5 +26,15 @@ class Message(db.Model):
             "timestamp": self.timestamp,
             "userId": self.user_id,
             "channelId": self.channel_id,
+            "reactions": [reaction.to_dict() for reaction in self.reactions]
+        }
+
+    def to_dict_dm(self):
+        return {
+            "id": self.id,
+            "content": self.content,
+            "timestamp": self.timestamp,
+            "userId": self.user_id,
+            "private_id": self.channel_id,
             "reactions": [reaction.to_dict() for reaction in self.reactions]
         }
