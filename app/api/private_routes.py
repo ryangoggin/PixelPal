@@ -8,7 +8,7 @@ from datetime import datetime
 private_routes = Blueprint('private', __name__)
 
 #GET ALL DM Channels, messages attached
-@private_routes.route("/private/<int:user_id>", methods=['GET'])
+@private_routes.route("/dms/<int:user_id>", methods=['GET'])
 @login_required
 def get_dm_channels(user_id):
     ''' query for all direct message channels and return them in a list of dictionaries'''
