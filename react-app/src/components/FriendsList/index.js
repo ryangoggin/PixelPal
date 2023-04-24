@@ -11,6 +11,7 @@ export default function FriendsList() {
   let currentUserId;
   if (currentUser) currentUserId = currentUser.id;
 
+
   const allFriends = useSelector(state => state.friends)
   const friendsArr = Object.values(allFriends)
 
@@ -18,15 +19,13 @@ export default function FriendsList() {
     dispatch(getAllFriendsThunk(currentUserId))
   }, [dispatch, currentUserId])
 
-  // const handleFriendOptions = (e) => {
-  //   e.preventDefault();
-  //   window.alert('Friend Request Feature Coming Soon!');
-  // }
 
   const handleOptions = (e) => {
     e.preventDefault();
     window.alert('More Options Feature Coming Soon!');
   }
+
+
 
   return (
     <div>
@@ -41,6 +40,12 @@ export default function FriendsList() {
 
         <div className='friendslist-channel-dm-container'>
           <div className='friendslist-channel-dm'> Direct Messages </div>
+          <div className='friendslist-dm-channel'> PLACEHOLDER </div>
+          <div className='friendslist-dm-channel'> PLACEHOLDER </div>
+          <div className='friendslist-dm-channel'> PLACEHOLDER </div>
+          <div className='friendslist-dm-channel'> PLACEHOLDER </div>
+
+
         </div>
       </div>
 

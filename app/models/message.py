@@ -16,6 +16,7 @@ class Message(db.Model):
 
     #Relationship Attribute
     reactions = db.relationship('Reaction', back_populates='message', lazy=True, cascade="all, delete")
+    private_messages = db.relationship("PriviateMessage", back_populate='messages', lazy=True)
 
     def to_dict(self):
         return {

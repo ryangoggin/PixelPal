@@ -252,13 +252,15 @@
 
 .friendslist-channel-dm-container {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
 }
 
-.friendslist-channel-dm-container > .fa-plus {
-  color: rgb(181,186,193);
-  margin-right: 15px;
+.friendslist-dm-channel {
+  font-family: 'PixelPal';
+  font-size: 15px;
+  color: rgb(238,239,242);
+  padding-left: 20px;
 }
 
 .friendslist-tag {
@@ -273,9 +275,4 @@
 
 .icon-hover > i:hover {
   color: rgb(212, 218, 227);
-}
-
-.friendslist-channel-dm-container > i:hover {
-  color: rgb(212, 218, 227);
-  cursor: pointer;
 }

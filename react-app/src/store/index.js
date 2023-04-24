@@ -7,6 +7,7 @@ import messageReducer from './message';
 import emojisReducer from './emojis';
 import friendsReducer from './friends';
 import channelReducer from './channels';
+import privateReducer from './private';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
   messages: messageReducer,
   emoji: emojisReducer,
   friends: friendsReducer,
-  channels: channelReducer
+  channels: channelReducer,
+  private: privateReducer
 });
 
 let enhancer;
