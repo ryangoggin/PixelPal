@@ -2,8 +2,8 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
 
 
-class PrivateMessage(db.Model):
-    __tablename__ = 'private_messages'
+class PrivateChannel(db.Model):
+    __tablename__ = 'private_channels'
 
 
     if environment == "production":
@@ -11,10 +11,10 @@ class PrivateMessage(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('user.id')), nullable=False)
-    chatting_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('user.id')), nullable=False)
+    user_two_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('user.id')), nullable=False)
 
     #Relationship Attributes
-    messages = db.relationship('Message', back_populates='private_messages', lazy=True, cascade='all, delete-orphan')
+    messages = db.relationship('Message', back_populates='private_channels', lazy=True, cascade='all, delete-orphan')
     user = db.relationship("User", lazy=True, foreign_keys=[user_id])
     user_two = db.relationship("User", lazy=True, foreign_keys=[chatting_id])
 

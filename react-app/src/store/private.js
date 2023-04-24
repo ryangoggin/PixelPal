@@ -3,7 +3,8 @@ const LOAD_DMS = 'private/LOAD_DMS'
 
 // Action Creators
 const loadAllDMs = (directMessages) => ({
-  type: LOAD_DMS
+  type: LOAD_DMS,
+  directMessages
 })
 
 // Thunks

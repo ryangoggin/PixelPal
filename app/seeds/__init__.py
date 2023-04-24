@@ -6,7 +6,7 @@ from .servers import seed_servers, undo_servers
 from .emojis import seed_emojis, undo_emojis
 from .reactions import seed_reactions, undo_reactions
 from .friends import seed_friends, undo_friends
-# from .privateMessages import seed_private_messages, undo_private_messages
+from .private_channels import seed_private_channels, undo_private_channels
 from app.models.db import db, environment, SCHEMA
 
 # Creates a seed group to hold our commands
@@ -25,7 +25,7 @@ def seed():
         undo_reactions()
         undo_messages()
         undo_emojis()
-        # undo_private_messages()
+        undo_private_channels()
         undo_channels()
         undo_servers()
         undo_friends()
@@ -34,7 +34,7 @@ def seed():
     seed_friends()
     seed_servers()
     seed_channels()
-    # seed_private_messages()
+    seed_private_channels()
     seed_emojis()
     seed_messages()
     seed_reactions()
