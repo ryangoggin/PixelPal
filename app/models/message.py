@@ -12,12 +12,12 @@ class Message(db.Model):
     content = db.Column(db.String(2000), nullable=False)
     timestamp = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-    channel_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('channels.id')), nullable=True)
-    private_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('private_channels.id'), nullable=True))
+    channel_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('channels.id')))
+    private_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('private_channels.id')))
 
     #Relationship Attribute
     reactions = db.relationship('Reaction', back_populates='message', lazy=True, cascade="all, delete")
-    private_channels = db.relationship("PriviateMessage", back_populate='messages', lazy=True)
+    private_channels = db.relationship("PrivateChannel", back_populates='messages', lazy=True)
 
     def to_dict(self):
         return {
@@ -35,6 +35,6 @@ class Message(db.Model):
             "content": self.content,
             "timestamp": self.timestamp,
             "userId": self.user_id,
-            "private_id": self.channel_id,
+            "private_id": self.private_id,
             "reactions": [reaction.to_dict() for reaction in self.reactions]
         }

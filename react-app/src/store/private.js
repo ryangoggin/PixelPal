@@ -32,7 +32,10 @@ export default function privateReducer( state = initialState, action) {
   let newState = {}
   switch(action.type) {
     case LOAD_DMS:
-      newState = {...state, allDMs: { }};
+      newState = {...state, allDMs: { }}
+      action.directMessages.forEach(dm => {
+        newState.allDMs[dm.id] = dm
+      })
 
       return newState
 

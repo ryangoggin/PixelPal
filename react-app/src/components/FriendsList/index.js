@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAllFriendsThunk } from "../../store/friends";
+import { loadAllDmsThunk } from "../../store/private";
 import './FriendsList.css'
 
 export default function FriendsList() {
@@ -14,6 +15,8 @@ export default function FriendsList() {
 
   const allFriends = useSelector(state => state.friends)
   const friendsArr = Object.values(allFriends)
+
+  // const DMs = useSelector(state => state.private.allDMs)
 
   useEffect(() => {
     dispatch(getAllFriendsThunk(currentUserId))
