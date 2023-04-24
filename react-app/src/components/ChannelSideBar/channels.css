@@ -27,7 +27,7 @@
     left: 68px;
     height: 100vh;
     width: 230px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .channel-sidebar::-webkit-scrollbar {
@@ -36,13 +36,13 @@
 }
 
 .channel-sidebar:hover::-webkit-scrollbar {
-    width: 5px;
-    height: 6px;
-    background-color: #222;
+    width: 0;
+    height: 0;
+    background-color: transparent;
 }
 
 .channel-sidebar:hover::-webkit-scrollbar-thumb {
-    background-color: rgb(26, 26, 26);
+    background-color: transparent;
 }
 
 

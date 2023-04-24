@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal"
 import { getServerChannels, createChannel } from '../../store/channels';
+import { useHistory } from 'react-router-dom';
 import './create-channel.css';
 
 
@@ -11,19 +12,19 @@ function NewChannel({ serverId }) {
     const [name, setName] = useState('');
     const [channelType, setChannelType] = useState('text');
     const [errors, setErrors] = useState([]);
+    const history = useHistory();
 
     const { closeModal } = useModal();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const data = await dispatch(createChannel(name, serverId));
+        await dispatch(createChannel(name, serverId))
+            .then((res) => {
+                dispatch(getServerChannels(serverId))
+                history.push(`/channels/${res.serverId}/${res.id}`)
+                closeModal();
+            })
 
-        if (data) {
-            setErrors(data);
-        } else {
-            closeModal();
-            dispatch(getServerChannels(serverId));
-        }
     }
 
     return (

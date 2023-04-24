@@ -18,6 +18,11 @@ export default function FriendsList() {
     dispatch(getAllFriendsThunk(currentUserId))
   }, [dispatch, currentUserId])
 
+  const handleFriendOptions = (e) => {
+    e.preventDefault();
+    window.alert('Friend Request Feature Coming Soon!');
+  }
+
   const handleDM = (e) => {
     e.preventDefault();
     window.alert('Private Messages Feature Coming Soon!');
@@ -50,9 +55,9 @@ export default function FriendsList() {
           <i className="fa-solid fa-user-group" />
           <div className='friendslist-friends'> Friends </div>
           <div className='friendslist-online'> Online </div>
-          <div className='friendslist-all'> All </div>
-          <div className='friendslist-all'> Pending </div>
-          <div className='friendslist-all'> Blocked </div>
+          <div className='friendslist-all' onClick={handleFriendOptions}> All </div>
+          <div className='friendslist-all' onClick={handleFriendOptions}> Pending </div>
+          <div className='friendslist-all' onClick={handleFriendOptions}> Blocked </div>
         </div>
         <div className='friendslist-user-container-1'> Online - {friendsArr.length} </div>
         {friendsArr.map(friend => {

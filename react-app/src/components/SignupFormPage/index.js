@@ -1,25 +1,26 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { signUp } from "../../store/session";
 import wallpaper from "../../static/pixelpal-wallpaper.png";
 import './SignupForm.css';
 
 function SignupPage() {
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [month, setMonth] = useState("");
   const [day, setDay] = useState("");
   const [year, setYear] = useState("");
-
-  if (sessionUser) return <Redirect to="/channels/@me" />;
+  const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     await dispatch(signUp(username, email, password))
+      .then(() => {
+        history.push(`/channels/@me`)
+      })
   };
 
   const generateOptions = (start, end) => {

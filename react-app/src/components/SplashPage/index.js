@@ -17,6 +17,11 @@ function SplashPage() {
         history.push("/login");
     }
 
+    const handleSignup = async (e) => {
+        e.preventDefault();
+        history.push(`/register`);
+    }
+
 	const handleDemoLogin1 = async (e) => {
 		e.preventDefault();
 		await dispatch(login('demo@aa.io', 'password'))
@@ -98,36 +103,36 @@ function SplashPage() {
                             <img className='pixel-pal-logo-white' src={pixelPalLogoWhite} alt="pixel pal white logo" />
                             <h3 className='pixel-pal-logo-text'>PixelPal</h3>
                         </div>
-                        <div className='splash-top-nav-center'>
+                        {/* <div className='splash-top-nav-center'>
                             <button className='demo-login-button' onClick={handleDemoLogin1}>
-                                Login as Demo 1
+                                Login as Guest User 1
                             </button>
                             <button className='demo-login-button' onClick={handleDemoLogin2}>
-                                Login as Demo 2
+                            Login as Guest User 2
                             </button>
-                        </div>
+                        </div> */}
                         <div className='splash-top-nav-right'>
-                            <button className='splash-login-button' onClick={handleLoginClick}>
-                                Log In
-                            </button>
+                            <button className='splash-login-button signup' onClick={handleSignup}>Sign Up</button>
+                            <button className='splash-login-button' onClick={handleLoginClick}>Log In</button>
                         </div>
                     </div>
                     <div className='splash-top-center'>
-                        <p className='imagine-text'>IMAGINE A PLACE...</p>
+                        <p className='imagine-text'>imagine a place...</p>
                         <p className='where-you-can-text'>
                             ...where you can belong to a school club, a gaming
-                             group, or a worldwide art community. Where just you
+                             group, or a worldwide art community. where just you
                              and a handful of friends can spend time together.
                              A place that makes it easy to talk every day and hang
-                             out more often.
+                             out more often. Somewhere you can go with just a click of
+                             a button.
                         </p>
                         <button className='splash-open-button' onClick={handleLoginClick}>
-                                Open PixelPal in your browser
+                         Launch PixelPal 👾
                         </button>
                     </div>
                 </div>
                 <div className="splash-middle">
-                    <p className='meet-developers-text'>Meet the Developers</p>
+                    <p className='meet-developers-text'>meet the developers.</p>
                     <div className='devs-container'>
                         <button className="portfolio-button ryan-button" onClick={handleRyanPortfolio}>
                             <div className='dev-container ryan-container'>
@@ -185,7 +190,7 @@ function SplashPage() {
                 </div>
                 <div className='splash-bottom'>
                     <div className='tech-stack-container'>
-                        <p className='tech-stack-text'>IMAGINE A TECH STACK</p>
+                        <p className='tech-stack-text'>THE TECH STACK</p>
                         <div className='technologies'>
                             <ul className='tech-list'>
                                 <li className='tech-type'>Frontend</li>

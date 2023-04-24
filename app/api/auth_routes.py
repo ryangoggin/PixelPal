@@ -3,6 +3,7 @@ from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
+import random
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -39,7 +40,7 @@ def login():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         # Add the user to the session, we are logged in!
-        user = User.query.filter(User.email == form.data['email']).first()
+        user = User.query.filter((User.email == form.data['email']) | (User.username.like(f"%#{form.data['email']}%"))).first()
         login_user(user)
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
@@ -62,10 +63,14 @@ def sign_up():
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        random_tag = random.randint(1000, 9999)
+        username_hashtag = f"{form.data['username']}#{random_tag}"
+
         user = User(
-            username=form.data['username'],
+            username=username_hashtag,
             email=form.data['email'],
-            password=form.data['password']
+            password=form.data['password'],
+            prof_pic = "https://bst.icons8.com/wp-content/uploads/2021/08/22.png"
         )
         db.session.add(user)
         db.session.commit()

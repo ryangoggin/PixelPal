@@ -58,7 +58,7 @@ function LoginPage() {
 					<form className="login-form" onSubmit={handleSubmit}>
 						<div className="form-group">
 							<label className="form-label" htmlFor="emailOrPhone">
-								EMAIL OR PHONE NUMBER
+								EMAIL OR USERNAME
 							</label>
 							<br></br>
 							<input

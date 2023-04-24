@@ -5,14 +5,14 @@
     font-style: normal;
 }
 
-  @font-face {
+@font-face {
     font-family: 'Discord Thin';
     src: url('../../static/Uni\ Sans\ Thin.otf');
     font-weight: normal;
     font-style: normal;
 }
 
-  @font-face {
+@font-face {
     font-family: 'Discord Bold';
     src: url('../../static/Uni\ Sans\ Heavy.otf');
     font-weight: normal;
@@ -72,4 +72,10 @@
 
 .channel-topbar-right-side button:hover {
     cursor: pointer;
+}
+
+.threads-button:hover {
+
+    transform: scale(1.1);
+    transition: transform 0.2s ease-in-out;
 }

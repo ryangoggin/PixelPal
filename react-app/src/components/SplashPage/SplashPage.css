@@ -1,11 +1,9 @@
-/* .splash-container {
-    position:fixed;
-    top: 0;
-    bottom:0;
-
-    width: 100;
-    overflow-y:scroll;
-} */
+@font-face {
+    font-family: 'PixelPal';
+    src: url('../../static/ggsans-Normal.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
 
 body {
     width: 100%;
@@ -13,7 +11,6 @@ body {
 }
 
 .splash-container {
-    /* border: 2px solid red; */
     width: 100%;
     position: absolute;
     left: 0;
@@ -81,14 +78,12 @@ body {
 }
 
 .demo-login-button {
-    font-family: "Noto Sans", sans-serif;
+    font-family: "PixelPal";
     font-size: 18px;
     color: white;
 
     background: none;
     border: none;
-
-    width: 170px;
     margin: 0px 25px 0px;
 }
 
@@ -103,10 +98,15 @@ body {
 }
 
 .splash-login-button {
-    background-color: whitesmoke;
-    font-size: 15px;
+    background-color: rgb(25, 25, 25);
+    font-size: 17px;
+    color: rgb(218, 99, 218);
+    font-family: 'PixelPal';
 
-    padding: 7px 16px 7px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     margin-right: 40px;
 
     border: 1px solid rgba(255, 255, 255, 0);
@@ -127,16 +127,37 @@ body {
 }
 
 .imagine-text {
-    font-family: "Noto Sans", sans-serif;
+    font-family: "PixelPal";
     color: white;
     font-weight: bold;
     font-size: 56px;
-
     margin: 0;
+
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid rgb(210, 210, 210); /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .05em; /* Adjust as needed */
+    animation:
+    typing 3.5s steps(25, end),
+    blink-caret 1s step-end infinite;
 }
 
+/* The typing effect */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 80% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: rgb(224, 224, 224); }
+}
+
+
 .where-you-can-text {
-    font-family: "Noto Sans", sans-serif;
+    font-family: "PixelPal";
     color: white;
     font-size: 24px;
 
@@ -144,12 +165,12 @@ body {
 }
 
 .splash-open-button {
-    font-family: "Noto Sans", sans-serif;
-    color: white;
+    font-family: "PixelPal";
+    color: rgb(168, 150, 237);
     font-size: 20px;
 
-    background: #23272a;
-    border: 1px solid rgba(255, 255, 255, 0);
+    background: #000000c1;
+    border: 0.5px solid rgba(203, 203, 203, 0.681);
     border-radius: 40px;
 
     padding: 16px 32px 16px;
@@ -161,16 +182,19 @@ body {
 }
 
 .splash-middle {
-    background-color: white;
+    background-color: rgb(21, 21, 21);
     width: 100%;
-    margin-bottom: 140px;
-    margin-top: 100px;
+    padding-bottom: 70px;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .meet-developers-text {
-    font-family: "Noto Sans", sans-serif;
+    font-family: "PixelPal";
     font-size: 48px;
-    color: #23272a;
+    color: #dbdbdb;
 
     padding: 20px 0px 20px;
     margin: 0;
@@ -180,10 +204,13 @@ body {
 
 .devs-container {
     display: flex;
+    flex-direction: row;
+    align-items: center;
     justify-content: center;
     flex-wrap: wrap;
 
     margin: 0px 40px 0px;
+    width: 70%;
 }
 
 .portfolio-button {
@@ -300,6 +327,11 @@ body {
 .linkedin-button, .github-button {
     background: none;
     border: none;
+    transition: transform 0.1s ease;
+}
+
+.linkedin-button:hover, .github-button:hover {
+    transform: scale(1.2);
 }
 
 .linkedin-button:hover, .github-button:hover {
