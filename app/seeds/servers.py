@@ -107,13 +107,20 @@ def seed_servers():
     servers[0].members.extend(users)
     servers[1].members.extend(users)
 
-    #DMs
+    #DMs for Demo
     servers[2].members.extend(users[0], users[1]) #Marnie
     servers[3].members.extend(users[0], users[2]) #Bobbie
     servers[4].members.extend(users[0], users[3]) #AK
     servers[5].members.extend(users[0], users[4]) #ZM
     servers[6].members.extend(users[0], users[5]) #RG
     servers[7].members.extend(users[0], users[6]) #KL
+
+    #DMs for Marnie
+    servers[8].members.extend(users[1], users[2]) #Bobbie
+    servers[9].members.extend(users[1], users[3]) #AK
+    servers[10].members.extend(users[1], users[4]) #ZM
+    servers[11].members.extend(users[1], users[5]) #RG
+    servers[12].members.extend(users[1], users[6]) #RG
 
     db.session.add_all(servers)
     db.session.commit()

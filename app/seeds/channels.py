@@ -11,6 +11,22 @@ def seed_channels():
     Channel(name='General',server_id=2),
     Channel(name='Help Channel',server_id=2),
     Channel(name='Movie Discussions',server_id=2),
+
+    #DM Channels Demo
+    Channel(name='DM', server_id=3), #Demo + Marnie
+    Channel(name='DM', server_id=4), #Demo + Bobbie
+    Channel(name='DM', server_id=5), #Demo + Aileen
+    Channel(name='DM', server_id=6), #Demo + Zaineb
+    Channel(name='DM', server_id=7), #Demo + Ken
+    Channel(name='DM', server_id=8), #Demo + Ryan
+
+    #DM Channels Marnie
+    Channel(name='DM', server_id=9), #Marnie + Bobbie
+    Channel(name='DM', server_id=10), # Marnie + Aileen
+    Channel(name='DM', server_id=11), # Marnie + Zaineb
+    Channel(name='DM', server_id=12), #Marnie + Ryan
+    Channel(name='DM', server_id=13), #Marnie + Ken
+
     ]
 
     db.session.add_all(channels)
