@@ -18,7 +18,6 @@ export default function FriendsList() {
 
   const DMs = useSelector(state => state.private.allDMs)
   const dmsArr = Object.values(DMs)
-  console.log('what is dmsArr!!!!', dmsArr)
 
   useEffect(() => {
     dispatch(getAllFriendsThunk(currentUserId))
@@ -49,7 +48,10 @@ export default function FriendsList() {
           {dmsArr.map(dm => {
             return (
               <>
-              <div> {dm.user.id == currentUserId ? dm.userTwo.username : dm.user.username}</div>
+              <div className='friendslist-dm-user-container'>
+                <img src={dm.user.id === currentUserId ? dm.userTwo.prof_pic : dm.user.prof_pic} className='friendslist-profpic'/>
+                <div className='friendslist-dm-username'> {dm.user.id === currentUserId ? dm.userTwo.username.split("#")[0] : dm.user.username.split("#")[0]}</div>
+              </div>
               </>
             )
           })}

@@ -276,3 +276,31 @@
 .icon-hover > i:hover {
   color: rgb(212, 218, 227);
 }
+
+.friendslist-profpic {
+  width: 30px;
+  height: 30px;
+  object-fit: fill;
+  border-radius: 20px;
+  margin-right: 10px;
+}
+
+
+.friendslist-dm-user-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-family: 'PixelPal';
+  font-size: 15px;
+  color: rgb(179,184,191);
+  height: 30px;
+  padding: 5px;
+  margin: 5px;
+}
+
+.friendslist-dm-user-container:hover {
+  background-color: rgb(57,59,65);
+  border-radius: 10px;
+  cursor: pointer;
+  color: rgb(238,239,242);
+}
