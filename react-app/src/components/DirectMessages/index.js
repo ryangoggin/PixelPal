@@ -91,7 +91,7 @@ export default function DirectMessage() {
       </div>
 
 
-      <div className='dm-msg-item-overall'>
+      <div className='dm-msg-item-overall' id='scroller'>
         {messagesArr.map(msg => {
           return (
 
@@ -117,6 +117,7 @@ export default function DirectMessage() {
           </div>
           )
         })}
+        <div id='anchor'></div>
       </div>
       <div className='dm-msg-form-background'>
         <div className='dm-msg-form-container'>
@@ -126,7 +127,7 @@ export default function DirectMessage() {
             type='text'
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            placeholder={`Message <<FRIEND>>`}
+            placeholder= {currentDM[0]?.user.id === user?.id ? `Message ${currentDM[0]?.userTwo.username.split("#")[0]}` : `Message ${currentDM[0]?.user.username.split("#")[0]}`}
             onKeyPress={enterKey}
             required
             />

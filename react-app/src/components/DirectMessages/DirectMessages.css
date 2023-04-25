@@ -30,7 +30,7 @@
   top: 51px;
   left: 298px;
   right: 0px;
-  bottom: 49px;
+  bottom: 60px;
   overflow-y: scroll;
   background-color: rgb(49,51,56);
   color: rgb(179,184,191);
@@ -181,6 +181,7 @@
 .dm-msg-form {
   display: flex;
   align-items: center;
+  margin-top: 10px;
 }
 
 .dm-msg-form-right {
@@ -240,4 +241,13 @@
 
 .dm-character-count-error {
   color: #f85b60;
+}
+
+#scroller * {
+  overflow-anchor: none;
+}
+
+#anchor {
+  overflow-anchor: auto;
+  height: 1px;
 }
