@@ -12,6 +12,8 @@ import MessageForm from "./components/MessageForm";
 import ChannelTopBar from "./components/ChannelTopBar";
 import UserMenu from "./components/UserMenu";
 import NotFound from "./components/NotFound";
+import DirectMessage from "./components/DirectMessages";
+import FriendsListSideBar from "./components/FriendsList/FriendsListSideBar";
 
 
 
@@ -36,8 +38,14 @@ function App() {
                 <UserMenu />
                 <ServersSidebar />
               </Route>
+              <Route exact path='/channels/@me/:dmId'>
+                <ServersSidebar />
+                <FriendsListSideBar />
+                <DirectMessage />
+              </Route>
               <Route exact path='/channels/@me'>
                 <FriendsList />
+                <FriendsListSideBar />
                 <UserMenu />
                 <ServersSidebar />
               </Route>
@@ -48,6 +56,7 @@ function App() {
                 <UserMenu />
                 <ServersSidebar />
               </Route>
+
               <Route>
                 <NotFound />
               </Route>

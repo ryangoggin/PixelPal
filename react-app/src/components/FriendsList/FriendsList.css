@@ -206,9 +206,14 @@
   padding-top: 10px;
   padding-left: 10px;
   height: 35px;
-  background-color: rgb(63,66,72);
+
   border-radius: 5px;
   /* align-items: center; */
+}
+
+.friendslist-channel-friendscontainer:hover {
+  background-color: rgb(63,66,72);
+  cursor: pointer;
 }
 
 .friendslist-channel-friendscontainer > i {
@@ -303,4 +308,14 @@
   border-radius: 10px;
   cursor: pointer;
   color: rgb(238,239,242);
+}
+
+.friendlist-dm-link {
+  text-decoration: none;
+
+}
+
+
+.friendlist-dm-link:active {
+  background-color: rgb(57,59,65);
 }
