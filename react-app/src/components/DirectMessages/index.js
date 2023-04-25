@@ -91,9 +91,10 @@ export default function DirectMessage() {
       </div>
 
 
-      <div>
+      <div className='dm-msg-item-overall'>
         {messagesArr.map(msg => {
           return (
+
           <div key={`msg-${msg?.id}`} className='dm-msg-container'>
             <div className='dm-msg-left'>
               <img src={msg?.user?.prof_pic} className='dm-msg-profpic'/>
@@ -107,7 +108,9 @@ export default function DirectMessage() {
               <div className='dm-msg-reactions'>
                 {msg.reactions.length ? <div> REACTIONS GO HERE </div> : null }
               </div>
-            </div>
+
+          </div>
+
             <div className='dm-msg-right'>
               <EmojisModal props={msg.id}/>
             </div>
