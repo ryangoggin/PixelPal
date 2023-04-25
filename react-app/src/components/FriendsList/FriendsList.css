@@ -226,7 +226,7 @@
 
 .friendslist-search-div {
   height: 50px;
-  border-bottom: .5px rgb(30,32,36) solid;
+  border-bottom: 1px rgb(30,32,36) solid;
 }
 
 #friendslist-search {

@@ -42,6 +42,7 @@ function App() {
                 <ServersSidebar />
                 <FriendsListSideBar />
                 <DirectMessage />
+                <UserMenu />
               </Route>
               <Route exact path='/channels/@me'>
                 <FriendsList />

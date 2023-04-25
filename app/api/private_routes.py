@@ -17,7 +17,7 @@ def get_dm_channels(user_id):
 
     return [dm.to_dict() for dm in all_dms]
 
-@private_routes.route('/<int:dm_id>', methods=['GET'])
+@private_routes.route('/messages/<int:dm_id>', methods=['GET'])
 @login_required
 def get_dm_messages(dm_id):
     messages = Message.query.filter(Message.channel_id == dm_id).all()

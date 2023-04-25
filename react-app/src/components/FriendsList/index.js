@@ -35,34 +35,6 @@ export default function FriendsList() {
 
   return (
     <div>
-      {/* <div className='friendslist-channel-container'>
-        <div className='friendslist-search-div'>
-          <input placeholder='Find or start a conversation' id='friendslist-search'></input>
-        </div>
-        <div className='friendslist-channel-friendscontainer'>
-          <i className="fa-solid fa-user-group" />
-          <div className='friendslist-channel-item'> Friends </div>
-        </div>
-
-        <div className='friendslist-channel-dm-container'>
-          <div className='friendslist-channel-dm'> Direct Messages </div>
-          {dmsArr.map(dm => {
-            return (
-              <>
-              <NavLink to={`/channels/@me/${dm.id}`} className='friendslist-dm-link'>
-              <div className='friendslist-dm-user-container'>
-                <img src={dm.user.id === currentUserId ? dm.userTwo.prof_pic : dm.user.prof_pic} className='friendslist-profpic'/>
-                <div className='friendslist-dm-username'> {dm.user.id === currentUserId ? dm.userTwo.username.split("#")[0] : dm.user.username.split("#")[0]}</div>
-              </div>
-              </NavLink>
-              </>
-            )
-          })}
-
-
-        </div>
-      </div> */}
-
       <div className='friendslist-container'>
         <div className='friendslist-header-container'>
           <i className="fa-solid fa-user-group" />
