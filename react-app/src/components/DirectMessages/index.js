@@ -48,11 +48,16 @@ export default function DirectMessage() {
         <div className='dm-chat-history-user'> {currentDM[0]?.userTwo.username.split("#")[0]} </div>
         <div className='dm-chat-history-text'> This is the beginning of your direct message history with {currentDM[0]?.userTwo.username.split("#")[0]}</div>
       </>
-
-
-
-      : <div> This is the beginning of your direct message history with {currentDM[0]?.user.username.split("#")[0]} </div> }
+      :
+      <>
+        <img src={currentDM[0]?.user.prof_pic} className='dm-chat-history-pic'/>
+        <div className='dm-chat-history-user'> {currentDM[0]?.user.username.split("#")[0]} </div>
+        <div> This is the beginning of your direct message history with {currentDM[0]?.user.username.split("#")[0]} </div>
+      </>
+      }
       </div>
+
+
       <div>
         {messagesArr.map(msg => {
           return (

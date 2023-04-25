@@ -20,7 +20,7 @@ def get_dm_channels(user_id):
 @private_routes.route('/messages/<int:dm_id>', methods=['GET'])
 @login_required
 def get_dm_messages(dm_id):
-    messages = Message.query.filter(Message.channel_id == dm_id).all()
+    messages = Message.query.filter(Message.private_id == dm_id).all()
 
     if messages is None:
         return jsonify({'error': 'DM not found'}), 404

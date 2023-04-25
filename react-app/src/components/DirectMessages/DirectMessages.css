@@ -38,6 +38,8 @@
 
 .dm-chat-history-container {
   margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 0.5px solid rgb(109, 113, 117);
 }
 
 .dm-chat-history-pic {
