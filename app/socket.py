@@ -33,6 +33,15 @@ def on_join(data):
 
     emit("welcome", f"{username}", room=room)
 
+# join a room (DM Channel)
+@socketio.on('join')
+def on_join_dm(data):
+    username = data['username']
+    dm_room = data['private_id']
+    join_room(dm_room)
+
+    emit("welcome", f"{username}", room=dm_room)
+
 
 # handle chat messages
 @socketio.on("chat")
