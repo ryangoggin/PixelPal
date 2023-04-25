@@ -1,18 +1,23 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom/";
 import { loadDMMessagesThunk, clearDMMessages } from "../../store/private";
 import EmojisModal from "../EmojisModal/AllEmojisModal";
+import { io } from 'socket.io-client';
 import './DirectMessages.css'
+
+let socket;
 
 export default function DirectMessage() {
   const dispatch = useDispatch()
   const {dmId} = useParams();
 
+  // setting up web sockets now
+  const [content, setContent] = useState("");
+  const [msg, setMsg] = useState({});
+
   const messages = useSelector(state => state.private.currentDM)
   const messagesArr = Object.values(messages)
-
-  console.log('messagesArr', messagesArr)
 
   const allDMs = useSelector(state => state.private.allDMs)
   const dmsArr = Object.values(allDMs)
@@ -25,8 +30,37 @@ export default function DirectMessage() {
     return () => dispatch(clearDMMessages())
   }, [dispatch, +dmId])
 
+  // useeffect for web socket
+  useEffect(() => {
+    socket = io();
+
+    if (socket && user) {
+        socket.emit('join', { private_id: +dmId, username: user.username })
+        socket.on("chat", (chat) => setMsg(chat) )
+    }
+    // when component unmounts, disconnect
+    return (() => socket.disconnect() )
+  }, [+dmId, user])
+
   if (!allDMs) return null;
 
+  const handleSubmit = async (e) => {
+    // e is undefined if message sent with Enter key, check if it exists (message sent by clicking Send button) before running e.preventDefault()
+    if (e) e.preventDefault();
+
+    let message = { userId: user?.id, private_id: dmId, content: content, timestamp: new Date() };
+    // let createdMsg = await dispatch(createMessage(message));
+
+    // if (socket) socket.emit("chat", createdMsg);
+    // setContent("");
+  };
+
+  const enterKey = (e) => {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        handleSubmit();
+    }
+  }
 
 
   return (
@@ -82,8 +116,23 @@ export default function DirectMessage() {
           )
         })}
       </div>
-      <div>
-        {/* <input > MESSAGE FORM</input> */}
+      <div className='dm-msg-form-container'>
+        <form onSubmit={handleSubmit}>
+          <textarea
+          type='text'
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          placeholder={`Message <<FRIEND>>`}
+          onKeyPress={enterKey}
+          required
+          />
+
+        <div className='dm-msg-form-right'>
+          <div className={content.length >= 1800 ? (content.length > 2000 ? "character-count-error" : "character-count-warning") : "message-hidden"}>{2000 - content.length}</div>
+          <button className={content.length > 2000 ? "message-form-button message-form-text message-form-disabled" : "message-form-button message-form-text"} type="submit" disabled={content.length > 2000}>Send</button>
+        </div>
+
+        </form>
       </div>
     </div>
     </>
