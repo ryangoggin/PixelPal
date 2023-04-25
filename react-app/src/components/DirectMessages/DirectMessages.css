@@ -5,6 +5,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Discord Bold';
+  src: url('../../static/Uni\ Sans\ Heavy.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .dm-upper-container {
   position: fixed;
   top: 0px;
@@ -27,8 +34,32 @@
   background-color: rgb(49,51,56);
   color: rgb(179,184,191);
   font-family: 'PixelPal';
+}
+
+.dm-chat-history-container {
+  margin-bottom: 10px;
+}
+
+.dm-chat-history-pic {
+  width: 60px;
+  height: 60px;
+  border-radius: 50px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.dm-chat-history-user {
+  font-size: 25px;
+  margin-left: 10px;
+  margin-top: 5px;
+  color: white;
 
 }
+.dm-chat-history-text {
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
 
 .dm-upper-user-container {
   display: flex;
@@ -47,4 +78,18 @@
   color: rgb(179,184,191);
   font-size: 25px;
   margin-left: 20px;
+}
+
+.dm-msg-profpic {
+  height: 40px;
+  width: 40px;
+  border-radius: 50px;
+  margin-top: 4px;
+  margin-right: 10px;
+}
+
+.dm-msg-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }

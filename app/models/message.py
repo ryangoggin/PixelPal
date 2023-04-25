@@ -18,6 +18,7 @@ class Message(db.Model):
     #Relationship Attribute
     reactions = db.relationship('Reaction', back_populates='message', lazy=True, cascade="all, delete")
     private_channels = db.relationship("PrivateChannel", back_populates='messages', lazy=True)
+    user = db.relationship("User", back_populates='message', lazy=True)
 
     def to_dict(self):
         return {
@@ -36,5 +37,6 @@ class Message(db.Model):
             "timestamp": self.timestamp,
             "userId": self.user_id,
             "private_id": self.private_id,
+            'user': self.user.to_dict(),
             "reactions": [reaction.to_dict() for reaction in self.reactions]
         }

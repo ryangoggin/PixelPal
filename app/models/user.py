@@ -16,6 +16,7 @@ class User(db.Model, UserMixin):
 
     # Relationship Attributes
     servers = db.relationship("Server", secondary="server_members", back_populates="members", cascade="all, delete")
+    message = db.relationship("Message", back_populates='user', lazy=True)
 
 
     @property
