@@ -10,9 +10,14 @@ class Friend(db.Model):
     friendId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
 
+    friend_user = db.relationship('User', foreign_keys=[friendId], lazy=True)
+
     def to_dict(self):
         return {
             'id': self.id,
             'friendId': self.friendId,
             'userId': self.userId
         }
+
+    def to_username(self):
+        return self.friend_user.username
