@@ -47,6 +47,7 @@ export const loadDMMessagesThunk = (dmId) => async (dispatch) => {
 }
 
 export const createDMMessageThunk = (message) => async (dispatch) => {
+  console.log('create dm message thunk running', message)
   const res = await fetch(`/api/messages`, {
     method: "POST",
     headers: { 'Content-Type': 'application/json' },
@@ -54,7 +55,9 @@ export const createDMMessageThunk = (message) => async (dispatch) => {
   })
 
   if (res.ok) {
+    console.log('is res.ok in dm message thunk!!!!!')
     const message = await res.json();
+    console.log('message from res.json in message thunk after res.ok', message)
     dispatch(createDMMessage(message))
     return message;
   }

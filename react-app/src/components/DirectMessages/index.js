@@ -12,9 +12,7 @@ export default function DirectMessage() {
   const dispatch = useDispatch()
   const {dmId} = useParams();
 
-  // setting up web sockets now
   const [content, setContent] = useState("");
-  const [msg, setMsg] = useState({});
 
   const messages = useSelector(state => state.private.currentDM)
   const messagesArr = Object.values(messages)
@@ -36,7 +34,7 @@ export default function DirectMessage() {
 
     if (socket && user) {
         socket.emit('join', { private_id: +dmId, username: user.username })
-        socket.on("chat", (chat) => setMsg(chat) )
+        socket.on("chat", async (chat) => dispatch(createDMMessageThunk(chat)) ) // io.emit?
     }
     // when component unmounts, disconnect
     return (() => socket.disconnect() )
@@ -45,19 +43,18 @@ export default function DirectMessage() {
   if (!allDMs) return null;
 
   const handleSubmit = async (e) => {
-    // e is undefined if message sent with Enter key, check if it exists (message sent by clicking Send button) before running e.preventDefault()
     if (e) e.preventDefault();
 
-    let message = { userId: user?.id, private_id: dmId, content: content, timestamp: new Date() };
-    let createdMsg = await dispatch(createDMMessageThunk(message));
+    let message = { userId: user?.id, privateId: dmId, content: content, timestamp: new Date() };
+    console.log('message within handlesubmit for direct message', message)
 
-    if (socket) socket.emit("chat", createdMsg);
+    if (socket) socket.emit("chat", message);
     setContent("");
   };
 
   const enterKey = (e) => {
     if (e.key === 'Enter') {
-        e.preventDefault();
+        // e.preventDefault();
         handleSubmit();
     }
   }

@@ -46,7 +46,7 @@ def create_message():
             return jsonify({"errors": errors}), 400
 
     if form.validate_on_submit():
-        if res['channelId']:
+        if res['channelId'] is not None:
             new_message = Message(
                 content=res["content"],
                 user_id=res["userId"],
@@ -56,7 +56,8 @@ def create_message():
             db.session.add(new_message)
             db.session.commit()
             return new_message.to_dict()
-        elif res['private_id']:
+
+        elif res['private_id'] is not None:
             new_dm = Message(
                 content=res["content"],
                 user_id=res["userId"],
