@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { loadAllDmsThunk } from "../../store/private";
-import { NavLink } from "react-router-dom/cjs/react-router-dom";
+import { NavLink } from "react-router-dom";
 import './FriendsList.css'
 
 export default function FriendsListSideBar() {

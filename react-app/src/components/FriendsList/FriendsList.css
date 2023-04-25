@@ -310,12 +310,12 @@
   color: rgb(238,239,242);
 }
 
-.friendlist-dm-link {
+.friendslist-dm-link {
   text-decoration: none;
 
 }
 
 
-.friendlist-dm-link:active {
+.friendslist-dm-link:active {
   background-color: rgb(57,59,65);
 }
