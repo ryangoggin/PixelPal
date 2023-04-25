@@ -86,12 +86,42 @@
   height: 40px;
   width: 40px;
   border-radius: 50px;
-  margin-top: 4px;
+  margin-top: 10px;
   margin-right: 10px;
+  margin-left: 10px;
 }
 
 .dm-msg-container {
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+.dm-msg-user {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  font-family: 'PixelPal';
+  font-size: 16px;
+  color: white;
+}
+
+.dm-msg-username {
+  position: relative;
+  top: 1px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.dm-msg-timestamp {
+  margin-left: 5px;
+  font-size: 12px;
+  color:#a9bac1;
+}
+
+.dm-msg-content {
+  font-size: 16px;
+  color: white;
 }

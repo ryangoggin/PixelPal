@@ -67,11 +67,13 @@ export default function DirectMessage() {
             </div>
             <div className='dm-msg-center'>
               <div className='dm-msg-user'>
-                <div> {msg.user.username.split("#")[0]} </div>
-                <div> {msg.timestamp} </div>
+                <div className='dm-msg-username'> {msg.user.username.split("#")[0]} </div>
+                <div className='dm-msg-timestamp'> {msg.timestamp} </div>
               </div>
               <div className='dm-msg-content'> {msg.content} </div>
-              <div className='dm-msg-reactions'> </div>
+              <div className='dm-msg-reactions'>
+                {msg.reactions.length ? <div> REACTIONS GO HERE </div> : null }
+              </div>
             </div>
             <div className='dm-msg-right'>
               <EmojisModal props={msg.id}/>
