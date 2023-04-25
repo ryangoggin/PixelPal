@@ -80,6 +80,7 @@
   color: rgb(238,239,242)
 }
 
+
 .friendslist-friends {
   font-size: 16px;
   font-weight:bolder;
@@ -300,7 +301,8 @@
   color: rgb(179,184,191);
   height: 30px;
   padding: 5px;
-  margin: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .friendslist-dm-user-container:hover {
@@ -318,5 +320,4 @@
 .friendslist-dm-link.active {
   background-color: rgb(57,59,65);
   border-radius: 10px;
-
 }

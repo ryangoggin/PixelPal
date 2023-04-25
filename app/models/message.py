@@ -27,6 +27,7 @@ class Message(db.Model):
             "timestamp": self.timestamp,
             "userId": self.user_id,
             "channelId": self.channel_id,
+            'user': self.user.to_dict(),
             "reactions": [reaction.to_dict() for reaction in self.reactions]
         }
 

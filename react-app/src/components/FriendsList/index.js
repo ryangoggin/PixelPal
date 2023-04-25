@@ -39,7 +39,10 @@ export default function FriendsList() {
         <div className='friendslist-header-container'>
           <i className="fa-solid fa-user-group" />
           <div className='friendslist-friends'> Friends </div>
+          <div className='friendslist-all'> All </div>
+          <div className='friendslist-all'> Pending </div>
         </div>
+
         <div className='friendslist-user-container-1'> Online - {friendsArr.length} </div>
         {friendsArr.map(friend => {
           return (

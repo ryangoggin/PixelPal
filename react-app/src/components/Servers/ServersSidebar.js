@@ -32,13 +32,13 @@ const ServersSidebar = () => {
               </NavLink>
 
               <div className='server-sidebar-server-group'>
-                {/* {
+                {
                   servers.map(server => (
                     < NavLink style={{ textDecoration: 'none' }} key={`server-${server?.id}`} to={`/channels/${server?.id}/${server?.channels[0].id}`}>
                       <ServersSidebarItem server={server} />
                     </NavLink>
                   ))
-                } */}
+                }
               </div>
 
               <li style={{ listStyle: 'none' }} className='server-sidebar-add-server-btn'>

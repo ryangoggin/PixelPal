@@ -13,6 +13,7 @@ export default function DirectMessage() {
   const {dmId} = useParams();
 
   const [content, setContent] = useState("");
+  const [msg, setMsg] = useState({})
 
   const messages = useSelector(state => state.private.currentDM)
   const messagesArr = Object.values(messages)
@@ -34,7 +35,7 @@ export default function DirectMessage() {
 
     if (socket && user) {
         socket.emit('join', { private_id: +dmId, username: user.username })
-        socket.on("chat", async (chat) => dispatch(createDMMessageThunk(chat)) ) // io.emit?
+        socket.on("chat", (chat) => setMsg(chat) ) // io.emit?
     }
     // when component unmounts, disconnect
     return (() => socket.disconnect() )
@@ -42,20 +43,21 @@ export default function DirectMessage() {
 
   if (!allDMs) return null;
 
+
   const handleSubmit = async (e) => {
     if (e) e.preventDefault();
+    let message = { userId: user?.id, privateId: +dmId, content: content, timestamp: new Date(), channelId: ''};
 
-    let message = { userId: user?.id, privateId: dmId, content: content, timestamp: new Date() };
-    console.log('message within handlesubmit for direct message', message)
-
-    if (socket) socket.emit("chat", message);
+    let createdMsg = dispatch(createDMMessageThunk(message))
+    if (socket) socket.emit("chat", createdMsg);
     setContent("");
   };
 
   const enterKey = (e) => {
     if (e.key === 'Enter') {
-        // e.preventDefault();
+        e.preventDefault();
         handleSubmit();
+        setContent("");
     }
   }
 
@@ -92,13 +94,13 @@ export default function DirectMessage() {
       <div>
         {messagesArr.map(msg => {
           return (
-          <div key={`msg-${msg.id}`} className='dm-msg-container'>
+          <div key={`msg-${msg?.id}`} className='dm-msg-container'>
             <div className='dm-msg-left'>
-              <img src={msg.user.prof_pic} className='dm-msg-profpic'/>
+              <img src={msg?.user?.prof_pic} className='dm-msg-profpic'/>
             </div>
             <div className='dm-msg-center'>
               <div className='dm-msg-user'>
-                <div className='dm-msg-username'> {msg.user.username.split("#")[0]} </div>
+                <div className='dm-msg-username'> {msg.user?.username.split("#")[0]} </div>
                 <div className='dm-msg-timestamp'> {msg.timestamp} </div>
               </div>
               <div className='dm-msg-content'> {msg.content} </div>

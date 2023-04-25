@@ -46,27 +46,17 @@ def create_message():
             return jsonify({"errors": errors}), 400
 
     if form.validate_on_submit():
-        if res['channelId'] is not None:
-            new_message = Message(
-                content=res["content"],
-                user_id=res["userId"],
-                channel_id=res["channelId"],
-                timestamp = datetime.utcnow()
-            )
-            db.session.add(new_message)
-            db.session.commit()
-            return new_message.to_dict()
 
-        elif res['private_id'] is not None:
-            new_dm = Message(
-                content=res["content"],
-                user_id=res["userId"],
-                private_id=res["privateId"],
-                timestamp = datetime.utcnow()
-             )
-            db.session.add(new_dm)
-            db.session.commit()
-            return new_dm.to_dict()
+        new_message = Message(
+            content=res["content"],
+            user_id=res["userId"],
+            channel_id = res["channelId"],
+            private_id = res['privateId'],
+            timestamp = datetime.utcnow()
+        )
+        db.session.add(new_message)
+        db.session.commit()
+        return new_message.to_dict()
 
     return jsonify({"errors": form.errors}), 400
 
