@@ -312,10 +312,11 @@
 
 .friendslist-dm-link {
   text-decoration: none;
-
 }
 
 
-.friendslist-dm-link:active {
+.friendslist-dm-link.active {
   background-color: rgb(57,59,65);
+  border-radius: 10px;
+
 }

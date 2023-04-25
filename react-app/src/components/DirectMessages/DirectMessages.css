@@ -29,3 +29,22 @@
   font-family: 'PixelPal';
 
 }
+
+.dm-upper-user-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 50px;
+}
+
+.dm-upper-username {
+  color: rgb(193, 198, 205);
+  font-family: 'PixelPal';
+  margin-left: 8px;
+}
+
+.dm-upper-at {
+  color: rgb(179,184,191);
+  font-size: 25px;
+  margin-left: 20px;
+}

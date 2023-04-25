@@ -26,12 +26,12 @@ export default function FriendsListSideBar() {
         <div className='friendslist-search-div'>
           <input placeholder='Find or start a conversation' id='friendslist-search'></input>
         </div>
-        <div className='friendslist-channel-friendscontainer'>
-          <i className="fa-solid fa-user-group" />
-          <NavLink to='/channels/@me' className='friendslist-dm-link'>
-            <div className='friendslist-channel-item'> Friends </div>
-          </NavLink>
-        </div>
+        <NavLink to='/channels/@me' className='friendslist-dm-link'>
+          <div className='friendslist-channel-friendscontainer'>
+            <i className="fa-solid fa-user-group" />
+              <div className='friendslist-channel-item'> Friends </div>
+          </div>
+        </NavLink>
 
         <div className='friendslist-channel-dm-container'>
           <div className='friendslist-channel-dm'> Direct Messages </div>
