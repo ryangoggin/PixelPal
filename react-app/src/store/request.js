@@ -67,7 +67,7 @@ export const createSentRequest = (username) => async dispatch => {
 };
 
 export const deleteReceivedRequest = (id) => async dispatch => {
-  const res = await fetch(`/api/spots/${id}`, {
+  const res = await fetch(`/api/requests/${id}`, {
     method: "DELETE"
   });
 
@@ -78,7 +78,7 @@ export const deleteReceivedRequest = (id) => async dispatch => {
 };
 
 export const deleteSentRequest = (id) => async dispatch => {
-  const res = await fetch(`/api/spots/${id}`, {
+  const res = await fetch(`/api/requests/${id}`, {
     method: "DELETE"
   });
 
