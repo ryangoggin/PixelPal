@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAllFriendsThunk } from "../../store/friends";
 import { loadAllDmsThunk } from "../../store/private";
-import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import { NavLink } from "react-router-dom";
 import './FriendsList.css'
 
 export default function FriendsList() {
@@ -39,11 +39,15 @@ export default function FriendsList() {
         <div className='friendslist-header-container'>
           <i className="fa-solid fa-user-group" />
           <div className='friendslist-friends'> Friends </div>
-          <div className='friendslist-all'> All </div>
-          <div className='friendslist-all'> Pending </div>
+          <NavLink exact to={`/channels/@me`} className='friendslist-all-link'>
+            <div className='friendslist-all'> All </div>
+          </NavLink>
+          <NavLink exact to={`/channels/@me/pending`} className='friendslist-all-link'>
+            <div className='friendslist-all'> Pending </div>
+          </NavLink>
         </div>
 
-        <div className='friendslist-user-container-1'> Online - {friendsArr.length} </div>
+        <div className='friendslist-user-container-1'> ALL FRIENDS - {friendsArr.length} </div>
         {friendsArr.map(friend => {
           return (
             <div className='friendslist-user-container' key={`friend${friend.id}`}>
@@ -54,8 +58,8 @@ export default function FriendsList() {
               </div>
 
               <div className='friendslist-chat-icon'>
-                <div className='icon-hover'> <i class="fa-solid fa-message" /> </div>
-                <div className='icon-hover' onClick={handleOptions}> <i class="fa-solid fa-ellipsis-vertical" /></div>
+                <div className='icon-hover'> <i className="fa-solid fa-message" /> </div>
+                <div className='icon-hover' onClick={handleOptions}> <i className="fa-solid fa-ellipsis-vertical" /></div>
               </div>
             </div>
           )

@@ -14,6 +14,7 @@ import UserMenu from "./components/UserMenu";
 import NotFound from "./components/NotFound";
 import DirectMessage from "./components/DirectMessages";
 import FriendsListSideBar from "./components/FriendsList/FriendsListSideBar";
+import PendingRequests from "./components/PendingRequests";
 
 
 
@@ -35,6 +36,12 @@ function App() {
             <Switch>
               <Route exact path='/'>
                 <FriendsList />
+                <UserMenu />
+                <ServersSidebar />
+              </Route>
+              <Route exact path='/channels/@me/pending'>
+                <PendingRequests />
+                <FriendsListSideBar />
                 <UserMenu />
                 <ServersSidebar />
               </Route>
