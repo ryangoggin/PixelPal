@@ -9,7 +9,7 @@ from app.forms import RequestForm
 request_routes = Blueprint('requests', __name__)
 
 # GET /requests - get all received requests for a user
-@request_routes.route("", methods=['GET'])
+@request_routes.route("/received", methods=['GET'])
 @login_required
 def get_all_received_requests():
     received_requests = Request.query.filter(Request.receiver_id == current_user.id).all()

@@ -1,6 +1,6 @@
 // constants
 const GET_ALL_FRIENDS = 'friends/GET_ALL_FRIENDS'
-// const ADD_FRIEND = 'friends/ADD_FRIEND'
+const ADD_FRIEND = 'friends/ADD_FRIEND'
 // const DELETE_FRIEND = 'friends/DELETE_FRIEND'
 
 // Action Creators
@@ -9,10 +9,10 @@ const getAllFriends = (friends) => ({
   friends
 })
 
-// const  addFriend = (friend) => ({
-//   type: ADD_FRIEND,
-//   friend
-// })
+export const addFriend = (friend) => ({
+  type: ADD_FRIEND,
+  friend
+})
 
 // const deleteFriend = () => ({
 //   type: DELETE_FRIEND
@@ -41,29 +41,24 @@ export const getAllFriendsThunk = (userId) => async dispatch => {
   }
 }
 
-// export const addFriendThunk = (id) => async dispatch => {
-//   const response = await fetch(`/api/friends/${id}`)
+export const createFriend = (requestId) => async dispatch => {
+  const response = await fetch(`/api/requests/${requestId}`, {
+    method: "POST",
+    headers: { 'Content-Type': 'application/json'}
+  });
 
-//   // if (response.ok) {
-//   //   const user = await response.json();
-//   //   const friendsList = await fetch("/api/friends", user.id)
-//   //   if (friendsList.ok) {
-//   //     for (let friend in friendsList) {
-//   //       user.allFriends[friend.id] = friend
-//   //     }
-//   //     dispatch(getCurrentUser(user));
-//   //     return user;
-//   //   }
-//   // }
-// }
-
-
-
+  if (response.ok) {
+    const friendsArr = await response.json();
+    const friendObj = friendsArr[1]; // the new friend is friendUser in the 1 index of friendsArr
+    const friend = friendObj.friendUser;
+    dispatch(addFriend(friend));
+    return friend;
+  }
+}
 
 // reducer
 
-let initialState = {
-}
+let initialState = {};
 
 export default function friendsReducer( state = initialState, action) {
   let newState = {}
@@ -71,6 +66,10 @@ export default function friendsReducer( state = initialState, action) {
     case GET_ALL_FRIENDS:
       action.friends.friends.forEach(friend => newState[friend.id] = friend)
       return newState
+    case ADD_FRIEND:
+      newState = { ...state };
+      newState[action.friend.id] = action.friend;
+      return newState;
     default:
       return state;
   }

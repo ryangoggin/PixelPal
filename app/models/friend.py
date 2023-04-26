@@ -16,7 +16,8 @@ class Friend(db.Model):
         return {
             'id': self.id,
             'friendId': self.friendId,
-            'userId': self.userId
+            'userId': self.userId,
+            'friendUser': self.friend_user.to_dict()
         }
 
     def to_username(self):
