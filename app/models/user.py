@@ -1,6 +1,8 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+# from app.models import PrivateChannel
+
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -43,13 +45,3 @@ class User(db.Model, UserMixin):
 
     def to_username(self):
         return self.username
-
-    def to_dict_dm(self):
-        return {
-            'id': self.id,
-            'prof_pic': self.prof_pic,
-            'username': self.username,
-            'email': self.email,
-            'dmId': self.dm[0].id if self.dm else '',
-            'dmIdTwo': self.dm_received[0].id if self.dm_received else '',
-        }

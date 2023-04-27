@@ -17,7 +17,7 @@ class Friend(db.Model):
             'id': self.id,
             'friendId': self.friendId,
             'userId': self.userId,
-            'friendUser': self.friend_user.to_dict_dm()
+            'friendUser': self.friend_user.to_dict()
         }
 
     def to_username(self):

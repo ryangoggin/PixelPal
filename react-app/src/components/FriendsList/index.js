@@ -53,6 +53,9 @@ export default function FriendsList() {
         <div className='friendslist-user-container-1'> ALL FRIENDS - {friendsArr.length} </div>
         {friendsArr.map(friend => {
           return (
+            <>
+            {/* <NavLink exact to={`/channels/@me/${friend.dmId === '' ? friend.dmIdTwo : friend.dmId}`}> */}
+
             <div className='friendslist-user-container' key={`friend${friend.id}`}>
               <div className='friendslist-pic-username'>
                 <div> <img className='friendslist-profile-image' src={friend.prof_pic} alt='profile_pic_user' /> </div>
@@ -65,6 +68,8 @@ export default function FriendsList() {
                 <div className='icon-hover' onClick={handleOptions}> <i className="fa-solid fa-ellipsis-vertical" /></div>
               </div>
             </div>
+            {/* </NavLink> */}
+            </>
           )
         })}
 
