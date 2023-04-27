@@ -52,18 +52,28 @@ export const getSentRequests = () => async dispatch => {
   }
 };
 
-export const createSentRequest = (username) => async dispatch => {
-  const response = await fetch(`/api/requests`, {
+export const createSentRequest = (username) => async (dispatch) => {
+  const response = await fetch("/api/requests", {
     method: "POST",
     headers: { 'Content-Type': 'application/json'},
-    body: JSON.stringify(username)
+    body: JSON.stringify({
+      "username": username
+    })
   });
 
   if (response.ok) {
     const sentRequest = await response.json();
     dispatch(addSentRequest(sentRequest));
-    return sentRequest;
-  }
+    return {"success": username};
+  } else if (response.status < 500) {
+		const data = await response.json();
+		if (data.errors) {
+      console.log("data.errors: ", data.errors);
+			return data.errors;
+		}
+	} else {
+		return ["An error occurred. Please try again."];
+	}
 };
 
 export const deleteReceivedRequest = (id) => async dispatch => {

@@ -45,6 +45,9 @@ export default function FriendsList() {
           <NavLink exact to={`/channels/@me/pending`} className='friendslist-all-link'>
             <div className='friendslist-all'> Pending </div>
           </NavLink>
+          <NavLink exact to={`/channels/@me/add`} className='friendslist-add-link'>
+            <div className='friendslist-all'> Add Friend </div>
+          </NavLink>
         </div>
 
         <div className='friendslist-user-container-1'> ALL FRIENDS - {friendsArr.length} </div>

@@ -1,0 +1,155 @@
+.friendslist-add-link {
+    font-family: 'PixelPal';
+    font-size: 16px;
+    font-weight: bolder;
+    background-color: #36a55b;
+    color: rgb(238,239,242);
+    text-decoration: none;
+    text-align: center;
+    padding: 3px 10px 3px;
+    margin-left: 25px;
+    margin-top: 4px;
+    border-radius: 8px;
+    width: auto;
+}
+
+.friendslist-add-link.active {
+    background-color: rgba(255, 255, 255, 0);
+    color: #36a55b;
+    border-radius: 5px;
+}
+
+.friendslist-add-link.active:hover {
+    background-color: rgb(45, 47, 51);
+    border-radius: 5px;
+}
+
+.wumpus-waiting-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgb(49,51,56);
+    left: 20px;
+    position: fixed;
+    z-index: 0;
+    top: 193px;
+    left: 298px;
+    right: 0px;
+    bottom: 0px;
+}
+
+.add-friend-container {
+    position: fixed;
+    z-index: 1;
+    top: 51px;
+    left: 298px;
+    right: 0;
+
+    background-color: rgb(49,51,56);
+    padding-left: 30px;
+    border-bottom: solid 1px rgb(57,59,65);
+}
+
+.add-friend-text, .case-sensitive-text {
+    font-family: 'PixelPal';
+}
+
+.add-friend-text {
+    font-weight: bold;
+    color: white;
+    font-size: 16px;
+    margin-bottom: 0;
+}
+
+.case-sensitive-text {
+    color: rgb(205, 205, 205);
+    font-size: 14px;
+    margin: 10px 0px 14px;
+}
+
+.add-friend-form {
+    display: flex;
+    align-items: center;
+
+    background-color: #1e1f22;
+
+    width: 562px;
+    height: 48px;
+    padding: 0px 12px 0px;
+    margin-right: 30px;
+    border: 1px solid #151618;
+    border-radius: 10px;
+}
+
+.add-friend-form input {
+    font-family: 'PixelPal';
+    font-size: 16px;
+    color: white;
+
+    background: none;
+    border: none;
+    height: 100%;
+    width: 100%;
+}
+
+.add-friend-form input:focus {
+    outline: none;
+}
+
+.disabled-send-request-button {
+    font-family: 'PixelPal';
+    font-weight: bold;
+    font-size: 14px;
+    color: #8d8d91;
+    background-color: #3b428a;
+
+    height: 30px;
+    width: 160px;
+    padding: 2px 16px 2px;
+    border: none;
+    border-radius: 3px;
+}
+
+.disabled-send-request-button:hover {
+    cursor: not-allowed;
+}
+
+.send-request-button {
+    font-family: 'PixelPal';
+    font-weight: bold;
+    font-size: 14px;
+    color: white;
+    background-color: #5865f2;
+
+    height: 30px;
+    width: 160px;
+    padding: 2px 16px 2px;
+    border: none;
+    border-radius: 3px;
+}
+
+.send-request-button:hover {
+    cursor: pointer;
+}
+
+.red-request-errors {
+    font-family: 'PixelPal';
+    font-size: 14px;
+    color: #f6767b;
+}
+
+.red-outline {
+    border: solid 1px #f23f42;
+}
+
+.green-request-success {
+    font-family: 'PixelPal';
+    font-size: 14px;
+    color: #2db86b;
+}
+
+.green-outline {
+    border: solid 1px #2eb369;
+}
