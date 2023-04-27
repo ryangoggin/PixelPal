@@ -18,9 +18,7 @@ export default function AddFriend() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("username: ", username);
     const data = await dispatch(createSentRequest(username));
-    console.log("data: ", data);
     if (data.success) {
         setMessage(`Success! Your friend request to ${data.success} was sent.`);
         setRedOrGreen("green");
