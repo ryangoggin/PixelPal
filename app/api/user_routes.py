@@ -25,7 +25,7 @@ def user(id):
     user = User.query.get(id)
     if user is None:
         return jsonify({'error': 'User not found'}), 404
-    return user.to_dict()
+    return user.to_dict_dm()
 
 
 # POST /users - create a new user

@@ -18,7 +18,7 @@ export default function FriendsList() {
   const friendsArr = Object.values(allFriends)
 
   const DMs = useSelector(state => state.private.allDMs)
-  const dmsArr = Object.values(DMs)
+
 
   useEffect(() => {
     dispatch(getAllFriendsThunk(currentUserId))

@@ -18,6 +18,9 @@ class User(db.Model, UserMixin):
     servers = db.relationship("Server", secondary="server_members", back_populates="members", cascade="all, delete")
     message = db.relationship("Message", back_populates='user', lazy=True)
 
+    dm = db.relationship("PrivateChannel", backref='sender', foreign_keys='PrivateChannel.user_id', lazy=True)
+    dm_received = db.relationship("PrivateChannel", backref='receiver', foreign_keys='PrivateChannel.user_two_id', lazy=True)
+
 
     @property
     def password(self):
@@ -40,3 +43,13 @@ class User(db.Model, UserMixin):
 
     def to_username(self):
         return self.username
+
+    def to_dict_dm(self):
+        return {
+            'id': self.id,
+            'prof_pic': self.prof_pic,
+            'username': self.username,
+            'email': self.email,
+            'dmId': self.dm[0].id if self.dm else '',
+            'dmIdTwo': self.dm_received[0].id if self.dm_received else '',
+        }

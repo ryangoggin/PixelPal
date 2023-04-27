@@ -19,6 +19,7 @@ class PrivateChannel(db.Model):
     user_two = db.relationship("User", lazy=True, foreign_keys=[user_two_id])
 
 
+
     def to_dict(self):
         return {
             "id": self.id,
@@ -33,3 +34,7 @@ class PrivateChannel(db.Model):
             'user': self.user.to_dict(),
             'userTwo': self.user_two.to_dict(),
         }
+    # def to_dict_id(self):
+    #     return {
+    #         "dmId": self.id,
+    #     }
