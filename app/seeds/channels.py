@@ -11,6 +11,7 @@ def seed_channels():
     Channel(name='General',server_id=2),
     Channel(name='Help Channel',server_id=2),
     Channel(name='Movie Discussions',server_id=2),
+
     ]
 
     db.session.add_all(channels)

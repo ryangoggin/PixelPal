@@ -1,0 +1,253 @@
+@font-face {
+  font-family: 'PixelPal';
+  src: url('../../static/ggsans-Normal.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Discord Bold';
+  src: url('../../static/Uni\ Sans\ Heavy.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.dm-upper-container {
+  position: fixed;
+  top: 0px;
+  left: 298px;
+  right: 0px;
+  height: 50px;
+  background-color: rgb(49,51,56);
+  border-bottom: 1px rgb(30,32,36) solid;
+  font-family: 'PixelPal';
+
+}
+
+
+.dm-outer-container {
+  position: fixed;
+  top: 51px;
+  left: 298px;
+  right: 0px;
+  bottom: 60px;
+  overflow-y: scroll;
+  background-color: rgb(49,51,56);
+  color: rgb(179,184,191);
+  font-family: 'PixelPal';
+}
+
+.dm-chat-history-container {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 0.5px solid rgb(109, 113, 117);
+}
+
+.dm-chat-history-pic {
+  width: 60px;
+  height: 60px;
+  border-radius: 50px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.dm-chat-history-user {
+  font-size: 25px;
+  margin-left: 10px;
+  margin-top: 5px;
+  color: white;
+
+}
+.dm-chat-history-text {
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+
+.dm-upper-user-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 50px;
+}
+
+.dm-upper-username {
+  color: rgb(193, 198, 205);
+  font-family: 'PixelPal';
+  margin-left: 8px;
+}
+
+.dm-upper-at {
+  color: rgb(179,184,191);
+  font-size: 25px;
+  margin-left: 20px;
+}
+
+.dm-msg-left {
+  display: flex;
+  align-items: flex-start;
+}
+
+.dm-msg-profpic {
+  height: 40px;
+  width: 40px;
+  border-radius: 50px;
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.dm-msg-left-and-center {
+  display: flex;
+  width: 80%;
+}
+
+.dm-msg-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 15px;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  overflow-y: scroll;
+}
+
+.dm-msg-container:hover {
+  background-color: rgb(45,48,53);
+}
+
+.dm-msg-user {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  font-family: 'PixelPal';
+  font-size: 16px;
+  color: white;
+}
+
+.dm-msg-username {
+  position: relative;
+  top: 1px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.dm-msg-timestamp {
+  margin-left: 5px;
+  font-size: 12px;
+  color:#a9bac1;
+}
+
+
+.dm-msg-center {
+  display: flex;
+  width: 80%;
+  justify-content: center;
+  flex-direction: column;
+  word-break: break-all;
+  padding-top: 5px;
+  padding-bottom: 8px;
+}
+
+.dm-msg-content {
+  font-size: 16px;
+  color: white;
+
+}
+
+
+.dm-msg-right {
+  margin-top: -30px;
+}
+
+
+.dm-msg-form-background {
+  background-color: #313338;
+  position: fixed;
+  bottom: 0;
+  right: 0px;
+  left: 298px;
+  box-sizing: border-box;
+  padding: 0px 20px 20px;
+}
+
+.dm-msg-form-container {
+  background-color: #383a40;
+  padding: 0px 0px 0px 10px;
+  border-radius: 5px;
+}
+
+.dm-msg-form {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.dm-msg-form-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dm-msg-form-text {
+  font-family: 'PixelPal';
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.dm-msg-form-input {
+  font-family: 'PixelPal';
+  font-size: 18px;
+  color: white;
+  width: 100%;
+  height: 25px;
+  background: none;
+  border: none;
+  padding: 10px 0px 10px;
+  resize: none;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.dm-msg-form-input:focus {
+  border: none;
+  outline: none;
+}
+
+.dm-msg-form-input::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}
+
+.dm-msg-form-button {
+  color: white;
+  background: none;
+  border: none;
+  height: 41px;
+}
+
+.dm-msg-form-disabled:hover {
+  cursor: not-allowed;
+}
+
+.dm-msg-hidden {
+  visibility: hidden;
+  height: 0px;
+}
+
+.dm-character-count-warning {
+  color: white;
+}
+
+.dm-character-count-error {
+  color: #f85b60;
+}
+
+#scroller * {
+  overflow-anchor: none;
+}
+
+#anchor {
+  overflow-anchor: auto;
+  height: 1px;
+}

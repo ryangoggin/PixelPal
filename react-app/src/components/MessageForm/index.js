@@ -41,7 +41,7 @@ function MessageForm() {
         // e is undefined if message sent with Enter key, check if it exists (message sent by clicking Send button) before running e.preventDefault()
         if (e) e.preventDefault();
 
-        let message = { userId: user?.id, channelId: channel.id, content: content, timestamp: new Date(), reactions: [] };
+        let message = { userId: user?.id, channelId: channel.id, content: content, timestamp: new Date(), privateId: '' };
         let createdMsg = await dispatch(createMessage(message));
 
         if (socket) socket.emit("chat", createdMsg);

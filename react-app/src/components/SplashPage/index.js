@@ -22,26 +22,6 @@ function SplashPage() {
         history.push(`/register`);
     }
 
-	const handleDemoLogin1 = async (e) => {
-		e.preventDefault();
-		await dispatch(login('demo@aa.io', 'password'))
-			.catch(
-				async (res) => {
-					const errData = await res.json();
-					console.log(errData)
-				}
-			)
-	};
-	const handleDemoLogin2 = async (e) => {
-		e.preventDefault();
-		await dispatch(login('marnie@aa.io', 'password'))
-			.catch(
-				async (res) => {
-					const errData = await res.json();
-					console.log(errData)
-				}
-			)
-	};
 
     function handleRyanLinkedIn() {
         window.open("https://www.linkedin.com/in/ryangoggin20/", "_blank");
@@ -79,17 +59,6 @@ function SplashPage() {
         window.open("https://zmare.github.io/", "_blank");
     }
 
-    function handleKennyLinkedIn() {
-        window.open("https://www.linkedin.com/in/kenny-leong97/", "_blank");
-    }
-
-    function handleKennyGithub() {
-        window.open("https://github.com/kenny-leong", "_blank");
-    }
-
-    function handleKennyPortfolio() {
-        window.open("https://kenny-leong.github.io/", "_blank");
-    }
 
 	if (sessionUser) return <Redirect to="/channels/@me" />;
 
@@ -103,14 +72,7 @@ function SplashPage() {
                             <img className='pixel-pal-logo-white' src={pixelPalLogoWhite} alt="pixel pal white logo" />
                             <h3 className='pixel-pal-logo-text'>PixelPal</h3>
                         </div>
-                        {/* <div className='splash-top-nav-center'>
-                            <button className='demo-login-button' onClick={handleDemoLogin1}>
-                                Login as Guest User 1
-                            </button>
-                            <button className='demo-login-button' onClick={handleDemoLogin2}>
-                            Login as Guest User 2
-                            </button>
-                        </div> */}
+
                         <div className='splash-top-nav-right'>
                             <button className='splash-login-button signup' onClick={handleSignup}>Sign Up</button>
                             <button className='splash-login-button' onClick={handleLoginClick}>Log In</button>
@@ -169,19 +131,6 @@ function SplashPage() {
                                     </button>
                                     <button className='github-button' onClick={handleZainebGithub}>
                                         <i className="fa-brands fa-github zaineb-text"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </button>
-                        <button className="portfolio-button kenny-button" onClick={handleKennyPortfolio}>
-                            <div className='dev-container ken-container'>
-                                <p className='dev-name-text kenny-text'>Kenny Leong</p>
-                                <div className='dev-social-media-container'>
-                                    <button className='linkedin-button' onClick={handleKennyLinkedIn}>
-                                        <i className="fa-brands fa-linkedin kenny-text"></i>
-                                    </button>
-                                    <button className='github-button' onClick={handleKennyGithub}>
-                                        <i className="fa-brands fa-github kenny-text"></i>
                                     </button>
                                 </div>
                             </div>

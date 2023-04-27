@@ -14,6 +14,8 @@ from .api.channel_routes import channel_routes
 from .api.friend_routes import friend_routes
 from .api.message_routes import message_routes
 from .api.emoji_routes import emoji_routes
+from .api.private_routes import private_routes
+from .api.request_routes import request_routes
 from .socket import socketio
 
 from .seeds import seed_commands
@@ -41,6 +43,8 @@ app.register_blueprint(server_routes, url_prefix='/api/servers')
 app.register_blueprint(channel_routes, url_prefix='/api/channels')
 app.register_blueprint(message_routes, url_prefix='/api/messages')
 app.register_blueprint(emoji_routes, url_prefix='/api/emojis')
+app.register_blueprint(private_routes, url_prefix='/api/private')
+app.register_blueprint(request_routes, url_prefix='/api/requests')
 
 db.init_app(app)
 Migrate(app, db)

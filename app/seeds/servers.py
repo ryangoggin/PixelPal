@@ -6,46 +6,6 @@ from app.models import User
 # Adds a demo server, you can add other servers here if you want
 def seed_servers():
     servers = [
-        # Server(
-        #     owner_id=1, #Demo
-        #     name="Direct Messages",
-        #     server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
-        # ),
-        # Server(
-        #     owner_id=2, #Marnie
-        #     name="Direct Messages",
-        #     server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
-        # ),
-        # Server(
-        #     owner_id=3, #Bobbie
-        #     name="Direct Messages",
-        #     server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
-        # ),
-        # Server(
-        #     owner_id=4,
-        #     name="Direct Messages",
-        #     server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
-        # ),
-        # Server(
-        #     owner_id=5,
-        #     name="Direct Messages",
-        #     server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
-        # ),
-        # Server(
-        #     owner_id=6,
-        #     name="Direct Messages",
-        #     server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
-        # ),
-        # Server(
-        #     owner_id=7,
-        #     name="Direct Messages",
-        #     server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
-        # ),
-        # Server(
-        #     owner_id=8,
-        #     name="Direct Messages",
-        #     server_picture='https://i.redd.it/6jupfeilyhx71.jpg'
-        # ),
 
         Server(
             owner_id=1,
@@ -64,14 +24,23 @@ def seed_servers():
 
     users = User.query.all()
 
-
-    # first_group = list(users) #demo bobbie marnie
-    # second_group = list(users[0:3]) #demo bobbie marnie ak
-
-
     servers[0].members.extend(users)
     servers[1].members.extend(users)
 
+    #DMs for Demo
+    # servers[2].members.extend([users[0], users[1]]) #Marnie
+    # servers[3].members.extend([users[0], users[2]]) #Bobbie
+    # servers[4].members.extend([users[0], users[3]]) #AK
+    # servers[5].members.extend([users[0], users[4]]) #ZM
+    # servers[6].members.extend([users[0], users[5]]) #RG
+    # servers[7].members.extend([users[0], users[6]]) #KL
+
+    # #DMs for Marnie
+    # servers[8].members.extend([users[1], users[2]]) #Bobbie
+    # servers[9].members.extend([users[1], users[3]]) #AK
+    # servers[10].members.extend([users[1], users[4]]) #ZM
+    # servers[11].members.extend([users[1], users[5]]) #RG
+    # servers[12].members.extend([users[1], users[6]]) #RG
 
     db.session.add_all(servers)
     db.session.commit()
