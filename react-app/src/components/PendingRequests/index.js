@@ -24,6 +24,7 @@ export default function PendingRequests() {
   const sentRequestsArr = Object.values(sentRequestsObj);
 
   const handleAccept = async (requestId) => {
+    console.log("id: ", requestId);
     await dispatch(createFriend(requestId));
     await dispatch(deleteReceivedRequest(requestId));
   };
@@ -47,6 +48,9 @@ export default function PendingRequests() {
           </NavLink>
           <NavLink exact to={`/channels/@me/pending`} className='friendslist-all-link'>
             <div className='friendslist-all'> Pending </div>
+          </NavLink>
+          <NavLink exact to={`/channels/@me/add`} className='friendslist-add-link'>
+            <div className='friendslist-all'> Add Friend </div>
           </NavLink>
         </div>
         <div className={(receivedRequestsArr.length === 0 && sentRequestsArr.length === 0) ? 'wumpus-container' : 'hidden' }>
