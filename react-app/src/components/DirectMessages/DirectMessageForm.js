@@ -1,12 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom/";
 import { useEffect, useState } from "react";
 import { createDMMessageThunk } from "../../store/private";
 import { io } from 'socket.io-client';
 import DirectMessage from ".";
+import './DirectMessages.css'
 
 let socket;
 
-import './DirectMessages.css'
 
 export default function DirectMessageForm() {
   const dispatch = useDispatch()
@@ -16,6 +17,9 @@ export default function DirectMessageForm() {
   const [msg, setMessages] = useState({})
 
   const user = useSelector(state => state.session.user)
+  const allDMs = useSelector(state => state.private.allDMs)
+  const currentDM = allDMs[+dmId]
+
 
   // useeffect for web socket
   useEffect(() => {
@@ -54,6 +58,7 @@ const enterKey = (e) => {
 return (
   <>
     <DirectMessage message={msg} />
+
     <div className='dm-msg-form-background'>
         <div className='dm-msg-form-container'>
           <form onSubmit={handleSubmit} className='dm-msg-form'>

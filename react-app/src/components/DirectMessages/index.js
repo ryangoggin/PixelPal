@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom/";
-import { loadDMMessagesThunk, clearDMMessages, createDMMessageThunk } from "../../store/private";
+import { loadDMMessagesThunk, clearDMMessages } from "../../store/private";
 import EmojisModal from "../EmojisModal/AllEmojisModal";
 import './DirectMessages.css'
 
@@ -35,7 +35,7 @@ export default function DirectMessage({message}) {
       <div className='dm-upper-at'> @ </div>
       {currentDM?.user.id === user?.id ?
         <div className='dm-upper-username'>  {currentDM?.userTwo.username.split("#")[0]} </div>
-      : <div> {currentDM?.user.username.split("#")[0]} </div> }
+      : <div className='dm-upper-username'> {currentDM?.user.username.split("#")[0]} </div> }
       </div>
 
     </div>
@@ -51,13 +51,13 @@ export default function DirectMessage({message}) {
       <>
         <img src={currentDM?.user.prof_pic} className='dm-chat-history-pic'/>
         <div className='dm-chat-history-user'> {currentDM?.user.username.split("#")[0]} </div>
-        <div> This is the beginning of your direct message history with {currentDM?.user.username.split("#")[0]} </div>
+        <div className='dm-chat-history-text'> This is the beginning of your direct message history with {currentDM?.user.username.split("#")[0]} </div>
       </>
       }
       </div>
 
 
-      <div className='dm-msg-item-overall' id='scroller'>
+      <div className='dm-msg-item-overall' id='scoller'>
         {messagesArr.map(msg => {
           return (
 
