@@ -28,4 +28,4 @@ def get_dm_messages(dm_id):
     if messages is None:
         return jsonify({'error': 'DM not found'}), 404
 
-    return [message.to_dict_dm() for message in messages]
+    return [message.to_dict() for message in messages]
