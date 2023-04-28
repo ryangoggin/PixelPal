@@ -56,8 +56,8 @@ export default function DirectMessage({message}) {
       }
       </div>
 
-
-      <div className='dm-msg-item-overall' id='scoller'>
+      <div id='scroller'>
+      <div className='dm-msg-item-overall'>
         {messagesArr.map(msg => {
           return (
 
@@ -84,6 +84,7 @@ export default function DirectMessage({message}) {
           )
         })}
 
+        </div>
         <div id='anchor'></div>
       </div>
 
