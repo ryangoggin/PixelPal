@@ -6,15 +6,13 @@ import { clearMessages, getChannelMessages } from "../../store/message";
 import "./ChannelMessages.css";
 
 function ChannelMessages({ messages }) {
+    const dispatch = useDispatch();
+
     const channel = useSelector(state => state.channels.oneChannel)
     const allMessages = useSelector(state => state.messages);
     // if the incoming msg has a channelId, rewrite it in state so that we aren't rendering same data twice
     if (messages?.channelId) allMessages[messages.id] = messages
     const { channelId } = useParams();
-
-    const dispatch = useDispatch();
-
-
 
     //populate store with channelMessages on render and when channel.id changes
     //trying to remove allMessages from dependency array (ADD BACK IN IF NEEDED)

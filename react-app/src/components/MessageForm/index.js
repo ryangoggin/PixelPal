@@ -32,7 +32,10 @@ function MessageForm() {
             socket.on("chat", (chat) => setMessages(chat) )
         }
         // when component unmounts, disconnect
-        return (() => socket.disconnect() )
+        return (() => {
+            socket.emit('leave_channel', { channel_id: channelId, username: user.username })
+            socket.disconnect()
+         } )
     }, [channelId, user])
 
     if (!channel) return null;
@@ -41,10 +44,10 @@ function MessageForm() {
         // e is undefined if message sent with Enter key, check if it exists (message sent by clicking Send button) before running e.preventDefault()
         if (e) e.preventDefault();
 
-        let message = { userId: user?.id, channelId: channel.id, content: content, timestamp: new Date(), reactions: [] };
+        let message = { userId: user?.id, channel_id: channel.id, content: content, timestamp: new Date(), private_id: '' };
         let createdMsg = await dispatch(createMessage(message));
 
-        if (socket) socket.emit("chat", createdMsg);
+        if (socket) socket.emit("chat", createdMsg, `room-channel${channel.id}`);
         setContent("");
     };
 

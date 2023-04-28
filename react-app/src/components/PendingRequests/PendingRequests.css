@@ -1,0 +1,144 @@
+.wumpus-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgb(49,51,56);
+    left: 20px;
+    position: fixed;
+    z-index: 0;
+    top: 0px;
+    left: 298px;
+    right: 0px;
+    bottom: 0px;
+}
+
+.wumpus-text {
+    color: rgb(179,184,191);
+    font-family: 'PixelPal';
+    font-size: 16px;
+    margin-top: 45px;
+}
+
+.friendslist-header-container {
+    position: relative;
+    z-index: 1;
+}
+
+.friendslist-received-container {
+    margin-left: 20px;
+    padding-top: 13px;
+    height: 30px;
+    color: rgb(179,184,191);
+    font-family: 'PixelPal';
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.friendslist-sent-container {
+    position: relative;
+    top: 15px;
+    z-index: 0;
+
+    margin-left: 20px;
+    padding-top: 13px;
+    height: 30px;
+    color: rgb(179,184,191);
+    font-family: 'PixelPal';
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.friendslist-sent-only-container {
+    position: relative;
+    z-index: 0;
+
+    margin-left: 20px;
+    padding-top: 13px;
+    height: 30px;
+    color: rgb(179,184,191);
+    font-family: 'PixelPal';
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.friendslist-request-user-container {
+    position: relative;
+    z-index: 1;
+
+    align-content: center;
+    width: 100%;
+    float: left;
+    height: 50px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    border-top: thin rgb(57,59,65) solid;
+    justify-content: space-between;
+}
+
+.friendslist-request-user-container:hover {
+    background-color: rgb(57,59,65);
+    border-radius: 10px;
+}
+
+.request-user-tag {
+    display: none;
+}
+
+.friendslist-request-user-container:hover .friendslist-tag {
+    display: block;
+    margin-left: 3px;
+    color: rgb(181,186,193);
+}
+
+.sent-request-container {
+    position: relative;
+    top: 40px;
+}
+
+.only-sent-request-container {
+    position: relative;
+}
+
+.request-profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: 20px;
+    margin-top: 4px;
+}
+
+.request-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(43,45,49);
+    border-radius: 30px;
+    text-align: center;
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 40px;
+    width: 40px;
+}
+
+.accept-icon:hover {
+    background-color: #96fcce;
+}
+
+.decline-icon:hover {
+    background-color: #fda4a4;
+}
+
+.fa-solid.fa-check {
+    color: #40a176;
+}
+
+.fa-solid.fa-x {
+    color: #f14747;
+}

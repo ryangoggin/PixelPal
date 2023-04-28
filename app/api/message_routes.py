@@ -46,17 +46,20 @@ def create_message():
             return jsonify({"errors": errors}), 400
 
     if form.validate_on_submit():
+
         new_message = Message(
             content=res["content"],
             user_id=res["userId"],
-            channel_id=res["channelId"],
+            channel_id = res["channel_id"],
+            private_id = res['private_id'],
             timestamp = datetime.utcnow()
         )
-
         db.session.add(new_message)
         db.session.commit()
         return new_message.to_dict()
+
     return jsonify({"errors": form.errors}), 400
+
 
 
 # PUT /messages/:id --> update a message by id

@@ -61,6 +61,12 @@ def seed_messages():
     Message(
         content='Got it. Now... on to the question 1...', user_id=6, channel_id=5),
 
+
+    #DM Channels, Demo and Marnie
+    Message(content='Hey Marnie! Wanna grab coffee after class today?', user_id=1, private_id=1),
+    Message(content='Yo definitely. I definitely need a pick me up. La Colombe?', user_id=2, private_id=1),
+    Message(content='Yeah that sounds good. Let\'s go to the one on 4th street.', user_id=1, private_id=1),
+    Message(content='Perfect', user_id=2, private_id=1),
     ]
 
     db.session.add_all(messages)

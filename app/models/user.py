@@ -1,6 +1,8 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+# from app.models import PrivateChannel
+
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -16,6 +18,10 @@ class User(db.Model, UserMixin):
 
     # Relationship Attributes
     servers = db.relationship("Server", secondary="server_members", back_populates="members", cascade="all, delete")
+    message = db.relationship("Message", back_populates='user', lazy=True)
+
+    dm = db.relationship("PrivateChannel", backref='sender', foreign_keys='PrivateChannel.user_id', lazy=True)
+    dm_received = db.relationship("PrivateChannel", backref='receiver', foreign_keys='PrivateChannel.user_two_id', lazy=True)
 
 
     @property
@@ -36,3 +42,6 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email,
         }
+
+    def to_username(self):
+        return self.username
