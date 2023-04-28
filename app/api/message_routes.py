@@ -50,8 +50,8 @@ def create_message():
         new_message = Message(
             content=res["content"],
             user_id=res["userId"],
-            channel_id = res["channelId"],
-            private_id = res['privateId'],
+            channel_id = res["channel_id"],
+            private_id = res['private_id'],
             timestamp = datetime.utcnow()
         )
         db.session.add(new_message)

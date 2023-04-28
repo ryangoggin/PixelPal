@@ -26,25 +26,30 @@ export default function DirectMessageForm() {
     socket = io();
 
     if (socket && user) {
-        socket.emit('join_dm', { private_id: `dm${+dmId}`, username: user.username })
+        socket.emit('join_dm', { private_id: +dmId, username: user.username })
+        console.log('join dm room')
         // receive a message from the server
         socket.on("dm_chat", (chat) => setMessages(chat) )
     }
     // when component unmounts, disconnect
     return (() => {
-      socket.emit('leave_dm', { private_id: `dm${+dmId}`, username: user.username })
+      console.log('leaving DM room')
+      socket.emit('leave_dm', { private_id: +dmId, username: user.username })
       socket.disconnect()
     })
   }, [+dmId, user])
 
   const handleSubmit = async (e) => {
-    // e is undefined if message sent with Enter key, check if it exists (message sent by clicking Send button) before running e.preventDefault()
     if (e) e.preventDefault();
 
-    let message = { userId: user?.id, channelId: '', content: content, timestamp: new Date(), privateId: dmId };
+    let message = { userId: user?.id, channel_id: '', content: content, timestamp: new Date(), private_id: +dmId };
     let createdMsg = await dispatch(createDMMessageThunk(message));
 
-    if (socket) socket.emit("dm_chat", createdMsg);
+    if (socket) {
+      const dmRoom = `room-dm${dmId}`;
+      const messageData = { ...createdMsg, room: dmRoom };
+      socket.emit("dm_chat", messageData, dmRoom);
+    }
     setContent("");
 };
 
