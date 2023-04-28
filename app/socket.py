@@ -30,9 +30,16 @@ def on_join(data):
     username = data['username']
     room = data['channel_id']
     join_room(room)
-
-
     emit("welcome", f"{username}", room=room)
+
+
+@socketio.on('leave_channel')
+def on_leave_dm(data):
+    username = data['username']
+    room = data['channel_id']
+    leave_room(room)
+    emit('goodbye', f"{username}", room=room)
+
 
 # join a room (DM Channel)
 @socketio.on('join_dm')
@@ -43,12 +50,22 @@ def on_join_dm(data):
 
     emit("welcome", f"{username}", room=dm_room)
 
+# leave a dm channel
+@socketio.on('leave_dm')
+def on_leave_dm(data):
+    username = data['username']
+    dm_room = data['private_id']
+    leave_room(dm_room)
+    emit('goodbye', f"{username}", room=dm_room)
+
 
 # handle chat messages
 @socketio.on("chat")
 def handle_chat(data):
-    emit("chat", data, broadcast=True)
+    room = data['channelId']
+    emit("chat", data, room=room)
 
 @socketio.on('dm_chat')
 def handle_dm(data):
-    emit('dm_chat', data, broadcast=True)
+    dm_room = data['privateId']
+    emit('dm_chat', data, room=dm_room)

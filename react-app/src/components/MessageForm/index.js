@@ -28,11 +28,14 @@ function MessageForm() {
         socket = io();
 
         if (socket && user) {
-            socket.emit('join', { channel_id: channelId, username: user.username })
+            socket.emit('join', { channel_id: `channel${channelId}`, username: user.username })
             socket.on("chat", (chat) => setMessages(chat) )
         }
         // when component unmounts, disconnect
-        return (() => socket.disconnect() )
+        return (() => {
+            socket.emit('leave_channel', { channel_id: `channel${channelId}`, username: user.username })
+            socket.disconnect()
+         } )
     }, [channelId, user])
 
     if (!channel) return null;

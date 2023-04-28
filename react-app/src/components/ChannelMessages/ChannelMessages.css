@@ -83,12 +83,3 @@ font-style: normal;
 .message-item-container {
     padding-bottom: 15px;
 }
-
-#scroller * {
-    overflow-anchor: none;
-  }
-
-#anchor {
-    overflow-anchor: auto;
-    height: 1px;
-  }
