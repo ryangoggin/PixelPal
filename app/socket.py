@@ -70,17 +70,12 @@ def on_leave_dm(data):
 @socketio.on("chat")
 def handle_chat(data, room):
     channel_id = data['channelId']
-    room = f"room-channel{channel_id}"
-    channel = data['room']
+    channel = f"room-channel{channel_id}"
+    # channel = data['room']
 
     if room == channel:
         emit("chat", data, room=room)
 
 @socketio.on('dm_chat')
 def handle_dm(data, room):
-    room = data['room']
-    private_id = data['private_id']
-    dm_room = f"room-dm{private_id}"
-
-    if room == dm_room:
-        emit('dm_chat', data, room=dm_room)
+    emit('dm_chat', data, room=room)
