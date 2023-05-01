@@ -98,3 +98,12 @@ font-style: normal;
     overflow-block: scroll;
     height: auto;
 }
+
+#channel-scroller * {
+    overflow-anchor: none;
+  }
+
+#channel-anchor {
+    overflow-anchor: auto;
+    height: 1px;
+  }

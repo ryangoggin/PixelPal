@@ -30,11 +30,8 @@ def on_join(data):
     username = data['username']
     channel_id = data['channel_id']
     room = f"room-channel{channel_id}"
+
     join_room(room)
-
-
-    print(" ********** JOINED SERVER CHANNEL **********", room, data)
-
     emit("welcome", f"{username}", room=room)
 
 
@@ -45,11 +42,6 @@ def on_leave_dm(data):
     room = f"room-channel{channel_id}"
 
     leave_room(room)
-
-    print(" ********** LEAVING SERVER CHANNEL **********", room, data)
-
-
-
     emit('goodbye', f"{username}", room=room)
 
 
@@ -59,10 +51,8 @@ def on_join_dm(data):
     username = data['username']
     private_id = data['private_id']
     dm_room = f"room-dm{private_id}"
+
     join_room(dm_room)
-
-    print(" ********** JOINED DM CHANNEL **********", dm_room, data)
-
     emit("welcome", f"{username}", room=dm_room)
 
 # leave a dm channel
@@ -73,8 +63,6 @@ def on_leave_dm(data):
     dm_room = f"room-dm{private_id}"
     leave_room(dm_room)
 
-    print(" ********** LEAVING DM CHANNEL **********", dm_room, data)
-
     emit('goodbye', f"{username}", room=dm_room)
 
 
@@ -83,10 +71,10 @@ def on_leave_dm(data):
 def handle_chat(data, room):
     channel_id = data['channelId']
     room = f"room-channel{channel_id}"
+    channel = data['room']
 
-    print(" ********** HANDLING CHANNEL MESSAGE **********", room, data)
-
-    emit("chat", data, room=room)
+    if room == channel:
+        emit("chat", data, room=room)
 
 @socketio.on('dm_chat')
 def handle_dm(data, room):
