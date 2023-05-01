@@ -47,7 +47,12 @@ function MessageForm() {
         let message = { userId: user?.id, channel_id: channel.id, content: content, timestamp: new Date(), private_id: '' };
         let createdMsg = await dispatch(createMessage(message));
 
-        if (socket) socket.emit("chat", createdMsg, `room-channel${channel.id}`);
+
+        if (socket) {
+            const room = `room-channel${channel.id}`
+            socket.emit("chat", createdMsg, room );
+        }
+
         setContent("");
     };
 
