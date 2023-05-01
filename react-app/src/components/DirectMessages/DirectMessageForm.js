@@ -47,6 +47,7 @@ export default function DirectMessageForm() {
       const dmRoom = `room-dm${dmId}`;
       socket.emit("dm_chat", createdMsg, dmRoom);
     }
+
     setContent("");
 };
 
