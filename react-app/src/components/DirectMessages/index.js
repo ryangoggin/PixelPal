@@ -78,7 +78,7 @@ export default function DirectMessage({message}) {
             </div>
 
             <div className='dm-msg-right'>
-              <EmojisModal props={msg.id}/>
+              {/* <EmojisModal props={msg.id}/> */}
             </div>
           </div>
           )

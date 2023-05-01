@@ -37,7 +37,7 @@ function ChannelMessages({ messages }) {
                 <h2 className="channel-messages-welcome">Welcome to #{channel.name}!</h2>
                 <p className="channel-messages-start">This is the start of the #{channel.name} channel.</p>
             </div>
-            <div id='scroller'>
+            <div id='channel-scroller'>
                 {allMessagesArr.map((message) => {
                     return (
                         <div key={`message${message.id}`} className='message-item-container'>
@@ -45,7 +45,7 @@ function ChannelMessages({ messages }) {
                         </div>
                     );
                 })}
-                <div id='anchor'></div>
+                <div id='channel-anchor'></div>
             </div>
         </div>
     );
