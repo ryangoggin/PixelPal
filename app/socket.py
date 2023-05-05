@@ -44,13 +44,13 @@ def on_leave_dm(data):
 
 # handle chat messages
 @socketio.on("chat")
-def handle_chat(data, room):
+def handle_chat(data): #room
     channel_id = data['channelId']
     channel = f"room-channel{channel_id}"
     # channel = data['room']
 
     # if room == channel:
-    emit("chat", data, room=room)
+    emit("chat", data, room=channel)
 
 
 

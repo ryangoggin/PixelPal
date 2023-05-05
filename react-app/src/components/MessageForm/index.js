@@ -33,7 +33,7 @@ function MessageForm() {
         }
         // when component unmounts, disconnect
         return (() => {
-            socket.emit('leave_channel', { channel_id: channelId, username: user.username })
+            // socket.emit('leave_channel', { channel_id: channelId, username: user.username })
             socket.disconnect()
          } )
     }, [channelId, user])
@@ -49,8 +49,8 @@ function MessageForm() {
 
 
         if (socket) {
-            const room = `room-channel${channel.id}`
-            socket.emit("chat", createdMsg, room );
+            // const room = `room-channel${channel.id}`
+            socket.emit("chat", createdMsg); //room
         }
 
         setContent("");
