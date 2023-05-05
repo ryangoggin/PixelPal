@@ -17,7 +17,7 @@ export default function FriendsList() {
   const allFriends = useSelector(state => state.friends)
   const friendsArr = Object.values(allFriends)
 
-  const DMs = useSelector(state => state.private.allDMs)
+  // const DMs = useSelector(state => state.private.allDMs)
 
 
   useEffect(() => {
