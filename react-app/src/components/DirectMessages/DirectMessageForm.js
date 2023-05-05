@@ -32,7 +32,7 @@ export default function DirectMessageForm() {
     }
     // when component unmounts, disconnect
     return (() => {
-      socket.emit('leave_dm', { private_id: +dmId, username: user.username })
+      // socket.emit('leave_dm', { private_id: +dmId, username: user.username })
       socket.disconnect()
     })
   }, [+dmId, user])
@@ -40,12 +40,13 @@ export default function DirectMessageForm() {
   const handleSubmit = async (e) => {
     if (e) e.preventDefault();
 
-    let message = { userId: user?.id, channel_id: 0, content: content, timestamp: new Date(), private_id: +dmId };
+    let message = { userId: user?.id, content: content, timestamp: new Date(), private_id: +dmId };
     let createdMsg = await dispatch(createDMMessageThunk(message));
 
     if (socket) {
-      const dmRoom = `room-dm${dmId}`;
-      socket.emit("dm_chat", createdMsg, dmRoom);
+      // const dmRoom = `room-dm${dmId}`;
+      // send to server
+      socket.emit("dm_chat", createdMsg); //dmRoom
     }
 
     setContent("");
