@@ -25,7 +25,7 @@ def handle_disconnect():
 
 
 # join a room (channel)
-@socketio.on('join')
+@socketio.on('join_channel')
 def on_join(data):
     username = data['username']
     channel_id = data['channel_id']
@@ -33,25 +33,53 @@ def on_join(data):
 
     join_room(room)
     emit("welcome", f"{username}", room=room)
+    return 'Joined channel room'  # This will be sent back to the client
+
+#@socketio.on('join')
+# def on_join(data):
+#     username = data['username']
+#     channel_id = data['channel_id']
+#     room = f"room-channel{channel_id}"
+
+#     join_room(room)
+#     print(f'User {username} joined room {room}')
+#     return 'Joined room'  # This will be sent back to the client
+
 
 # leave room
 @socketio.on('leave_channel')
 def on_leave_dm(data):
     channel_id = data['channel_id']
+    username = data['username']
     room = f"room-channel{channel_id}"
 
     leave_room(room)
+    print(f'User {username} left room {room}')
+    return 'Left channel room'  # This will be sent back to the client
+
 
 # handle chat messages
-@socketio.on("chat")
-def handle_chat(data): #room
+@socketio.on("channel_chat")
+def handle_chat(data, room):
     channel_id = data['channelId']
     channel = f"room-channel{channel_id}"
     # channel = data['room']
 
-    # if room == channel:
-    emit("chat", data, room=channel)
+    if room == channel:
+        print(f'Message received in room {room}: {data}')
+        emit("chat", data, room=channel)
+        return 'Message sent'  # This will be sent back to the client
 
+
+# @socketio.on("chat")
+# def handle_chat(data, room):
+#     channel_id = data['channelId']
+#     channel = f"room-channel{channel_id}"
+
+#     if room == channel:
+#         print(f'Message received in room {room}: {data}')
+#         emit("chat", data, room=room)
+#         return 'Message sent'  # This will be sent back to the client
 
 
 # join a room (DM Channel)
@@ -63,6 +91,8 @@ def on_join_dm(data):
 
     join_room(dm_room)
     emit("welcome", f"{username}", room=dm_room)
+    return 'Joined DM room'
+
 
 # leave a dm channel
 @socketio.on('leave_dm')

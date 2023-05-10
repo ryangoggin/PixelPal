@@ -26,13 +26,17 @@ export default function DirectMessageForm() {
     socket = io();
 
     if (socket && user) {
-        socket.emit('join_dm', { private_id: +dmId, username: user.username })
+        socket.emit('join_dm', { private_id: +dmId, username: user.username }, (response) => {
+          console.log('Response from join:', response)
+        })
         // receive a message from the server
         socket.on("dm_chat", (chat) => setMessages(chat) )
     }
     // when component unmounts, disconnect
     return (() => {
-      // socket.emit('leave_dm', { private_id: +dmId, username: user.username })
+      socket.emit('leave_dm', { private_id: +dmId, username: user.username }, (response) => {
+        console.log("Response from leave_dm", response)
+      })
       socket.disconnect()
     })
   }, [+dmId, user])
@@ -44,13 +48,16 @@ export default function DirectMessageForm() {
     let createdMsg = await dispatch(createDMMessageThunk(message));
 
     if (socket) {
-      // const dmRoom = `room-dm${dmId}`;
+      const dmRoom = `room-dm${dmId}`;
       // send to server
-      socket.emit("dm_chat", createdMsg); //dmRoom
+      socket.emit("dm_chat", createdMsg, dmRoom, (response) => {
+        console.log('Response from chat:' , response);
+      });
     }
 
     setContent("");
 };
+
 
 const enterKey = (e) => {
     if (e.key === 'Enter') {

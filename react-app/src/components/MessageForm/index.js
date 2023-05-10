@@ -28,12 +28,16 @@ function MessageForm() {
         socket = io();
 
         if (socket && user) {
-            socket.emit('join', { channel_id: channelId, username: user.username })
-            socket.on("chat", (chat) => setMessages(chat) )
+            socket.emit('join_channel', { channel_id: channelId, username: user.username }, (response) => {
+                console.log('Response from channel join:', response)
+            })
+            socket.on("channel_chat", (chat) => setMessages(chat) )
         }
         // when component unmounts, disconnect
         return (() => {
-            // socket.emit('leave_channel', { channel_id: channelId, username: user.username })
+            socket.emit('leave_channel', { channel_id: channelId, username: user.username }, (response) => {
+                console.log("Response from leave channel: ", response)
+            })
             socket.disconnect()
          } )
     }, [channelId, user])
@@ -49,12 +53,15 @@ function MessageForm() {
 
 
         if (socket) {
-            // const room = `room-channel${channel.id}`
-            socket.emit("chat", createdMsg); //room
+            const room = `room-channel${channel.id}`
+            socket.emit("channel_chat", createdMsg, room, (response) => {
+                console.log("Response from chat:", response)
+            });
         }
 
         setContent("");
     };
+
 
     const enterKey = (e) => {
         if (e.key === 'Enter') {
