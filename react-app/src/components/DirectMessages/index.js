@@ -27,7 +27,6 @@ export default function DirectMessage({message}) {
 
   if (!allDMs) return null;
 
-
   return (
     <>
     <div className='dm-upper-container'>
