@@ -26,19 +26,15 @@ export default function DirectMessageForm() {
     socket = io();
 
     if (socket && user) {
+
         socket.emit('join_dm', { private_id: +dmId, username: user.username }, (response) => {
           console.log('Response from join:', response)
         })
         // receive a message from the server
-        socket.on("dm_chat", (chat) => {
-          setMessages(chat)
-          console.log('DM Message received')
-        })
+        socket.on("dm_chat", (chat) => {setMessages(chat)})
     }
     // when component unmounts, disconnect
-    // should have diff code for switching rooms? not hitting the leaveDM
     return (() => {
-      console.log('hitting the return!! should socket.emit(leavedm) next')
       socket.emit('leave_dm', { private_id: +dmId, username: user.username }, (response) => {
         console.log("Response from leave_dm", response)
       })
@@ -55,8 +51,8 @@ export default function DirectMessageForm() {
     if (socket) {
       const dmRoom = `room-dm${dmId}`;
       // send to server
-      socket.emit("dm_chat", createdMsg, dmRoom, (response) => {
-        console.log('Response from chat: ' , response);
+      socket.emit("dm_chat", createdMsg, dmRoom, (res) => {
+        console.log('Response from chat:', res);
       });
     }
 

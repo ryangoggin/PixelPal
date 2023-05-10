@@ -95,6 +95,5 @@ def handle_dm(data, room):
     dm_room = f'room-dm{dm_id}'
 
     if room == dm_room:
-        print(f'Message received in room {room}: {data}')
-        emit('dm_chat', data)
+        emit('dm_chat', data, room=dm_room)
         return 'DM message sent'  # This will be sent back to the client
