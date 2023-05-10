@@ -1,5 +1,6 @@
 from flask_socketio import SocketIO, emit, join_room, leave_room
 import os
+from flask import request
 
 
 # configure cors_allowed_origins
@@ -17,7 +18,6 @@ socketio = SocketIO(cors_allowed_origins=origins)
 @socketio.on('connect')
 def handle_connect():
     print('Client connected')
-
 
 @socketio.on('disconnect')
 def handle_disconnect():
@@ -80,7 +80,7 @@ def on_leave_dm(data):
     private_id = data['private_id']
     dm_room = f"room-dm{private_id}"
 
-
+    print('******** HITTING LEAVE ROOM KEYWORD!!!!!!! **********', dm_room)
     leave_room(dm_room)
     print('******** HITTING LEAVE ROOM KEYWORD!!!!!!! **********')
     print(f'User {username} left room {dm_room}')
