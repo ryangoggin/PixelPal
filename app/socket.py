@@ -74,11 +74,15 @@ def on_join_dm(data):
 # leave a dm channel
 @socketio.on('leave_dm')
 def on_leave_dm(data):
+    print('******** HITTING LEAVE DM ROUTE!!!!!!! **********')
+
     username = data['username']
     private_id = data['private_id']
     dm_room = f"room-dm{private_id}"
 
+
     leave_room(dm_room)
+    print('******** HITTING LEAVE ROOM KEYWORD!!!!!!! **********')
     print(f'User {username} left room {dm_room}')
     return 'Left DM room'  # This will be sent back to the client
 

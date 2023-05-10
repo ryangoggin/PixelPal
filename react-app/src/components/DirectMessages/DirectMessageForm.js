@@ -38,6 +38,7 @@ export default function DirectMessageForm() {
     // when component unmounts, disconnect
     // should have diff code for switching rooms? not hitting the leaveDM
     return (() => {
+      console.log('hitting the return!! should socket.emit(leavedm) next')
       socket.emit('leave_dm', { private_id: +dmId, username: user.username }, (response) => {
         console.log("Response from leave_dm", response)
       })
