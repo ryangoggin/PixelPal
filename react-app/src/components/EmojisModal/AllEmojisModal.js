@@ -7,8 +7,6 @@ import {createDMReactionThunk} from "../../store/private"
 import '../EmojisModal/GetAllEmojis.css'
 
 export default function EmojisModal({ props }) {
-  console.log('what is props passed in from dm message?', props)
-
   const dispatch = useDispatch()
   const ulRef = useRef()
   const [showMenu, setShowMenu] = useState(false);
@@ -18,7 +16,6 @@ export default function EmojisModal({ props }) {
   const allEmojisArr = Object.values(emojis)
 
   let {messageId, sessionUserId, dm} = props
-
 
   const openMenu = () => {
     if (showMenu) return;
@@ -38,6 +35,10 @@ export default function EmojisModal({ props }) {
 
   const createReaction = (emojiId, messageId, sessionUserId) => {
     dispatch(createReactionThunk(emojiId, messageId, sessionUserId))
+  }
+
+  const createDMReaction = (emojiId, messageId, sessionUserId) => {
+    dispatch(createDMReactionThunk(emojiId, messageId, sessionUserId))
   }
 
 

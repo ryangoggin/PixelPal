@@ -67,7 +67,17 @@ export const createDMMessageThunk = (message) => async (dispatch) => {
 }
 
 export const createDMReactionThunk = (emoji, messageId, userId) => async (dispatch) => {
+  const res = await fetch("/api/emojis", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ 'emojiId': emoji, 'messageId': messageId, 'userId': userId })
+  })
 
+  if (res.ok) {
+    const newDMReaction = await res.json() ;
+    dispatch(createDMReaction(newDMReaction))
+    return newDMReaction;
+  }
 }
 
 
@@ -102,6 +112,11 @@ export default function privateReducer( state = initialState, action) {
     case CREATE_DM_MESSAGE:
       newState = {...state, currentDM: {...state.currentDM}}
       newState.currentDM[action.message.id] = action.message
+      return newState
+
+    case CREATE_DM_REACTION:
+      newState = {...state, currentDM: {...state.currentDM}}
+      newState.currentDM[action.reaction.messageId].reactions.push(action.reaction)
       return newState
 
     default:
