@@ -11,6 +11,7 @@ export default function DirectMessage({message}) {
   const dispatch = useDispatch()
   const {dmId} = useParams();
 
+  const sessionUser = useSelector((state) => state.session.user);
   const messages = useSelector(state => state.private.currentDM)
   if (message?.id) messages[message.id] = message
   const messagesArr = Object.values(messages)
@@ -75,13 +76,17 @@ export default function DirectMessage({message}) {
                 <div className='dm-msg-timestamp'> {msg.timestamp} </div>
               </div>
               <div className='dm-msg-content'> {msg.content} </div>
+              {msg.reactions.length ?
               <div className='dm-msg-reactions'>
                 {msg.reactions.forEach((reaction) => {
                   <>
-                    <div> {reaction.emoji.url} </div>
+                    <div className={+reaction.userId === +sessionUser?.id ? 'user-emoji-reaction' : 'other-user-reaction'}>
+                      {String.fromCodePoint(reaction.emoji.url)}
+                    </div>
                   </>
                 })}
               </div>
+              : null}
             </div>
 
             <div className='dm-msg-right'>
