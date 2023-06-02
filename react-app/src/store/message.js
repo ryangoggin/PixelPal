@@ -54,7 +54,7 @@ export const getChannelMessages = (channelId) => async (dispatch) => {
 
 
 
-export const createMessage = (message) => async dispatch => {
+export const createMessage = (message) => async (dispatch) => {
   const resMessage = await fetch(`/api/messages`, {
     method: "POST",
     headers: { 'Content-Type': 'application/json' },
@@ -72,7 +72,7 @@ export const createMessage = (message) => async dispatch => {
 
 // };
 
-export const createReactionThunk = (emoji, messageId, userId) => async dispatch => {
+export const createReactionThunk = (emoji, messageId, userId) => async (dispatch) => {
   const response = await fetch("/api/emojis", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -82,13 +82,13 @@ export const createReactionThunk = (emoji, messageId, userId) => async dispatch 
   if (response.ok) {
     const newReaction = await response.json();
     dispatch(createReaction(newReaction))
-    return newReaction
+    return newReaction;
   }
 
 }
 
 
-export const deleteReactionThunk = (reactionId, messageId) => async dispatch => {
+export const deleteReactionThunk = (reactionId, messageId) => async (dispatch) => {
   const response = await fetch(`/api/emojis/${reactionId}`, {
     method: 'DELETE',
     headers: { 'Content-Type': 'application/json' },
