@@ -3,6 +3,7 @@ const LOAD_DMS = 'private/LOAD_DMS'
 const LOAD_DM_MESSAGES = 'private/LOAD_DM_MESSAGES'
 const CLEAR_DM_MESSAGES = 'private/CLEAR_DM_MESSAGES'
 const CREATE_DM_MESSAGE = 'private/CREATE_DM_MESSAGE'
+const CREATE_DM_REACTION = 'private/CREATE_DM_REACTION'
 
 // Action Creators
 const loadAllDMs = (directMessages) => ({
@@ -19,9 +20,14 @@ export const clearDMMessages = () => ({
   type:CLEAR_DM_MESSAGES
 })
 
-const createDMMessage =(message) => ({
+const createDMMessage = (message) => ({
   type: CREATE_DM_MESSAGE,
   message
+})
+
+const createDMReaction = (reaction) => ({
+  type: CREATE_DM_REACTION,
+  reaction
 })
 
 // Thunks
@@ -58,6 +64,10 @@ export const createDMMessageThunk = (message) => async (dispatch) => {
     dispatch(createDMMessage(message))
     return message;
   }
+}
+
+export const createDMReactionThunk = (emoji, messageId, userId) => async (dispatch) => {
+
 }
 
 

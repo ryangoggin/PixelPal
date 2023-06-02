@@ -2,10 +2,13 @@ import { useState, useRef, useEffect  } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllEmojisThunk } from "../../store/emojis";
 import { createReactionThunk } from "../../store/message";
+import {createDMReactionThunk} from "../../store/private"
 // import GetAllEmojis from "./index";
 import '../EmojisModal/GetAllEmojis.css'
 
-export default function EmojisModal({ props: {messageId, sessionUserId} }) {
+export default function EmojisModal({ props }) {
+  console.log('what is props passed in from dm message?', props)
+
   const dispatch = useDispatch()
   const ulRef = useRef()
   const [showMenu, setShowMenu] = useState(false);
@@ -13,6 +16,8 @@ export default function EmojisModal({ props: {messageId, sessionUserId} }) {
 
   const emojis = useSelector(state => state.emoji.allEmojis)
   const allEmojisArr = Object.values(emojis)
+
+  let {messageId, sessionUserId, dm} = props
 
 
   const openMenu = () => {
@@ -22,25 +27,17 @@ export default function EmojisModal({ props: {messageId, sessionUserId} }) {
 
   useEffect(() => {
     if (!showMenu) return;
-
-    const closeMenu = (e) => {
-      setShowMenu(false);
-    };
-
+    const closeMenu = (e) => { setShowMenu(false); };
     document.addEventListener('click', closeMenu);
-
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
   useEffect(() => {
-    if (clicked) {
-      dispatch(getAllEmojisThunk())
-    }
+    if (clicked) { dispatch(getAllEmojisThunk()) }
   }, [dispatch, clicked])
 
   const createReaction = (emojiId, messageId, sessionUserId) => {
     dispatch(createReactionThunk(emojiId, messageId, sessionUserId))
-
   }
 
 
@@ -66,7 +63,7 @@ export default function EmojisModal({ props: {messageId, sessionUserId} }) {
                   <div className='emoji-modal-emoji'
                     key={`emojimodal${emoji.id}`}
                     value={emoji.id}
-                    onClick={() => { createReaction(emoji.id, messageId, sessionUserId) }}
+                    onClick={() => { dm ? createDMReaction(emoji.id, messageId, sessionUserId): createReaction(emoji.id, messageId, sessionUserId) }}
                   >
                     {String.fromCodePoint(emoji.url)}
                   </div>
