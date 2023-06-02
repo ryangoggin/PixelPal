@@ -261,10 +261,13 @@
 
 .dm-msg-reactions {
   border: 2px solid red;
-  height: 50px;
+  height: auto;
   color: white;
+  display: flex;
+  flex-direction: row;
 }
 
-.dm-msg-reaction-box {
+.reactions-each-container {
   border: 2px solid green;
+  width: 50px;
 }
