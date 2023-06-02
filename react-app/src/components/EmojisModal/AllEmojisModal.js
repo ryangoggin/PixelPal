@@ -33,12 +33,9 @@ export default function EmojisModal({ props }) {
     if (clicked) { dispatch(getAllEmojisThunk()) }
   }, [dispatch, clicked])
 
-  const createReaction = (emojiId, messageId, sessionUserId) => {
-    dispatch(createReactionThunk(emojiId, messageId, sessionUserId))
-  }
-
-  const createDMReaction = (emojiId, messageId, sessionUserId) => {
-    dispatch(createDMReactionThunk(emojiId, messageId, sessionUserId))
+  const createReaction = (emojiId, messageId, sessionUserId, dm) => {
+    if (dm) dispatch(createDMReactionThunk(emojiId, messageId, sessionUserId))
+    else dispatch(createReactionThunk(emojiId, messageId, sessionUserId))
   }
 
 
@@ -64,7 +61,7 @@ export default function EmojisModal({ props }) {
                   <div className='emoji-modal-emoji'
                     key={`emojimodal${emoji.id}`}
                     value={emoji.id}
-                    onClick={() => { dm ? createDMReaction(emoji.id, messageId, sessionUserId): createReaction(emoji.id, messageId, sessionUserId) }}
+                    onClick={() => {createReaction(emoji.id, messageId, sessionUserId, dm)}}
                   >
                     {String.fromCodePoint(emoji.url)}
                   </div>

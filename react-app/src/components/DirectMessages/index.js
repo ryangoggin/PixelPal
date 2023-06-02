@@ -27,6 +27,10 @@ export default function DirectMessage({message}) {
 
   if (!allDMs) return null;
 
+  // messagesArr.forEach((msg) => {
+  //   console.log(msg.reactions)
+  // })
+
   return (
     <>
     <div className='dm-upper-container'>
@@ -72,12 +76,16 @@ export default function DirectMessage({message}) {
               </div>
               <div className='dm-msg-content'> {msg.content} </div>
               <div className='dm-msg-reactions'>
-                {msg.reactions.length ? <div> REACTIONS GO HERE </div> : null }
+                {msg.reactions.forEach((reaction) => {
+                  <>
+                    <div> {reaction.emoji.url} </div>
+                  </>
+                })}
               </div>
             </div>
 
             <div className='dm-msg-right'>
-              <EmojisModal props={{messageId: msg.id, dmId:true, sessionUserId: user}}/>
+              <EmojisModal props={{messageId: msg.id, dm:true, sessionUserId: user.id}}/>
             </div>
           </div>
           )
