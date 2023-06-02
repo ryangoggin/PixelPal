@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom/";
 import { loadDMMessagesThunk, clearDMMessages } from "../../store/private";
+import DMReactions from "./Reactions";
 import EmojisModal from "../EmojisModal/AllEmojisModal";
 import './DirectMessages.css'
 
@@ -73,18 +74,9 @@ export default function DirectMessage({message}) {
               </div>
               <div className='dm-msg-content'> {msg.content} </div>
               {msg.reactions.length ?
-              <div className='dm-msg-reactions'>
-                {msg.reactions.forEach((reaction) => {
-                  <>
-                    <div className='dm-msg-reaction-box'
-                    key={`reaction${reaction.id}`}
-                    // onClick={+reaction.userId === +sessionUser?.id ? () => { deleteReaction(reaction.id, msg.id) } : () => { addReaction(reaction.emojiId, msg.id, sessionUser?.id) }}
-                    >
-                      {String.fromCodePoint(reaction.emoji.url)}
-                    </div>
-                  </>
-                })}
-              </div>
+                <div className='dm-msg-reactions'>
+                  <DMReactions reactions={msg.reactions}   />
+                </div>
               : null}
             </div>
 

@@ -262,10 +262,9 @@
 .dm-msg-reactions {
   border: 2px solid red;
   height: 50px;
+  color: white;
 }
 
 .dm-msg-reaction-box {
   border: 2px solid green;
-  height: 30px;
-  width: 50px;
 }
