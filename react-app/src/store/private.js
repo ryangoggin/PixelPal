@@ -4,6 +4,7 @@ const LOAD_DM_MESSAGES = 'private/LOAD_DM_MESSAGES'
 const CLEAR_DM_MESSAGES = 'private/CLEAR_DM_MESSAGES'
 const CREATE_DM_MESSAGE = 'private/CREATE_DM_MESSAGE'
 const CREATE_DM_REACTION = 'private/CREATE_DM_REACTION'
+const DELETE_DM_REACTION = 'private/DELETE_DM_REACTION'
 
 // Action Creators
 const loadAllDMs = (directMessages) => ({
@@ -27,6 +28,11 @@ const createDMMessage = (message) => ({
 
 const createDMReaction = (reaction) => ({
   type: CREATE_DM_REACTION,
+  reaction
+})
+
+const deleteDMReaction = (reaction) => ({
+  type: DELETE_DM_REACTION,
   reaction
 })
 
@@ -80,6 +86,21 @@ export const createDMReactionThunk = (emoji, messageId, userId) => async (dispat
   }
 }
 
+export const deleteDMReactionThunk = (reactionId, messageId) => async (dispatch) => {
+  const res = await fetch(`/api/emojis/${reactionId}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+  })
+
+  if (res.ok) {
+    dispatch(deleteDMReaction(reactionId, messageId))
+    return ('Successfully deleted!')
+  }
+}
+
+
+
+
 
 
 // reducer
@@ -118,6 +139,10 @@ export default function privateReducer( state = initialState, action) {
       newState = {...state, currentDM: {...state.currentDM}}
       newState.currentDM[action.reaction.messageId].reactions.push(action.reaction)
       return newState
+
+    case DELETE_DM_REACTION:
+      newState = {...state, currentDM: {...state.currentDM}}
+
 
     default:
       return state;

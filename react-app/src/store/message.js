@@ -123,6 +123,7 @@ const messageReducer = (state = initialState, action) => {
       newState[action.reaction.messageId].reactions.push(action.reaction);
       return newState
     case DELETE_REACTION:
+      // fix this
       newState = { ...state }
       delete newState[action.messageId].reactions[action.reactionId]
       return newState

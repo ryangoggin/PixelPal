@@ -252,15 +252,8 @@
   height: 1px;
 }
 
-.test {
-  color: red;
-  border: 2px solid green;
-  width: 500px;
-  font-size: 50px;
-}
-
 .dm-msg-reactions {
-  border: 2px solid red;
+  /* border: 2px solid red; */
   height: auto;
   color: white;
   display: flex;

@@ -72,7 +72,7 @@ function MessageItem({ message }) {
 
     const deleteReaction = async (reactionId, messageId) => {
         dispatch(deleteReactionThunk(reactionId, messageId))
-        dispatch(getChannelMessages(message.channelId))
+        dispatch(getChannelMessages(message.channelId)) // need to get rid of this
 
     }
 
