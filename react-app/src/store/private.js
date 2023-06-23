@@ -142,7 +142,8 @@ export default function privateReducer( state = initialState, action) {
 
     case DELETE_DM_REACTION:
       newState = {...state, currentDM: {...state.currentDM}}
-
+      newState.currentDM[action.reaction.messageId].reactions.filter(reaction => reaction.id === action.reaction.id)
+      return newState
 
     default:
       return state;

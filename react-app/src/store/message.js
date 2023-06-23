@@ -96,7 +96,7 @@ export const deleteReactionThunk = (reactionId, messageId) => async (dispatch) =
 
   if (response.ok) {
     dispatch(deleteReaction(reactionId, messageId))
-    return ('successfully deleted!')
+    return ('Successfully deleted!')
   }
 }
 
@@ -123,9 +123,8 @@ const messageReducer = (state = initialState, action) => {
       newState[action.reaction.messageId].reactions.push(action.reaction);
       return newState
     case DELETE_REACTION:
-      // fix this
       newState = { ...state }
-      delete newState[action.messageId].reactions[action.reactionId]
+      newState[action.messageId].reactions.filter(reaction => reaction === action.reactionId)
       return newState
     case CLEAR_MESSAGES:
       newState = {}
