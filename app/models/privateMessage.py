@@ -15,9 +15,8 @@ class PrivateChannel(db.Model):
 
     #Relationship Attributes
     messages = db.relationship('Message', back_populates='private_channels', lazy=True, cascade='all, delete-orphan')
-    user = db.relationship("User", lazy=True, foreign_keys=[user_id])
-    user_two = db.relationship("User", lazy=True, foreign_keys=[user_two_id])
-
+    user = db.relationship("User", lazy=True, foreign_keys=[user_id], back_populates='dm')
+    user_two = db.relationship("User", lazy=True, foreign_keys=[user_two_id], back_populates='dm_received')
 
 
     def to_dict(self):
