@@ -26,11 +26,12 @@ function MessageForm() {
     useEffect(() => {
         socket = io();
 
+        socket.on("channel_chat", (chat) => dispatch(getChannelMessages(channelId)) )
+
         if (socket && user) {
             socket.emit('join_channel', { channel_id: channelId, username: user.username }, (response) => {
                 console.log('Response from channel join:', response)
             })
-            socket.on("channel_chat", (chat) => dispatch(getChannelMessages(channelId)) )
         }
         // when component unmounts, disconnect
         return (() => {
@@ -48,7 +49,9 @@ function MessageForm() {
         if (e) e.preventDefault();
 
         let message = { userId: user?.id, channel_id: channel.id, content: content };
-        if (socket) { socket.emit("channel_chat", message); }
+        if (socket) {
+            socket.emit("channel_chat", message);
+        }
 
         setContent("");
     };

@@ -59,6 +59,7 @@ def handle_chat(data):
         user_id=data["userId"],
         channel_id = data["channel_id"],
     )
+
     db.session.add(new_message)
     db.session.commit()
     emit("chat", new_message.to_dict(), broadcast = True)

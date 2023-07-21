@@ -85,6 +85,7 @@ const initialState = {};
 const messageReducer = (state = initialState, action) => {
   let newState = {};
   switch (action.type) {
+
     case LOAD_MESSAGES:
       const messagesArr = Object.values(action.messages);
       messagesArr.forEach(message => {
