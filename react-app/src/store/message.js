@@ -1,6 +1,5 @@
 // ----------------------------------- constants  ----------------------------------------
 const LOAD_MESSAGES = 'messages/LOAD_MESSAGES';
-const ADD_MESSAGE = 'messages/ADD_MESSAGE';
 const CREATE_REACTION = 'emojis/CREATE_REACTION'
 const DELETE_REACTION = 'emojis/DELETE_REACTION'
 // const EDIT_MESSAGE = 'messages/EDIT_MESSAGE';

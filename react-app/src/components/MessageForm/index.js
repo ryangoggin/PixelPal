@@ -30,7 +30,7 @@ function MessageForm() {
             socket.emit('join_channel', { channel_id: channelId, username: user.username }, (response) => {
                 console.log('Response from channel join:', response)
             })
-            socket.on("channel_chat", (chat) => getChannelMessages(channelId) )
+            socket.on("channel_chat", (chat) => dispatch(getChannelMessages(channelId)) )
         }
         // when component unmounts, disconnect
         return (() => {

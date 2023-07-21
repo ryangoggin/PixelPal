@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom/";
 import { useEffect, useState } from "react";
-import { createDMMessageThunk } from "../../store/private";
 import { io } from 'socket.io-client';
+import { loadDMMessagesThunk } from "../../store/private";
 import DirectMessage from ".";
 import './DirectMessages.css'
 
@@ -14,7 +14,6 @@ export default function DirectMessageForm() {
   const {dmId} = useParams();
 
   const [content, setContent] = useState("");
-  const [msg, setMessages] = useState({})
 
   const user = useSelector(state => state.session.user)
   const allDMs = useSelector(state => state.private.allDMs)
@@ -31,7 +30,7 @@ export default function DirectMessageForm() {
           console.log('Response from join:', response)
         })
         // receive a message from the server
-        socket.on("dm_chat", (chat) => {setMessages(chat)})
+        socket.on("dm_chat", (chat) => {dispatch(loadDMMessagesThunk(dmId))})
     }
     // when component unmounts, disconnect
     return (() => {
@@ -46,14 +45,10 @@ export default function DirectMessageForm() {
     if (e) e.preventDefault();
 
     let message = { userId: user?.id, content: content, timestamp: new Date(), private_id: +dmId };
-    let createdMsg = await dispatch(createDMMessageThunk(message));
 
     if (socket) {
-      const dmRoom = `room-dm${dmId}`;
       // send to server
-      socket.emit("dm_chat", createdMsg, dmRoom, (res) => {
-        console.log('Response from chat:', res);
-      });
+      socket.emit("dm_chat", message);
     }
 
     setContent("");
@@ -71,7 +66,7 @@ const enterKey = (e) => {
 
 return (
   <>
-    <DirectMessage message={msg} />
+    <DirectMessage />
 
     <div className='dm-msg-form-background'>
         <div className='dm-msg-form-container'>
