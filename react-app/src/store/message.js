@@ -1,4 +1,4 @@
-//types
+// ----------------------------------- constants  ----------------------------------------
 const LOAD_MESSAGES = 'messages/LOAD_MESSAGES';
 const ADD_MESSAGE = 'messages/ADD_MESSAGE';
 const CREATE_REACTION = 'emojis/CREATE_REACTION'
@@ -6,15 +6,10 @@ const DELETE_REACTION = 'emojis/DELETE_REACTION'
 // const EDIT_MESSAGE = 'messages/EDIT_MESSAGE';
 const CLEAR_MESSAGES = 'messages/CLEAR_MESSAGES'
 
-// POJO action creators:
+// ----------------------------------- action creators   ---------------------------------
 const loadMessages = messages => ({
   type: LOAD_MESSAGES,
   messages
-});
-
-const addMessage = message => ({
-  type: ADD_MESSAGE,
-  message
 });
 
 const createReaction = (reaction) => ({
@@ -37,9 +32,8 @@ export const clearMessages = () => ({
   type: CLEAR_MESSAGES
 })
 
-// thunk action creators:
+// ----------------------------------- thunks  ----------------------------------------
 export const getChannelMessages = (channelId) => async (dispatch) => {
-
   let resMessages;
   try {
     resMessages = await fetch(`/api/channels/${channelId}/messages`);
@@ -50,22 +44,6 @@ export const getChannelMessages = (channelId) => async (dispatch) => {
       const channelMessages = await resMessages.json();
       dispatch(loadMessages(channelMessages));
     }
-};
-
-
-
-export const createMessage = (message) => async (dispatch) => {
-  const resMessage = await fetch(`/api/messages`, {
-    method: "POST",
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(message)
-  });
-
-  if (resMessage.ok) {
-    const message = await resMessage.json();
-    dispatch(addMessage(message));
-    return message;
-  }
 };
 
 // export const updateMessage = (message, messageId) => async dispatch => {
@@ -101,10 +79,10 @@ export const deleteReactionThunk = (reactionId, messageId) => async (dispatch) =
 }
 
 
-// initial state for reducer:
+// ----------------------------------- reducer  ----------------------------------------
 const initialState = {};
 
-// reducer:
+
 const messageReducer = (state = initialState, action) => {
   let newState = {};
   switch (action.type) {
@@ -114,18 +92,17 @@ const messageReducer = (state = initialState, action) => {
         newState[message.id] = message;
       });
       return newState;
-    case ADD_MESSAGE:
-      newState = { ...state };
-      newState[action.message.id] = action.message;
-      return newState;
+
     case CREATE_REACTION:
       newState = { ...state }
       newState[action.reaction.messageId].reactions.push(action.reaction);
-      return newState
+      return newState;
+
     case DELETE_REACTION:
       newState = { ...state }
       newState[action.messageId].reactions.filter(reaction => reaction === action.reactionId)
-      return newState
+      return newState;
+
     case CLEAR_MESSAGES:
       newState = {}
       return newState;

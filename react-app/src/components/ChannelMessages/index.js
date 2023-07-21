@@ -5,17 +5,15 @@ import MessageItem from "../MessageItem";
 import { clearMessages, getChannelMessages } from "../../store/message";
 import "./ChannelMessages.css";
 
-function ChannelMessages() { //{ messages }
+function ChannelMessages() {
     const dispatch = useDispatch();
 
     const channel = useSelector(state => state.channels.oneChannel)
     const allMessages = useSelector(state => state.messages);
 
-    // if (messages?.channelId) allMessages[messages.id] = messages
     const { channelId } = useParams();
 
     //populate store with channelMessages on render and when channel.id changes
-    //trying to remove allMessages from dependency array (ADD BACK IN IF NEEDED)
     useEffect(() => {
         dispatch(getChannelMessages(channelId));
 

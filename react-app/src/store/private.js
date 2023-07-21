@@ -1,4 +1,4 @@
-// Constants
+// ----------------------------------- constants  ----------------------------------------
 const LOAD_DMS = 'private/LOAD_DMS'
 const LOAD_DM_MESSAGES = 'private/LOAD_DM_MESSAGES'
 const CLEAR_DM_MESSAGES = 'private/CLEAR_DM_MESSAGES'
@@ -6,7 +6,7 @@ const CREATE_DM_MESSAGE = 'private/CREATE_DM_MESSAGE'
 const CREATE_DM_REACTION = 'private/CREATE_DM_REACTION'
 const DELETE_DM_REACTION = 'private/DELETE_DM_REACTION'
 
-// Action Creators
+// ----------------------------------- action creators   ---------------------------------
 const loadAllDMs = (directMessages) => ({
   type: LOAD_DMS,
   directMessages
@@ -37,7 +37,7 @@ const deleteDMReaction = (reactionId, messageId) => ({
   messageId
 })
 
-// Thunks
+// ----------------------------------- thunks  ----------------------------------------
 
 export const loadAllDmsThunk = (userId) => async (dispatch) => {
   const res = await fetch(`/api/private/dms/${userId}`)
@@ -101,10 +101,7 @@ export const deleteDMReactionThunk = (reactionId, messageId) => async (dispatch)
 
 
 
-
-
-
-// reducer
+// ----------------------------------- reducer  ----------------------------------------
 let initialState = {
   allDMs: {},
   currentDM: {}
@@ -129,11 +126,6 @@ export default function privateReducer( state = initialState, action) {
 
     case CLEAR_DM_MESSAGES:
       newState = {...state, currentDM: {}}
-      return newState
-
-    case CREATE_DM_MESSAGE:
-      newState = {...state, currentDM: {...state.currentDM}}
-      newState.currentDM[action.message.id] = action.message
       return newState
 
     case CREATE_DM_REACTION:
