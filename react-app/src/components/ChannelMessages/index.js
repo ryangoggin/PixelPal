@@ -5,13 +5,13 @@ import MessageItem from "../MessageItem";
 import { clearMessages, getChannelMessages } from "../../store/message";
 import "./ChannelMessages.css";
 
-function ChannelMessages({ messages }) {
+function ChannelMessages() { //{ messages }
     const dispatch = useDispatch();
 
     const channel = useSelector(state => state.channels.oneChannel)
     const allMessages = useSelector(state => state.messages);
-    // if the incoming msg has a channelId, rewrite it in state so that we aren't rendering same data twice
-    if (messages?.channelId) allMessages[messages.id] = messages
+
+    // if (messages?.channelId) allMessages[messages.id] = messages
     const { channelId } = useParams();
 
     //populate store with channelMessages on render and when channel.id changes
@@ -21,7 +21,7 @@ function ChannelMessages({ messages }) {
 
         // clear state every time channel Id changes
         return () => dispatch(clearMessages())
-    }, [dispatch, channelId]); //allMessages
+    }, [dispatch, channelId]);
 
 
 

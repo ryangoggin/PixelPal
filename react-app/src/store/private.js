@@ -31,9 +31,10 @@ const createDMReaction = (reaction) => ({
   reaction
 })
 
-const deleteDMReaction = (reaction) => ({
+const deleteDMReaction = (reactionId, messageId) => ({
   type: DELETE_DM_REACTION,
-  reaction
+  reactionId,
+  messageId
 })
 
 // Thunks
@@ -142,7 +143,7 @@ export default function privateReducer( state = initialState, action) {
 
     case DELETE_DM_REACTION:
       newState = {...state, currentDM: {...state.currentDM}}
-      newState.currentDM[action.reaction.messageId].reactions.filter(reaction => reaction.id === action.reaction.id)
+      newState.currentDM[action.messageId].reactions.filter(reaction => reaction.id === action.reactionId)
       return newState
 
     default:

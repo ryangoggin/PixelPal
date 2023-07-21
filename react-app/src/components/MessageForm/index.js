@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { io } from 'socket.io-client';
 import { getChannelDetails } from '../../store/channels';
-import { createMessage } from "../../store/message";
 import ChannelMessages from "../ChannelMessages";
+import { getChannelMessages } from "../../store/message";
 import "./MessageForm.css";
 
 let socket;
@@ -15,7 +15,6 @@ function MessageForm() {
     const { serverId, channelId } = useParams();
 
     const [content, setContent] = useState("");
-    const [messages, setMessages] = useState({});
 
     const user = useSelector(state => state.session.user);
     const channel = useSelector(state => state.channels.oneChannel);
@@ -31,7 +30,7 @@ function MessageForm() {
             socket.emit('join_channel', { channel_id: channelId, username: user.username }, (response) => {
                 console.log('Response from channel join:', response)
             })
-            socket.on("channel_chat", (chat) => setMessages(chat) )
+            socket.on("channel_chat", (chat) => getChannelMessages(channelId) )
         }
         // when component unmounts, disconnect
         return (() => {
@@ -48,16 +47,8 @@ function MessageForm() {
         // e is undefined if message sent with Enter key, check if it exists (message sent by clicking Send button) before running e.preventDefault()
         if (e) e.preventDefault();
 
-        let message = { userId: user?.id, channel_id: channel.id, content: content, timestamp: new Date() };
-        let createdMsg = await dispatch(createMessage(message));
-
-
-        if (socket) {
-            const room = `room-channel${channel.id}`
-            socket.emit("channel_chat", createdMsg, room, (response) => {
-                console.log("Response from chat:", response)
-            });
-        }
+        let message = { userId: user?.id, channel_id: channel.id, content: content };
+        if (socket) { socket.emit("channel_chat", message); }
 
         setContent("");
     };
@@ -72,7 +63,7 @@ function MessageForm() {
 
     return (
         <>
-            <ChannelMessages messages={messages} />
+            <ChannelMessages />
             <div className="message-form-background">
                 <div className='message-form-container'>
                     <form className="message-form" onSubmit={handleSubmit}>
