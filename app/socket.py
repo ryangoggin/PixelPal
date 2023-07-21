@@ -62,7 +62,7 @@ def handle_chat(data):
 
     db.session.add(new_message)
     db.session.commit()
-    emit("chat", new_message.to_dict(), broadcast = True)
+    emit("channel_chat", new_message.to_dict(), broadcast = True)
     return 'Channel msg sent'  # This will be sent back to the client
 
 

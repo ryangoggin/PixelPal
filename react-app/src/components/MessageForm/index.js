@@ -11,9 +11,7 @@ let socket;
 
 function MessageForm() {
     const dispatch = useDispatch();
-
     const { serverId, channelId } = useParams();
-
     const [content, setContent] = useState("");
 
     const user = useSelector(state => state.session.user);
@@ -31,17 +29,13 @@ function MessageForm() {
         })
 
         if (socket && user) {
-            socket.emit('join_channel', { channel_id: channelId, username: user.username }, (response) => {
-                console.log('Response from channel join:', response)
-            })
+            socket.emit('join_channel', { channel_id: channelId, username: user.username })
         }
         // when component unmounts, disconnect
         return (() => {
-            socket.emit('leave_channel', { channel_id: channelId, username: user.username }, (response) => {
-                console.log("Response from leave channel: ", response)
-            })
+            socket.emit('leave_channel', { channel_id: channelId, username: user.username })
             socket.disconnect()
-         } )
+         })
     }, [channelId, user])
 
     if (!channel) return null;
