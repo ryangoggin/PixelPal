@@ -26,7 +26,9 @@ function MessageForm() {
     useEffect(() => {
         socket = io();
 
-        socket.on("channel_chat", (chat) => dispatch(getChannelMessages(channelId)) )
+        socket.on("channel_chat", (chat) => {
+            dispatch(getChannelMessages(channelId))
+        })
 
         if (socket && user) {
             socket.emit('join_channel', { channel_id: channelId, username: user.username }, (response) => {

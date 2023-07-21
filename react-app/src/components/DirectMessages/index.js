@@ -8,13 +8,11 @@ import './DirectMessages.css'
 
 
 
-export default function DirectMessage({message}) {
+export default function DirectMessage() {
   const dispatch = useDispatch()
   const {dmId} = useParams();
 
-  const sessionUser = useSelector((state) => state.session.user);
   const messages = useSelector(state => state.private.currentDM)
-  if (message?.id) messages[message.id] = message
   const messagesArr = Object.values(messages)
 
   const allDMs = useSelector(state => state.private.allDMs)

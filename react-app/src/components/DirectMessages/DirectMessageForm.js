@@ -24,13 +24,14 @@ export default function DirectMessageForm() {
   useEffect(() => {
     socket = io();
 
-    if (socket && user) {
+    socket.on("dm_chat", (chat) => {
+      dispatch(loadDMMessagesThunk(dmId))}
+      )
 
+    if (socket && user) {
         socket.emit('join_dm', { private_id: +dmId, username: user.username }, (response) => {
           console.log('Response from join:', response)
         })
-        // receive a message from the server
-        socket.on("dm_chat", (chat) => {dispatch(loadDMMessagesThunk(dmId))})
     }
     // when component unmounts, disconnect
     return (() => {
@@ -44,7 +45,7 @@ export default function DirectMessageForm() {
   const handleSubmit = async (e) => {
     if (e) e.preventDefault();
 
-    let message = { userId: user?.id, content: content, timestamp: new Date(), private_id: +dmId };
+    let message = { userId: user?.id, content: content, private_id: +dmId };
 
     if (socket) {
       // send to server
