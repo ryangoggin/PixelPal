@@ -72,53 +72,52 @@ function MessageItem({ message }) {
 
     const deleteReaction = async (reactionId, messageId) => {
         dispatch(deleteReactionThunk(reactionId, messageId))
-        dispatch(getChannelMessages(message.channelId))
+        dispatch(getChannelMessages(message.channelId)) // need to get rid of this
 
     }
 
     if (!user) return null
 
     return (
-        <div className='message-item'>
-            <div className='message-left-and-center'>
-                <div className='message-left-side'>
-                    <img className='message-profile-pic' src={`${user.prof_pic}`} alt={`${user.username.slice(0, -5)} Profile Pic`} />
-                </div>
-                <div className='message-center'>
-                    <div className='message-sender'>
-                        <p className='message-username'>{user.username.slice(0, -5)}</p>
-                        <p className='message-timestamp'>{messageTimestamp}</p>
-                    </div>
-                    <div className="message-content">
-                        <p>{message.content}</p>
-                    </div>
-                    <div className='reactions-container'>
-
-                        {reactionsArr.length ?
-                        <>
-                        {reactionsArr.map((reaction) => {
-                            return (
-                                <div>
-                                    <div
-                                        className={+reaction.userId === +sessionUserId ? 'user-emoji-reaction' : 'other-user-reaction'}
-                                        key={`reaction${reaction.id}`}
-                                        onClick={+reaction.userId === +sessionUserId ? () => { deleteReaction(reaction.id, messageId) } : () => { addReaction(reaction.emojiId, messageId, sessionUserId) }}
-                                    >
-                                        <p className='emojis-emojichar'> {String.fromCodePoint(reaction.emoji.url)}</p>
-                                        <p className='emojis-count'> 1 </p>
-                                    </div>
-                                </div>
-                            );
-                        })}
-                        </>
-                        : null}
-                    </div>
-                </div>
+      <div className='message-item'>
+        <div className='message-left-and-center'>
+          <div className='message-left-side'>
+            <img className='message-profile-pic' src={`${user.prof_pic}`} alt={`${user.username.slice(0, -5)} Profile Pic`} />
+          </div>
+          <div className='message-center'>
+            <div className='message-sender'>
+              <p className='message-username'>{user.username.slice(0, -5)}</p>
+              <p className='message-timestamp'>{messageTimestamp}</p>
             </div>
-            <div className='message-right-side'>
-                <EmojisModal props={props} />
+            <div className="message-content">
+                <p>{message.content}</p>
             </div>
+            <div className='reactions-container'>
+              {reactionsArr.length ?
+              <>
+              {reactionsArr.map((reaction) => {
+                return (
+                <>
+                  <div
+                    className={+reaction.userId === +sessionUserId ? 'user-emoji-reaction' : 'other-user-reaction'}
+                    key={`reaction${reaction.id}`}
+                    onClick={+reaction.userId === +sessionUserId ? () => { deleteReaction(reaction.id, messageId) } : () => { addReaction(reaction.emojiId, messageId, sessionUserId) }}
+                  >
+                    <p className='emojis-emojichar'> {String.fromCodePoint(reaction.emoji.url)}</p>
+                    <p className='emojis-count'> 1 </p>
+                  </div>
+                  </>
+                );
+              })}
+              </>
+              : null}
+            </div>
+          </div>
         </div>
+        <div className='message-right-side'>
+            <EmojisModal props={props} />
+        </div>
+      </div>
     );
 };
 

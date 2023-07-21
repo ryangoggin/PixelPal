@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom/";
 import { useEffect, useState } from "react";
-import { createDMMessageThunk } from "../../store/private";
 import { io } from 'socket.io-client';
+import { loadDMMessagesThunk } from "../../store/private";
 import DirectMessage from ".";
 import './DirectMessages.css'
 
@@ -14,7 +14,6 @@ export default function DirectMessageForm() {
   const {dmId} = useParams();
 
   const [content, setContent] = useState("");
-  const [msg, setMessages] = useState({})
 
   const user = useSelector(state => state.session.user)
   const allDMs = useSelector(state => state.private.allDMs)
@@ -25,14 +24,20 @@ export default function DirectMessageForm() {
   useEffect(() => {
     socket = io();
 
+    socket.on("dm_chat", (chat) => {
+      dispatch(loadDMMessagesThunk(dmId))}
+      )
+
     if (socket && user) {
-        socket.emit('join_dm', { private_id: +dmId, username: user.username })
-        // receive a message from the server
-        socket.on("dm_chat", (chat) => setMessages(chat) )
+        socket.emit('join_dm', { private_id: +dmId, username: user.username }, (response) => {
+          console.log('Response from join:', response)
+        })
     }
     // when component unmounts, disconnect
     return (() => {
-      socket.emit('leave_dm', { private_id: +dmId, username: user.username })
+      socket.emit('leave_dm', { private_id: +dmId, username: user.username }, (response) => {
+        console.log("Response from leave_dm", response)
+      })
       socket.disconnect()
     })
   }, [+dmId, user])
@@ -40,16 +45,16 @@ export default function DirectMessageForm() {
   const handleSubmit = async (e) => {
     if (e) e.preventDefault();
 
-    let message = { userId: user?.id, channel_id: 0, content: content, timestamp: new Date(), private_id: +dmId };
-    let createdMsg = await dispatch(createDMMessageThunk(message));
+    let message = { userId: user?.id, content: content, private_id: +dmId };
 
     if (socket) {
-      const dmRoom = `room-dm${dmId}`;
-      socket.emit("dm_chat", createdMsg, dmRoom);
+      // send to server
+      socket.emit("dm_chat", message);
     }
 
     setContent("");
 };
+
 
 const enterKey = (e) => {
     if (e.key === 'Enter') {
@@ -62,7 +67,7 @@ const enterKey = (e) => {
 
 return (
   <>
-    <DirectMessage message={msg} />
+    <DirectMessage />
 
     <div className='dm-msg-form-background'>
         <div className='dm-msg-form-container'>

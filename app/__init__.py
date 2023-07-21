@@ -1,5 +1,5 @@
-from gevent import monkey
-monkey.patch_all()
+# from gevent import monkey
+# monkey.patch_all()
 import os
 from flask import Flask, render_template, request, session, redirect
 from flask_cors import CORS
@@ -49,8 +49,7 @@ app.register_blueprint(request_routes, url_prefix='/api/requests')
 db.init_app(app)
 Migrate(app, db)
 # initialize the app with the socket instance
-# include this line right after Migrate(app, db)
-socketio.init_app(app, async_mode='gevent')
+socketio.init_app(app) #async_mode='gevent'
 
 # Application Security
 CORS(app)

@@ -3,19 +3,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { io } from 'socket.io-client';
 import { getChannelDetails } from '../../store/channels';
-import { createMessage } from "../../store/message";
 import ChannelMessages from "../ChannelMessages";
+import { getChannelMessages } from "../../store/message";
 import "./MessageForm.css";
 
 let socket;
 
 function MessageForm() {
     const dispatch = useDispatch();
-
     const { serverId, channelId } = useParams();
-
     const [content, setContent] = useState("");
-    const [messages, setMessages] = useState({});
 
     const user = useSelector(state => state.session.user);
     const channel = useSelector(state => state.channels.oneChannel);
@@ -27,15 +24,18 @@ function MessageForm() {
     useEffect(() => {
         socket = io();
 
+        socket.on("channel_chat", (chat) => {
+            dispatch(getChannelMessages(channelId))
+        })
+
         if (socket && user) {
-            socket.emit('join', { channel_id: channelId, username: user.username })
-            socket.on("chat", (chat) => setMessages(chat) )
+            socket.emit('join_channel', { channel_id: channelId, username: user.username })
         }
         // when component unmounts, disconnect
         return (() => {
             socket.emit('leave_channel', { channel_id: channelId, username: user.username })
             socket.disconnect()
-         } )
+         })
     }, [channelId, user])
 
     if (!channel) return null;
@@ -44,17 +44,14 @@ function MessageForm() {
         // e is undefined if message sent with Enter key, check if it exists (message sent by clicking Send button) before running e.preventDefault()
         if (e) e.preventDefault();
 
-        let message = { userId: user?.id, channel_id: channel.id, content: content, timestamp: new Date(), private_id: 0 };
-        let createdMsg = await dispatch(createMessage(message));
-
-
+        let message = { userId: user?.id, channel_id: channel.id, content: content };
         if (socket) {
-            const room = `room-channel${channel.id}`
-            socket.emit("chat", createdMsg, room );
+            socket.emit("channel_chat", message);
         }
 
         setContent("");
     };
+
 
     const enterKey = (e) => {
         if (e.key === 'Enter') {
@@ -65,7 +62,7 @@ function MessageForm() {
 
     return (
         <>
-            <ChannelMessages messages={messages} />
+            <ChannelMessages />
             <div className="message-form-background">
                 <div className='message-form-container'>
                     <form className="message-form" onSubmit={handleSubmit}>

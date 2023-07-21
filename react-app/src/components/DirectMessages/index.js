@@ -1,18 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom/";
 import { loadDMMessagesThunk, clearDMMessages } from "../../store/private";
+import DMReactions from "./Reactions";
 import EmojisModal from "../EmojisModal/AllEmojisModal";
 import './DirectMessages.css'
 
 
 
-export default function DirectMessage({message}) {
+export default function DirectMessage() {
   const dispatch = useDispatch()
   const {dmId} = useParams();
 
   const messages = useSelector(state => state.private.currentDM)
-  if (message?.id) messages[message.id] = message
   const messagesArr = Object.values(messages)
 
   const allDMs = useSelector(state => state.private.allDMs)
@@ -26,7 +26,6 @@ export default function DirectMessage({message}) {
   }, [dispatch, +dmId])
 
   if (!allDMs) return null;
-
 
   return (
     <>
@@ -72,13 +71,15 @@ export default function DirectMessage({message}) {
                 <div className='dm-msg-timestamp'> {msg.timestamp} </div>
               </div>
               <div className='dm-msg-content'> {msg.content} </div>
-              <div className='dm-msg-reactions'>
-                {msg.reactions.length ? <div> REACTIONS GO HERE </div> : null }
-              </div>
+              {msg.reactions.length ?
+                <div className='dm-msg-reactions'>
+                  <DMReactions reactions={msg.reactions}   />
+                </div>
+              : null}
             </div>
 
             <div className='dm-msg-right'>
-              {/* <EmojisModal props={msg.id}/> */}
+              <EmojisModal props={{messageId: msg.id, dm:true, sessionUserId: user.id}}/>
             </div>
           </div>
           )
