@@ -24,7 +24,7 @@ class Message(db.Model):
         return {
             "id": self.id,
             "content": self.content,
-            # "timestamp": self.timestamp,
+            "timestamp": self.timestamp.strftime("%m/%d/%Y, %H:%M:%S"),
             "userId": self.user_id,
             "channelId": self.channel_id,
             "private_id": self.private_id,
@@ -36,7 +36,7 @@ class Message(db.Model):
         return {
             "id": self.id,
             "content": self.content,
-            "timestamp": self.timestamp,
+            "timestamp": self.timestamp.strftime("%m/%d/%Y, %H:%M:%S"),
             "userId": self.user_id,
             "private_id": self.private_id,
             'user': self.user.to_dict(),
