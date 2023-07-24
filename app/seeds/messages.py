@@ -47,11 +47,11 @@ def seed_messages():
     Message(
         content='Hey guys! I have a question about the homework from class today', user_id=6, channel_id=5),
     Message(
-        content='I can help!', user_id=7, channel_id=5),
+        content='I can help!', user_id=3, channel_id=5),
     Message(
         content='That would be great. Do you remember when it\'s due?', user_id=6, channel_id=5),
     Message(
-        content='It\'s due this coming Monday.', user_id=7, channel_id=5),
+        content='It\'s due this coming Monday.', user_id=3, channel_id=5),
     Message(
         content='Yikes! That\'s soon.', user_id=6, channel_id=5),
     Message(

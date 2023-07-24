@@ -10,7 +10,6 @@ def seed_private_channels():
         PrivateChannel(user_id = 1, user_two_id = 4), # 3 Demo + Aileen
         PrivateChannel(user_id = 1, user_two_id = 5), # 4 Demo + Zaineb
         PrivateChannel(user_id = 1, user_two_id = 6), # 5 Demo + Ryan
-        PrivateChannel(user_id = 1, user_two_id = 7), # 6 Demo + Kenny
 
 
         # Marnie DMs
@@ -18,7 +17,6 @@ def seed_private_channels():
         # PrivateChannel(user_id = 2, user_two_id = 4), # 8 Marnie + Aileen
         # PrivateChannel(user_id = 2, user_two_id = 5), # 9 Marnie + Zaineb
         # PrivateChannel(user_id = 2, user_two_id = 6), # 10 Marnie + Ryan
-        # PrivateChannel(user_id = 2, user_two_id = 7), # 10 Marnie + Ken
         ]
 
     db.session.add_all(private_channels)

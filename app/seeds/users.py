@@ -8,7 +8,7 @@ def seed_users():
 
     users = [
     User(
-        username='Demo#1234', email='demo@aa.io', password='password', prof_pic='https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/31NFDGOx0aL.jpg'), #1
+        username='Demo#1234', email='demo@aa.io', password='password', prof_pic='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYo3lDG3i6el9FFjM6LLw3d2kqJYFa0_4pHw&usqp=CAU'), #1
     User(
         username='Marnie#2345', email='marnie@aa.io', password='password', prof_pic='https://static.vecteezy.com/system/resources/previews/002/082/524/original/cute-shiba-inu-dog-with-sunglasses-crossing-arms-cartoon-illustration-vector.jpg'), #2
     User(
@@ -19,8 +19,6 @@ def seed_users():
         username='zmarediya#0206', email='zainebmarediya@gmail.com', password='password2', prof_pic='https://i.redd.it/6jupfeilyhx71.jpg'),#5
     User(
         username='rgoggin#0001', email='ryangoggin@gmail.com', password='password3', prof_pic='https://ih1.redbubble.net/image.1580724210.1236/st,small,507x507-pad,600x600,f8f8f8.jpg'), #6
-    User(
-        username='kleong#0666', email='kenleong@gmail.com', password='password4', prof_pic='https://i.redd.it/6jupfeilyhx71.jpg') #7
     ]
 
     db.session.add_all(users)
