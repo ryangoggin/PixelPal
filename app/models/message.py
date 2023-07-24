@@ -10,7 +10,7 @@ class Message(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(2000), nullable=False)
-    timestamp = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    timestamp = db.Column(db.String(500), nullable=False, default = str(datetime.utcnow))
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     channel_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('channels.id')))
     private_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('private_channels.id')))
@@ -24,7 +24,7 @@ class Message(db.Model):
         return {
             "id": self.id,
             "content": self.content,
-            # "timestamp": self.timestamp,
+            "timestamp": self.timestamp,
             "userId": self.user_id,
             "channelId": self.channel_id,
             "private_id": self.private_id,
