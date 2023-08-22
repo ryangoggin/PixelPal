@@ -28,7 +28,7 @@ def get_message_id(id):
     return jsonify({"error": "Message not found"}), 404
 
 
-# All Post Messages in socket.py
+# All Post Messages in
 # # POST /messages --> create a message
 # @message_routes.route("", methods=["POST"])
 # @login_required

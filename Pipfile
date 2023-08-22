@@ -34,7 +34,7 @@ importlib-metadata = "==6.0.0"
 python-engineio = "==4.3.4"
 python-socketio = "==5.7.2"
 zipp = "==3.15.0"
-gevent = "==22.10.2"
+gevent = "==23.7.0"
 "zope.event" = "==4.6"
 "zope.interface" = "==6.0"
 
