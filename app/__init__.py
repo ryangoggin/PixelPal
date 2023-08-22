@@ -49,7 +49,7 @@ app.register_blueprint(request_routes, url_prefix='/api/requests')
 db.init_app(app)
 Migrate(app, db)
 # initialize the app with the socket instance
-socketio.init_app(app) #async_mode='gevent'
+socketio.init_app(app, async_mode='gevent') #async_mode='gevent'
 
 # Application Security
 CORS(app)
